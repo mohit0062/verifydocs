@@ -5,7 +5,6 @@ module.exports = async function handler(req, res) {
 
   const { password, title, slug, description, content } = req.body;
 
-  // Trim env variables because Windows echo adds newlines
   const ADMIN_PASSWORD = (process.env.ADMIN_PASSWORD || '').trim();
   const GITHUB_TOKEN = (process.env.GITHUB_TOKEN || '').trim();
   const REPO_OWNER = 'mohit0062';
@@ -21,7 +20,6 @@ module.exports = async function handler(req, res) {
 
   const dateStr = new Date().toISOString().split('T')[0];
 
-  // 1. Create the new HTML file content
   const htmlContent = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,7 +70,6 @@ module.exports = async function handler(req, res) {
 </body>
 </html>`;
 
-  // Function to commit file to GitHub
   const commitFile = async (path, content, message, sha = null) => {
     const body = {
       message: message,
@@ -84,6 +81,7 @@ module.exports = async function handler(req, res) {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github+json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body)
@@ -91,17 +89,28 @@ module.exports = async function handler(req, res) {
 
     if (!res.ok) {
       const err = await res.json();
-      throw new Error(err.message);
+      throw new Error(err.message || 'GitHub API error');
     }
     return res.json();
   };
 
-  try {
-    // 2. Commit the new blog file
-    await commitFile(`blog/${slug}.html`, htmlContent, `Add new blog: ${title}`);
+  const getFileSha = async (path) => {
+    const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`, {
+      headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}` }
+    });
+    if (res.ok) {
+      const data = await res.json();
+      return data.sha;
+    }
+    return null;
+  };
 
-    // 3. Update blog/index.html to include the new post
-    // Fetch current index.html
+  try {
+    // 1. Check if blog file exists to get SHA (allows overwriting/updating)
+    const existingBlogSha = await getFileSha(`blog/${slug}.html`);
+    await commitFile(`blog/${slug}.html`, htmlContent, `Add/Update blog: ${title}`, existingBlogSha);
+
+    // 2. Update blog/index.html
     const indexRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/blog/index.html`, {
       headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}` }
     });
@@ -110,7 +119,9 @@ module.exports = async function handler(req, res) {
       const indexData = await indexRes.json();
       const currentContent = Buffer.from(indexData.content, 'base64').toString('utf8');
       
-      const newCard = `
+      // Only add to index if it's not already there (prevent duplicates in list)
+      if (!currentContent.includes(`href="../blog/${slug}.html"`)) {
+        const newCard = `
       <!-- NEW BLOG -->
       <a href="../blog/${slug}.html" class="block bg-white border border-border-col rounded-2xl p-6 hover:shadow-md transition">
         <div class="text-xs text-primary font-semibold mb-2">${dateStr}</div>
@@ -118,11 +129,11 @@ module.exports = async function handler(req, res) {
         <p class="text-sm text-text-muted line-clamp-2">${description}</p>
       </a>`;
 
-      // Find where to insert the new card (after the first grid div or a specific marker)
-      const targetMarker = '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">';
-      if (currentContent.includes(targetMarker)) {
-        const updatedContent = currentContent.replace(targetMarker, targetMarker + '\n' + newCard);
-        await commitFile('blog/index.html', updatedContent, 'Update blog index', indexData.sha);
+        const targetMarker = '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">';
+        if (currentContent.includes(targetMarker)) {
+          const updatedContent = currentContent.replace(targetMarker, targetMarker + '\n' + newCard);
+          await commitFile('blog/index.html', updatedContent, 'Update blog index', indexData.sha);
+        }
       }
     }
 
