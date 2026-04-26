@@ -87,15 +87,35 @@ module.exports = async function handler(req, res) {
   </nav>
 
   <div class="text-xs text-text-muted mb-4 flex items-center gap-3">
-    <span>${dateStr}</span>
+    <span>${dateStr}</span><span>·</span>
+    <span id="view-count" class="bg-gray-100 px-2 py-0.5 rounded text-text-main font-medium">Loading views...</span>
   </div>
 
   <h1 class="text-3xl md:text-4xl font-extrabold text-text-main mb-6 leading-tight">${title}</h1>
 
-  <div class="prose text-text-muted text-sm">
+  <div class="prose text-text-muted text-sm mb-12">
     ${content}
   </div>
+
+  <!-- Comments Section -->
+  <div class="mt-16 pt-10 border-t border-border-col">
+    <h3 class="text-xl font-bold text-text-main mb-6">User Comments</h3>
+    
+    <div id="comment-list" class="mb-10 space-y-6">
+      <p class="text-sm text-text-muted">Loading comments...</p>
+    </div>
+
+    <div class="bg-white border border-border-col rounded-2xl p-6">
+      <h4 class="font-bold text-sm mb-4 text-text-main">Leave a Comment</h4>
+      <form id="comment-form" class="space-y-4">
+        <input type="text" id="comment-name" placeholder="Your Name" class="w-full h-10 px-4 border border-border-col rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20" required>
+        <textarea id="comment-text" placeholder="Share your thoughts..." class="w-full p-4 border border-border-col rounded-xl text-sm h-28 focus:outline-none focus:ring-2 focus:ring-primary/20" required></textarea>
+        <button type="submit" class="bg-primary text-white text-xs font-bold px-6 py-3 rounded-xl hover:bg-blue-700 transition">Post Comment</button>
+      </form>
+    </div>
+  </div>
 </main>
+<script src="../assets/js/blog-features.js"></script>
 </body>
 </html>`;
 

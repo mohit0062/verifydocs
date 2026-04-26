@@ -164,7 +164,24 @@
       <a href="../tools/pan-validator.html" class="block text-sm text-primary hover:underline">→ Open PAN Card Validator tool</a>
     </div>
   </div>
+
+  <!-- Views & Comments Integration -->
+  <div class="mt-16 pt-10 border-t border-border-col">
+    <h3 class="text-xl font-bold text-text-main mb-6">User Comments</h3>
+    <div id="comment-list" class="mb-10 space-y-6">
+      <p class="text-sm text-text-muted">Loading comments...</p>
+    </div>
+    <div class="bg-white border border-border-col rounded-2xl p-6">
+      <h4 class="font-bold text-sm mb-4 text-text-main">Leave a Comment</h4>
+      <form id="comment-form" class="space-y-4">
+        <input type="text" id="comment-name" placeholder="Your Name" class="w-full h-10 px-4 border border-border-col rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20" required>
+        <textarea id="comment-text" placeholder="Share your thoughts..." class="w-full p-4 border border-border-col rounded-xl text-sm h-28 focus:outline-none focus:ring-2 focus:ring-primary/20" required></textarea>
+        <button type="submit" class="bg-primary text-white text-xs font-bold px-6 py-3 rounded-xl hover:bg-blue-700 transition">Post Comment</button>
+      </form>
+    </div>
+  </div>
 </main>
+<script src="../assets/js/blog-features.js"></script>
 
 <!-- Footer -->
 <footer class="bg-text-main text-white pt-12 pb-6 px-4 mt-10">
