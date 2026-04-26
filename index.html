@@ -176,16 +176,16 @@
     <!-- Quick Validator Widget -->
     <div class="bg-white rounded-2xl border border-border-col shadow-md p-6 md:p-8 max-w-xl mx-auto text-left">
       <label class="block text-sm font-semibold text-text-main mb-2">Paste any document number</label>
-      <div class="flex gap-2">
+      <div class="flex flex-col sm:flex-row gap-3">
         <input
           type="text"
           id="quick-input"
           placeholder="Enter Aadhaar / PAN / GST / IFSC / Voter ID..."
-          class="flex-1 h-14 px-4 border border-border-col rounded-xl text-base font-mono focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
+          class="flex-1 h-14 px-4 border border-border-col rounded-xl text-sm md:text-base font-mono focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
           oninput="quickAutoDetect()"
           onkeydown="if(event.key==='Enter') quickValidate()"
         >
-        <button onclick="quickValidate()" class="h-14 px-6 bg-primary text-white font-semibold rounded-xl hover:bg-blue-700 transition whitespace-nowrap">
+        <button onclick="quickValidate()" class="h-14 w-full sm:w-auto px-6 bg-primary text-white font-semibold rounded-xl hover:bg-blue-700 transition whitespace-nowrap">
           Validate →
         </button>
       </div>
