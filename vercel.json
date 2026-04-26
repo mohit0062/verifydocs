@@ -1,4 +1,5 @@
 {
+  "name": "verifydocs",
   "cleanUrls": true,
   "rewrites": [
     { "source": "/(.*)", "destination": "/$1" }
