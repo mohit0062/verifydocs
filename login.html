@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | VerifyDocs.in</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#0066cc','text-main':'#0f172a','text-muted':'#64748b','border-col':'#e2e8f0'},fontFamily:{sans:['Inter','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-text-main">
+  <div class="max-w-3xl mx-auto px-4 py-10">
+    <div class="flex items-center gap-2 font-bold text-2xl text-text-main mb-8">
+      <span>VerifyDocs<span class="text-primary">.in</span> Admin</span>
+    </div>
+
+    <div class="bg-white border border-border-col rounded-2xl shadow-sm p-6 md:p-8">
+      <h1 class="text-xl font-bold mb-6">Write a New Blog Post</h1>
+      
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-semibold mb-1">Blog Title</label>
+          <input type="text" id="title" class="w-full h-12 px-4 border border-border-col rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" oninput="document.getElementById('slug').value = this.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')">
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-1">URL Slug</label>
+          <div class="flex items-center border border-border-col rounded-xl overflow-hidden bg-gray-50">
+            <span class="px-4 text-text-muted text-sm border-r border-border-col">/blog/</span>
+            <input type="text" id="slug" class="flex-1 h-12 px-4 bg-transparent focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/30" placeholder="my-blog-post">
+            <span class="px-4 text-text-muted text-sm border-l border-border-col">.html</span>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-1">Short Description (SEO)</label>
+          <textarea id="description" class="w-full p-4 border border-border-col rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary h-20"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-1">Blog Content (HTML allowed)</label>
+          <textarea id="content" class="w-full p-4 border border-border-col rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary font-mono text-sm h-64" placeholder="<p>Write your paragraphs in p tags...</p>&#10;<h2>Subheadings in h2 tags</h2>"></textarea>
+        </div>
+
+        <div class="border-t border-border-col pt-4 mt-6">
+          <label class="block text-sm font-semibold text-red-600 mb-1">Admin Password</label>
+          <input type="password" id="password" class="w-full h-12 px-4 border border-red-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500/30 focus:border-red-500 bg-red-50" placeholder="Enter password to publish">
+        </div>
+
+        <button onclick="publishBlog()" id="publish-btn" class="w-full h-14 bg-primary text-white font-bold rounded-xl hover:bg-blue-700 transition mt-4">
+          🚀 Publish Blog to Live Site
+        </button>
+
+        <div id="status" class="mt-4 text-sm font-medium hidden p-4 rounded-xl"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function publishBlog() {
+      const title = document.getElementById('title').value;
+      const slug = document.getElementById('slug').value;
+      const description = document.getElementById('description').value;
+      const content = document.getElementById('content').value;
+      const password = document.getElementById('password').value;
+      const statusDiv = document.getElementById('status');
+      const btn = document.getElementById('publish-btn');
+
+      if(!title || !slug || !content || !password) {
+        alert("Please fill all required fields!");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = "⏳ Publishing... (This takes 10-15 seconds)";
+      statusDiv.className = "mt-4 text-sm font-medium p-4 rounded-xl bg-blue-50 text-blue-700 block";
+      statusDiv.innerHTML = "Creating file and updating index on GitHub...";
+
+      try {
+        const res = await fetch('/api/publish', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, slug, description, content, password })
+        });
+
+        const data = await res.json();
+
+        if(res.ok) {
+          statusDiv.className = "mt-4 text-sm font-medium p-4 rounded-xl bg-green-50 text-green-700 block";
+          statusDiv.innerHTML = `✅ Successfully Published! Vercel is deploying it right now. <a href="${data.url}" class="underline font-bold" target="_blank">View Live Blog in 1 min</a>`;
+        } else {
+          throw new Error(data.error || "Failed to publish");
+        }
+      } catch(e) {
+        statusDiv.className = "mt-4 text-sm font-medium p-4 rounded-xl bg-red-50 text-red-700 block";
+        statusDiv.innerHTML = `❌ Error: ${e.message}`;
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = "🚀 Publish Blog to Live Site";
+      }
+    }
+  </script>
+</body>
+</html>
