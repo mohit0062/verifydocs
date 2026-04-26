@@ -7,19 +7,48 @@ module.exports = async function handler(req, res) {
 
   const ADMIN_PASSWORD = (process.env.ADMIN_PASSWORD || '').trim();
   const GITHUB_TOKEN = (process.env.GITHUB_TOKEN || '').trim();
+  const SUPABASE_URL = (process.env.SUPABASE_URL || '').trim();
+  const SUPABASE_KEY = (process.env.SUPABASE_KEY || '').trim();
   const REPO_OWNER = 'mohit0062';
   const REPO_NAME = 'verifydocs';
 
   if (password !== ADMIN_PASSWORD) {
     return res.status(401).json({ error: 'Invalid password' });
   }
-  
-  if (!GITHUB_TOKEN) {
-    return res.status(500).json({ error: 'GitHub Token not configured' });
-  }
 
   const dateStr = new Date().toISOString().split('T')[0];
 
+  // --- PART 1: SAVE TO SUPABASE ---
+  try {
+    const supabaseRes = await fetch(`${SUPABASE_URL}/rest/v1/blogs`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'resolution=merge-duplicates' // Upsert based on slug if unique constraint exists
+      },
+      body: JSON.stringify({
+        title,
+        slug,
+        description,
+        content,
+        author: 'Admin'
+      })
+    });
+
+    if (!supabaseRes.ok) {
+      const sbError = await supabaseRes.json();
+      console.error('Supabase Error:', sbError);
+      // We continue to GitHub even if Supabase fails, or we can stop here.
+      // Let's stop to ensure database integrity.
+      throw new Error(`Supabase Error: ${sbError.message}`);
+    }
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+
+  // --- PART 2: COMMIT TO GITHUB (For SEO/Static Files) ---
   const htmlContent = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,11 +135,9 @@ module.exports = async function handler(req, res) {
   };
 
   try {
-    // 1. Check if blog file exists to get SHA (allows overwriting/updating)
     const existingBlogSha = await getFileSha(`blog/${slug}.html`);
     await commitFile(`blog/${slug}.html`, htmlContent, `Add/Update blog: ${title}`, existingBlogSha);
 
-    // 2. Update blog/index.html
     const indexRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/blog/index.html`, {
       headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}` }
     });
@@ -119,7 +146,6 @@ module.exports = async function handler(req, res) {
       const indexData = await indexRes.json();
       const currentContent = Buffer.from(indexData.content, 'base64').toString('utf8');
       
-      // Only add to index if it's not already there (prevent duplicates in list)
       if (!currentContent.includes(`href="../blog/${slug}.html"`)) {
         const newCard = `
       <!-- NEW BLOG -->
@@ -137,7 +163,7 @@ module.exports = async function handler(req, res) {
       }
     }
 
-    res.status(200).json({ success: true, url: `/blog/${slug}.html` });
+    res.status(200).json({ success: true, url: `/blog/${slug}.html`, message: 'Saved to Supabase and GitHub!' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message });
