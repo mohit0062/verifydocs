@@ -1,17 +1,19 @@
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   const { password, title, slug, description, content } = req.body;
 
-  if (password !== process.env.ADMIN_PASSWORD) {
-    return res.status(401).json({ error: 'Invalid password' });
-  }
-
-  const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+  // Trim env variables because Windows echo adds newlines
+  const ADMIN_PASSWORD = (process.env.ADMIN_PASSWORD || '').trim();
+  const GITHUB_TOKEN = (process.env.GITHUB_TOKEN || '').trim();
   const REPO_OWNER = 'mohit0062';
   const REPO_NAME = 'verifydocs';
+
+  if (password !== ADMIN_PASSWORD) {
+    return res.status(401).json({ error: 'Invalid password' });
+  }
   
   if (!GITHUB_TOKEN) {
     return res.status(500).json({ error: 'GitHub Token not configured' });
@@ -81,7 +83,7 @@ export default async function handler(req, res) {
     const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`, {
       method: 'PUT',
       headers: {
-        'Authorization': \`Bearer \${GITHUB_TOKEN}\`,
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body)
@@ -96,35 +98,35 @@ export default async function handler(req, res) {
 
   try {
     // 2. Commit the new blog file
-    await commitFile(\`blog/\${slug}.html\`, htmlContent, \`Add new blog: \${title}\`);
+    await commitFile(`blog/${slug}.html`, htmlContent, `Add new blog: ${title}`);
 
     // 3. Update blog/index.html to include the new post
     // Fetch current index.html
-    const indexRes = await fetch(\`https://api.github.com/repos/\${REPO_OWNER}/\${REPO_NAME}/contents/blog/index.html\`, {
-      headers: { 'Authorization': \`Bearer \${GITHUB_TOKEN}\` }
+    const indexRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/blog/index.html`, {
+      headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}` }
     });
     
     if (indexRes.ok) {
       const indexData = await indexRes.json();
       const currentContent = Buffer.from(indexData.content, 'base64').toString('utf8');
       
-      const newCard = \`
+      const newCard = `
       <!-- NEW BLOG -->
-      <a href="../blog/\${slug}.html" class="block bg-white border border-border-col rounded-2xl p-6 hover:shadow-md transition">
-        <div class="text-xs text-primary font-semibold mb-2">\${dateStr}</div>
-        <h2 class="text-xl font-bold text-text-main mb-2">\${title}</h2>
-        <p class="text-sm text-text-muted line-clamp-2">\${description}</p>
-      </a>\`;
+      <a href="../blog/${slug}.html" class="block bg-white border border-border-col rounded-2xl p-6 hover:shadow-md transition">
+        <div class="text-xs text-primary font-semibold mb-2">${dateStr}</div>
+        <h2 class="text-xl font-bold text-text-main mb-2">${title}</h2>
+        <p class="text-sm text-text-muted line-clamp-2">${description}</p>
+      </a>`;
 
       // Find where to insert the new card (after the first grid div or a specific marker)
       const targetMarker = '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">';
       if (currentContent.includes(targetMarker)) {
-        const updatedContent = currentContent.replace(targetMarker, targetMarker + '\\n' + newCard);
+        const updatedContent = currentContent.replace(targetMarker, targetMarker + '\n' + newCard);
         await commitFile('blog/index.html', updatedContent, 'Update blog index', indexData.sha);
       }
     }
 
-    res.status(200).json({ success: true, url: \`/blog/\${slug}.html\` });
+    res.status(200).json({ success: true, url: `/blog/${slug}.html` });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message });
