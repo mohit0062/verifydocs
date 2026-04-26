@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehicle Number Validator — Check RC Format Free | VerifyDocs.in</title>
+  <meta name="description" content="Free Indian vehicle registration number validator. Check if your license plate format is correct for cars, bikes, and commercial vehicles. 100% browser-based.">
+  <meta name="keywords" content="vehicle number validator, rc checker, number plate format, verify vehicle number india, rto code check">
+  <link rel="canonical" href="https://verifydocs.in/tools/vehicle-validator.html">
+  <meta property="og:title" content="Vehicle Number Validator — VerifyDocs.in">
+  <meta property="og:description" content="Verify Indian vehicle registration format instantly. Free, private, and instant.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230066cc'/%3E%3Cpath d='M16 6l6 4v6c0 5-6 9-6 9s-6-4-6-9v-6z' fill='white'/%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#0066cc',accent:'#138808',warning:'#ff9933','text-main':'#0f172a','text-muted':'#64748b','bg-main':'#f8fafc','border-col':'#e2e8f0'},fontFamily:{sans:['Inter','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <style>
+    body{background:#f8fafc;font-family:'Inter',sans-serif;color:#0f172a}
+    .result-box{display:none}.result-box.show{display:block;animation:fadeIn 0.3s ease}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .faq-answer{display:none}.faq-answer.open{display:block}
+    .faq-item.open .faq-icon{transform:rotate(180deg)}.faq-icon{transition:transform 0.2s}
+  </style>
+</head>
+<body>
+<nav class="bg-white/80 backdrop-blur-md border-b border-border-col sticky top-0 z-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <a href="../index.html" class="flex items-center gap-2 font-bold text-xl text-text-main no-underline">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="7" fill="#0066cc"/>
+        <path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/>
+        <path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>VerifyDocs<span class="text-primary">.in</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted">
+      <a href="../index.html" class="hover:text-primary transition-colors">Home</a>
+      <div class="relative group">
+        <button class="flex items-center gap-1 hover:text-primary transition-colors py-2">Tools <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+        <div class="absolute top-full left-0 bg-white border border-border-col rounded-xl shadow-xl p-4 w-64 hidden group-hover:block z-50 text-left">
+          <a href="../tools/aadhaar-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🆔 Aadhaar Validator</a>
+          <a href="../tools/aadhaar-masking-tool.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🔒 Aadhaar Masking</a>
+          <a href="../tools/pan-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">💳 PAN Checker</a>
+          <a href="../tools/gst-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🏢 GST Verifier</a>
+          <a href="../tools/voter-id-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🗳️ Voter ID</a>
+          <a href="../tools/ifsc-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🏦 IFSC Checker</a>
+          <a href="../tools/passport-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🛂 Passport</a>
+          <a href="../tools/driving-license-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🚗 Driving License</a>
+          <a href="../tools/upi-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">💸 UPI Validator</a>
+          <a href="../tools/vehicle-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🚦 Vehicle Checker</a>
+          <a href="../tools/lic-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">📜 LIC Policy Checker</a>
+        </div>
+      </div>
+      <a href="../blog/index.html" class="hover:text-primary transition-colors">Blog</a>
+      <a href="../about.html" class="hover:text-primary transition-colors">About</a>
+      <a href="../contact.html" class="hover:text-primary transition-colors">Contact</a>
+    </div>
+    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100" onclick="toggleMobileMenu()">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-border-col px-4 py-3 space-y-2">
+    <a href="../index.html" class="block py-2 text-sm text-text-main font-semibold">Home</a>
+    <div class="pt-2 pb-1 text-xs font-bold text-text-muted uppercase tracking-wider">Document Tools</div>
+    <a href="../tools/aadhaar-validator.html" class="block py-2 text-sm text-text-main pl-2">🆔 Aadhaar Validator</a>
+    <a href="../tools/pan-validator.html" class="block py-2 text-sm text-text-main pl-2">💳 PAN Checker</a>
+    <a href="../tools/gst-validator.html" class="block py-2 text-sm text-text-main pl-2">🏢 GST Verifier</a>
+    <a href="../tools/upi-validator.html" class="block py-2 text-sm text-text-main pl-2">💸 UPI Validator</a>
+    <a href="../tools/vehicle-validator.html" class="block py-2 text-sm text-text-main pl-2">🚦 Vehicle Checker</a>
+    <a href="../blog/index.html" class="block py-2 text-sm text-text-main font-semibold border-t pt-2">Blog</a>
+    <a href="../about.html" class="block py-2 text-sm text-text-main">About</a>
+    <a href="../contact.html" class="block py-2 text-sm text-text-main">Contact</a>
+  </div>
+</nav>
+
+<main class="max-w-4xl mx-auto px-4 py-8">
+  <nav class="text-xs text-text-muted mb-6 flex items-center gap-1.5">
+    <a href="../index.html" class="hover:text-primary">Home</a><span>›</span><span>RTO Tools</span><span>›</span>
+    <span class="text-text-main font-medium">Vehicle Validator</span>
+  </nav>
+
+  <h1 class="text-3xl md:text-4xl font-extrabold text-text-main mb-3">Vehicle Number Validator</h1>
+  <p class="text-text-muted text-base leading-relaxed mb-8 max-w-2xl">
+    Check if an Indian vehicle registration number (Number Plate) is in the correct format. This tool identifies the state of registration and validates the RTO structure.
+  </p>
+
+  <!-- Widget -->
+  <div class="bg-white border border-border-col rounded-2xl shadow-sm p-6 md:p-8 mb-8">
+    <label class="block text-sm font-semibold text-text-main mb-2">Enter Vehicle Number</label>
+    <div class="flex gap-2 mb-1">
+      <input type="text" id="vehicle-input" placeholder="MH 12 AB 1234"
+        class="flex-1 h-14 px-4 border border-border-col rounded-xl text-2xl font-mono uppercase focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
+        oninput="this.value=this.value.toUpperCase()"
+        onkeydown="if(event.key==='Enter') runVehicleValidate()">
+      <button onclick="runVehicleValidate()" class="h-14 px-6 bg-primary text-white font-semibold rounded-xl hover:bg-blue-700 transition text-sm whitespace-nowrap">Validate →</button>
+    </div>
+    <p class="text-xs text-text-muted">Example: DL 01 C 1234, MH 12 AB 5678, KA 03 9999</p>
+    <div id="vehicle-result" class="result-box mt-5"></div>
+  </div>
+
+  <!-- Educational Section -->
+  <div class="bg-white border border-border-col rounded-2xl p-6 md:p-8 mb-8">
+    <h2 class="text-xl font-bold text-text-main mb-5">Registration Number Breakdown</h2>
+    <div class="flex flex-wrap items-center justify-center gap-4 py-6 bg-gray-50 rounded-2xl border border-dashed border-gray-300 mb-6">
+      <div class="text-center"><div class="text-3xl font-mono font-bold text-primary">MH</div><div class="text-[10px] text-text-muted uppercase font-bold mt-1">State Code</div></div>
+      <div class="text-center"><div class="text-3xl font-mono font-bold text-primary">12</div><div class="text-[10px] text-text-muted uppercase font-bold mt-1">District (RTO)</div></div>
+      <div class="text-center"><div class="text-3xl font-mono font-bold text-primary">AB</div><div class="text-[10px] text-text-muted uppercase font-bold mt-1">Series</div></div>
+      <div class="text-center"><div class="text-3xl font-mono font-bold text-primary">1234</div><div class="text-[10px] text-text-muted uppercase font-bold mt-1">Unique No.</div></div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm text-text-muted leading-relaxed">
+      <p><strong>1. State Code:</strong> The first two letters indicate the State or Union Territory where the vehicle is registered (e.g., MH for Maharashtra, DL for Delhi).</p>
+      <p><strong>2. District Code:</strong> The next two digits indicate the specific RTO (Regional Transport Office) within that state.</p>
+      <p><strong>3. Series:</strong> One, two, or three letters that indicate the registration series. Some older vehicles or specific types might not have this.</p>
+      <p><strong>4. Unique Number:</strong> A 4-digit number unique to each vehicle in that series.</p>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="bg-white border border-border-col rounded-2xl p-6 md:p-8 mb-8">
+    <h2 class="text-xl font-bold text-text-main mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-3">
+      <div class="faq-item border border-border-col rounded-xl overflow-hidden">
+        <button class="w-full flex items-center justify-between px-4 py-3.5 text-left font-semibold text-sm hover:bg-gray-50" onclick="toggleFAQ(this)"><span>Does this show owner details?</span><svg class="faq-icon w-4 h-4 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+        <div class="faq-answer px-4 pb-4 text-sm text-text-muted leading-relaxed">No. This tool only validates the format of the number plate. For owner details, vehicle age, and insurance status, you should use the official <strong>mParivahan</strong> app or the <strong>Vahan NR</strong> website.</div>
+      </div>
+      <div class="faq-item border border-border-col rounded-xl overflow-hidden">
+        <button class="w-full flex items-center justify-between px-4 py-3.5 text-left font-semibold text-sm hover:bg-gray-50" onclick="toggleFAQ(this)"><span>What about BH (Bharat) series?</span><svg class="faq-icon w-4 h-4 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+        <div class="faq-answer px-4 pb-4 text-sm text-text-muted leading-relaxed">BH series plates follow a different format (Year + BH + 4 Digits + 2 Letters). We are currently working on adding support for BH series and specialized commercial vehicle formats.</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-text-main text-white pt-12 pb-6 px-4 mt-10">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+      <div class="col-span-2 md:col-span-1">
+        <div class="flex items-center gap-2 font-bold text-lg mb-3">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="7" fill="#0066cc"/><path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/><path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          VerifyDocs.in
+        </div>
+        <p class="text-gray-400 text-sm leading-relaxed">Free Indian document validation tools. 100% browser-based, privacy-first.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Tools</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="../tools/aadhaar-validator.html" class="hover:text-white transition">Aadhaar Validator</a></li>
+          <li><a href="../tools/pan-validator.html" class="hover:text-white transition">PAN Checker</a></li>
+          <li><a href="../tools/gst-validator.html" class="hover:text-white transition">GST Verifier</a></li>
+          <li><a href="../tools/upi-validator.html" class="hover:text-white transition">UPI Validator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Resources</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="../blog/index.html" class="hover:text-white transition">Blog</a></li>
+          <li><a href="../about.html" class="hover:text-white transition">About Us</a></li>
+          <li><a href="../contact.html" class="hover:text-white transition">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Legal</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="../privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
+          <li><a href="../terms.html" class="hover:text-white transition">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/validators.js"></script>
+<script>
+function toggleMobileMenu() {
+  document.getElementById('mobile-menu').classList.toggle('hidden');
+}
+
+function runVehicleValidate() {
+  const val = document.getElementById('vehicle-input').value;
+  const r = validateVehicle(val);
+  const resultDiv = document.getElementById('vehicle-result');
+  if (r.valid) {
+    resultDiv.className = 'result-box show mt-5 p-5 bg-green-50 border border-green-200 rounded-xl';
+    resultDiv.innerHTML = `
+      <div class="flex items-start gap-3">
+        <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+        <div class="flex-1">
+          <p class="font-bold text-accent text-base">Valid Vehicle Number Format</p>
+          <p class="font-mono text-2xl font-bold text-text-main mt-2 tracking-widest">${r.formatted}</p>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <div class="bg-white border border-green-100 rounded-lg p-3"><div class="text-xs text-text-muted mb-1">State</div><div class="font-semibold text-text-main text-sm">${r.stateName}</div></div>
+            <div class="bg-white border border-green-100 rounded-lg p-3"><div class="text-xs text-text-muted mb-1">State Code</div><div class="font-bold text-primary text-sm">${r.stateCode}</div></div>
+          </div>
+        </div>
+      </div>`;
+  } else {
+    resultDiv.className = 'result-box show mt-5 p-5 bg-red-50 border border-red-200 rounded-xl';
+    resultDiv.innerHTML = `<div class="flex items-start gap-3"><div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/></svg></div><div><p class="font-bold text-red-700">Invalid Format</p><p class="text-sm text-red-600 mt-1"><strong>Reason:</strong> ${r.reason}</p></div></div>`;
+  }
+}
+function toggleFAQ(btn){const item=btn.closest('.faq-item'),answer=item.querySelector('.faq-answer'),isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-answer').classList.remove('open')});if(!isOpen){item.classList.add('open');answer.classList.add('open')}}
+</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Validate Your Aadhaar Number Online — Complete Guide | VerifyDocs.in</title>
+  <meta name="description" content="Learn how to validate an Aadhaar number format online using the Verhoeff checksum algorithm. Understand the 12-digit UID structure, common errors, and how to check without UIDAI.">
+  <meta name="keywords" content="aadhaar validator online, how to validate aadhaar, aadhaar number check, verhoeff algorithm aadhaar">
+  <link rel="canonical" href="https://verifydocs.in/blog/how-to-validate-aadhaar.html">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230066cc'/%3E%3Cpath d='M16 6l6 4v6c0 5-6 9-6 9s-6-4-6-9v-6z' fill='white'/%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#0066cc',accent:'#138808','text-main':'#0f172a','text-muted':'#64748b','border-col':'#e2e8f0'},fontFamily:{sans:['Inter','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <style>body{background:#f8fafc;font-family:'Inter',sans-serif}.prose p{margin-bottom:1rem;line-height:1.75}.prose h2{margin-top:2rem;margin-bottom:.75rem}.prose h3{margin-top:1.5rem;margin-bottom:.5rem}.prose ul{margin-bottom:1rem;padding-left:1.5rem;list-style:disc}.prose li{margin-bottom:.4rem}</style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Validate Your Aadhaar Number Online","description":"Learn how to validate Aadhaar format using the Verhoeff algorithm","author":{"@type":"Organization","name":"VerifyDocs.in"},"publisher":{"@type":"Organization","name":"VerifyDocs.in"},"datePublished":"2024-01-15","mainEntityOfPage":{"@type":"WebPage","@id":"https://verifydocs.in/blog/how-to-validate-aadhaar.html"}}</script>
+</head>
+<body>
+<nav class="bg-white/80 backdrop-blur-md border-b border-border-col sticky top-0 z-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <a href="../index.html" class="flex items-center gap-2 font-bold text-xl text-text-main no-underline">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="7" fill="#0066cc"/>
+        <path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/>
+        <path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>VerifyDocs<span class="text-primary">.in</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted">
+      <a href="../index.html" class="hover:text-primary transition-colors">Home</a>
+      <div class="relative group">
+        <button class="flex items-center gap-1 hover:text-primary transition-colors py-2">Tools <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+        <div class="absolute top-full left-0 bg-white border border-border-col rounded-xl shadow-xl p-4 w-64 hidden group-hover:block z-50 text-left">
+          <a href="../tools/aadhaar-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🆔 Aadhaar Validator</a>
+          <a href="../tools/aadhaar-masking-tool.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🔒 Aadhaar Masking</a>
+          <a href="../tools/pan-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">💳 PAN Checker</a>
+          <a href="../tools/gst-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🏢 GST Verifier</a>
+          <a href="../tools/voter-id-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🗳️ Voter ID</a>
+          <a href="../tools/ifsc-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🏦 IFSC Checker</a>
+          <a href="../tools/passport-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🛂 Passport</a>
+          <a href="../tools/driving-license-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🚗 Driving License</a>
+          <a href="../tools/upi-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">💸 UPI Validator</a>
+          <a href="../tools/vehicle-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🚦 Vehicle Checker</a>
+          <a href="../tools/lic-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">📜 LIC Policy Checker</a>
+        </div>
+      </div>
+      <a href="../blog/index.html" class="hover:text-primary transition-colors">Blog</a>
+      <a href="../about.html" class="hover:text-primary transition-colors">About</a>
+      <a href="../contact.html" class="hover:text-primary transition-colors">Contact</a>
+    </div>
+    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100" onclick="toggleMobileMenu()">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-border-col px-4 py-3 space-y-2">
+    <a href="../index.html" class="block py-2 text-sm text-text-main font-semibold">Home</a>
+    <div class="pt-2 pb-1 text-xs font-bold text-text-muted uppercase tracking-wider">Document Tools</div>
+    <a href="../tools/aadhaar-validator.html" class="block py-2 text-sm text-text-main pl-2">🆔 Aadhaar Validator</a>
+    <a href="../tools/pan-validator.html" class="block py-2 text-sm text-text-main pl-2">💳 PAN Checker</a>
+    <a href="../tools/gst-validator.html" class="block py-2 text-sm text-text-main pl-2">🏢 GST Verifier</a>
+    <a href="../tools/upi-validator.html" class="block py-2 text-sm text-text-main pl-2">💸 UPI Validator</a>
+    <a href="../tools/vehicle-validator.html" class="block py-2 text-sm text-text-main pl-2">🚦 Vehicle Checker</a>
+    <a href="../blog/index.html" class="block py-2 text-sm text-text-main font-semibold border-t pt-2">Blog</a>
+    <a href="../about.html" class="block py-2 text-sm text-text-main">About</a>
+    <a href="../contact.html" class="block py-2 text-sm text-text-main">Contact</a>
+  </div>
+</nav>
+
+<main class="max-w-2xl mx-auto px-4 py-10">
+  <nav class="text-xs text-text-muted mb-6 flex items-center gap-1.5">
+    <a href="../index.html" class="hover:text-primary">Home</a><span>›</span><a href="../blog/index.html" class="hover:text-primary">Blog</a><span>›</span>
+    <span class="text-text-main font-medium">Aadhaar Validation Guide</span>
+  </nav>
+
+  <div class="text-xs text-text-muted mb-4 flex items-center gap-3">
+    <span>January 2024</span><span>·</span><span>8 min read</span><span>·</span>
+    <span class="bg-blue-50 text-primary px-2 py-0.5 rounded-full font-medium">Aadhaar</span>
+  </div>
+
+  <h1 class="text-3xl md:text-4xl font-extrabold text-text-main mb-6 leading-tight">How to Validate Your Aadhaar Number Online — Complete Guide</h1>
+
+  <!-- CTA Box -->
+  <div class="bg-blue-50 border border-blue-100 rounded-2xl p-5 mb-8 flex items-start gap-4">
+    <span class="text-3xl">🆔</span>
+    <div>
+      <p class="font-semibold text-text-main text-sm mb-1">Try our free Aadhaar Validator</p>
+      <p class="text-xs text-text-muted mb-2">Validate instantly using the Verhoeff algorithm — no signup, no upload.</p>
+      <a href="../tools/aadhaar-validator.html" class="inline-block bg-primary text-white text-xs font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition">Open Aadhaar Validator →</a>
+    </div>
+  </div>
+
+  <div class="prose text-text-muted text-sm">
+    <p>Aadhaar is India's national identity number — a 12-digit unique identifier issued to over 1.35 billion residents by UIDAI. But how do you know if an Aadhaar number you've been given is actually in a valid format? This guide explains exactly that.</p>
+
+    <h2 class="text-xl font-bold text-text-main">What Makes an Aadhaar Number Valid?</h2>
+    <p>A valid Aadhaar number must satisfy three conditions:</p>
+    <ul>
+      <li><strong>Exactly 12 digits</strong> — no more, no less</li>
+      <li><strong>Does not start with 0 or 1</strong> — these digits are reserved by UIDAI</li>
+      <li><strong>Passes the Verhoeff checksum</strong> — the 12th digit is mathematically derived from the first 11</li>
+    </ul>
+    <p>The most important (and interesting) part is the Verhoeff algorithm — a checksum formula used by UIDAI to detect typos and transcription errors.</p>
+
+    <h2 class="text-xl font-bold text-text-main">What is the Verhoeff Algorithm?</h2>
+    <p>The Verhoeff algorithm was invented by Dutch mathematician Jacobus Verhoeff in 1969. Unlike simpler checksums (like Luhn used in credit cards), Verhoeff can detect:</p>
+    <ul>
+      <li>All single-digit errors (typing 5 instead of 3)</li>
+      <li>All adjacent transposition errors (swapping 12 to 21)</li>
+      <li>Most twin errors (11 → 22)</li>
+      <li>Most jump transpositions (132 → 231)</li>
+    </ul>
+    <p>UIDAI uses this algorithm when generating Aadhaar numbers. The 12th digit of every valid Aadhaar is specifically chosen so that when the full 12-digit number is run through the Verhoeff algorithm, it produces exactly 0. If even one digit is changed, the result will not be 0.</p>
+
+    <h2 class="text-xl font-bold text-text-main">How Does the Validation Work — Step by Step?</h2>
+    <p>Here's a simplified walkthrough of what happens when you click "Validate" on our Aadhaar tool:</p>
+    <ul>
+      <li>Strip spaces from the input (UIDAI formats Aadhaar as 4-4-4 for readability)</li>
+      <li>Check the digit count — must be exactly 12</li>
+      <li>Check the first digit — must not be 0 or 1</li>
+      <li>Reverse the digits</li>
+      <li>Run through the Verhoeff multiplication and permutation tables</li>
+      <li>If the final value is 0 → Valid. Anything else → Invalid.</li>
+    </ul>
+    <p>The entire process takes microseconds and needs no internet connection — it's pure mathematics.</p>
+
+    <h2 class="text-xl font-bold text-text-main">What This Validator Cannot Tell You</h2>
+    <p>It's important to be clear about what format validation cannot do:</p>
+    <ul>
+      <li><strong>It cannot tell you if the Aadhaar exists</strong> — UIDAI's database is not publicly accessible</li>
+      <li><strong>It cannot tell you who the Aadhaar belongs to</strong></li>
+      <li><strong>It cannot verify biometrics or OTP</strong></li>
+      <li><strong>A valid format does not mean a valid person</strong> — someone could technically construct a format-valid Aadhaar number that was never actually issued</li>
+    </ul>
+    <p>For official identity verification, always use UIDAI's authorised channels: the mAadhaar app, Digilocker, or UIDAI's official portal.</p>
+
+    <h2 class="text-xl font-bold text-text-main">Common Mistakes That Cause Validation Failures</h2>
+    <ul>
+      <li>Including spaces or dashes in the number when entering manually</li>
+      <li>Confusing the digit 1 (one) with the letter I (capital i)</li>
+      <li>Misreading from a photocopy — especially digits 3/8 and 6/0</li>
+      <li>Using a VID (Virtual ID) instead of the Aadhaar number — VIDs are 16 digits and won't validate as Aadhaar</li>
+    </ul>
+
+    <h2 class="text-xl font-bold text-text-main">Is It Safe to Validate Aadhaar Online?</h2>
+    <p>Using our validator is completely safe because the validation is entirely client-side. Your Aadhaar number never leaves your device. The JavaScript code runs locally in your browser — there is no server involved, no database, and no logging.</p>
+    <p>You can verify this yourself: open your browser's Developer Tools → Network tab, enter an Aadhaar number, and click Validate. You'll see zero network requests made.</p>
+
+    <h2 class="text-xl font-bold text-text-main">Related: Should You Mask Your Aadhaar?</h2>
+    <p>After validating, if you need to share your Aadhaar for KYC purposes, UIDAI strongly recommends using a <strong>Masked Aadhaar</strong> — where only the last 4 digits are visible (XXXX XXXX 9012). Our free <a href="../tools/aadhaar-masking-tool.html" class="text-primary hover:underline">Aadhaar Masking Tool</a> can create a masked version of your Aadhaar image, entirely in your browser.</p>
+  </div>
+
+  <div class="mt-10 p-5 bg-gray-50 border border-border-col rounded-2xl">
+    <h3 class="font-bold text-text-main mb-3">Related Articles</h3>
+    <div class="space-y-2">
+      <a href="../blog/aadhaar-masking-why-important.html" class="block text-sm text-primary hover:underline">→ Why You Should Always Mask Your Aadhaar Before Sharing</a>
+      <a href="../blog/pan-card-format-explained.html" class="block text-sm text-primary hover:underline">→ PAN Card Format Explained — What Each Character Means</a>
+      <a href="../blog/gst-number-structure.html" class="block text-sm text-primary hover:underline">→ GST Number Structure Decoded</a>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-text-main text-white pt-12 pb-6 px-4 mt-10">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+      <div class="col-span-2 md:col-span-1">
+        <div class="flex items-center gap-2 font-bold text-lg mb-3">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="7" fill="#0066cc"/><path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/><path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          VerifyDocs.in
+        </div>
+        <p class="text-gray-400 text-sm leading-relaxed">Free Indian document validation tools. 100% browser-based, privacy-first.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Tools</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="../tools/aadhaar-validator.html" class="hover:text-white transition">Aadhaar Validator</a></li>
+          <li><a href="../tools/pan-validator.html" class="hover:text-white transition">PAN Checker</a></li>
+          <li><a href="../tools/gst-validator.html" class="hover:text-white transition">GST Verifier</a></li>
+          <li><a href="../tools/upi-validator.html" class="hover:text-white transition">UPI Validator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Resources</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="../blog/index.html" class="hover:text-white transition">Blog</a></li>
+          <li><a href="../about.html" class="hover:text-white transition">About Us</a></li>
+          <li><a href="../contact.html" class="hover:text-white transition">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Legal</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="../privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
+          <li><a href="../terms.html" class="hover:text-white transition">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMobileMenu() {
+  document.getElementById('mobile-menu').classList.toggle('hidden');
+}
+</script>
+</body>
+</html>
