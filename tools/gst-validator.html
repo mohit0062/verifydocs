@@ -80,11 +80,11 @@
 
   <div class="bg-white border border-border-col rounded-2xl shadow-sm p-6 md:p-8 mb-8">
     <label class="block text-sm font-semibold text-text-main mb-2">Enter GST Number (GSTIN)</label>
-    <div class="flex gap-2 mb-1">
+    <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-1">
       <input type="text" id="gst-input" maxlength="15" placeholder="27AABCU9603R1ZX"
         class="flex-1 h-14 px-4 border border-border-col rounded-xl text-xl font-mono tracking-widest uppercase focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
         oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')" onkeydown="if(event.key==='Enter')runGSTValidate()">
-      <button onclick="runGSTValidate()" class="h-14 px-6 bg-primary text-white font-semibold rounded-xl hover:bg-blue-700 transition text-sm whitespace-nowrap">Validate →</button>
+      <button onclick="runGSTValidate()" class="w-full sm:w-auto h-14 px-6 bg-primary text-white font-semibold rounded-xl hover:bg-blue-700 transition text-sm whitespace-nowrap">Validate →</button>
     </div>
     <p class="text-xs text-text-muted">15 alphanumeric characters. Example: 27AABCU9603R1ZX</p>
     <div id="gst-result" class="result-box mt-5"></div>
