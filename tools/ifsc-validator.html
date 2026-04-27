@@ -216,31 +216,60 @@
       const data = await response.json();
 
       resArea.innerHTML = `
-        <div class="p-6 bg-green-50 border border-green-200 rounded-2xl fade-in">
-          <p class="font-bold text-green-800 flex items-center gap-2 mb-4">
-            <span class="w-6 h-6 bg-green-600 text-white rounded-full flex items-center justify-center text-xs">✓</span> 
-            IFSC Verified & Found
-          </p>
+        <div class="p-6 bg-green-50 border border-green-200 rounded-2xl fade-in shadow-lg">
+          <div class="flex items-center justify-between mb-6">
+            <p class="font-bold text-green-800 flex items-center gap-2">
+              <span class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm shadow-md">✓</span> 
+              Branch Found & Verified
+            </p>
+            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border border-green-200">Official Data</span>
+          </div>
+
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-            <div class="bg-white p-4 rounded-xl border border-green-100 shadow-sm">
+            <div class="bg-white p-4 rounded-xl border border-green-100 shadow-sm col-span-1 md:col-span-2">
               <span class="text-[10px] text-text-muted block uppercase font-bold tracking-wider mb-1">Bank Name</span>
-              <span class="font-bold text-text-main text-base">${data.BANK}</span>
+              <span class="font-bold text-text-main text-lg">${data.BANK}</span>
             </div>
+            
             <div class="bg-white p-4 rounded-xl border border-green-100 shadow-sm">
               <span class="text-[10px] text-text-muted block uppercase font-bold tracking-wider mb-1">Branch</span>
-              <span class="font-bold text-text-main text-base">${data.BRANCH}</span>
+              <span class="font-bold text-text-main">${data.BRANCH}</span>
             </div>
+
+            <div class="bg-white p-4 rounded-xl border border-green-100 shadow-sm">
+              <span class="text-[10px] text-text-muted block uppercase font-bold tracking-wider mb-1">MICR Code</span>
+              <span class="font-bold text-text-main font-mono">${data.MICR || 'N/A'}</span>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl border border-green-100 shadow-sm">
+              <span class="text-[10px] text-text-muted block uppercase font-bold tracking-wider mb-1">District / Centre</span>
+              <span class="font-bold text-text-main">${data.DISTRICT || data.CENTRE || 'N/A'}</span>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl border border-green-100 shadow-sm">
+              <span class="text-[10px] text-text-muted block uppercase font-bold tracking-wider mb-1">Contact Number</span>
+              <span class="font-bold text-text-main">${data.CONTACT || 'Not Available'}</span>
+            </div>
+
             <div class="bg-white p-4 rounded-xl border border-green-100 shadow-sm md:col-span-2">
-              <span class="text-[10px] text-text-muted block uppercase font-bold tracking-wider mb-1">Address</span>
-              <span class="text-text-main">${data.ADDRESS}, ${data.CITY}, ${data.STATE}</span>
+              <span class="text-[10px] text-text-muted block uppercase font-bold tracking-wider mb-1">Office Address</span>
+              <span class="text-text-main font-medium">${data.ADDRESS}, ${data.CITY}, ${data.STATE} - ${data.ISO3166 || 'IN'}</span>
             </div>
-            <div class="md:col-span-2 flex flex-wrap gap-2 mt-2">
-              ${['NEFT', 'RTGS', 'IMPS', 'UPI'].map(type => `
-                <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase ${data[type] ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-400'}">
-                  ${type}: ${data[type] ? 'YES' : 'NO'}
-                </span>
+
+            <div class="md:col-span-2 grid grid-cols-2 sm:grid-cols-4 gap-2 mt-2">
+              ${['UPI', 'NEFT', 'IMPS', 'RTGS'].map(type => `
+                <div class="flex items-center justify-between px-3 py-2 rounded-lg border ${data[type] ? 'bg-green-50 border-green-100' : 'bg-gray-50 border-gray-100'}">
+                  <span class="text-[10px] font-bold text-text-muted">${type}</span>
+                  <span class="text-[10px] font-extrabold ${data[type] ? 'text-green-700' : 'text-gray-400'}">${data[type] ? 'YES' : 'NO'}</span>
+                </div>
               `).join('')}
             </div>
+
+            ${data.SWIFT ? `
+            <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 shadow-sm md:col-span-2">
+              <span class="text-[10px] text-blue-600 block uppercase font-bold tracking-wider mb-1">SWIFT Code (International)</span>
+              <span class="font-bold text-blue-800 font-mono text-base">${data.SWIFT}</span>
+            </div>` : ''}
           </div>
         </div>
       `;
