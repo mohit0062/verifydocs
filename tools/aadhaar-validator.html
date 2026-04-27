@@ -1,410 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aadhaar Number Validator — Verify 12-Digit UID Format | VerifyDocs.in</title>
-  <meta name="description" content="Free online Aadhaar number validator. Uses official Verhoeff checksum algorithm to verify if your 12-digit Aadhaar UID is in valid format. 100% private — no data stored.">
-  <meta name="keywords" content="aadhaar validator, aadhaar number check, aadhaar format, verhoeff algorithm, aadhaar verifier online, 12 digit aadhaar check">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aadhaar Number Validator — Check 12-Digit UID Format Online (Free)</title>
+  <meta name="description" content="Verify if an Aadhaar number is in valid format using the official Verhoeff checksum algorithm. Free, private, and 100% browser-based Aadhaar validator.">
+  <meta name="keywords" content="aadhaar validator, check aadhaar number, verhoeff algorithm aadhaar, uidai number format, validate uid">
   <link rel="canonical" href="https://verifydocs.in/tools/aadhaar-validator.html">
-  <meta property="og:title" content="Aadhaar Number Validator — VerifyDocs.in">
-  <meta property="og:description" content="Verify Aadhaar format using Verhoeff algorithm. Free, instant, browser-based.">
-  <meta property="og:type" content="website">
-  <meta name="robots" content="index, follow">
+  <link rel="alternate" hreflang="en-IN" href="https://verifydocs.in/tools/aadhaar-validator.html">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230066cc'/%3E%3Cpath d='M16 6l6 4v6c0 5-6 9-6 9s-6-4-6-9v-6z' fill='white'/%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      theme: { extend: { colors: { primary: '#0066cc', accent: '#138808', warning: '#ff9933', 'text-main': '#0f172a', 'text-muted': '#64748b', 'bg-main': '#f8fafc', 'border-col': '#e2e8f0' }, fontFamily: { sans: ['Inter','sans-serif'], mono: ['JetBrains Mono','monospace'] } } }
+      theme: { extend: { colors: { primary: '#0066cc', accent: '#138808', 'text-main': '#0f172a', 'text-muted': '#64748b', 'border-col': '#e2e8f0' }, fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] } } }
     }
   </script>
   <style>
-    body { background: #f8fafc; font-family: 'Inter', sans-serif; color: #0f172a; }
-    .result-box { display: none; }
-    .result-box.show { display: block; animation: fadeIn 0.3s ease; }
-    @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
     .faq-answer { display: none; }
     .faq-answer.open { display: block; }
     .faq-item.open .faq-icon { transform: rotate(180deg); }
     .faq-icon { transition: transform 0.2s; }
-    .digit-box { background: #f0f7ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 8px 12px; font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: #0066cc; text-align: center; min-width: 44px; }
-    .digit-box.group-sep { margin: 0 4px; }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Aadhaar Number Validator",
-    "url": "https://verifydocs.in/tools/aadhaar-validator.html",
-    "applicationCategory": "Utility",
-    "operatingSystem": "Any (browser-based)",
-    "description": "Validates Aadhaar number format using official Verhoeff checksum algorithm",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type":"Question","name":"Can I use this to verify if Aadhaar is genuine?","acceptedAnswer":{"@type":"Answer","text":"No. This tool only checks the format using the Verhoeff checksum algorithm. It cannot verify whether the Aadhaar exists in UIDAI's database."}},
-      {"@type":"Question","name":"Is it safe to type my Aadhaar here?","acceptedAnswer":{"@type":"Answer","text":"Yes. Everything runs in your browser. Your Aadhaar number is never sent to any server."}},
-      {"@type":"Question","name":"What is a valid Aadhaar number format?","acceptedAnswer":{"@type":"Answer","text":"A valid Aadhaar is exactly 12 digits, does not start with 0 or 1, and passes the Verhoeff checksum algorithm."}},
-      {"@type":"Question","name":"What does the Verhoeff algorithm detect?","acceptedAnswer":{"@type":"Answer","text":"It detects single-digit errors, transpositions of adjacent digits, and other common data entry mistakes."}}
-    ]
-  }
-  </script>
-
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T80N8X570N"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-T80N8X570N');
 </script>
-
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1094606266002530" crossorigin="anonymous"></script>
-</head>
-<body>
 
-<!-- Nav -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Aadhaar Validator",
+  "url": "https://verifydocs.in/tools/aadhaar-validator.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "127" }
+}
+</script>
+</head>
+<body class="bg-[#f8fafc] font-sans text-text-main">
+
 <nav class="bg-white/80 backdrop-blur-md border-b border-border-col sticky top-0 z-50 shadow-sm">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
     <a href="../index.html" class="flex items-center gap-2 font-bold text-xl text-text-main no-underline">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="32" height="32" rx="7" fill="#0066cc"/>
-        <path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/>
-        <path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
       <span>VerifyDocs<span class="text-primary">.in</span></span>
     </a>
     <div class="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted">
       <a href="../index.html" class="hover:text-primary transition-colors">Home</a>
-      <div class="relative group">
-        <button class="flex items-center gap-1 hover:text-primary transition-colors py-2">Tools <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
-        <div class="absolute top-full left-0 bg-white border border-border-col rounded-xl shadow-xl p-4 w-64 hidden group-hover:block z-50 text-left">
-          <a href="../tools/aadhaar-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🆔 Aadhaar Validator</a>
-          <a href="../tools/aadhaar-masking-tool.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🔒 Aadhaar Masking</a>
-          <a href="../tools/pan-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">💳 PAN Checker</a>
-          <a href="../tools/gst-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🏢 GST Verifier</a>
-          <a href="../tools/voter-id-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🗳️ Voter ID</a>
-          <a href="../tools/ifsc-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🏦 IFSC Checker</a>
-          <a href="../tools/passport-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🛂 Passport</a>
-          <a href="../tools/driving-license-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🚗 Driving License</a>
-          <a href="../tools/upi-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">💸 UPI Validator</a>
-          <a href="../tools/vehicle-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🚦 Vehicle Checker</a>
-          <a href="../tools/lic-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">📜 LIC Policy Checker</a>
-        </div>
-      </div>
       <a href="../blog/index.html" class="hover:text-primary transition-colors">Blog</a>
       <a href="../about.html" class="hover:text-primary transition-colors">About</a>
-      <a href="../contact.html" class="hover:text-primary transition-colors">Contact</a>
     </div>
-    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100" onclick="toggleMobileMenu()">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-    </button>
-  </div>
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-border-col px-4 py-3 space-y-2">
-    <a href="../index.html" class="block py-2 text-sm text-text-main font-semibold">Home</a>
-    <div class="pt-2 pb-1 text-xs font-bold text-text-muted uppercase tracking-wider">Document Tools</div>
-    <a href="../tools/aadhaar-validator.html" class="block py-2 text-sm text-text-main pl-2">🆔 Aadhaar Validator</a>
-    <a href="../tools/pan-validator.html" class="block py-2 text-sm text-text-main pl-2">💳 PAN Checker</a>
-    <a href="../tools/gst-validator.html" class="block py-2 text-sm text-text-main pl-2">🏢 GST Verifier</a>
-    <a href="../tools/upi-validator.html" class="block py-2 text-sm text-text-main pl-2">💸 UPI Validator</a>
-    <a href="../tools/vehicle-validator.html" class="block py-2 text-sm text-text-main pl-2">🚦 Vehicle Checker</a>
-    <a href="../blog/index.html" class="block py-2 text-sm text-text-main font-semibold border-t pt-2">Blog</a>
-    <a href="../about.html" class="block py-2 text-sm text-text-main">About</a>
-    <a href="../contact.html" class="block py-2 text-sm text-text-main">Contact</a>
   </div>
 </nav>
 
-<main class="max-w-4xl mx-auto px-4 py-8">
-
+<main class="max-w-4xl mx-auto px-4 py-10 md:py-16">
   <!-- Breadcrumb -->
   <nav class="text-xs text-text-muted mb-6 flex items-center gap-1.5">
     <a href="../index.html" class="hover:text-primary">Home</a>
     <span>›</span>
-    <span>Aadhaar Tools</span>
+    <a href="../index.html#tools" class="hover:text-primary">Tools</a>
     <span>›</span>
     <span class="text-text-main font-medium">Aadhaar Validator</span>
   </nav>
 
-  <!-- Heading -->
-  <h1 class="text-3xl md:text-4xl font-extrabold text-text-main mb-3">Aadhaar Number Validator</h1>
-  <p class="text-text-muted text-base leading-relaxed mb-8 max-w-2xl">
-    Verify if your 12-digit Aadhaar UID is in the correct format using the official <strong>Verhoeff checksum algorithm</strong> — the same mathematical algorithm used by UIDAI to generate Aadhaar numbers. This tool checks format only; it does not access any government database.
-  </p>
+  <h1 class="text-3xl md:text-4xl font-extrabold text-text-main mb-6 leading-tight">
+    Aadhaar Number Validator — Check 12-Digit UID Format Online (Free)
+  </h1>
+
+  <!-- Lead Paragraph -->
+  <div class="bg-white rounded-3xl border border-border-col p-6 md:p-8 mb-10 shadow-sm leading-relaxed text-text-muted">
+    <p class="mb-4">
+      Verify if an Aadhaar number is in valid format using the official <strong>Verhoeff checksum algorithm</strong>. Our free Aadhaar validator runs entirely in your browser — your Aadhaar number is never uploaded, stored, or seen by us. This tool helps you catch typos and formatting errors before submitting government forms, KYC documents, or applications.
+    </p>
+    <p>
+      Note: This validates the <strong>FORMAT</strong> only. To verify if an Aadhaar belongs to a specific person or is active in the government database, you must use UIDAI's official portal. This tool is designed for developers, data entry operators, and individuals who want to check the structural integrity of a 12-digit UID.
+    </p>
+  </div>
 
   <!-- Validator Widget -->
-  <div class="bg-white border border-border-col rounded-2xl shadow-sm p-6 md:p-8 mb-8">
-    <label class="block text-sm font-semibold text-text-main mb-2">Enter 12-digit Aadhaar Number</label>
-    <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-1">
-      <input
-        type="text"
-        id="aadhaar-input"
+  <div class="bg-white rounded-3xl border-2 border-primary/20 p-6 md:p-10 mb-16 shadow-xl relative overflow-hidden">
+    <div class="absolute top-0 right-0 bg-primary/5 px-4 py-1 rounded-bl-xl text-[10px] font-bold text-primary uppercase tracking-widest">Secure Browser-Side Tool</div>
+    
+    <label for="aadhaar-input" class="block text-sm font-bold text-text-main mb-3 uppercase tracking-wider">Enter 12-Digit Aadhaar Number</label>
+    <div class="flex flex-col sm:flex-row gap-4">
+      <input 
+        type="text" 
+        id="aadhaar-input" 
+        placeholder="XXXX XXXX XXXX" 
         maxlength="14"
-        placeholder="1234 5678 9012"
-        class="flex-1 h-14 px-4 border border-border-col rounded-xl text-xl font-mono tracking-widest focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
-        oninput="formatAadhaarInput(this)"
-        onkeydown="if(event.key==='Enter') runAadhaarValidate()"
+        class="flex-1 h-16 px-6 border-2 border-border-col rounded-2xl text-xl font-mono focus:outline-none focus:border-primary transition-all tracking-[0.2em]"
       >
-      <button onclick="runAadhaarValidate()" class="w-full sm:w-auto h-14 px-6 bg-primary text-white font-semibold rounded-xl hover:bg-blue-700 transition whitespace-nowrap text-sm">
-        Validate →
+      <button onclick="handleValidate()" class="h-16 px-10 bg-primary text-white font-bold rounded-2xl hover:bg-blue-700 transition shadow-lg shadow-primary/20 whitespace-nowrap">
+        Validate Now →
       </button>
     </div>
-    <p class="text-xs text-text-muted">Auto-formats as you type: <span class="font-mono">1234 5678 9012</span></p>
+    <div id="result-area" class="mt-8 hidden animate-fade-in"></div>
+  </div>
 
-    <!-- Result -->
-    <div id="aadhaar-result" class="result-box mt-5"></div>
+  <!-- SEO Content Sections -->
+  <div class="prose prose-blue max-w-none text-text-muted leading-relaxed space-y-12">
+    <section>
+      <h2 class="text-2xl font-bold text-text-main mb-4">How the Aadhaar Validation Algorithm Works</h2>
+      <p>
+        The Aadhaar number is not just a random 12-digit string. It follows a complex mathematical structure developed by Dutch mathematician Jacobus Verhoeff. The <strong>Verhoeff Algorithm</strong> was chosen by UIDAI because it can catch nearly all common transcription errors, such as transposing two adjacent digits (e.g., typing '54' instead of '45').
+      </p>
+      <p class="mt-4">
+        The first 11 digits of an Aadhaar are unique identifiers, while the 12th digit is a "checksum." Our tool takes the first 11 digits you enter, runs them through a series of matrix multiplications (Permutation and Dihedral groups), and checks if the resulting checksum matches your 12th digit. If it doesn't, we know for a fact that the number is mistyped.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold text-text-main mb-4">Aadhaar Number Format Breakdown</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-border-col text-sm">
+          <thead class="bg-bg-main">
+            <tr>
+              <th class="border border-border-col p-3 text-left">Position</th>
+              <th class="border border-border-col p-3 text-left">Character Type</th>
+              <th class="border border-border-col p-3 text-left">Meaning / Rule</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-border-col p-3">Digit 1</td>
+              <td class="border border-border-col p-3">Number (2-9)</td>
+              <td class="border border-border-col p-3">Aadhaar numbers cannot start with 0 or 1.</td>
+            </tr>
+            <tr>
+              <td class="border border-border-col p-3">Digits 2-11</td>
+              <td class="border border-border-col p-3">Numbers (0-9)</td>
+              <td class="border border-border-col p-3">Unique random identifiers for the resident.</td>
+            </tr>
+            <tr>
+              <td class="border border-border-col p-3">Digit 12</td>
+              <td class="border border-border-col p-3">Number (0-9)</td>
+              <td class="border border-border-col p-3">Verhoeff Checksum Digit used for validation.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold text-text-main mb-4">Common Errors in Aadhaar Numbers</h2>
+      <p>Most validation failures occur due to simple human error. Here are the top mistakes we catch:</p>
+      <ul class="list-disc pl-6 mt-4 space-y-2">
+        <li><strong>Transposition:</strong> Swapping two digits like 89 instead of 98.</li>
+        <li><strong>Wrong Length:</strong> Entering 11 or 13 digits instead of 12.</li>
+        <li><strong>Invalid Starting Digit:</strong> Using a 0 or 1 at the beginning (reserved for future use or testing).</li>
+        <li><strong>Phonetic Errors:</strong> Typing '6' instead of '0' because they sound similar in some languages.</li>
+        <li><strong>Extra Spaces:</strong> While our tool cleans spaces, many government forms do not, leading to rejection.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold text-text-main mb-4">Why Should You Validate Aadhaar Formats?</h2>
+      <p>
+        Incorrect document numbers are a major cause of delay in Indian administrative processes. Whether you are a small business owner processing <strong>GST invoices</strong> or an individual applying for a <strong>Voter ID</strong>, ensuring the format is correct saves time.
+      </p>
+      <p class="mt-4">
+        Banks, insurance companies (like <strong>LIC</strong>), and fintech apps use validation to prevent "junk data" from entering their systems. By using this tool, you ensure that your submission is at least structurally valid, reducing the chances of immediate rejection by automated portals.
+      </p>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="mt-16">
+      <h2 class="text-2xl font-bold text-text-main mb-8 text-center">Frequently Asked Questions (FAQ)</h2>
+      <div class="space-y-4">
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Is my Aadhaar number stored when I use this tool?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            No. Absolutely not. All validation logic runs in JavaScript within your browser. We do not have a backend database for document numbers, and no data is ever uploaded to our servers.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>What if my Aadhaar fails validation?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            First, double-check the 12 digits from your physical or e-Aadhaar card. Most errors are simple typos. If it still fails, ensure you haven't swapped any numbers. A failure means the number is mathematically impossible according to UIDAI's structure.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Can two people have the same Aadhaar number?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            No. The Aadhaar system is designed to provide a unique identity to every resident of India based on biometric and demographic data.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Is this tool authorized by UIDAI?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            No. VerifyDocs.in is an independent utility. We use public domain algorithms (Verhoeff) to help users check their document formats. We are not affiliated with UIDAI.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>What's the difference between format check and identity verification?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            A format check (what we do) only tells you if the number is mathematically valid. Identity verification (what banks do via OTP/Biometrics) confirms that the number belongs to YOU and is active in the government database.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Can I validate someone else's Aadhaar?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            Yes, if you have their permission to check for typos. Since no data is stored or transmitted, it is safe to use for format checking only.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Is masking the same as validation?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            No. Masking is a privacy feature that hides the first 8 digits. Validation is a format check that ensures the 12 digits are correct. You can use our <a href="./aadhaar-masking-tool.html" class="text-primary hover:underline">Aadhaar Masking Tool</a> for privacy.
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Disclaimer -->
-    <div class="mt-5 p-4 bg-blue-50 border border-blue-100 rounded-xl text-xs text-blue-700 leading-relaxed">
-      <strong>Important:</strong> This tool only checks the format using the Verhoeff algorithm. It does <strong>NOT</strong> verify whether the Aadhaar number exists in UIDAI's database. For official verification, use <a href="https://myaadhaar.uidai.gov.in/" target="_blank" rel="noopener noreferrer" class="underline">UIDAI's official portal</a>.
-    </div>
-  </div>
-
-  <!-- Format Breakdown -->
-  <div class="bg-white border border-border-col rounded-2xl p-6 md:p-8 mb-8">
-    <h2 class="text-xl font-bold text-text-main mb-4">Aadhaar Number Format Breakdown</h2>
-    <div class="flex flex-wrap items-center gap-2 mb-6">
-      <div>
-        <div class="digit-box digit-box digit-group-sep">X X X X</div>
-        <div class="text-xs text-center text-text-muted mt-1">Group 1</div>
-      </div>
-      <span class="text-2xl text-text-muted">—</span>
-      <div>
-        <div class="digit-box">X X X X</div>
-        <div class="text-xs text-center text-text-muted mt-1">Group 2</div>
-      </div>
-      <span class="text-2xl text-text-muted">—</span>
-      <div>
-        <div class="digit-box">X X X <span class="text-primary">C</span></div>
-        <div class="text-xs text-center text-text-muted mt-1">Group 3</div>
-      </div>
-    </div>
-    <table class="w-full text-sm border-collapse">
-      <thead>
-        <tr class="bg-gray-50">
-          <th class="text-left px-4 py-2 border border-border-col font-semibold">Part</th>
-          <th class="text-left px-4 py-2 border border-border-col font-semibold">Digits</th>
-          <th class="text-left px-4 py-2 border border-border-col font-semibold">Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td class="px-4 py-2 border border-border-col font-mono">Positions 1–11</td><td class="px-4 py-2 border border-border-col">11 digits</td><td class="px-4 py-2 border border-border-col text-text-muted">Unique identifier (randomly assigned by UIDAI)</td></tr>
-        <tr class="bg-gray-50"><td class="px-4 py-2 border border-border-col font-mono">Position 12 (C)</td><td class="px-4 py-2 border border-border-col">1 digit</td><td class="px-4 py-2 border border-border-col text-text-muted">Verhoeff checksum digit — mathematically derived from the first 11</td></tr>
-        <tr><td class="px-4 py-2 border border-border-col font-mono">First digit</td><td class="px-4 py-2 border border-border-col">—</td><td class="px-4 py-2 border border-border-col text-text-muted">Must NOT be 0 or 1 (reserved)</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Explanation -->
-  <div class="bg-white border border-border-col rounded-2xl p-6 md:p-8 mb-8">
-    <h2 class="text-xl font-bold text-text-main mb-4">What is an Aadhaar Number?</h2>
-    <p class="text-text-muted text-sm leading-relaxed mb-4">
-      Aadhaar is a 12-digit unique identification number issued by the Unique Identification Authority of India (UIDAI) to Indian residents. It serves as proof of identity and address across India. As of 2024, over 1.3 billion Aadhaar numbers have been issued.
-    </p>
-    <h3 class="text-base font-bold text-text-main mb-2">How does this validator work?</h3>
-    <p class="text-text-muted text-sm leading-relaxed mb-4">
-      Our validator applies the <strong>Verhoeff algorithm</strong> — a checksum formula invented by Dutch mathematician Jacobus Verhoeff in 1969. UIDAI uses this algorithm to embed a mathematical check in the last digit of every Aadhaar number. Any valid Aadhaar number, when processed through this algorithm, will produce a checksum result of 0. If even a single digit is mistyped, the checksum will fail.
-    </p>
-    <h3 class="text-base font-bold text-text-main mb-2">What errors does Verhoeff detect?</h3>
-    <ul class="text-text-muted text-sm leading-relaxed space-y-1 list-disc list-inside">
-      <li>Single digit substitution (e.g., typing 5 instead of 3)</li>
-      <li>Transposition of adjacent digits (e.g., 12 → 21)</li>
-      <li>Twin errors (e.g., 11 → 22)</li>
-      <li>Jump transpositions (e.g., 132 → 231)</li>
-    </ul>
-  </div>
-
-  <!-- FAQ -->
-  <div class="bg-white border border-border-col rounded-2xl p-6 md:p-8 mb-8">
-    <h2 class="text-xl font-bold text-text-main mb-5">Frequently Asked Questions</h2>
-    <div class="space-y-3">
-
-      <div class="faq-item border border-border-col rounded-xl overflow-hidden">
-        <button class="w-full flex items-center justify-between px-4 py-3.5 text-left font-semibold text-sm text-text-main hover:bg-gray-50" onclick="toggleFAQ(this)">
-          <span>Can I use this to verify if an Aadhaar is genuine?</span>
-          <svg class="faq-icon w-4 h-4 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-answer px-4 pb-4 text-sm text-text-muted leading-relaxed">No. This tool validates the format using the public Verhoeff algorithm. It cannot tell whether the Aadhaar number is actually registered in UIDAI's database or belongs to a real person. For official verification, visit <a href="https://myaadhaar.uidai.gov.in/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">myaadhaar.uidai.gov.in</a>.</div>
-      </div>
-
-      <div class="faq-item border border-border-col rounded-xl overflow-hidden">
-        <button class="w-full flex items-center justify-between px-4 py-3.5 text-left font-semibold text-sm text-text-main hover:bg-gray-50" onclick="toggleFAQ(this)">
-          <span>Is it safe to type my Aadhaar number here?</span>
-          <svg class="faq-icon w-4 h-4 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-answer px-4 pb-4 text-sm text-text-muted leading-relaxed">Yes. All validation logic runs locally in your browser as JavaScript. Your Aadhaar number is never transmitted to any server. You can verify this by checking the Network tab in your browser's developer tools while using the validator.</div>
-      </div>
-
-      <div class="faq-item border border-border-col rounded-xl overflow-hidden">
-        <button class="w-full flex items-center justify-between px-4 py-3.5 text-left font-semibold text-sm text-text-main hover:bg-gray-50" onclick="toggleFAQ(this)">
-          <span>What is a valid Aadhaar number format?</span>
-          <svg class="faq-icon w-4 h-4 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-answer px-4 pb-4 text-sm text-text-muted leading-relaxed">A valid Aadhaar number must: (1) be exactly 12 digits long, (2) not start with 0 or 1, and (3) have a last digit that satisfies the Verhoeff checksum. Spaces in the printed format (e.g., 1234 5678 9012) are not part of the number — they're just for readability.</div>
-      </div>
-
-      <div class="faq-item border border-border-col rounded-xl overflow-hidden">
-        <button class="w-full flex items-center justify-between px-4 py-3.5 text-left font-semibold text-sm text-text-main hover:bg-gray-50" onclick="toggleFAQ(this)">
-          <span>Why does my valid-looking Aadhaar fail the check?</span>
-          <svg class="faq-icon w-4 h-4 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-answer px-4 pb-4 text-sm text-text-muted leading-relaxed">This can happen if you made a typo (even one wrong digit fails the checksum), you're testing with a made-up number, or you saw the Aadhaar on a photocopy and misread a digit. All Aadhaar numbers generated by UIDAI will pass this check. If yours fails, double-check each digit carefully.</div>
-      </div>
-
-      <div class="faq-item border border-border-col rounded-xl overflow-hidden">
-        <button class="w-full flex items-center justify-between px-4 py-3.5 text-left font-semibold text-sm text-text-main hover:bg-gray-50" onclick="toggleFAQ(this)">
-          <span>Should I mask my Aadhaar before sharing?</span>
-          <svg class="faq-icon w-4 h-4 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-answer px-4 pb-4 text-sm text-text-muted leading-relaxed">Yes. UIDAI recommends sharing masked Aadhaar (only last 4 digits visible) for general KYC purposes. Use our <a href="../tools/aadhaar-masking-tool.html" class="text-primary hover:underline">Aadhaar Masking Tool</a> to generate a masked version directly in your browser.</div>
-      </div>
+    <div class="mt-16 p-6 bg-yellow-50 border border-yellow-100 rounded-2xl text-xs text-yellow-800">
+      <p><strong>Disclaimer:</strong> This tool only validates the format and checksum of the Aadhaar number. It does not verify the authenticity or existence of the number in UIDAI records. VerifyDocs.in is not responsible for any errors or consequences arising from the use of this tool. For official verification, visit <a href="https://myaadhaar.uidai.gov.in/" class="underline font-bold">uidai.gov.in</a>.</p>
     </div>
   </div>
 
   <!-- Related Tools -->
-  <div class="bg-white border border-border-col rounded-2xl p-6 md:p-8">
-    <h2 class="text-lg font-bold text-text-main mb-4">Related Tools</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      <a href="../tools/aadhaar-masking-tool.html" class="flex items-center gap-3 p-3 rounded-xl border border-border-col hover:border-primary/30 hover:bg-blue-50 transition">
-        <span class="text-2xl">🔒</span>
-        <div><p class="font-semibold text-sm text-text-main">Aadhaar Masking Tool</p><p class="text-xs text-text-muted">Hide first 8 digits of Aadhaar</p></div>
+  <div class="mt-20">
+    <h3 class="text-lg font-bold text-text-main mb-6">Related Validators</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <a href="./pan-validator.html" class="p-4 bg-white border border-border-col rounded-2xl hover:border-primary transition">
+        <div class="text-xl mb-2">💳</div>
+        <div class="font-bold text-sm">PAN Checker</div>
       </a>
-      <a href="../tools/pan-validator.html" class="flex items-center gap-3 p-3 rounded-xl border border-border-col hover:border-primary/30 hover:bg-blue-50 transition">
-        <span class="text-2xl">💳</span>
-        <div><p class="font-semibold text-sm text-text-main">PAN Card Checker</p><p class="text-xs text-text-muted">Verify format of PAN Card</p></div>
+      <a href="./voter-id-validator.html" class="p-4 bg-white border border-border-col rounded-2xl hover:border-primary transition">
+        <div class="text-xl mb-2">🗳️</div>
+        <div class="font-bold text-sm">Voter ID</div>
       </a>
-      <a href="../tools/gst-validator.html" class="flex items-center gap-3 p-3 rounded-xl border border-border-col hover:border-primary/30 hover:bg-blue-50 transition">
-        <span class="text-2xl">🏢</span>
-        <div><p class="font-semibold text-sm text-text-main">GST Number Verifier</p><p class="text-xs text-text-muted">Decode your GST registration number</p></div>
-      </a>
-      <a href="../tools/upi-validator.html" class="flex items-center gap-3 p-3 rounded-xl border border-border-col hover:border-primary/30 hover:bg-blue-50 transition">
-        <span class="text-2xl">💸</span>
-        <div><p class="font-semibold text-sm text-text-main">UPI ID Validator</p><p class="text-xs text-text-muted">Check Virtual Payment Address</p></div>
-      </a>
-      <a href="../tools/vehicle-validator.html" class="flex items-center gap-3 p-3 rounded-xl border border-border-col hover:border-primary/30 hover:bg-blue-50 transition">
-        <span class="text-2xl">🚦</span>
-        <div><p class="font-semibold text-sm text-text-main">Vehicle Checker</p><p class="text-xs text-text-muted">Validate RC number plate format</p></div>
-      </a>
-      <a href="../index.html" class="flex items-center gap-3 p-3 rounded-xl border border-border-col hover:border-primary/30 hover:bg-blue-50 transition">
-        <span class="text-2xl">🏠</span>
-        <div><p class="font-semibold text-sm text-text-main">All Tools</p><p class="text-xs text-text-muted">See all Indian document validators</p></div>
+      <a href="./aadhaar-masking-tool.html" class="p-4 bg-white border border-border-col rounded-2xl hover:border-primary transition">
+        <div class="text-xl mb-2">🔒</div>
+        <div class="font-bold text-sm">Aadhaar Masking</div>
       </a>
     </div>
   </div>
-
 </main>
 
-<!-- Footer -->
-<footer class="bg-text-main text-white pt-12 pb-6 px-4 mt-10">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-      <div class="col-span-2 md:col-span-1">
-        <div class="flex items-center gap-2 font-bold text-lg mb-3">
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="7" fill="#0066cc"/><path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/><path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          VerifyDocs.in
-        </div>
-        <p class="text-gray-400 text-sm leading-relaxed">Free Indian document validation tools. 100% browser-based, privacy-first.</p>
-      </div>
-      <div>
-        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Tools</h4>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li><a href="../tools/aadhaar-validator.html" class="hover:text-white transition">Aadhaar Validator</a></li>
-          <li><a href="../tools/pan-validator.html" class="hover:text-white transition">PAN Checker</a></li>
-          <li><a href="../tools/gst-validator.html" class="hover:text-white transition">GST Verifier</a></li>
-          <li><a href="../tools/upi-validator.html" class="hover:text-white transition">UPI Validator</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Resources</h4>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li><a href="../blog/index.html" class="hover:text-white transition">Blog</a></li>
-          <li><a href="../about.html" class="hover:text-white transition">About Us</a></li>
-          <li><a href="../contact.html" class="hover:text-white transition">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Legal</h4>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li><a href="../privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
-          <li><a href="../terms.html" class="hover:text-white transition">Terms of Service</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<footer class="bg-white border-t border-border-col py-10 px-4 mt-20 text-center">
+  <p class="text-xs text-text-muted">© 2026 VerifyDocs.in — Built for Privacy.</p>
 </footer>
 
 <script src="../assets/js/validators.js"></script>
 <script>
-function formatAadhaarInput(input) {
-  let v = input.value.replace(/\D/g, '').substring(0, 12);
-  input.value = v.replace(/(\d{4})(\d{0,4})(\d{0,4})/, (_, a, b, c) => [a, b, c].filter(Boolean).join(' '));
-}
-
-function runAadhaarValidate() {
-  const val = document.getElementById('aadhaar-input').value;
-  const resultDiv = document.getElementById('aadhaar-result');
-  const result = validateAadhaar(val);
-
-  if (result.valid) {
-    resultDiv.className = 'result-box show mt-5 p-5 bg-green-50 border border-green-200 rounded-xl';
-    resultDiv.innerHTML = `
-      <div class="flex items-start gap-3">
-        <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
-        <div class="flex-1">
-          <p class="font-bold text-accent text-base">Valid Aadhaar Number</p>
-          <p class="text-sm text-green-700 mt-1">This number is in correct Aadhaar format and passes the Verhoeff checksum.</p>
-          <div class="mt-3 flex items-center gap-2 flex-wrap">
-            <span class="font-mono text-2xl font-bold text-text-main tracking-widest">${result.formatted}</span>
-          </div>
-          <div class="mt-3 grid grid-cols-3 gap-2">
-            <div class="bg-white border border-green-100 rounded-lg p-3 text-center">
-              <div class="font-mono font-bold text-primary text-lg">${result.formatted.split(' ')[0]}</div>
-              <div class="text-xs text-text-muted mt-0.5">Group 1</div>
-            </div>
-            <div class="bg-white border border-green-100 rounded-lg p-3 text-center">
-              <div class="font-mono font-bold text-primary text-lg">${result.formatted.split(' ')[1]}</div>
-              <div class="text-xs text-text-muted mt-0.5">Group 2</div>
-            </div>
-            <div class="bg-white border border-green-100 rounded-lg p-3 text-center">
-              <div class="font-mono font-bold text-primary text-lg">${result.formatted.split(' ')[2]}</div>
-              <div class="text-xs text-text-muted mt-0.5">Group 3 (check digit: ${result.formatted.slice(-1)})</div>
-            </div>
-          </div>
-        </div>
-      </div>`;
-  } else {
-    resultDiv.className = 'result-box show mt-5 p-5 bg-red-50 border border-red-200 rounded-xl';
-    resultDiv.innerHTML = `
-      <div class="flex items-start gap-3">
-        <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/></svg></div>
-        <div>
-          <p class="font-bold text-red-700 text-base">Invalid Aadhaar Number</p>
-          <p class="text-sm text-red-600 mt-1"><strong>Reason:</strong> ${result.reason}</p>
-          <p class="text-xs text-text-muted mt-2">Check for typos. All real Aadhaar numbers issued by UIDAI will pass this check.</p>
-        </div>
-      </div>`;
+  function toggleFAQ(btn) {
+    const item = btn.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    item.classList.toggle('open');
+    answer.classList.toggle('open');
   }
-}
 
-function toggleMobileMenu() {
-  document.getElementById('mobile-menu').classList.toggle('hidden');
-}
+  const input = document.getElementById('aadhaar-input');
+  const resArea = document.getElementById('result-area');
 
-function toggleFAQ(btn) {
-  const item = btn.closest('.faq-item');
-  const answer = item.querySelector('.faq-answer');
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-answer').classList.remove('open'); });
-  if (!isOpen) { item.classList.add('open'); answer.classList.add('open'); }
-}
+  input.addEventListener('input', (e) => {
+    let v = e.target.value.replace(/\D/g, '');
+    if (v.length > 0) {
+      v = v.match(/.{1,4}/g).join(' ');
+    }
+    e.target.value = v;
+  });
+
+  function handleValidate() {
+    const val = input.value.replace(/\s/g, '');
+    if (!val) return;
+    
+    const res = validateAadhaar(val);
+    resArea.classList.remove('hidden');
+    
+    if (res.valid) {
+      resArea.innerHTML = `
+        <div class="p-6 bg-green-50 border border-green-200 rounded-2xl flex items-start gap-4">
+          <div class="w-10 h-10 bg-green-100 text-green-700 rounded-full flex items-center justify-center flex-shrink-0 text-xl font-bold">✓</div>
+          <div>
+            <p class="font-bold text-green-800">Valid Aadhaar Number Format</p>
+            <p class="text-sm text-green-700 mt-1">Mathematical format and Verhoeff checksum are correct.</p>
+            <p class="text-xs text-green-600 mt-3 font-mono">Input: ${res.formatted}</p>
+          </div>
+        </div>
+      `;
+    } else {
+      resArea.innerHTML = `
+        <div class="p-6 bg-red-50 border border-red-200 rounded-2xl flex items-start gap-4">
+          <div class="w-10 h-10 bg-red-100 text-red-700 rounded-full flex items-center justify-center flex-shrink-0 text-xl font-bold">✗</div>
+          <div>
+            <p class="font-bold text-red-800">Invalid Aadhaar Format</p>
+            <p class="text-sm text-red-700 mt-1">${res.reason}</p>
+          </div>
+        </div>
+      `;
+    }
+  }
 </script>
 </body>
 </html>

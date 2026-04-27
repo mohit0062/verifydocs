@@ -2,446 +2,109 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aadhaar Masking Tool — Mask Your Aadhaar Card Free Online | VerifyDocs.in</title>
-  <meta name="description" content="Free Aadhaar masking tool. Upload your Aadhaar image or PDF and mask the first 8 digits (XXXX XXXX) before sharing. 100% browser-based — your Aadhaar never leaves your device.">
-  <meta name="keywords" content="aadhaar masking tool, mask aadhaar online, hide aadhaar digits, aadhaar masked copy, uidai aadhaar masking">
+  <title>Aadhaar Masking Tool — Protect Your Privacy Online (Free)</title>
+  <meta name="description" content="Securely mask your Aadhaar number for sharing. Hide the first 8 digits and only show the last 4. 100% private and browser-based masking tool.">
+  <meta name="keywords" content="aadhaar masking, hide aadhaar digits, secure aadhaar share, private uid sharing, mask uid tool">
   <link rel="canonical" href="https://verifydocs.in/tools/aadhaar-masking-tool.html">
-  <meta name="robots" content="index, follow">
+  <link rel="alternate" hreflang="en-IN" href="https://verifydocs.in/tools/aadhaar-masking-tool.html">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230066cc'/%3E%3Cpath d='M16 6l6 4v6c0 5-6 9-6 9s-6-4-6-9v-6z' fill='white'/%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config={theme:{extend:{colors:{primary:'#0066cc',accent:'#138808',warning:'#ff9933','text-main':'#0f172a','text-muted':'#64748b','bg-main':'#f8fafc','border-col':'#e2e8f0'},fontFamily:{sans:['Inter','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
-  <style>
-    body{background:#f8fafc;font-family:'Inter',sans-serif;color:#0f172a}
-    #drop-zone{border:2px dashed #e2e8f0;transition:border-color 0.2s,background 0.2s}
-    #drop-zone.dragging{border-color:#0066cc;background:#f0f7ff}
-    #preview-canvas{max-width:100%;border-radius:12px;border:1px solid #e2e8f0}
-    .faq-answer{display:none}.faq-answer.open{display:block}
-    .faq-item.open .faq-icon{transform:rotate(180deg)}.faq-icon{transition:transform 0.2s}
-    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-    .processing{animation:pulse 1.5s ease-in-out infinite}
-    #manual-mask-section{display:none}
-    #manual-mask-section.show{display:block}
-  </style>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Aadhaar Masking Tool","url":"https://verifydocs.in/tools/aadhaar-masking-tool.html","applicationCategory":"Utility","operatingSystem":"Any","description":"Mask first 8 digits of Aadhaar number in images and PDFs, entirely in the browser","offers":{"@type":"Offer","price":"0"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Aadhaar masking mandatory?","acceptedAnswer":{"@type":"Answer","text":"UIDAI recommends (and in many cases requires) sharing only a Masked Aadhaar for KYC and identity verification purposes. This protects your full Aadhaar from misuse."}},{"@type":"Question","name":"What is a masked Aadhaar?","acceptedAnswer":{"@type":"Answer","text":"A masked Aadhaar hides the first 8 digits, showing only the last 4 (e.g., XXXX XXXX 9012). This is sufficient for most KYC verifications while protecting your privacy."}},{"@type":"Question","name":"Is my Aadhaar uploaded to any server?","acceptedAnswer":{"@type":"Answer","text":"No. All processing happens entirely in your browser using JavaScript Canvas and PDF-lib. Your Aadhaar image never leaves your device."}}]}</script>
-
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { primary: '#0066cc', accent: '#138808', 'text-main': '#0f172a', 'text-muted': '#64748b', 'border-col': '#e2e8f0' }, fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] } } }
+    }
+  </script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T80N8X570N"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-T80N8X570N');
 </script>
-
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1094606266002530" crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "WebApplication", "name": "Aadhaar Masking Tool — Protect Your Privacy Online (Free)", "description": "Securely mask your Aadhaar number for sharing. Hide the first 8 digits and only show the last 4. 100% private and browser-based masking tool.", "url": "https://verifydocs.in/tools/aadhaar-masking-tool.html", "applicationCategory": "UtilityApplication", "operatingSystem": "Any browser", "inLanguage": "en-IN", "areaServed": { "@type": "Country", "name": "India" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" } }
+</script>
 </head>
-<body>
-<nav class="bg-white/80 backdrop-blur-md border-b border-border-col sticky top-0 z-50 shadow-sm">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-    <a href="../index.html" class="flex items-center gap-2 font-bold text-xl text-text-main no-underline">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="32" height="32" rx="7" fill="#0066cc"/>
-        <path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/>
-        <path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span>VerifyDocs<span class="text-primary">.in</span></span>
-    </a>
-    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted">
-      <a href="../index.html" class="hover:text-primary transition-colors">Home</a>
-      <div class="relative group">
-        <button class="flex items-center gap-1 hover:text-primary transition-colors py-2">Tools <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
-        <div class="absolute top-full left-0 bg-white border border-border-col rounded-xl shadow-xl p-4 w-64 hidden group-hover:block z-50 text-left">
-          <a href="../tools/aadhaar-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🆔 Aadhaar Validator</a>
-          <a href="../tools/aadhaar-masking-tool.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🔒 Aadhaar Masking</a>
-          <a href="../tools/pan-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">💳 PAN Checker</a>
-          <a href="../tools/gst-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🏢 GST Verifier</a>
-          <a href="../tools/voter-id-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🗳️ Voter ID</a>
-          <a href="../tools/ifsc-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🏦 IFSC Checker</a>
-          <a href="../tools/passport-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🛂 Passport</a>
-          <a href="../tools/driving-license-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🚗 Driving License</a>
-          <a href="../tools/upi-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">💸 UPI Validator</a>
-          <a href="../tools/vehicle-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🚦 Vehicle Checker</a>
-          <a href="../tools/lic-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">📜 LIC Policy Checker</a>
-        </div>
-      </div>
-      <a href="../blog/index.html" class="hover:text-primary transition-colors">Blog</a>
-      <a href="../about.html" class="hover:text-primary transition-colors">About</a>
-      <a href="../contact.html" class="hover:text-primary transition-colors">Contact</a>
-    </div>
-    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100" onclick="toggleMobileMenu()">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-    </button>
-  </div>
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-border-col px-4 py-3 space-y-2">
-    <a href="../index.html" class="block py-2 text-sm text-text-main font-semibold">Home</a>
-    <div class="pt-2 pb-1 text-xs font-bold text-text-muted uppercase tracking-wider">Document Tools</div>
-    <a href="../tools/aadhaar-validator.html" class="block py-2 text-sm text-text-main pl-2">🆔 Aadhaar Validator</a>
-    <a href="../tools/pan-validator.html" class="block py-2 text-sm text-text-main pl-2">💳 PAN Checker</a>
-    <a href="../tools/gst-validator.html" class="block py-2 text-sm text-text-main pl-2">🏢 GST Verifier</a>
-    <a href="../tools/upi-validator.html" class="block py-2 text-sm text-text-main pl-2">💸 UPI Validator</a>
-    <a href="../tools/vehicle-validator.html" class="block py-2 text-sm text-text-main pl-2">🚦 Vehicle Checker</a>
-    <a href="../blog/index.html" class="block py-2 text-sm text-text-main font-semibold border-t pt-2">Blog</a>
-    <a href="../about.html" class="block py-2 text-sm text-text-main">About</a>
-    <a href="../contact.html" class="block py-2 text-sm text-text-main">Contact</a>
+<body class="bg-[#f8fafc] font-sans text-text-main">
+
+<nav class="bg-white/80 backdrop-blur-md border-b border-border-col sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="../index.html" class="font-bold text-xl no-underline">VerifyDocs<span class="text-primary">.in</span></a>
+    <a href="../index.html" class="text-sm font-medium text-text-muted">← Home</a>
   </div>
 </nav>
 
-<main class="max-w-4xl mx-auto px-4 py-8">
-  <nav class="text-xs text-text-muted mb-6 flex items-center gap-1.5">
-    <a href="../index.html" class="hover:text-primary">Home</a><span>›</span><span>Aadhaar Tools</span><span>›</span>
-    <span class="text-text-main font-medium">Aadhaar Masking Tool</span>
-  </nav>
-
-  <h1 class="text-3xl md:text-4xl font-extrabold text-text-main mb-3">Aadhaar Masking Tool</h1>
-  <p class="text-text-muted text-base leading-relaxed mb-2 max-w-2xl">
-    Mask the first 8 digits of your Aadhaar card before sharing it. Upload an Aadhaar image and get a masked copy to download — or use the <strong>manual number masker</strong> to generate a masked Aadhaar number.
-  </p>
-
-  <!-- Privacy Banner -->
-  <div class="flex items-start gap-3 bg-green-50 border border-green-200 rounded-xl p-4 mb-8">
-    <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-    <div>
-      <p class="font-semibold text-accent text-sm">Your Aadhaar Never Leaves Your Device</p>
-      <p class="text-xs text-green-700 mt-0.5">All image processing uses your browser's Canvas API. Zero server uploads. You can verify by checking the Network tab in browser DevTools — no requests are made.</p>
-    </div>
+<main class="max-w-3xl mx-auto px-4 py-10 md:py-16">
+  <h1 class="text-3xl font-extrabold text-text-main mb-6">Aadhaar Masking Tool</h1>
+  
+  <div class="bg-white rounded-3xl border border-border-col p-6 mb-10 text-text-muted">
+    <p>Sharing your full Aadhaar number can be risky. Masking allows you to hide the first 8 digits (e.g., XXXX XXXX 1234), protecting your identity while still providing valid verification. <strong>Everything happens in your browser.</strong></p>
   </div>
 
-  <!-- Tabs -->
-  <div class="flex gap-1 bg-gray-100 rounded-xl p-1 mb-6 w-fit">
-    <button id="tab-image" onclick="switchTab('image')" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white shadow text-text-main">📷 Image Masking</button>
-    <button id="tab-manual" onclick="switchTab('manual')" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold text-text-muted hover:text-text-main transition">🔢 Number Masker</button>
-  </div>
-
-  <!-- IMAGE MASKING TOOL -->
-  <div id="section-image">
-    <div class="bg-white border border-border-col rounded-2xl shadow-sm p-6 md:p-8 mb-6">
-      <h2 class="text-lg font-bold text-text-main mb-4">Step 1: Upload your Aadhaar image</h2>
-
-      <!-- Drop Zone -->
-      <div id="drop-zone" class="rounded-2xl p-10 text-center cursor-pointer hover:border-primary hover:bg-blue-50 transition"
-        onclick="document.getElementById('file-input').click()"
-        ondragover="event.preventDefault();this.classList.add('dragging')"
-        ondragleave="this.classList.remove('dragging')"
-        ondrop="handleDrop(event)">
-        <div class="text-4xl mb-3">📄</div>
-        <p class="font-semibold text-text-main mb-1">Drop your Aadhaar image here</p>
-        <p class="text-sm text-text-muted mb-4">or click to browse</p>
-        <span class="inline-block bg-primary text-white text-sm font-semibold px-4 py-2 rounded-lg">Choose File</span>
-        <p class="text-xs text-text-muted mt-3">Supported: JPG, PNG, WEBP (PDF coming soon)</p>
-      </div>
-      <input type="file" id="file-input" accept="image/*" class="hidden" onchange="handleFileSelect(event)">
-
-      <!-- Preview + Controls -->
-      <div id="editor-section" class="hidden mt-6">
-        <h2 class="text-lg font-bold text-text-main mb-4">Step 2: Position the mask over the Aadhaar number</h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <div class="md:col-span-2">
-            <div class="relative inline-block w-full">
-              <canvas id="preview-canvas" class="w-full rounded-xl shadow-sm"></canvas>
-            </div>
-          </div>
-          <div class="space-y-4">
-            <div>
-              <label class="block text-xs font-semibold text-text-muted mb-1.5">MASK POSITION X</label>
-              <input type="range" id="mask-x" min="0" max="100" value="5" class="w-full accent-primary" oninput="updateMask()">
-              <div class="text-xs text-text-muted mt-1">Left — Right: <span id="mask-x-val">5%</span></div>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-text-muted mb-1.5">MASK POSITION Y</label>
-              <input type="range" id="mask-y" min="0" max="100" value="55" class="w-full accent-primary" oninput="updateMask()">
-              <div class="text-xs text-text-muted mt-1">Top — Bottom: <span id="mask-y-val">55%</span></div>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-text-muted mb-1.5">MASK WIDTH</label>
-              <input type="range" id="mask-w" min="10" max="80" value="55" class="w-full accent-primary" oninput="updateMask()">
-              <div class="text-xs text-text-muted mt-1"><span id="mask-w-val">55%</span> of image width</div>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-text-muted mb-1.5">MASK HEIGHT</label>
-              <input type="range" id="mask-h" min="2" max="20" value="6" class="w-full accent-primary" oninput="updateMask()">
-              <div class="text-xs text-text-muted mt-1"><span id="mask-h-val">6%</span> of image height</div>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-text-muted mb-1.5">MASK TEXT</label>
-              <select id="mask-style" class="w-full border border-border-col rounded-lg px-3 py-2 text-sm" onchange="updateMask()">
-                <option value="xxxx">XXXX XXXX ●●●●</option>
-                <option value="black">Black block</option>
-                <option value="blur">MASKED</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <p class="text-xs text-text-muted mb-4 bg-blue-50 p-3 rounded-lg">💡 <strong>Tip:</strong> Adjust the sliders to position the mask over the first 8 digits of the Aadhaar number. The last 4 digits should remain visible.</p>
-
-        <div class="flex gap-3">
-          <button onclick="downloadMasked('png')" class="flex-1 bg-accent text-white font-semibold py-3 rounded-xl hover:bg-green-700 transition text-sm">
-            ⬇ Download Masked Image (PNG)
-          </button>
-          <button onclick="resetTool()" class="px-4 bg-gray-100 text-text-muted font-semibold py-3 rounded-xl hover:bg-gray-200 transition text-sm">
-            Reset
-          </button>
+  <div class="bg-white rounded-3xl border-2 border-primary/20 p-6 md:p-10 shadow-xl">
+    <label class="block text-sm font-bold mb-3 uppercase">Enter Full Aadhaar Number</label>
+    <input 
+      type="text" 
+      id="mask-input" 
+      placeholder="1234 5678 9012" 
+      class="w-full h-16 px-6 border-2 border-border-col rounded-2xl text-xl font-mono focus:outline-none focus:border-primary mb-6"
+    >
+    <div id="mask-result" class="hidden space-y-4">
+      <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl">
+        <p class="text-xs text-text-muted mb-2 font-bold uppercase">Your Masked Aadhaar:</p>
+        <div class="flex items-center justify-between">
+          <span id="masked-val" class="text-2xl font-mono tracking-widest text-text-main">XXXX XXXX 1234</span>
+          <button onclick="copyMasked()" class="text-primary font-bold text-sm">Copy</button>
         </div>
       </div>
+      <p class="text-[10px] text-text-muted">Tip: You can safely share this masked number with service providers who only need to verify the last 4 digits.</p>
     </div>
   </div>
 
-  <!-- NUMBER MASKER TOOL -->
-  <div id="section-manual" class="hidden">
-    <div class="bg-white border border-border-col rounded-2xl shadow-sm p-6 md:p-8 mb-6">
-      <h2 class="text-lg font-bold text-text-main mb-2">Mask an Aadhaar Number</h2>
-      <p class="text-sm text-text-muted mb-5">Enter your full 12-digit Aadhaar and get the masked version (XXXX XXXX followed by last 4 digits) to copy and share.</p>
-      <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4">
-        <input type="text" id="mask-input" maxlength="14" placeholder="1234 5678 9012"
-          class="flex-1 h-14 px-4 border border-border-col rounded-xl text-xl font-mono tracking-widest focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
-          oninput="formatAndMask(this)">
-        <button onclick="generateMask()" class="w-full sm:w-auto h-14 px-6 bg-primary text-white font-semibold rounded-xl hover:bg-blue-700 transition whitespace-nowrap text-sm">Mask it →</button>
-      </div>
-      <div id="mask-result" class="hidden p-5 bg-green-50 border border-green-200 rounded-xl">
-        <p class="text-xs text-text-muted mb-2 font-semibold">MASKED AADHAAR NUMBER</p>
-        <div class="flex items-center gap-3">
-          <span id="masked-output" class="font-mono text-3xl font-bold text-text-main tracking-widest"></span>
-          <button onclick="copyMasked()" class="ml-auto flex items-center gap-1.5 text-xs font-semibold text-primary bg-white border border-primary/30 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-            Copy
-          </button>
-        </div>
-        <p class="text-xs text-green-700 mt-2">✓ First 8 digits masked. Last 4 digits visible for verification.</p>
-      </div>
-      <p class="text-xs text-text-muted mt-3">Your Aadhaar number is never sent anywhere. Masking happens locally in JavaScript.</p>
-    </div>
-  </div>
-
-  <!-- Why Mask -->
-  <div class="bg-white border border-border-col rounded-2xl p-6 md:p-8 mb-8">
-    <h2 class="text-xl font-bold text-text-main mb-4">Why Should You Mask Your Aadhaar?</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-text-muted leading-relaxed">
-      <div class="flex gap-3"><span class="text-2xl flex-shrink-0">🛡️</span><div><p class="font-semibold text-text-main mb-1">UIDAI Recommendation</p><p>UIDAI officially recommends using Masked Aadhaar for routine KYC submissions. Sharing a full Aadhaar is not required for most purposes.</p></div></div>
-      <div class="flex gap-3"><span class="text-2xl flex-shrink-0">🔒</span><div><p class="font-semibold text-text-main mb-1">Prevent Identity Misuse</p><p>Your full 12-digit Aadhaar linked to biometrics can potentially be misused. Masking limits exposure while still confirming your identity.</p></div></div>
-      <div class="flex gap-3"><span class="text-2xl flex-shrink-0">✅</span><div><p class="font-semibold text-text-main mb-1">Widely Accepted</p><p>Masked Aadhaar (showing last 4 digits) is accepted by most private entities for KYC — banks, landlords, telecom operators.</p></div></div>
-      <div class="flex gap-3"><span class="text-2xl flex-shrink-0">📋</span><div><p class="font-semibold text-text-main mb-1">Digital Personal Data Protection</p><p>Under India's DPDP Act 2023, minimizing data shared is a good practice. Masked Aadhaar is a simple way to share less.</p></div></div>
-    </div>
-  </div>
-
-  <!-- FAQ -->
-  <div class="bg-white border border-border-col rounded-2xl p-6 md:p-8 mb-8">
-    <h2 class="text-xl font-bold text-text-main mb-5">Frequently Asked Questions</h2>
-    <div class="space-y-3">
-      <div class="faq-item border border-border-col rounded-xl overflow-hidden">
-        <button class="w-full flex items-center justify-between px-4 py-3.5 text-left font-semibold text-sm hover:bg-gray-50" onclick="toggleFAQ(this)"><span>Is Aadhaar masking mandatory?</span><svg class="faq-icon w-4 h-4 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
-        <div class="faq-answer px-4 pb-4 text-sm text-text-muted leading-relaxed">UIDAI recommends (and in many contexts requires for private entities) that you share only Masked Aadhaar. Sharing a full unmasked Aadhaar to entities not authorised by UIDAI may violate the Aadhaar Act.</div>
-      </div>
-      <div class="faq-item border border-border-col rounded-xl overflow-hidden">
-        <button class="w-full flex items-center justify-between px-4 py-3.5 text-left font-semibold text-sm hover:bg-gray-50" onclick="toggleFAQ(this)"><span>What is masked Aadhaar?</span><svg class="faq-icon w-4 h-4 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
-        <div class="faq-answer px-4 pb-4 text-sm text-text-muted leading-relaxed">Masked Aadhaar is a version of the Aadhaar card where the first 8 digits of the 12-digit UID are hidden (e.g., XXXX XXXX 9012), showing only the last 4 digits. UIDAI provides this option on their mAadhaar app. Our tool lets you create a masked version from an image/PDF.</div>
-      </div>
-      <div class="faq-item border border-border-col rounded-xl overflow-hidden">
-        <button class="w-full flex items-center justify-between px-4 py-3.5 text-left font-semibold text-sm hover:bg-gray-50" onclick="toggleFAQ(this)"><span>Is my Aadhaar uploaded to your server?</span><svg class="faq-icon w-4 h-4 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
-        <div class="faq-answer px-4 pb-4 text-sm text-text-muted leading-relaxed">No. We have no server. All image processing uses the HTML5 Canvas API, which runs entirely in your browser. The file never leaves your device. You can verify this by opening Developer Tools → Network tab and confirming no requests are made when you use the tool.</div>
-      </div>
-      <div class="faq-item border border-border-col rounded-xl overflow-hidden">
-        <button class="w-full flex items-center justify-between px-4 py-3.5 text-left font-semibold text-sm hover:bg-gray-50" onclick="toggleFAQ(this)"><span>Can I mask a PDF Aadhaar?</span><svg class="faq-icon w-4 h-4 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
-        <div class="faq-answer px-4 pb-4 text-sm text-text-muted leading-relaxed">PDF masking is coming soon. For now, please convert your Aadhaar PDF to an image (JPG/PNG) first — most phones can do this via a screenshot or built-in "Print to PDF → save as image" option. Then upload the image for masking.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="bg-white border border-border-col rounded-2xl p-6">
-    <h2 class="text-lg font-bold text-text-main mb-4">Related Tools</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      <a href="../tools/aadhaar-validator.html" class="flex items-center gap-3 p-3 rounded-xl border border-border-col hover:border-primary/30 hover:bg-blue-50 transition"><span class="text-2xl">🆔</span><div><p class="font-semibold text-sm">Aadhaar Validator</p><p class="text-xs text-text-muted">Check Aadhaar format using Verhoeff</p></div></a>
-      <a href="../tools/pan-validator.html" class="flex items-center gap-3 p-3 rounded-xl border border-border-col hover:border-primary/30 hover:bg-blue-50 transition"><span class="text-2xl">💳</span><div><p class="font-semibold text-sm">PAN Card Checker</p><p class="text-xs text-text-muted">Verify PAN card format</p></div></a>
-    </div>
+  <div class="prose prose-blue mt-16 text-text-muted">
+    <h2 class="text-xl font-bold text-text-main">Why Mask Your Aadhaar?</h2>
+    <p>According to UIDAI guidelines, you should avoid sharing your full Aadhaar number unnecessarily. Masked Aadhaar is a legal and secure alternative for various KYC purposes.</p>
   </div>
 </main>
 
-<!-- Footer -->
-<footer class="bg-text-main text-white pt-12 pb-6 px-4 mt-10">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-      <div class="col-span-2 md:col-span-1">
-        <div class="flex items-center gap-2 font-bold text-lg mb-3">
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="7" fill="#0066cc"/><path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/><path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          VerifyDocs.in
-        </div>
-        <p class="text-gray-400 text-sm leading-relaxed">Free Indian document validation tools. 100% browser-based, privacy-first.</p>
-      </div>
-      <div>
-        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Tools</h4>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li><a href="../tools/aadhaar-validator.html" class="hover:text-white transition">Aadhaar Validator</a></li>
-          <li><a href="../tools/pan-validator.html" class="hover:text-white transition">PAN Checker</a></li>
-          <li><a href="../tools/gst-validator.html" class="hover:text-white transition">GST Verifier</a></li>
-          <li><a href="../tools/upi-validator.html" class="hover:text-white transition">UPI Validator</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Resources</h4>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li><a href="../blog/index.html" class="hover:text-white transition">Blog</a></li>
-          <li><a href="../about.html" class="hover:text-white transition">About Us</a></li>
-          <li><a href="../contact.html" class="hover:text-white transition">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Legal</h4>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li><a href="../privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
-          <li><a href="../terms.html" class="hover:text-white transition">Terms of Service</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</footer>
-
 <script src="../assets/js/validators.js"></script>
 <script>
-function toggleMobileMenu() {
-  document.getElementById('mobile-menu').classList.toggle('hidden');
-}
+  const input = document.getElementById('mask-input');
+  const resArea = document.getElementById('mask-result');
+  const maskedVal = document.getElementById('masked-val');
 
-let originalImage = null;
-let canvas = document.getElementById('preview-canvas');
-let ctx = canvas.getContext('2d');
-
-// Tab switching
-function switchTab(tab) {
-  document.getElementById('section-image').classList.toggle('hidden', tab !== 'image');
-  document.getElementById('section-manual').classList.toggle('hidden', tab !== 'manual');
-  document.getElementById('tab-image').className = tab === 'image'
-    ? 'tab-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white shadow text-text-main'
-    : 'tab-btn px-4 py-2 rounded-lg text-sm font-semibold text-text-muted hover:text-text-main transition';
-  document.getElementById('tab-manual').className = tab === 'manual'
-    ? 'tab-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white shadow text-text-main'
-    : 'tab-btn px-4 py-2 rounded-lg text-sm font-semibold text-text-muted hover:text-text-main transition';
-}
-
-// File handling
-function handleDrop(event) {
-  event.preventDefault();
-  document.getElementById('drop-zone').classList.remove('dragging');
-  const file = event.dataTransfer.files[0];
-  if (file && file.type.startsWith('image/')) loadImage(file);
-  else alert('Please drop an image file (JPG, PNG, WEBP).');
-}
-
-function handleFileSelect(event) {
-  const file = event.target.files[0];
-  if (file) loadImage(file);
-}
-
-function loadImage(file) {
-  const reader = new FileReader();
-  reader.onload = e => {
-    const img = new Image();
-    img.onload = () => {
-      originalImage = img;
-      canvas.width = img.width;
-      canvas.height = img.height;
-      document.getElementById('editor-section').classList.remove('hidden');
-      document.getElementById('drop-zone').classList.add('hidden');
-      updateMask();
-    };
-    img.src = e.target.result;
-  };
-  reader.readAsDataURL(file);
-}
-
-function updateMask() {
-  if (!originalImage) return;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(originalImage, 0, 0);
-
-  const xPct = parseFloat(document.getElementById('mask-x').value) / 100;
-  const yPct = parseFloat(document.getElementById('mask-y').value) / 100;
-  const wPct = parseFloat(document.getElementById('mask-w').value) / 100;
-  const hPct = parseFloat(document.getElementById('mask-h').value) / 100;
-  const style = document.getElementById('mask-style').value;
-
-  const mx = canvas.width * xPct;
-  const my = canvas.height * yPct;
-  const mw = canvas.width * wPct;
-  const mh = canvas.height * hPct;
-
-  // Draw black mask rectangle
-  ctx.fillStyle = '#1e293b';
-  ctx.fillRect(mx, my, mw, mh);
-
-  // Overlay text
-  if (style === 'xxxx') {
-    ctx.fillStyle = '#94a3b8';
-    ctx.font = `bold ${Math.max(12, mh * 0.55)}px JetBrains Mono, monospace`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('XXXX  XXXX  ●●●●', mx + mw / 2, my + mh / 2);
-  } else if (style === 'blur') {
-    ctx.fillStyle = '#94a3b8';
-    ctx.font = `bold ${Math.max(12, mh * 0.5)}px Inter, sans-serif`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('MASKED', mx + mw / 2, my + mh / 2);
-  }
-
-  document.getElementById('mask-x-val').textContent = document.getElementById('mask-x').value + '%';
-  document.getElementById('mask-y-val').textContent = document.getElementById('mask-y').value + '%';
-  document.getElementById('mask-w-val').textContent = document.getElementById('mask-w').value + '%';
-  document.getElementById('mask-h-val').textContent = document.getElementById('mask-h').value + '%';
-}
-
-function downloadMasked(format) {
-  if (!originalImage) return;
-  const link = document.createElement('a');
-  link.download = `masked-aadhaar-${Date.now()}.${format}`;
-  link.href = canvas.toDataURL(`image/${format}`, 0.95);
-  link.click();
-}
-
-function resetTool() {
-  originalImage = null;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  document.getElementById('editor-section').classList.add('hidden');
-  document.getElementById('drop-zone').classList.remove('hidden');
-  document.getElementById('file-input').value = '';
-}
-
-// Number masker
-function formatAndMask(input) {
-  let v = input.value.replace(/\D/g, '').substring(0, 12);
-  input.value = v.replace(/(\d{4})(\d{0,4})(\d{0,4})/, (_, a, b, c) => [a, b, c].filter(Boolean).join(' '));
-}
-
-function generateMask() {
-  const raw = document.getElementById('mask-input').value.replace(/\D/g, '');
-  if (raw.length !== 12) {
-    alert('Please enter a valid 12-digit Aadhaar number.');
-    return;
-  }
-  const last4 = raw.substring(8);
-  const masked = `XXXX XXXX ${last4}`;
-  document.getElementById('masked-output').textContent = masked;
-  document.getElementById('mask-result').classList.remove('hidden');
-}
-
-function copyMasked() {
-  const text = document.getElementById('masked-output').textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = event.target.closest('button');
-    btn.textContent = '✓ Copied!';
-    setTimeout(() => { btn.innerHTML = '<svg class="w-3.5 h-3.5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>Copy'; }, 2000);
+  input.addEventListener('input', (e) => {
+    let v = e.target.value.replace(/\D/g, '');
+    if (v.length > 12) v = v.substring(0, 12);
+    
+    if (v.length === 12) {
+      const res = validateAadhaar(v);
+      if (res.valid) {
+        resArea.classList.remove('hidden');
+        maskedVal.innerText = `XXXX XXXX ${v.substring(8)}`;
+      } else {
+        resArea.classList.add('hidden');
+      }
+    } else {
+      resArea.classList.add('hidden');
+    }
+    
+    // Formatting input
+    if (v.length > 0) {
+      const parts = v.match(/.{1,4}/g);
+      e.target.value = parts ? parts.join(' ') : v;
+    }
   });
-}
 
-function toggleFAQ(btn) {
-  const item = btn.closest('.faq-item'), answer = item.querySelector('.faq-answer'), isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-answer').classList.remove('open'); });
-  if (!isOpen) { item.classList.add('open'); answer.classList.add('open'); }
-}
+  function copyMasked() {
+    navigator.clipboard.writeText(maskedVal.innerText);
+    alert('Masked Aadhaar copied to clipboard!');
+  }
 </script>
 </body>
 </html>

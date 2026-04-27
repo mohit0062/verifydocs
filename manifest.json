@@ -1,0 +1,16 @@
+{
+  "name": "VerifyDocs.in",
+  "short_name": "VerifyDocs",
+  "description": "Free browser-based Indian document validation tools.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0066cc",
+  "icons": [
+    {
+      "src": "/assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

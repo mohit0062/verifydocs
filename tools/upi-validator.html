@@ -1,238 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UPI ID Validator — Check VPA Format Free | VerifyDocs.in</title>
-  <meta name="description" content="Free UPI ID (Virtual Payment Address) validator. Check if your UPI handle is in the correct format before sharing. 100% browser-based.">
-  <meta name="keywords" content="upi id validator, vpa checker, verify upi handle, upi format check, indian payment tools">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPI ID Validator — Check VPA Format Online (Free)</title>
+  <meta name="description" content="Validate your UPI ID (Virtual Payment Address) format instantly. Free and private tool to check if your UPI ID follows the correct username@bank structure.">
+  <meta name="keywords" content="upi validator, check upi id, validate vpa, bhim upi format, upi address checker">
   <link rel="canonical" href="https://verifydocs.in/tools/upi-validator.html">
-  <meta property="og:title" content="UPI ID Validator — VerifyDocs.in">
-  <meta property="og:description" content="Verify UPI ID format instantly. Free and private.">
-  <meta name="robots" content="index, follow">
+  <link rel="alternate" hreflang="en-IN" href="https://verifydocs.in/tools/upi-validator.html">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230066cc'/%3E%3Cpath d='M16 6l6 4v6c0 5-6 9-6 9s-6-4-6-9v-6z' fill='white'/%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config={theme:{extend:{colors:{primary:'#0066cc',accent:'#138808',warning:'#ff9933','text-main':'#0f172a','text-muted':'#64748b','bg-main':'#f8fafc','border-col':'#e2e8f0'},fontFamily:{sans:['Inter','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { primary: '#0066cc', accent: '#138808', 'text-main': '#0f172a', 'text-muted': '#64748b', 'border-col': '#e2e8f0' }, fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] } } }
+    }
+  </script>
   <style>
-    body{background:#f8fafc;font-family:'Inter',sans-serif;color:#0f172a}
-    .result-box{display:none}.result-box.show{display:block;animation:fadeIn 0.3s ease}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-    .faq-answer{display:none}.faq-answer.open{display:block}
-    .faq-item.open .faq-icon{transform:rotate(180deg)}.faq-icon{transition:transform 0.2s}
+    .faq-answer { display: none; }
+    .faq-answer.open { display: block; }
+    .faq-item.open .faq-icon { transform: rotate(180deg); }
+    .faq-icon { transition: transform 0.2s; }
   </style>
-
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T80N8X570N"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-T80N8X570N');
 </script>
-
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1094606266002530" crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "UPI Validator",
+  "url": "https://verifydocs.in/tools/upi-validator.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+}
+</script>
 </head>
-<body>
-<nav class="bg-white/80 backdrop-blur-md border-b border-border-col sticky top-0 z-50 shadow-sm">
+<body class="bg-[#f8fafc] font-sans text-text-main">
+
+<nav class="bg-white/80 backdrop-blur-md border-b border-border-col sticky top-0 z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-    <a href="../index.html" class="flex items-center gap-2 font-bold text-xl text-text-main no-underline">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="32" height="32" rx="7" fill="#0066cc"/>
-        <path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/>
-        <path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+    <a href="../index.html" class="flex items-center gap-2 font-bold text-xl no-underline">
       <span>VerifyDocs<span class="text-primary">.in</span></span>
     </a>
     <div class="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted">
-      <a href="../index.html" class="hover:text-primary transition-colors">Home</a>
-      <div class="relative group">
-        <button class="flex items-center gap-1 hover:text-primary transition-colors py-2">Tools <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
-        <div class="absolute top-full left-0 bg-white border border-border-col rounded-xl shadow-xl p-4 w-64 hidden group-hover:block z-50 text-left">
-          <a href="../tools/aadhaar-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🆔 Aadhaar Validator</a>
-          <a href="../tools/aadhaar-masking-tool.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🔒 Aadhaar Masking</a>
-          <a href="../tools/pan-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">💳 PAN Checker</a>
-          <a href="../tools/gst-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🏢 GST Verifier</a>
-          <a href="../tools/voter-id-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🗳️ Voter ID</a>
-          <a href="../tools/ifsc-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🏦 IFSC Checker</a>
-          <a href="../tools/passport-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🛂 Passport</a>
-          <a href="../tools/driving-license-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🚗 Driving License</a>
-          <a href="../tools/upi-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">💸 UPI Validator</a>
-          <a href="../tools/vehicle-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🚦 Vehicle Checker</a>
-          <a href="../tools/lic-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">📜 LIC Policy Checker</a>
-        </div>
-      </div>
-      <a href="../blog/index.html" class="hover:text-primary transition-colors">Blog</a>
-      <a href="../about.html" class="hover:text-primary transition-colors">About</a>
-      <a href="../contact.html" class="hover:text-primary transition-colors">Contact</a>
+      <a href="../index.html" class="hover:text-primary">Home</a>
+      <a href="../blog/index.html" class="hover:text-primary">Blog</a>
     </div>
-    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100" onclick="toggleMobileMenu()">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-    </button>
-  </div>
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-border-col px-4 py-3 space-y-2">
-    <a href="../index.html" class="block py-2 text-sm text-text-main font-semibold">Home</a>
-    <div class="pt-2 pb-1 text-xs font-bold text-text-muted uppercase tracking-wider">Document Tools</div>
-    <a href="../tools/aadhaar-validator.html" class="block py-2 text-sm text-text-main pl-2">🆔 Aadhaar Validator</a>
-    <a href="../tools/pan-validator.html" class="block py-2 text-sm text-text-main pl-2">💳 PAN Checker</a>
-    <a href="../tools/gst-validator.html" class="block py-2 text-sm text-text-main pl-2">🏢 GST Verifier</a>
-    <a href="../tools/upi-validator.html" class="block py-2 text-sm text-text-main pl-2">💸 UPI Validator</a>
-    <a href="../tools/vehicle-validator.html" class="block py-2 text-sm text-text-main pl-2">🚦 Vehicle Checker</a>
-    <a href="../blog/index.html" class="block py-2 text-sm text-text-main font-semibold border-t pt-2">Blog</a>
-    <a href="../about.html" class="block py-2 text-sm text-text-main">About</a>
-    <a href="../contact.html" class="block py-2 text-sm text-text-main">Contact</a>
   </div>
 </nav>
 
-<main class="max-w-4xl mx-auto px-4 py-8">
+<main class="max-w-4xl mx-auto px-4 py-10 md:py-16">
   <nav class="text-xs text-text-muted mb-6 flex items-center gap-1.5">
-    <a href="../index.html" class="hover:text-primary">Home</a><span>›</span><span>Payment Tools</span><span>›</span>
-    <span class="text-text-main font-medium">UPI ID Validator</span>
+    <a href="../index.html">Home</a><span>›</span><a href="../index.html#tools">Tools</a><span>›</span><span class="text-text-main font-medium">UPI Validator</span>
   </nav>
 
-  <h1 class="text-3xl md:text-4xl font-extrabold text-text-main mb-3">UPI ID (VPA) Validator</h1>
-  <p class="text-text-muted text-base leading-relaxed mb-8 max-w-2xl">
-    Validate the format of any UPI ID (Virtual Payment Address). Ensure the handle and PSP bank code follow the standard <strong>name@bank</strong> structure used by NPCI.
-  </p>
+  <h1 class="text-3xl md:text-4xl font-extrabold text-text-main mb-6 leading-tight">
+    UPI ID Validator — Check VPA Format Online (Free)
+  </h1>
 
-  <!-- Widget -->
-  <div class="bg-white border border-border-col rounded-2xl shadow-sm p-6 md:p-8 mb-8">
-    <label class="block text-sm font-semibold text-text-main mb-2">Enter UPI ID</label>
-    <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-1">
-      <input type="text" id="upi-input" placeholder="username@okaxis"
-        class="flex-1 h-14 px-4 border border-border-col rounded-xl text-xl font-mono focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
-        onkeydown="if(event.key==='Enter') runUPIValidate()">
-      <button onclick="runUPIValidate()" class="w-full sm:w-auto h-14 px-6 bg-primary text-white font-semibold rounded-xl hover:bg-blue-700 transition text-sm whitespace-nowrap">Validate →</button>
-    </div>
-    <p class="text-xs text-text-muted">Example: success@upi, 9876543210@ybl, name.surname@okhdfcbank</p>
-    <div id="upi-result" class="result-box mt-5"></div>
+  <div class="bg-white rounded-3xl border border-border-col p-6 md:p-8 mb-10 shadow-sm leading-relaxed text-text-muted">
+    <p class="mb-4">
+      <strong>Unified Payments Interface (UPI)</strong> has revolutionized payments in India. Every UPI user has a unique <strong>Virtual Payment Address (VPA)</strong>, commonly known as a UPI ID. Our UPI ID Validator helps you verify if a UPI ID follows the correct <code>username@bank</code> structure.
+    </p>
+    <p>
+      Using an incorrect UPI ID can lead to failed payments or money being sent to the wrong person. While most UPI apps verify the ID before payment, our tool is useful for developers and businesses who need to validate the structure of UPI IDs during data entry. 100% browser-side and private.
+    </p>
   </div>
 
-  <!-- Educational Section -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-    <div class="bg-white border border-border-col rounded-2xl p-6 md:p-8">
-      <h2 class="text-xl font-bold text-text-main mb-4">What is a UPI ID?</h2>
-      <p class="text-text-muted text-sm leading-relaxed mb-4">
-        A UPI ID, also known as a <strong>Virtual Payment Address (VPA)</strong>, is a unique identifier used to send and receive money via the Unified Payments Interface. It acts as an email ID for your bank account.
-      </p>
-      <div class="bg-gray-50 rounded-xl p-4 border border-border-col">
-        <p class="text-xs font-bold text-text-main mb-2 uppercase tracking-wide">Standard Structure:</p>
-        <div class="flex items-center justify-center gap-2 text-xl font-mono">
-          <span class="text-primary font-bold">handle</span>
-          <span class="text-text-muted">@</span>
-          <span class="text-accent font-bold">psp_code</span>
-        </div>
-      </div>
+  <div class="bg-white rounded-3xl border-2 border-primary/20 p-6 md:p-10 mb-16 shadow-xl relative overflow-hidden">
+    <label for="upi-input" class="block text-sm font-bold text-text-main mb-3 uppercase tracking-wider">Enter UPI ID (e.g. name@okhdfcbank)</label>
+    <div class="flex flex-col sm:flex-row gap-4">
+      <input 
+        type="text" 
+        id="upi-input" 
+        placeholder="username@bank" 
+        class="flex-1 h-16 px-6 border-2 border-border-col rounded-2xl text-xl font-mono focus:outline-none focus:border-primary transition-all"
+      >
+      <button onclick="handleUPIValidate()" class="h-16 px-10 bg-primary text-white font-bold rounded-2xl hover:bg-blue-700 transition">
+        Validate UPI →
+      </button>
     </div>
-    <div class="bg-white border border-border-col rounded-2xl p-6 md:p-8">
-      <h2 class="text-xl font-bold text-text-main mb-4">Common PSP Handles</h2>
-      <ul class="grid grid-cols-2 gap-2 text-xs">
-        <li class="flex items-center gap-2 p-2 bg-blue-50 rounded-lg"><span class="font-bold text-primary">@okaxis</span> Axis Bank</li>
-        <li class="flex items-center gap-2 p-2 bg-blue-50 rounded-lg"><span class="font-bold text-primary">@ybl</span> Yes Bank</li>
-        <li class="flex items-center gap-2 p-2 bg-blue-50 rounded-lg"><span class="font-bold text-primary">@okhdfcbank</span> HDFC Bank</li>
-        <li class="flex items-center gap-2 p-2 bg-blue-50 rounded-lg"><span class="font-bold text-primary">@okicici</span> ICICI Bank</li>
-        <li class="flex items-center gap-2 p-2 bg-blue-50 rounded-lg"><span class="font-bold text-primary">@upi</span> NPCI Generic</li>
-        <li class="flex items-center gap-2 p-2 bg-blue-50 rounded-lg"><span class="font-bold text-primary">@paytm</span> Paytm</li>
+    <div id="upi-result" class="mt-8 hidden"></div>
+  </div>
+
+  <div class="prose prose-blue max-w-none text-text-muted leading-relaxed space-y-12">
+    <section>
+      <h2 class="text-2xl font-bold text-text-main mb-4">What is a UPI ID (VPA)?</h2>
+      <p>A UPI ID is an identifier unique to a person for sending and receiving money. It works like an email address for your bank account. The structure is typically:</p>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Handle/Username:</strong> Can contain letters, numbers, and dots (e.g., 9876543210, name.surname).</li>
+        <li><strong>Separator:</strong> The '@' symbol.</li>
+        <li><strong>PSP (Payment Service Provider) Code:</strong> Represents the bank or app (e.g., okhdfcbank, ybl, paytm).</li>
       </ul>
-    </div>
-  </div>
+    </section>
 
-  <!-- FAQ -->
-  <div class="bg-white border border-border-col rounded-2xl p-6 md:p-8 mb-8">
-    <h2 class="text-xl font-bold text-text-main mb-5">Frequently Asked Questions</h2>
-    <div class="space-y-3">
-      <div class="faq-item border border-border-col rounded-xl overflow-hidden">
-        <button class="w-full flex items-center justify-between px-4 py-3.5 text-left font-semibold text-sm hover:bg-gray-50" onclick="toggleFAQ(this)"><span>Does this check if the UPI ID exists?</span><svg class="faq-icon w-4 h-4 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
-        <div class="faq-answer px-4 pb-4 text-sm text-text-muted leading-relaxed">No. This tool only validates if the UPI ID follows the correct naming convention. It does not ping bank servers to check if the ID is active or belongs to a specific person. To verify existence, try sending ₹1 via your UPI app.</div>
-      </div>
-      <div class="faq-item border border-border-col rounded-xl overflow-hidden">
-        <button class="w-full flex items-center justify-between px-4 py-3.5 text-left font-semibold text-sm hover:bg-gray-50" onclick="toggleFAQ(this)"><span>Is my UPI ID safe to enter here?</span><svg class="faq-icon w-4 h-4 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
-        <div class="faq-answer px-4 pb-4 text-sm text-text-muted leading-relaxed">Yes, absolutely. All processing happens inside your browser. We don't save, log, or transmit your UPI ID to any server. It's 100% private.</div>
-      </div>
-    </div>
-  </div>
-
-</main>
-
-<!-- Footer -->
-<footer class="bg-text-main text-white pt-12 pb-6 px-4 mt-10">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-      <div class="col-span-2 md:col-span-1">
-        <div class="flex items-center gap-2 font-bold text-lg mb-3">
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="7" fill="#0066cc"/><path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/><path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          VerifyDocs.in
+    <section>
+      <h2 class="text-2xl font-bold text-text-main mb-8 text-center">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Is this tool linked to NPCI?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            No. This tool only validates the format of the UPI ID. It does not check if the ID is active or linked to a real bank account.
+          </div>
         </div>
-        <p class="text-gray-400 text-sm leading-relaxed">Free Indian document validation tools. 100% browser-based, privacy-first.</p>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Does this tool show the account holder's name?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            No. For privacy reasons, only authorized UPI apps (like PhonePe, Google Pay) can fetch the account holder's name after verifying with the bank.
+          </div>
+        </div>
       </div>
-      <div>
-        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Tools</h4>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li><a href="../tools/aadhaar-validator.html" class="hover:text-white transition">Aadhaar Validator</a></li>
-          <li><a href="../tools/aadhaar-masking-tool.html" class="hover:text-white transition">Aadhaar Masking</a></li>
-          <li><a href="../tools/pan-validator.html" class="hover:text-white transition">PAN Checker</a></li>
-          <li><a href="../tools/gst-validator.html" class="hover:text-white transition">GST Verifier</a></li>
-          <li><a href="../tools/upi-validator.html" class="hover:text-white transition font-bold text-white">UPI Validator</a></li>
-          <li><a href="../tools/vehicle-validator.html" class="hover:text-white transition">Vehicle Checker</a></li>
-          <li><a href="../tools/lic-validator.html" class="hover:text-white transition">LIC Policy</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Resources</h4>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li><a href="../blog/index.html" class="hover:text-white transition">Blog</a></li>
-          <li><a href="../about.html" class="hover:text-white transition">About Us</a></li>
-          <li><a href="../contact.html" class="hover:text-white transition">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Legal</h4>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li><a href="../privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
-          <li><a href="../terms.html" class="hover:text-white transition">Terms of Service</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-gray-500">
-      <p>© 2024 VerifyDocs.in — All rights reserved</p>
-      <p>Made with love in India 🇮🇳</p>
+    </section>
+
+    <div class="mt-16 p-6 bg-yellow-50 border border-yellow-100 rounded-2xl text-xs text-yellow-800">
+      <p><strong>Disclaimer:</strong> VerifyDocs.in does not process payments. We only validate the format of the identifier.</p>
     </div>
   </div>
-</footer>
+</main>
 
 <script src="../assets/js/validators.js"></script>
 <script>
-function toggleMobileMenu() {
-  document.getElementById('mobile-menu').classList.toggle('hidden');
-}
-
-function runUPIValidate() {
-  const val = document.getElementById('upi-input').value;
-  const r = validateUPI(val);
-  const resultDiv = document.getElementById('upi-result');
-  if (r.valid) {
-    resultDiv.className = 'result-box show mt-5 p-5 bg-green-50 border border-green-200 rounded-xl';
-    resultDiv.innerHTML = `
-      <div class="flex items-start gap-3">
-        <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
-        <div class="flex-1">
-          <p class="font-bold text-accent text-base">Valid UPI ID Format</p>
-          <p class="font-mono text-2xl font-bold text-text-main mt-2">${r.formatted}</p>
-          <div class="mt-4 flex flex-wrap gap-3">
-            <div class="bg-white border border-green-100 rounded-lg p-3 flex-1"><div class="text-xs text-text-muted mb-1">Handle</div><div class="font-semibold text-text-main text-sm">${r.handle}</div></div>
-            <div class="bg-white border border-green-100 rounded-lg p-3 flex-1"><div class="text-xs text-text-muted mb-1">PSP Bank</div><div class="font-bold text-primary text-sm">@${r.psp}</div></div>
-          </div>
-        </div>
-      </div>`;
-  } else {
-    resultDiv.className = 'result-box show mt-5 p-5 bg-red-50 border border-red-200 rounded-xl';
-    resultDiv.innerHTML = `<div class="flex items-start gap-3"><div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/></svg></div><div><p class="font-bold text-red-700">Invalid UPI ID</p><p class="text-sm text-red-600 mt-1"><strong>Reason:</strong> ${r.reason}</p></div></div>`;
+  function toggleFAQ(btn) {
+    const item = btn.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    item.classList.toggle('open');
+    answer.classList.toggle('open');
   }
-}
-function toggleFAQ(btn){const item=btn.closest('.faq-item'),answer=item.querySelector('.faq-answer'),isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-answer').classList.remove('open')});if(!isOpen){item.classList.add('open');answer.classList.add('open')}}
+
+  const input = document.getElementById('upi-input');
+  const resArea = document.getElementById('upi-result');
+
+  function handleUPIValidate() {
+    const val = input.value.trim();
+    if (!val) return;
+    
+    const res = validateUPI(val);
+    resArea.classList.remove('hidden');
+    
+    if (res.valid) {
+      resArea.innerHTML = `
+        <div class="p-6 bg-green-50 border border-green-200 rounded-2xl flex items-start gap-4">
+          <div class="w-10 h-10 bg-green-100 text-green-700 rounded-full flex items-center justify-center flex-shrink-0 text-xl font-bold">✓</div>
+          <div><p class="font-bold text-green-800">Valid UPI ID Format</p><p class="text-sm text-green-700 mt-1">Handle: ${res.handle} | PSP: ${res.psp}</p></div>
+        </div>
+      `;
+    } else {
+      resArea.innerHTML = `
+        <div class="p-6 bg-red-50 border border-red-200 rounded-2xl flex items-start gap-4">
+          <div class="w-10 h-10 bg-red-100 text-red-700 rounded-full flex items-center justify-center flex-shrink-0 text-xl font-bold">✗</div>
+          <div><p class="font-bold text-red-800">Invalid UPI ID</p><p class="text-sm text-red-700 mt-1">${res.reason}</p></div>
+        </div>
+      `;
+    }
+  }
 </script>
 </body>
 </html>

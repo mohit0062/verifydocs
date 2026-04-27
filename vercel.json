@@ -1,6 +1,13 @@
 {
   "name": "verifydocs",
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/blog/how-to-validate-your-aadhaar-number-online-in-india.html",
+      "destination": "/blog/how-to-validate-aadhaar.html",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/$1" }
   ]

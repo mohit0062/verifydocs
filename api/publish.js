@@ -56,6 +56,7 @@ module.exports = async function handler(req, res) {
   <title>${title} | VerifyDocs.in</title>
   <meta name="description" content="${description}">
   <link rel="canonical" href="https://verifydocs.in/blog/${slug}.html">
+  <link rel="alternate" hreflang="en-IN" href="https://verifydocs.in/blog/${slug}.html">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230066cc'/%3E%3Cpath d='M16 6l6 4v6c0 5-6 9-6 9s-6-4-6-9v-6z' fill='white'/%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -66,6 +67,20 @@ module.exports = async function handler(req, res) {
 <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-T80N8X570N');</script>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1094606266002530" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "${title}",
+  "description": "${description}",
+  "author": { "@type": "Organization", "name": "VerifyDocs.in" },
+  "publisher": { "@type": "Organization", "name": "VerifyDocs.in" },
+  "datePublished": "${dateStr}",
+  "dateModified": "${dateStr}",
+  "mainEntityOfPage": "https://verifydocs.in/blog/${slug}.html",
+  "inLanguage": "en-IN"
+}
+</script>
 </head>
 <body>
 <nav class="bg-white/80 backdrop-blur-md border-b border-border-col sticky top-0 z-50 shadow-sm">

@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VerifyDocs.in — Free Indian Document Validator | Aadhaar, PAN, GST, IFSC</title>
   <meta name="description" content="Free online tools to validate Aadhaar, PAN card, GST number, IFSC code, Voter ID, Passport and Driving License. 100% browser-based. We never store your data.">
+  <meta name="google-site-verification" content="IZhBea6GzVwcE8PPF7XbHhWLduUQne6vEMLQxD4EAwM">
   <meta name="keywords" content="aadhaar validator, pan card checker, gst number verifier, ifsc validator, voter id check, indian document tools">
   <link rel="canonical" href="https://verifydocs.in/">
+  <link rel="alternate" hreflang="en-IN" href="https://verifydocs.in/">
   <meta property="og:title" content="VerifyDocs.in — Free Indian Document Validator">
   <meta property="og:description" content="Validate Aadhaar, PAN, GST, IFSC and more. Free, instant, 100% browser-based.">
   <meta property="og:type" content="website">
@@ -60,39 +62,20 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "VerifyDocs.in",
+    "@type": "Organization",
+    "name": "VerifyDocs",
     "url": "https://verifydocs.in",
-    "description": "Free Indian document validation tools — Aadhaar, PAN, GST, IFSC, Voter ID, Passport, Driving License",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://verifydocs.in/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type":"Question","name":"Is it safe to enter my Aadhaar number here?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely. All validation happens inside your browser. Your Aadhaar number never leaves your device and is never uploaded to any server. We have no database."}},
-      {"@type":"Question","name":"Does this tool verify if the document actually exists?","acceptedAnswer":{"@type":"Answer","text":"No. This tool only checks whether the number follows the correct format and passes the official checksum algorithm. It does not connect to UIDAI, NSDL, or any government database."}},
-      {"@type":"Question","name":"Which documents can I validate here?","acceptedAnswer":{"@type":"Answer","text":"You can validate Aadhaar (12-digit UID), PAN card, GST number, IFSC code, Voter ID (EPIC), Indian Passport, and Driving License numbers."}},
-      {"@type":"Question","name":"Is this website affiliated with the Indian government?","acceptedAnswer":{"@type":"Answer","text":"No. VerifyDocs.in is an independent tool and is NOT affiliated with UIDAI, Income Tax Department, GSTN, or any government body."}}
+    "logo": "https://verifydocs.in/logo.png",
+    "sameAs": [
+      "https://twitter.com/verifydocs",
+      "https://instagram.com/verifydocs"
     ]
-  }
+  ,
+    "areaServed": {
+      "@type": "Country",
+      "name": "India"
+    }}
   </script>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-T80N8X570N"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-T80N8X570N');
-</script>
 
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1094606266002530" crossorigin="anonymous"></script>
@@ -205,7 +188,15 @@
       <p class="text-xs text-text-muted mt-2" id="quick-hint">Start typing — we'll auto-detect the document type</p>
 
       <!-- Result panel -->
-      <div id="quick-result" class="result-box mt-4"></div>
+      <div id="quick-result" class="hidden mt-4 p-4 rounded-xl border fade-in">
+        <div class="flex items-center gap-3">
+          <div id="quick-res-icon" class="w-10 h-10 rounded-full flex items-center justify-center text-lg"></div>
+          <div>
+            <div id="quick-res-title" class="font-bold text-sm"></div>
+            <div id="quick-res-msg" class="text-xs text-text-muted"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -225,7 +216,7 @@
         <h3 class="font-bold text-base text-text-main mb-1">Aadhaar Validator</h3>
         <p class="text-xs text-text-muted mb-3 leading-relaxed">Check 12-digit Aadhaar format using Verhoeff checksum algorithm</p>
         <div class="flex items-center justify-between">
-          <span class="text-xs text-accent font-medium" id="cnt-aadhaar">Loading...</span>
+          <span class="bg-[#dcfce7] text-[#138808] px-[10px] py-[4px] rounded-full text-[11px] font-bold font-mono uppercase tracking-tight">⚡ Instant • 100% Private</span>
           <span class="text-primary text-sm font-semibold">Open →</span>
         </div>
       </a>
@@ -235,7 +226,7 @@
         <h3 class="font-bold text-base text-text-main mb-1">Aadhaar Masking Tool</h3>
         <p class="text-xs text-text-muted mb-3 leading-relaxed">Hide first 8 digits of Aadhaar in images/PDFs — UIDAI mandated</p>
         <div class="flex items-center justify-between">
-          <span class="text-xs text-accent font-medium" id="cnt-mask">Loading...</span>
+          <span class="bg-[#dcfce7] text-[#138808] px-[10px] py-[4px] rounded-full text-[11px] font-bold font-mono uppercase tracking-tight">⚡ 100% Client-Side</span>
           <span class="text-primary text-sm font-semibold">Open →</span>
         </div>
       </a>
@@ -245,7 +236,7 @@
         <h3 class="font-bold text-base text-text-main mb-1">PAN Card Checker</h3>
         <p class="text-xs text-text-muted mb-3 leading-relaxed">Verify PAN structure and decode entity type (Individual, Company, etc.)</p>
         <div class="flex items-center justify-between">
-          <span class="text-xs text-accent font-medium" id="cnt-pan">Loading...</span>
+          <span class="bg-[#dcfce7] text-[#138808] px-[10px] py-[4px] rounded-full text-[11px] font-bold font-mono uppercase tracking-tight">⚡ Instant • Secure</span>
           <span class="text-primary text-sm font-semibold">Open →</span>
         </div>
       </a>
@@ -255,7 +246,7 @@
         <h3 class="font-bold text-base text-text-main mb-1">GST Number Verifier</h3>
         <p class="text-xs text-text-muted mb-3 leading-relaxed">Check 15-char GST format and decode state code, PAN, entity number</p>
         <div class="flex items-center justify-between">
-          <span class="text-xs text-accent font-medium" id="cnt-gst">Loading...</span>
+          <span class="bg-[#dcfce7] text-[#138808] px-[10px] py-[4px] rounded-full text-[11px] font-bold font-mono uppercase tracking-tight">⚡ GSTIN Decoded</span>
           <span class="text-primary text-sm font-semibold">Open →</span>
         </div>
       </a>
@@ -265,7 +256,7 @@
         <h3 class="font-bold text-base text-text-main mb-1">Voter ID Validator</h3>
         <p class="text-xs text-text-muted mb-3 leading-relaxed">Validate EPIC card number format (3 letters + 7 digits)</p>
         <div class="flex items-center justify-between">
-          <span class="text-xs text-accent font-medium" id="cnt-voterid">Loading...</span>
+          <span class="bg-[#dcfce7] text-[#138808] px-[10px] py-[4px] rounded-full text-[11px] font-bold font-mono uppercase tracking-tight">⚡ EPIC Verified</span>
           <span class="text-primary text-sm font-semibold">Open →</span>
         </div>
       </a>
@@ -275,7 +266,7 @@
         <h3 class="font-bold text-base text-text-main mb-1">IFSC Code Checker</h3>
         <p class="text-xs text-text-muted mb-3 leading-relaxed">Verify IFSC format, identify bank name and branch code</p>
         <div class="flex items-center justify-between">
-          <span class="text-xs text-accent font-medium" id="cnt-ifsc">Loading...</span>
+          <span class="bg-[#dcfce7] text-[#138808] px-[10px] py-[4px] rounded-full text-[11px] font-bold font-mono uppercase tracking-tight">⚡ Bank & Branch</span>
           <span class="text-primary text-sm font-semibold">Open →</span>
         </div>
       </a>
@@ -285,7 +276,7 @@
         <h3 class="font-bold text-base text-text-main mb-1">Passport Validator</h3>
         <p class="text-xs text-text-muted mb-3 leading-relaxed">Check Indian passport number format (1 letter + 7 digits)</p>
         <div class="flex items-center justify-between">
-          <span class="text-xs text-accent font-medium" id="cnt-passport">Loading...</span>
+          <span class="bg-[#dcfce7] text-[#138808] px-[10px] py-[4px] rounded-full text-[11px] font-bold font-mono uppercase tracking-tight">⚡ Type Detected</span>
           <span class="text-primary text-sm font-semibold">Open →</span>
         </div>
       </a>
@@ -295,7 +286,7 @@
         <h3 class="font-bold text-base text-text-main mb-1">Driving License Checker</h3>
         <p class="text-xs text-text-muted mb-3 leading-relaxed">Validate DL number format and identify state/RTO code</p>
         <div class="flex items-center justify-between">
-          <span class="text-xs text-accent font-medium" id="cnt-dl">Loading...</span>
+          <span class="bg-[#dcfce7] text-[#138808] px-[10px] py-[4px] rounded-full text-[11px] font-bold font-mono uppercase tracking-tight">⚡ RTO Identified</span>
           <span class="text-primary text-sm font-semibold">Open →</span>
         </div>
       </a>
@@ -305,7 +296,7 @@
         <h3 class="font-bold text-base text-text-main mb-1">UPI ID Validator</h3>
         <p class="text-xs text-text-muted mb-3 leading-relaxed">Check UPI handle format (username@bank) — support for all major banks</p>
         <div class="flex items-center justify-between">
-          <span class="text-xs text-accent font-medium" id="cnt-upi">Loading...</span>
+          <span class="bg-[#dcfce7] text-[#138808] px-[10px] py-[4px] rounded-full text-[11px] font-bold font-mono uppercase tracking-tight">⚡ VPA Format</span>
           <span class="text-primary text-sm font-semibold">Open →</span>
         </div>
       </a>
@@ -315,7 +306,7 @@
         <h3 class="font-bold text-base text-text-main mb-1">Vehicle No. Checker</h3>
         <p class="text-xs text-text-muted mb-3 leading-relaxed">Validate Indian vehicle registration plates and identify RTO state</p>
         <div class="flex items-center justify-between">
-          <span class="text-xs text-accent font-medium" id="cnt-vehicle">Loading...</span>
+          <span class="bg-[#dcfce7] text-[#138808] px-[10px] py-[4px] rounded-full text-[11px] font-bold font-mono uppercase tracking-tight">⚡ State Decoded</span>
           <span class="text-primary text-sm font-semibold">Open →</span>
         </div>
       </a>
@@ -325,7 +316,7 @@
         <h3 class="font-bold text-base text-text-main mb-1">LIC Policy Validator</h3>
         <p class="text-xs text-text-muted mb-3 leading-relaxed">Check 9-digit LIC policy number format — 100% browser-based</p>
         <div class="flex items-center justify-between">
-          <span class="text-xs text-accent font-medium" id="cnt-lic">Loading...</span>
+          <span class="bg-[#dcfce7] text-[#138808] px-[10px] py-[4px] rounded-full text-[11px] font-bold font-mono uppercase tracking-tight">⚡ 9-Digit Check</span>
           <span class="text-primary text-sm font-semibold">Open →</span>
         </div>
       </a>
@@ -537,43 +528,110 @@ function quickValidate() {
   }
   const detected = autoDetect(val);
   if (!detected) {
-    resultDiv.className = 'result-box show fade-in mt-4 p-4 bg-red-50 border border-red-200 rounded-xl';
-    resultDiv.innerHTML = `<div class="flex items-start gap-3"><span class="text-2xl">✗</span><div><p class="font-semibold text-red-700">Could not detect document type</p><p class="text-sm text-red-600 mt-1">The input doesn't match any known Indian document format. Check the number and try again.</p></div></div>`;
-    return;
+  // Mobile Menu Toggle
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
   }
-  const r = detected.result;
-  const toolLinks = { aadhaar:'./tools/aadhaar-validator.html', pan:'./tools/pan-validator.html', gst:'./tools/gst-validator.html', ifsc:'./tools/ifsc-validator.html', voterid:'./tools/voter-id-validator.html', passport:'./tools/passport-validator.html', dl:'./tools/driving-license-validator.html' };
-  if (r.valid) {
-    let details = '';
-    if (detected.type === 'aadhaar') details = `<span class="font-mono text-accent">${r.formatted}</span>`;
-    if (detected.type === 'pan') details = `Entity: <strong>${r.entityType}</strong>`;
-    if (detected.type === 'gst') details = `State: <strong>${r.state}</strong> (${r.stateCode}) | PAN: <strong>${r.pan}</strong>`;
-    if (detected.type === 'ifsc') details = `Bank: <strong>${r.bankName}</strong> | Branch: <strong>${r.branchCode}</strong>`;
-    if (detected.type === 'voterid') details = `Serial: <strong>${r.serialNumber}</strong>`;
-    if (detected.type === 'passport') details = `Type: <strong>${r.passportType}</strong>`;
-    if (detected.type === 'dl') details = `State: <strong>${r.stateName}</strong> | RTO: <strong>${r.rtoCode}</strong>`;
-    resultDiv.className = 'result-box show fade-in mt-4 p-4 bg-green-50 border border-green-200 rounded-xl';
-    resultDiv.innerHTML = `<div class="flex items-start gap-3"><span class="text-2xl">✓</span><div class="flex-1"><p class="font-semibold text-accent">Valid ${detected.label}</p><p class="text-sm text-green-700 mt-1">${details}</p><a href="${toolLinks[detected.type]}" class="inline-block mt-2 text-xs text-primary font-semibold hover:underline">See full breakdown →</a></div></div>`;
-  } else {
-    resultDiv.className = 'result-box show fade-in mt-4 p-4 bg-red-50 border border-red-200 rounded-xl';
-    resultDiv.innerHTML = `<div class="flex items-start gap-3"><span class="text-2xl">✗</span><div><p class="font-semibold text-red-700">Invalid ${detected.label}</p><p class="text-sm text-red-600 mt-1">${r.reason}</p><a href="${toolLinks[detected.type]}" class="inline-block mt-2 text-xs text-primary font-semibold hover:underline">Open ${detected.label} tool →</a></div></div>`;
-  }
-}
 
-// Usage counters
-window.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('cnt-aadhaar').textContent = `Used ${getUsageCount('aadhaar').toLocaleString('en-IN')} times today`;
-  document.getElementById('cnt-mask').textContent = `Used ${getUsageCount('mask').toLocaleString('en-IN')} times today`;
-  document.getElementById('cnt-pan').textContent = `Used ${getUsageCount('pan').toLocaleString('en-IN')} times today`;
-  document.getElementById('cnt-gst').textContent = `Used ${getUsageCount('gst').toLocaleString('en-IN')} times today`;
-  document.getElementById('cnt-voterid').textContent = `Used ${getUsageCount('voterid').toLocaleString('en-IN')} times today`;
-  document.getElementById('cnt-ifsc').textContent = `Used ${getUsageCount('ifsc').toLocaleString('en-IN')} times today`;
-  document.getElementById('cnt-passport').textContent = `Used ${getUsageCount('passport').toLocaleString('en-IN')} times today`;
-  document.getElementById('cnt-dl').textContent = `Used ${getUsageCount('dl').toLocaleString('en-IN')} times today`;
-  document.getElementById('cnt-upi').textContent = `Used ${getUsageCount('upi').toLocaleString('en-IN')} times today`;
-  document.getElementById('cnt-vehicle').textContent = `Used ${getUsageCount('vehicle').toLocaleString('en-IN')} times today`;
-  document.getElementById('cnt-lic').textContent = `Used ${getUsageCount('lic').toLocaleString('en-IN')} times today`;
-});
+  // FAQ Toggle
+  function toggleFAQ(el) {
+    const item = el.parentElement;
+    item.classList.toggle('open');
+    const answer = item.querySelector('.faq-answer');
+    answer.classList.toggle('open');
+  }
+
+  // Quick Validator Logic
+  const quickInput = document.getElementById('quick-input');
+  const quickResult = document.getElementById('quick-result');
+  const quickIcon = document.getElementById('quick-res-icon');
+  const quickTitle = document.getElementById('quick-res-title');
+  const quickMsg = document.getElementById('quick-res-msg');
+  const quickHint = document.getElementById('quick-hint');
+
+  const toolLinks = {
+    aadhaar: './tools/aadhaar-validator.html',
+    pan: './tools/pan-validator.html',
+    gst: './tools/gst-validator.html',
+    ifsc: './tools/ifsc-validator.html',
+    voterid: './tools/voter-id-validator.html',
+    passport: './tools/passport-validator.html',
+    dl: './tools/driving-license-validator.html',
+    upi: './tools/upi-validator.html',
+    vehicle: './tools/vehicle-validator.html',
+    lic: './tools/lic-validator.html'
+  };
+
+  function quickAutoDetect() {
+    const val = quickInput.value.trim().toUpperCase().replace(/\s+/g, '');
+    if (!val) {
+      quickHint.innerText = "Start typing — we'll auto-detect the document type";
+      quickResult.classList.add('hidden');
+      return;
+    }
+
+    let detected = null;
+    if (/^\d{12}$/.test(val)) detected = { type: 'aadhaar', label: 'Aadhaar Number' };
+    else if (/^[A-Z]{5}\d{4}[A-Z]$/.test(val)) detected = { type: 'pan', label: 'PAN Card' };
+    else if (/^\d{2}[A-Z]{5}\d{4}[A-Z][1-9A-Z]Z[\dA-Z]$/.test(val)) detected = { type: 'gst', label: 'GST Number' };
+    else if (/^[A-Z]{4}0[A-Z0-9]{6}$/.test(val)) detected = { type: 'ifsc', label: 'IFSC Code' };
+    else if (/^[A-Z]{3}\d{7}$/.test(val)) detected = { type: 'voterid', label: 'Voter ID' };
+    else if (val.includes('@')) detected = { type: 'upi', label: 'UPI ID' };
+    else if (/^[A-Z]{1}\d{7}$/.test(val)) detected = { type: 'passport', label: 'Passport' };
+    else if (/^[A-Z]{2}\d{2}\d{4}\d{7}$/.test(val)) detected = { type: 'dl', label: 'Driving License' };
+    else if (/^[A-Z]{2}\d{1,2}[A-Z]{0,3}\d{4}$/.test(val)) detected = { type: 'vehicle', label: 'Vehicle Number' };
+    else if (/^\d{9}$/.test(val)) detected = { type: 'lic', label: 'LIC Policy' };
+
+    if (detected) {
+      quickHint.innerHTML = `Detected: <span class="text-primary font-bold">${detected.label}</span>`;
+    } else {
+      quickHint.innerText = "Could not detect type. Keep typing...";
+    }
+  }
+
+  function quickValidate() {
+    const val = quickInput.value.trim().toUpperCase().replace(/\s+/g, '');
+    if (!val) return;
+
+    let res = null;
+    let typeLabel = '';
+    let type = '';
+
+    if (/^\d{12}$/.test(val)) { res = validateAadhaar(val); typeLabel = 'Aadhaar Number'; type = 'aadhaar'; }
+    else if (/^[A-Z]{5}\d{4}[A-Z]$/.test(val)) { res = validatePAN(val); typeLabel = 'PAN Card'; type = 'pan'; }
+    else if (/^\d{2}[A-Z]{5}\d{4}[A-Z][1-9A-Z]Z[\dA-Z]$/.test(val)) { res = validateGST(val); typeLabel = 'GST Number'; type = 'gst'; }
+    else if (/^[A-Z]{4}0[A-Z0-9]{6}$/.test(val)) { res = validateIFSC(val); typeLabel = 'IFSC Code'; type = 'ifsc'; }
+    else if (/^[A-Z]{3}\d{7}$/.test(val)) { res = validateVoterID(val); typeLabel = 'Voter ID'; type = 'voterid'; }
+    else if (val.includes('@')) { res = validateUPI(val); typeLabel = 'UPI ID'; type = 'upi'; }
+    else if (/^[A-Z]{1}\d{7}$/.test(val)) { res = validatePassport(val); typeLabel = 'Passport'; type = 'passport'; }
+    else if (/^[A-Z]{2}\d{2}\d{4}\d{7}$/.test(val)) { res = validateDL(val); typeLabel = 'Driving License'; type = 'dl'; }
+    else if (/^[A-Z]{2}\d{1,2}[A-Z]{0,3}\d{4}$/.test(val)) { res = validateVehicle(val); typeLabel = 'Vehicle Number'; type = 'vehicle'; }
+    else if (/^\d{9}$/.test(val)) { res = validateLIC(val); typeLabel = 'LIC Policy'; type = 'lic'; }
+
+    quickResult.classList.remove('hidden');
+    if (res && res.valid) {
+      quickResult.className = "mt-4 p-4 rounded-xl border border-green-200 bg-green-50 fade-in";
+      quickIcon.className = "w-10 h-10 rounded-full flex items-center justify-center text-lg bg-green-100 text-green-700";
+      quickIcon.innerText = "✓";
+      quickTitle.className = "font-bold text-sm text-green-800";
+      quickTitle.innerText = `Valid ${typeLabel}`;
+      quickMsg.innerHTML = `${res.formatted || val} <br> <a href="${toolLinks[type]}" class="text-primary font-bold hover:underline mt-1 inline-block">See details →</a>`;
+    } else {
+      quickResult.className = "mt-4 p-4 rounded-xl border border-red-200 bg-red-50 fade-in";
+      quickIcon.className = "w-10 h-10 rounded-full flex items-center justify-center text-lg bg-red-100 text-red-700";
+      quickIcon.innerText = "✗";
+      quickTitle.className = "font-bold text-sm text-red-800";
+      quickTitle.innerText = res ? `Invalid ${typeLabel}` : "Unknown Format";
+      quickMsg.innerText = res ? res.reason : "Could not detect document type. Try a specific tool below.";
+    }
+  }
+
+  // Google Analytics
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T80N8X570N');
 </script>
 </body>
 </html>

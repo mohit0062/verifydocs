@@ -2,239 +2,235 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GST Number Validator — Verify GSTIN Format & Decode State | VerifyDocs.in</title>
-  <meta name="description" content="Free GST number validator. Verify GSTIN format, decode state code, extract embedded PAN, and check entity number. Covers all 38 Indian states/UTs. 100% browser-based.">
-  <meta name="keywords" content="gst number validator, gstin checker, gst format check, gst number decode, verify gstin india">
+  <title>GST Number Verifier — Validate 15-Digit GSTIN Format Online (Free)</title>
+  <meta name="description" content="Check if a GST number (GSTIN) is in the valid 15-character format. Decode the state code, PAN card mapping, and entity type instantly and privately.">
+  <meta name="keywords" content="gst validator, check gst number, gstin format india, validate gst, state code gst">
   <link rel="canonical" href="https://verifydocs.in/tools/gst-validator.html">
-  <meta name="robots" content="index, follow">
+  <link rel="alternate" hreflang="en-IN" href="https://verifydocs.in/tools/gst-validator.html">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230066cc'/%3E%3Cpath d='M16 6l6 4v6c0 5-6 9-6 9s-6-4-6-9v-6z' fill='white'/%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config={theme:{extend:{colors:{primary:'#0066cc',accent:'#138808',warning:'#ff9933','text-main':'#0f172a','text-muted':'#64748b','bg-main':'#f8fafc','border-col':'#e2e8f0'},fontFamily:{sans:['Inter','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
-  <style>body{background:#f8fafc;font-family:'Inter',sans-serif;color:#0f172a}.result-box{display:none}.result-box.show{display:block;animation:fadeIn 0.3s ease}@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.faq-answer{display:none}.faq-answer.open{display:block}.faq-item.open .faq-icon{transform:rotate(180deg)}.faq-icon{transition:transform 0.2s}</style>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"GST Number Validator","url":"https://verifydocs.in/tools/gst-validator.html","applicationCategory":"Utility","operatingSystem":"Any","offers":{"@type":"Offer","price":"0"}}</script>
-
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { primary: '#0066cc', accent: '#138808', 'text-main': '#0f172a', 'text-muted': '#64748b', 'border-col': '#e2e8f0' }, fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] } } }
+    }
+  </script>
+  <style>
+    .faq-answer { display: none; }
+    .faq-answer.open { display: block; }
+    .faq-item.open .faq-icon { transform: rotate(180deg); }
+    .faq-icon { transition: transform 0.2s; }
+  </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T80N8X570N"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-T80N8X570N');
 </script>
-
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1094606266002530" crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GST Validator",
+  "url": "https://verifydocs.in/tools/gst-validator.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+}
+</script>
 </head>
-<body>
-<nav class="bg-white/80 backdrop-blur-md border-b border-border-col sticky top-0 z-50 shadow-sm">
+<body class="bg-[#f8fafc] font-sans text-text-main">
+
+<nav class="bg-white/80 backdrop-blur-md border-b border-border-col sticky top-0 z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-    <a href="../index.html" class="flex items-center gap-2 font-bold text-xl text-text-main no-underline">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="32" height="32" rx="7" fill="#0066cc"/>
-        <path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/>
-        <path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+    <a href="../index.html" class="flex items-center gap-2 font-bold text-xl no-underline">
       <span>VerifyDocs<span class="text-primary">.in</span></span>
     </a>
     <div class="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted">
       <a href="../index.html" class="hover:text-primary transition-colors">Home</a>
-      <div class="relative group">
-        <button class="flex items-center gap-1 hover:text-primary transition-colors py-2">Tools <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
-        <div class="absolute top-full left-0 bg-white border border-border-col rounded-xl shadow-xl p-4 w-64 hidden group-hover:block z-50 text-left">
-          <a href="../tools/aadhaar-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🆔 Aadhaar Validator</a>
-          <a href="../tools/aadhaar-masking-tool.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🔒 Aadhaar Masking</a>
-          <a href="../tools/pan-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">💳 PAN Checker</a>
-          <a href="../tools/gst-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🏢 GST Verifier</a>
-          <a href="../tools/voter-id-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🗳️ Voter ID</a>
-          <a href="../tools/ifsc-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🏦 IFSC Checker</a>
-          <a href="../tools/passport-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🛂 Passport</a>
-          <a href="../tools/driving-license-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🚗 Driving License</a>
-          <a href="../tools/upi-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">💸 UPI Validator</a>
-          <a href="../tools/vehicle-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🚦 Vehicle Checker</a>
-          <a href="../tools/lic-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">📜 LIC Policy Checker</a>
-        </div>
-      </div>
       <a href="../blog/index.html" class="hover:text-primary transition-colors">Blog</a>
-      <a href="../about.html" class="hover:text-primary transition-colors">About</a>
-      <a href="../contact.html" class="hover:text-primary transition-colors">Contact</a>
     </div>
-    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100" onclick="toggleMobileMenu()">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-    </button>
-  </div>
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-border-col px-4 py-3 space-y-2">
-    <a href="../index.html" class="block py-2 text-sm text-text-main font-semibold">Home</a>
-    <div class="pt-2 pb-1 text-xs font-bold text-text-muted uppercase tracking-wider">Document Tools</div>
-    <a href="../tools/aadhaar-validator.html" class="block py-2 text-sm text-text-main pl-2">🆔 Aadhaar Validator</a>
-    <a href="../tools/pan-validator.html" class="block py-2 text-sm text-text-main pl-2">💳 PAN Checker</a>
-    <a href="../tools/gst-validator.html" class="block py-2 text-sm text-text-main pl-2">🏢 GST Verifier</a>
-    <a href="../tools/upi-validator.html" class="block py-2 text-sm text-text-main pl-2">💸 UPI Validator</a>
-    <a href="../tools/vehicle-validator.html" class="block py-2 text-sm text-text-main pl-2">🚦 Vehicle Checker</a>
-    <a href="../blog/index.html" class="block py-2 text-sm text-text-main font-semibold border-t pt-2">Blog</a>
-    <a href="../about.html" class="block py-2 text-sm text-text-main">About</a>
-    <a href="../contact.html" class="block py-2 text-sm text-text-main">Contact</a>
   </div>
 </nav>
 
-<main class="max-w-4xl mx-auto px-4 py-8">
+<main class="max-w-4xl mx-auto px-4 py-10 md:py-16">
   <nav class="text-xs text-text-muted mb-6 flex items-center gap-1.5">
-    <a href="../index.html" class="hover:text-primary">Home</a>
-<span>›</span><span>GST Tools</span><span>›</span>
-    <span class="text-text-main font-medium">GST Number Validator</span>
+    <a href="../index.html">Home</a><span>›</span><a href="../index.html#tools">Tools</a><span>›</span><span class="text-text-main font-medium">GST Verifier</span>
   </nav>
 
-  <h1 class="text-3xl md:text-4xl font-extrabold text-text-main mb-3">GST Number Validator (GSTIN Checker)</h1>
-  <p class="text-text-muted text-base leading-relaxed mb-8 max-w-2xl">
-    Verify if a <strong>GSTIN (GST Identification Number)</strong> is in the correct 15-character format as assigned by the GST Council. Decode the state code, extract the embedded PAN, entity number, and check digit — all instantly in your browser.
-  </p>
+  <h1 class="text-3xl md:text-4xl font-extrabold text-text-main mb-6 leading-tight">
+    GST Number Verifier — Validate 15-Digit GSTIN Format Online (Free)
+  </h1>
 
-  <div class="bg-white border border-border-col rounded-2xl shadow-sm p-6 md:p-8 mb-8">
-    <label class="block text-sm font-semibold text-text-main mb-2">Enter GST Number (GSTIN)</label>
-    <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-1">
-      <input type="text" id="gst-input" maxlength="15" placeholder="27AABCU9603R1ZX"
-        class="flex-1 h-14 px-4 border border-border-col rounded-xl text-xl font-mono tracking-widest uppercase focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
-        oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')" onkeydown="if(event.key==='Enter')runGSTValidate()">
-      <button onclick="runGSTValidate()" class="w-full sm:w-auto h-14 px-6 bg-primary text-white font-semibold rounded-xl hover:bg-blue-700 transition text-sm whitespace-nowrap">Validate →</button>
-    </div>
-    <p class="text-xs text-text-muted">15 alphanumeric characters. Example: 27AABCU9603R1ZX</p>
-    <div id="gst-result" class="result-box mt-5"></div>
-    <div class="mt-5 p-4 bg-blue-50 border border-blue-100 rounded-xl text-xs text-blue-700 leading-relaxed">
-      <strong>Note:</strong> Format validation only. Does not verify registration status on <a href="https://www.gst.gov.in/" target="_blank" rel="noopener noreferrer" class="underline">GST Portal (gst.gov.in)</a>.
-    </div>
+  <div class="bg-white rounded-3xl border border-border-col p-6 md:p-8 mb-10 shadow-sm leading-relaxed text-text-muted text-sm md:text-base">
+    <p class="mb-4">
+      The <strong>GST Identification Number (GSTIN)</strong> is a 15-digit unique code assigned to every registered business in India. Our GST Number Verifier helps you ensure that a GSTIN is structurally correct. It automatically identifies the <strong>State Code</strong> and verifies the embedded <strong>PAN card number</strong> within the GSTIN.
+    </p>
+    <p>
+      Verification is done locally in your browser to maintain 100% privacy. We never store or transmit the GST numbers you enter. This tool is perfect for business owners, accountants, and auditors who want to verify the format of GST numbers on invoices before filing returns or claiming Input Tax Credit (ITC).
+    </p>
   </div>
 
-  <!-- Format -->
-  <div class="bg-white border border-border-col rounded-2xl p-6 md:p-8 mb-8">
-    <h2 class="text-xl font-bold text-text-main mb-4">GSTIN Format Breakdown</h2>
-    <div class="overflow-x-auto">
-      <table class="w-full text-sm border-collapse min-w-[500px]">
-        <thead><tr class="bg-gray-50"><th class="text-left px-3 py-2 border border-border-col font-semibold">Positions</th><th class="text-left px-3 py-2 border border-border-col font-semibold">Example</th><th class="text-left px-3 py-2 border border-border-col font-semibold">Description</th></tr></thead>
-        <tbody>
-          <tr class="bg-blue-50"><td class="px-3 py-2 border border-blue-100 font-mono font-bold text-primary">1–2</td><td class="px-3 py-2 border border-blue-100 font-mono font-bold text-primary">27</td><td class="px-3 py-2 border border-blue-100 text-primary font-semibold">State code (27 = Maharashtra, 07 = Delhi, etc.)</td></tr>
-          <tr><td class="px-3 py-2 border border-border-col font-mono">3–12</td><td class="px-3 py-2 border border-border-col font-mono">AABCU9603R</td><td class="px-3 py-2 border border-border-col text-text-muted">PAN of the registered entity (10 characters)</td></tr>
-          <tr class="bg-gray-50"><td class="px-3 py-2 border border-border-col font-mono">13</td><td class="px-3 py-2 border border-border-col font-mono">1</td><td class="px-3 py-2 border border-border-col text-text-muted">Entity number (how many registrations this PAN has in that state; 1–9 or A–Z)</td></tr>
-          <tr><td class="px-3 py-2 border border-border-col font-mono">14</td><td class="px-3 py-2 border border-border-col font-mono">Z</td><td class="px-3 py-2 border border-border-col text-text-muted">Always 'Z' (reserved by GST Council)</td></tr>
-          <tr class="bg-gray-50"><td class="px-3 py-2 border border-border-col font-mono">15</td><td class="px-3 py-2 border border-border-col font-mono">X</td><td class="px-3 py-2 border border-border-col text-text-muted">Check digit (alphanumeric)</td></tr>
-        </tbody>
-      </table>
+  <div class="bg-white rounded-3xl border-2 border-primary/20 p-6 md:p-10 mb-16 shadow-xl relative overflow-hidden">
+    <label for="gst-input" class="block text-sm font-bold text-text-main mb-3 uppercase tracking-wider">Enter 15-Digit GST Number</label>
+    <div class="flex flex-col sm:flex-row gap-4">
+      <input 
+        type="text" 
+        id="gst-input" 
+        placeholder="07AAAAA0000A1Z5" 
+        maxlength="15"
+        class="flex-1 h-16 px-6 border-2 border-border-col rounded-2xl text-xl font-mono focus:outline-none focus:border-primary transition-all uppercase tracking-[0.2em]"
+      >
+      <button onclick="handleGSTValidate()" class="h-16 px-10 bg-primary text-white font-bold rounded-2xl hover:bg-blue-700 transition">
+        Verify GSTIN →
+      </button>
     </div>
+    <div id="gst-result" class="mt-8 hidden"></div>
   </div>
 
-  <!-- State Codes Reference -->
-  <div class="bg-white border border-border-col rounded-2xl p-6 md:p-8 mb-8">
-    <h2 class="text-xl font-bold text-text-main mb-4">GST State Codes — All 38 States & UTs</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 text-sm" id="state-grid"></div>
-  </div>
-
-  <!-- FAQ -->
-  <div class="bg-white border border-border-col rounded-2xl p-6 md:p-8 mb-8">
-    <h2 class="text-xl font-bold text-text-main mb-5">Frequently Asked Questions</h2>
-    <div class="space-y-3">
-      <div class="faq-item border border-border-col rounded-xl overflow-hidden">
-        <button class="w-full flex items-center justify-between px-4 py-3.5 text-left font-semibold text-sm hover:bg-gray-50" onclick="toggleFAQ(this)"><span>What is GSTIN?</span><svg class="faq-icon w-4 h-4 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
-        <div class="faq-answer px-4 pb-4 text-sm text-text-muted leading-relaxed">GSTIN stands for Goods and Services Tax Identification Number. It is a unique 15-digit alphanumeric identifier assigned to every GST-registered business in India. It encodes the state, PAN, and entity registration number of the business.</div>
+  <div class="prose prose-blue max-w-none text-text-muted leading-relaxed space-y-12">
+    <section>
+      <h2 class="text-2xl font-bold text-text-main mb-4">Understanding GSTIN Structure</h2>
+      <p>A GSTIN is a 15-digit alphanumeric identifier that carries significant information about the taxpayer:</p>
+      <div class="overflow-x-auto mt-6">
+        <table class="w-full border-collapse border border-border-col text-sm">
+          <thead class="bg-bg-main">
+            <tr>
+              <th class="border border-border-col p-3 text-left">Digits</th>
+              <th class="border border-border-col p-3 text-left">Components</th>
+              <th class="border border-border-col p-3 text-left">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-border-col p-3">1-2</td>
+              <td class="border border-border-col p-3">State Code</td>
+              <td class="border border-border-col p-3">Based on 2011 Census (e.g., 07 for Delhi, 27 for Maharashtra).</td>
+            </tr>
+            <tr>
+              <td class="border border-border-col p-3">3-12</td>
+              <td class="border border-border-col p-3">PAN Number</td>
+              <td class="border border-border-col p-3">The Permanent Account Number of the entity.</td>
+            </tr>
+            <tr>
+              <td class="border border-border-col p-3">13</td>
+              <td class="border border-border-col p-3">Entity Number</td>
+              <td class="border border-border-col p-3">Number of registrations under the same PAN in the state.</td>
+            </tr>
+            <tr>
+              <td class="border border-border-col p-3">14</td>
+              <td class="border border-border-col p-3">Default 'Z'</td>
+              <td class="border border-border-col p-3">Always 'Z' for all GST numbers.</td>
+            </tr>
+            <tr>
+              <td class="border border-border-col p-3">15</td>
+              <td class="border border-border-col p-3">Checksum</td>
+              <td class="border border-border-col p-3">Check digit used to catch transcription errors.</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="faq-item border border-border-col rounded-xl overflow-hidden">
-        <button class="w-full flex items-center justify-between px-4 py-3.5 text-left font-semibold text-sm hover:bg-gray-50" onclick="toggleFAQ(this)"><span>Can a business have multiple GSTINs?</span><svg class="faq-icon w-4 h-4 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
-        <div class="faq-answer px-4 pb-4 text-sm text-text-muted leading-relaxed">Yes. A business operating in multiple states must register in each state separately and gets a unique GSTIN per state. The state code (first 2 digits) differs for each, but the embedded PAN (characters 3–12) remains the same. The entity number (character 13) distinguishes multiple registrations within the same state.</div>
-      </div>
-      <div class="faq-item border border-border-col rounded-xl overflow-hidden">
-        <button class="w-full flex items-center justify-between px-4 py-3.5 text-left font-semibold text-sm hover:bg-gray-50" onclick="toggleFAQ(this)"><span>Why does GSTIN always contain 'Z' at position 14?</span><svg class="faq-icon w-4 h-4 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
-        <div class="faq-answer px-4 pb-4 text-sm text-text-muted leading-relaxed">The 14th character 'Z' is a reserved constant defined by the GST Council when the GSTIN format was designed. It acts as a separator before the final check digit. It's always Z for all regular taxpayers in India.</div>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="bg-white border border-border-col rounded-2xl p-6">
-    <h2 class="text-lg font-bold text-text-main mb-4">Related Tools</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      <a href="../tools/pan-validator.html" class="flex items-center gap-3 p-3 rounded-xl border border-border-col hover:border-primary/30 hover:bg-blue-50 transition"><span class="text-2xl">💳</span><div><p class="font-semibold text-sm">PAN Card Checker</p><p class="text-xs text-text-muted">Verify the PAN embedded in GSTIN</p></div></a>
-      <a href="../tools/ifsc-validator.html" class="flex items-center gap-3 p-3 rounded-xl border border-border-col hover:border-primary/30 hover:bg-blue-50 transition"><span class="text-2xl">🏦</span><div><p class="font-semibold text-sm">IFSC Code Checker</p><p class="text-xs text-text-muted">Verify bank IFSC codes</p></div></a>
+    <section>
+      <h2 class="text-2xl font-bold text-text-main mb-4">Why Correct GSTIN is Critical</h2>
+      <p>
+        Under the Indian GST regime, the <strong>Input Tax Credit (ITC)</strong> can only be claimed if the supplier's GSTIN is correctly mentioned in your purchase invoices and matched in the GST portal (GSTR-2B). Even a single character error can lead to a mismatch, resulting in the rejection of your tax credit.
+      </p>
+      <p class="mt-4">
+        Using this tool, you can instantly verify if the GSTIN provided by your supplier is structurally sound. If it fails our validator, it means the number is invalid and should be corrected before any business transaction takes place.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold text-text-main mb-8 text-center">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>What is the state code for Delhi in GST?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            The GST state code for Delhi is 07. Each state in India has a unique 2-digit code used as the prefix for GSTINs.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Does this tool verify the legal name of the taxpayer?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            No. This tool only validates the format and checksum of the GSTIN. To verify the legal name or business status, you must use the "Search Taxpayer" feature on the official <a href="https://www.gst.gov.in" class="text-primary underline">gst.gov.in</a> portal.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Is the 'Z' in GSTIN always the same?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            Yes, the 14th character of a GSTIN is currently fixed as 'Z' by the government for all taxpayers.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="mt-16 p-6 bg-yellow-50 border border-yellow-100 rounded-2xl text-xs text-yellow-800">
+      <p><strong>Disclaimer:</strong> This tool validates the format only. It is not affiliated with GSTN or the Government of India.</p>
     </div>
   </div>
 </main>
 
-<!-- Footer -->
-<footer class="bg-text-main text-white pt-12 pb-6 px-4 mt-10">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-      <div class="col-span-2 md:col-span-1">
-        <div class="flex items-center gap-2 font-bold text-lg mb-3">
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="7" fill="#0066cc"/><path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/><path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          VerifyDocs.in
-        </div>
-        <p class="text-gray-400 text-sm leading-relaxed">Free Indian document validation tools. 100% browser-based, privacy-first.</p>
-      </div>
-      <div>
-        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Tools</h4>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li><a href="../tools/aadhaar-validator.html" class="hover:text-white transition">Aadhaar Validator</a></li>
-          <li><a href="../tools/pan-validator.html" class="hover:text-white transition">PAN Checker</a></li>
-          <li><a href="../tools/gst-validator.html" class="hover:text-white transition">GST Verifier</a></li>
-          <li><a href="../tools/upi-validator.html" class="hover:text-white transition">UPI Validator</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Resources</h4>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li><a href="../blog/index.html" class="hover:text-white transition">Blog</a></li>
-          <li><a href="../about.html" class="hover:text-white transition">About Us</a></li>
-          <li><a href="../contact.html" class="hover:text-white transition">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold text-sm mb-3 text-gray-300 uppercase tracking-wide">Legal</h4>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li><a href="../privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
-          <li><a href="../terms.html" class="hover:text-white transition">Terms of Service</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</footer>
-
 <script src="../assets/js/validators.js"></script>
 <script>
-// Populate state grid
-const stateGrid = document.getElementById('state-grid');
-Object.entries(STATE_CODES).forEach(([code, name]) => {
-  stateGrid.innerHTML += `<div class="flex items-center gap-2 p-2 border border-border-col rounded-lg"><span class="font-mono font-bold text-primary text-sm w-8 flex-shrink-0">${code}</span><span class="text-text-muted text-xs">${name}</span></div>`;
-});
+  function toggleFAQ(btn) {
+    const item = btn.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    item.classList.toggle('open');
+    answer.classList.toggle('open');
+  }
 
-function toggleMobileMenu() {
-  document.getElementById('mobile-menu').classList.toggle('hidden');
-}
+  const input = document.getElementById('gst-input');
+  const resArea = document.getElementById('gst-result');
 
-function runGSTValidate() {
-  const val = document.getElementById('gst-input').value;
-  const r = validateGST(val);
-  const resultDiv = document.getElementById('gst-result');
-  if (r.valid) {
-    resultDiv.className = 'result-box show mt-5 p-5 bg-green-50 border border-green-200 rounded-xl';
-    resultDiv.innerHTML = `
-      <div class="flex items-start gap-3">
-        <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
-        <div class="flex-1">
-          <p class="font-bold text-accent text-base">Valid GSTIN</p>
-          <p class="font-mono text-2xl font-bold text-text-main mt-2 tracking-widest">${r.formatted}</p>
-          <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
-            <div class="bg-white border border-green-100 rounded-lg p-3 sm:col-span-2"><div class="text-xs text-text-muted mb-1">📍 Registered State</div><div class="font-semibold text-text-main">${r.state} <span class="text-text-muted font-normal text-xs">(Code: ${r.stateCode})</span></div></div>
-            <div class="bg-white border border-green-100 rounded-lg p-3"><div class="text-xs text-text-muted mb-1">PAN (embedded)</div><div class="font-mono font-bold text-primary">${r.pan}</div></div>
-            <div class="bg-white border border-green-100 rounded-lg p-3"><div class="text-xs text-text-muted mb-1">Entity Number</div><div class="font-mono font-bold text-text-main text-xl">${r.entityNumber}</div></div>
-            <div class="bg-white border border-green-100 rounded-lg p-3"><div class="text-xs text-text-muted mb-1">Check Digit</div><div class="font-mono font-bold text-text-main text-xl">${r.checkDigit}</div></div>
-            <div class="bg-white border border-green-100 rounded-lg p-3"><div class="text-xs text-text-muted mb-1">Position 14</div><div class="font-mono font-bold text-text-main text-xl">Z ✓</div></div>
+  function handleGSTValidate() {
+    const val = input.value.trim().toUpperCase();
+    if (!val) return;
+    
+    const res = validateGST(val);
+    resArea.classList.remove('hidden');
+    
+    if (res.valid) {
+      resArea.innerHTML = `
+        <div class="p-6 bg-green-50 border border-green-200 rounded-2xl">
+          <p class="font-bold text-green-800 flex items-center gap-2">✓ Valid GSTIN Format</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 text-sm">
+            <div class="bg-white p-3 rounded-xl border border-green-100">
+              <span class="text-xs text-text-muted block">State</span>
+              <span class="font-bold text-text-main">${res.state} (${res.stateCode})</span>
+            </div>
+            <div class="bg-white p-3 rounded-xl border border-green-100">
+              <span class="text-xs text-text-muted block">PAN Mapping</span>
+              <span class="font-bold text-text-main">${res.pan}</span>
+            </div>
           </div>
         </div>
-      </div>`;
-  } else {
-    resultDiv.className = 'result-box show mt-5 p-5 bg-red-50 border border-red-200 rounded-xl';
-    resultDiv.innerHTML = `<div class="flex items-start gap-3"><div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/></svg></div><div><p class="font-bold text-red-700">Invalid GSTIN</p><p class="text-sm text-red-600 mt-1"><strong>Reason:</strong> ${r.reason}</p></div></div>`;
+      `;
+    } else {
+      resArea.innerHTML = `
+        <div class="p-6 bg-red-50 border border-red-200 rounded-2xl flex items-start gap-4">
+          <div class="w-10 h-10 bg-red-100 text-red-700 rounded-full flex items-center justify-center flex-shrink-0 text-xl font-bold">✗</div>
+          <div><p class="font-bold text-red-800">Invalid GSTIN Format</p><p class="text-sm text-red-700 mt-1">${res.reason}</p></div>
+        </div>
+      `;
+    }
   }
-}
-function toggleFAQ(btn){const item=btn.closest('.faq-item'),answer=item.querySelector('.faq-answer'),isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-answer').classList.remove('open')});if(!isOpen){item.classList.add('open');answer.classList.add('open')}}
 </script>
 </body>
 </html>
