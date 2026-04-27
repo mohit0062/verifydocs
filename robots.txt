@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://verifydocs.vercel.app/sitemap.xml
+Sitemap: https://verifydocs.online/sitemap.xml

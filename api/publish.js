@@ -53,10 +53,10 @@ module.exports = async function handler(req, res) {
 <html lang="en">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${title} | VerifyDocs.in</title>
+  <title>${title} | verifydocs.online</title>
   <meta name="description" content="${description}">
-  <link rel="canonical" href="https://verifydocs.in/blog/${slug}.html">
-  <link rel="alternate" hreflang="en-IN" href="https://verifydocs.in/blog/${slug}.html">
+  <link rel="canonical" href="https://verifydocs.online/blog/${slug}.html">
+  <link rel="alternate" hreflang="en-IN" href="https://verifydocs.online/blog/${slug}.html">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230066cc'/%3E%3Cpath d='M16 6l6 4v6c0 5-6 9-6 9s-6-4-6-9v-6z' fill='white'/%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -73,11 +73,11 @@ module.exports = async function handler(req, res) {
   "@type": "Article",
   "headline": "${title}",
   "description": "${description}",
-  "author": { "@type": "Organization", "name": "VerifyDocs.in" },
-  "publisher": { "@type": "Organization", "name": "VerifyDocs.in" },
+  "author": { "@type": "Organization", "name": "verifydocs.online" },
+  "publisher": { "@type": "Organization", "name": "verifydocs.online" },
   "datePublished": "${dateStr}",
   "dateModified": "${dateStr}",
-  "mainEntityOfPage": "https://verifydocs.in/blog/${slug}.html",
+  "mainEntityOfPage": "https://verifydocs.online/blog/${slug}.html",
   "inLanguage": "en-IN"
 }
 </script>
