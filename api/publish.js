@@ -25,6 +25,7 @@ module.exports = async function handler(req, res) {
   const GITHUB_TOKEN = (process.env.GITHUB_TOKEN || '').trim();
   const SUPABASE_URL = (process.env.SUPABASE_URL || '').trim();
   const SUPABASE_KEY = (process.env.SUPABASE_KEY || '').trim();
+  const VERCEL_DEPLOY_HOOK_URL = (process.env.VERCEL_DEPLOY_HOOK_URL || '').trim();
 
   const safeTitle = String(title || '').trim();
   const safeDescription = String(description || '').trim();
@@ -252,6 +253,17 @@ module.exports = async function handler(req, res) {
     await commitFile('sitemap.xml', updatedContent, `Add ${safeTitle} to sitemap`, sha);
   };
 
+  const triggerDeploy = async () => {
+    if (!VERCEL_DEPLOY_HOOK_URL) return false;
+
+    const deployRes = await fetch(VERCEL_DEPLOY_HOOK_URL, { method: 'POST' });
+    if (!deployRes.ok) {
+      throw new Error('Blog saved, but Vercel deploy hook failed');
+    }
+
+    return true;
+  };
+
   try {
     await saveToSupabase();
 
@@ -259,11 +271,15 @@ module.exports = async function handler(req, res) {
     await commitFile(`blog/${safeSlug}.html`, htmlContent, `Add/Update blog: ${safeTitle}`, existingBlogSha);
     await updateBlogIndex();
     await updateSitemap();
+    const deployTriggered = await triggerDeploy();
 
     return res.status(200).json({
       success: true,
       url: `/blog/${safeSlug}.html`,
-      message: 'Saved to Supabase and GitHub!'
+      deployTriggered,
+      message: deployTriggered
+        ? 'Saved to Supabase and GitHub. Vercel deployment started!'
+        : 'Saved to Supabase and GitHub. Set VERCEL_DEPLOY_HOOK_URL to auto-deploy.'
     });
   } catch (error) {
     console.error(error);
