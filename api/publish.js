@@ -104,8 +104,8 @@ module.exports = async function handler(req, res) {
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${escapeHtml(safeTitle)} | verifydocs.online</title>
   <meta name="description" content="${escapeHtml(safeDescription)}">
-  <link rel="canonical" href="https://verifydocs.online/blog/${safeSlug}.html">
-  <link rel="alternate" hreflang="en-IN" href="https://verifydocs.online/blog/${safeSlug}.html">
+  <link rel="canonical" href="https://verifydocs.online/blog/${safeSlug}">
+  <link rel="alternate" hreflang="en-IN" href="https://verifydocs.online/blog/${safeSlug}">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230066cc'/%3E%3Cpath d='M16 6l6 4v6c0 5-6 9-6 9s-6-4-6-9v-6z' fill='white'/%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -124,7 +124,7 @@ module.exports = async function handler(req, res) {
     "publisher": { "@type": "Organization", "name": "verifydocs.online" },
     "datePublished": "${dateStr}",
     "dateModified": "${dateStr}",
-    "mainEntityOfPage": "https://verifydocs.online/blog/${safeSlug}.html",
+    "mainEntityOfPage": "https://verifydocs.online/blog/${safeSlug}",
     "inLanguage": "en-IN"
   }
   </script>
@@ -208,12 +208,12 @@ module.exports = async function handler(req, res) {
 
   const updateBlogIndex = async () => {
     const { sha, content: indexContent } = await getFile('blog/index.html');
-    const blogHrefRegex = new RegExp(`href=["'](?:\\.\\/|\\.\\.\\/blog\\/)${safeSlug}\\.html["']`);
+    const blogHrefRegex = new RegExp(`href=["'](?:\\.\\/|\\.\\.\\/blog\\/)${safeSlug}(?:\\.html)?["']`);
 
     if (blogHrefRegex.test(indexContent)) return;
 
     const newCard = `
-    <a href="./${safeSlug}.html" class="post-card bg-white border border-border-col rounded-2xl p-6 block no-underline">
+    <a href="./${safeSlug}" class="post-card bg-white border border-border-col rounded-2xl p-6 block no-underline">
       <div class="flex items-start gap-4">
         <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-primary text-xs font-bold flex-shrink-0">POST</div>
         <div class="flex-1">
@@ -275,7 +275,7 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({
       success: true,
-      url: `/blog/${safeSlug}.html`,
+      url: `/blog/${safeSlug}`,
       deployTriggered,
       message: deployTriggered
         ? 'Saved to Supabase and GitHub. Vercel deployment started!'

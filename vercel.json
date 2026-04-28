@@ -4,11 +4,23 @@
   "redirects": [
     {
       "source": "/blog/how-to-validate-your-aadhaar-number-online-in-india.html",
-      "destination": "/blog/how-to-validate-aadhaar.html",
+      "destination": "/blog/how-to-validate-aadhaar",
       "permanent": true
     }
   ],
+  "headers": [
+    {
+      "source": "/blog/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ],
   "rewrites": [
+    { "source": "/blog/:slug", "destination": "/blog/:slug.html" },
     { "source": "/(.*)", "destination": "/$1" }
   ]
 }
