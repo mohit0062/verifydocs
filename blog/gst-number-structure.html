@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GST Number Structure Decoded — State Code, PAN, Entity Number | verifydocs.online</title>
+  <meta name="description" content="Breaking down the 15-character GSTIN: what each segment means, how to find the state from any GST number, and why the 'Z' is always there.">
+  <link rel="canonical" href="https://verifydocs.online/blog/gst-number-structure">
+  <link rel="alternate" hreflang="en-IN" href="https://verifydocs.online/blog/gst-number-structure">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230066cc'/%3E%3Cpath d='M16 6l6 4v6c0 5-6 9-6 9s-6-4-6-9v-6z' fill='white'/%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#0066cc','text-main':'#0f172a','text-muted':'#64748b','border-col':'#e2e8f0'},fontFamily:{sans:['Inter','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <style>body{background:#f8fafc;font-family:'Inter',sans-serif}.prose p{margin-bottom:1rem;line-height:1.75}.prose h2{margin-top:2rem;margin-bottom:.75rem;font-size:1.25rem;font-weight:700}.prose ul{margin-bottom:1rem;padding-left:1.5rem;list-style:disc}.prose li{margin-bottom:.4rem}.prose table{width:100%;border-collapse:collapse;margin-bottom:1.5rem}.prose th,.prose td{border:1px solid #e2e8f0;padding:.5rem .75rem;text-align:left;font-size:.85rem}.prose th{background:#f1f5f9;font-weight:600}.prose code{background:#f1f5f9;padding:.15rem .35rem;border-radius:.25rem;font-family:'JetBrains Mono',monospace;font-size:.85em}</style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T80N8X570N"></script>
+  <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-T80N8X570N');</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1094606266002530" crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "GST Number Structure Decoded — State Code, PAN, Entity Number",
+    "description": "Breaking down the 15-character GSTIN: what each segment means, how to find the state from any GST number, and why the 'Z' is always there.",
+    "author": { "@type": "Organization", "name": "verifydocs.online" },
+    "publisher": { "@type": "Organization", "name": "verifydocs.online" },
+    "datePublished": "2024-01-15",
+    "dateModified": "2024-01-15",
+    "mainEntityOfPage": "https://verifydocs.online/blog/gst-number-structure",
+    "inLanguage": "en-IN"
+  }
+  </script>
+</head>
+<body>
+<nav class="bg-white/80 backdrop-blur-md border-b border-border-col sticky top-0 z-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <a href="../index.html" class="flex items-center gap-2 font-bold text-xl text-text-main no-underline">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="7" fill="#0066cc"/>
+        <path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/>
+        <path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>VerifyDocs<span class="text-primary">.online</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted">
+      <a href="../index.html" class="hover:text-primary transition-colors">Home</a>
+      <a href="../blog/index.html" class="hover:text-primary transition-colors">Blog</a>
+      <a href="../tools/gst-validator.html" class="bg-primary text-white px-4 py-1.5 rounded-lg text-sm font-semibold hover:bg-blue-700 transition">GST Verifier Tool</a>
+    </div>
+  </div>
+</nav>
+
+<main class="max-w-2xl mx-auto px-4 py-10">
+  <nav class="text-xs text-text-muted mb-6 flex items-center gap-1.5">
+    <a href="../index.html" class="hover:text-primary">Home</a><span>›</span><a href="../blog/index.html" class="hover:text-primary">Blog</a><span>›</span>
+    <span class="text-text-main font-medium">GST Number Structure</span>
+  </nav>
+
+  <div class="text-xs text-text-muted mb-4 flex items-center gap-3">
+    <span>January 2024</span><span>&middot;</span><span>7 min read</span><span>&middot;</span><span>GST</span>
+    <span id="view-count" class="bg-gray-100 px-2 py-0.5 rounded text-text-main font-medium">Loading views...</span>
+  </div>
+
+  <h1 class="text-3xl md:text-4xl font-extrabold text-text-main mb-6 leading-tight">GST Number Structure Decoded — State Code, PAN, Entity Number</h1>
+
+  <div class="prose text-text-muted text-sm mb-12">
+    <p>Every GSTIN (Goods and Services Tax Identification Number) in India is a carefully structured 15-character alphanumeric code. Once you understand what each part means, you can verify any GSTIN in seconds — even without a tool. Let's break it down.</p>
+
+    <h2>What is a GSTIN?</h2>
+    <p>GSTIN stands for <strong>GST Identification Number</strong>. It is a unique 15-character code assigned to every GST-registered business in India. Format:</p>
+    <p><code>22AAAAA0000A1Z5</code></p>
+
+    <h2>The 15-Character Structure</h2>
+    <table>
+      <thead><tr><th>Position</th><th>Characters</th><th>Meaning</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>1–2</td><td>Numeric (2 digits)</td><td>State Code</td><td>22 = Chhattisgarh</td></tr>
+        <tr><td>3–12</td><td>Alphanumeric (10 chars)</td><td>PAN Number of the business</td><td>AAAAA0000A</td></tr>
+        <tr><td>13</td><td>Numeric (1 digit)</td><td>Entity number (registration count)</td><td>1 = first registration in state</td></tr>
+        <tr><td>14</td><td>Always "Z"</td><td>Default character (reserved)</td><td>Z</td></tr>
+        <tr><td>15</td><td>Alphanumeric (1 char)</td><td>Check digit (for validation)</td><td>5</td></tr>
+      </tbody>
+    </table>
+
+    <h2>State Codes — Complete List</h2>
+    <p>The first 2 digits are the state code. Common ones:</p>
+    <table>
+      <thead><tr><th>Code</th><th>State</th><th>Code</th><th>State</th></tr></thead>
+      <tbody>
+        <tr><td>01</td><td>Jammu & Kashmir</td><td>20</td><td>Jharkhand</td></tr>
+        <tr><td>02</td><td>Himachal Pradesh</td><td>21</td><td>Odisha</td></tr>
+        <tr><td>03</td><td>Punjab</td><td>22</td><td>Chhattisgarh</td></tr>
+        <tr><td>04</td><td>Chandigarh</td><td>24</td><td>Gujarat</td></tr>
+        <tr><td>06</td><td>Haryana</td><td>27</td><td>Maharashtra</td></tr>
+        <tr><td>07</td><td>Delhi</td><td>29</td><td>Karnataka</td></tr>
+        <tr><td>09</td><td>Uttar Pradesh</td><td>32</td><td>Kerala</td></tr>
+        <tr><td>19</td><td>West Bengal</td><td>33</td><td>Tamil Nadu</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Position 3–12: The PAN Number</h2>
+    <p>Characters 3 to 12 in a GSTIN are exactly the same as the <strong>PAN card number</strong> of the registered entity. This means:</p>
+    <ul>
+      <li>Position 4 (within PAN) tells the <strong>entity type</strong>: P=Person, C=Company, F=Firm, etc.</li>
+      <li>You can extract the PAN from any GSTIN — just take characters 3–12.</li>
+      <li>If the PAN is invalid, the GSTIN is definitely fake.</li>
+    </ul>
+
+    <h2>Position 13: Entity Number</h2>
+    <p>This is 1 to 9 (numeric) or A to Z (alphabetic) representing how many times the same PAN has registered for GST in the same state. Most businesses have "1" here.</p>
+
+    <h2>Position 14: Always "Z"</h2>
+    <p>This character is always <strong>Z</strong> in all GSTINs. It is reserved for future use. If a GSTIN has anything other than Z at position 14, it is <strong>invalid</strong>.</p>
+
+    <h2>Position 15: Check Digit</h2>
+    <p>The last character is a checksum used to verify the GSTIN's mathematical validity. It can be 0–9 or A–Z. Our <a href="../tools/gst-validator.html" class="text-primary hover:underline">GST Validator tool</a> uses this to instantly detect fake GSTINs.</p>
+
+    <h2>How to Verify Any GSTIN Instantly</h2>
+    <ul>
+      <li>✅ Check: first 2 digits are a valid state code (01–37)</li>
+      <li>✅ Check: characters 3–12 match a valid PAN format (<code>[A-Z]{5}[0-9]{4}[A-Z]</code>)</li>
+      <li>✅ Check: position 14 is always "Z"</li>
+      <li>✅ Use our <a href="../tools/gst-validator.html" class="text-primary hover:underline">free GST Verifier</a> for instant validation</li>
+    </ul>
+  </div>
+
+  <!-- Comments Section -->
+  <div class="mt-16 pt-10 border-t border-border-col">
+    <h3 class="text-xl font-bold text-text-main mb-6">User Comments</h3>
+    <div id="comment-list" class="mb-10 space-y-6">
+      <p class="text-sm text-text-muted">Loading comments...</p>
+    </div>
+    <div class="bg-white border border-border-col rounded-2xl p-6">
+      <h4 class="font-bold text-sm mb-4 text-text-main">Leave a Comment</h4>
+      <form id="comment-form" class="space-y-4">
+        <input type="text" id="comment-name" placeholder="Your Name" class="w-full h-10 px-4 border border-border-col rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20" required>
+        <textarea id="comment-text" placeholder="Share your thoughts..." class="w-full p-4 border border-border-col rounded-xl text-sm h-28 focus:outline-none focus:ring-2 focus:ring-primary/20" required></textarea>
+        <button type="submit" class="bg-primary text-white text-xs font-bold px-6 py-3 rounded-xl hover:bg-blue-700 transition">Post Comment</button>
+      </form>
+    </div>
+  </div>
+</main>
+<script src="../assets/js/blog-features.js"></script>
+</body>
+</html>

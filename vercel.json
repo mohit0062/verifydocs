@@ -5,6 +5,11 @@
       "source": "/blog/how-to-validate-your-aadhaar-number-online-in-india.html",
       "destination": "/blog/how-to-validate-aadhaar",
       "permanent": true
+    },
+    {
+      "source": "/blog/how-to-validate-your-aadhaar-number-online-in-india",
+      "destination": "/blog/how-to-validate-aadhaar",
+      "permanent": true
     }
   ],
   "headers": [
@@ -17,9 +22,5 @@
         }
       ]
     }
-  ],
-  "rewrites": [
-    { "source": "/blog/:slug", "destination": "/blog/:slug.html" },
-    { "source": "/(.*)", "destination": "/$1" }
   ]
 }
