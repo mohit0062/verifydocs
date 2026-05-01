@@ -69,7 +69,8 @@
     }
   </script>
   <style>
-    body { background: #f8fafc; font-family: 'Inter', sans-serif; color: #0f172a; overflow-x: hidden; }
+    body { background: #f8fafc; font-family: 'Inter', sans-serif; color: #0f172a; overflow-x: hidden; width: 100%; position: relative; }
+    html { overflow-x: hidden; width: 100%; }
     .tool-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,102,204,0.12); }
     .tool-card { transition: transform 0.2s, box-shadow 0.2s; }
     .faq-answer { display: none; }
@@ -869,12 +870,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <!-- Announcement Bar -->
-<div id="announcement-bar" class="bg-accent text-white text-sm flex items-center justify-between px-4 py-2">
-  <div class="flex items-center gap-2 mx-auto">
-    <span>🔒</span>
+<div id="announcement-bar" class="bg-accent text-white text-xs md:text-sm flex items-center justify-between px-4 py-2 min-h-[40px]">
+  <div class="flex items-center gap-2 mx-auto text-center leading-tight">
+    <span class="hidden sm:inline">🔒</span>
     <span><strong>Privacy First</strong> — All checks happen in your browser. We never see your data.</span>
   </div>
-  <button onclick="document.getElementById('announcement-bar').classList.add('hidden')" class="ml-4 text-white/80 hover:text-white text-lg leading-none flex-shrink-0">×</button>
+  <button onclick="document.getElementById('announcement-bar').classList.add('hidden')" class="text-white/80 hover:text-white text-xl leading-none flex-shrink-0 ml-2">×</button>
 </div>
 
 <!-- Navigation -->
