@@ -817,6 +817,43 @@
           "target": "https://verifydocs.online/blog/index.html?q={search_term_string}",
           "query-input": "required name=search_term_string"
         }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does this tool verify if the document actually exists?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. This tool only checks whether the number follows the correct format and passes the official checksum algorithm. It does NOT connect to UIDAI, NSDL, GST Portal, or any government database. For actual identity verification, use the respective official government portals."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the Verhoeff algorithm used for Aadhaar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The Verhoeff algorithm is a checksum formula designed to detect common transcription errors (single digit errors, transpositions). UIDAI uses it to embed a mathematical check in every Aadhaar number."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this website affiliated with the Indian government?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. verifydocs.online is an independent, privately-run service and is NOT affiliated with UIDAI, Income Tax Department, GSTN, ECI, RTO, or any government body."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why should I mask my Aadhaar before sharing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "UIDAI recommends masking (hiding) the first 8 digits of Aadhaar before sharing it as a KYC document. This prevents misuse — the service provider only sees the last 4 digits to confirm your identity."
+            }
+          }
+        ]
       }
     ]
   }
