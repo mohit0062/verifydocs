@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Tools - Convert, Merge, Split, Compress and Secure PDFs</title>
+  <meta name="description" content="Free PDF tools for converting, merging, splitting, compressing, rotating, locking, unlocking, watermarking, and extracting text or images from PDFs.">
+  <link rel="canonical" href="https://verifydocs.online/tools/pdf-tools">
+  <link rel="alternate" hreflang="en-IN" href="https://verifydocs.online/tools/pdf-tools">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230066cc'/%3E%3Cpath d='M16 6l6 4v6c0 5-6 9-6 9s-6-4-6-9v-6z' fill='white'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0066cc',
+            accent: '#138808',
+            warning: '#ff9933',
+            'text-main': '#0f172a',
+            'text-muted': '#64748b',
+            'bg-main': '#f8fafc',
+            'border-col': '#e2e8f0'
+          },
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --radius: 18px;
+      --background: 210 40% 98%;
+      --foreground: 222 47% 11%;
+      --card: 0 0% 100%;
+      --border: 214 32% 91%;
+      --muted: 215 16% 47%;
+      --primary: 210 100% 40%;
+      --accent: 120 89% 28%;
+    }
+    body {
+      min-height: 100dvh;
+      background-color: hsl(var(--background));
+      background-image:
+        linear-gradient(rgba(255,255,255,0.82) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.82) 1px, transparent 1px),
+        linear-gradient(180deg, #f8fbff 0%, #eef6fb 48%, #f8fafc 100%);
+      background-size: 44px 44px, 44px 44px, 100% 100%;
+      font-family: 'Outfit', sans-serif;
+      color: hsl(var(--foreground));
+    }
+    .shad-card {
+      background: rgba(255,255,255,0.86);
+      border: 1px solid rgba(226,232,240,0.95);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.82), 0 22px 64px -42px rgba(15,23,42,0.62);
+      backdrop-filter: blur(18px);
+    }
+    .shad-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 14px;
+      font-weight: 800;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    .shad-button:active { transform: scale(0.98); }
+    .shad-button-primary {
+      background: #0066cc;
+      color: #ffffff;
+      box-shadow: 0 18px 34px -24px rgba(0,102,204,0.75);
+    }
+    .shad-button-primary:hover { background: #075baa; }
+    .shad-button-primary:disabled {
+      cursor: not-allowed;
+      opacity: 0.68;
+      box-shadow: none;
+    }
+    .shad-button-outline {
+      background: rgba(255,255,255,0.72);
+      color: #0f172a;
+      border: 1px solid #dbe4ee;
+    }
+    .shad-button-outline:hover {
+      border-color: rgba(0,102,204,0.34);
+      color: #0066cc;
+      background: #ffffff;
+    }
+    .shad-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      border: 1px solid rgba(226,232,240,0.9);
+      background: rgba(255,255,255,0.72);
+      padding: 0.45rem 0.7rem;
+      font-size: 0.72rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .shad-field {
+      width: 100%;
+      height: 3rem;
+      border-radius: 14px;
+      border: 1px solid #dbe4ee;
+      background: rgba(255,255,255,0.86);
+      padding: 0 0.95rem;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+    }
+    .shad-field:focus {
+      border-color: rgba(0,102,204,0.5);
+      box-shadow: 0 0 0 4px rgba(0,102,204,0.11);
+      background: #ffffff;
+    }
+    .workspace-shell {
+      min-height: calc(100dvh - 64px);
+    }
+    .workspace-header {
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.94), rgba(255,255,255,0.68)),
+        linear-gradient(90deg, rgba(0,102,204,0.08), rgba(19,136,8,0.07));
+    }
+    .tool-tab {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+    }
+    .tool-tab:hover { transform: translateY(-2px); border-color: rgba(0,102,204,0.25); background: rgba(255,255,255,0.88); }
+    .tool-tab.active {
+      background: rgba(0,102,204,0.07);
+      border-color: rgba(0,102,204,0.35);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 18px 48px -32px rgba(0,102,204,0.45);
+    }
+    .tool-tab.active::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 18%;
+      bottom: 18%;
+      width: 3px;
+      border-radius: 999px;
+      background: #0066cc;
+    }
+    .tool-file-icon svg {
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .file-icon-pdf { background: #eff6ff; color: #0066cc; border-color: #dbeafe; }
+    .file-icon-image { background: #ecfdf5; color: #138808; border-color: #bbf7d0; }
+    .file-icon-word { background: #eff6ff; color: #2563eb; border-color: #bfdbfe; }
+    .file-icon-text { background: #f1f5f9; color: #475569; border-color: #e2e8f0; }
+    .tool-tab:hover .tool-file-icon svg,
+    .tool-tab.active .tool-file-icon svg {
+      transform: translateY(-1px) scale(1.06);
+    }
+    .tools-panel {
+      display: flex;
+      flex-direction: column;
+      max-height: calc(100dvh - 7rem);
+      overflow: hidden;
+    }
+    .tool-list-scroll {
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding-right: 0.25rem;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0,102,204,0.42) rgba(226,232,240,0.72);
+    }
+    .tool-list-scroll::-webkit-scrollbar { width: 8px; }
+    .tool-list-scroll::-webkit-scrollbar-track {
+      border-radius: 999px;
+      background: rgba(226,232,240,0.72);
+    }
+    .tool-list-scroll::-webkit-scrollbar-thumb {
+      border-radius: 999px;
+      background: rgba(0,102,204,0.42);
+      border: 2px solid rgba(255,255,255,0.72);
+    }
+    .drop-zone {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+    }
+    .drop-zone::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(110deg, transparent 0 36%, rgba(255,255,255,0.62) 44%, transparent 56% 100%);
+      transform: translateX(-130%);
+      transition: transform 0.68s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .drop-zone:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 50px -36px rgba(0,102,204,0.55);
+    }
+    .drop-zone:hover::after,
+    .drop-zone.dragover::after { transform: translateX(130%); }
+    .drop-zone.dragover { border-color: rgba(0,102,204,0.55); background: rgba(0,102,204,0.06); }
+    .drop-zone.is-disabled {
+      cursor: not-allowed;
+      opacity: 0.68;
+      background: rgba(248,250,252,0.78);
+    }
+    .drop-zone.is-disabled:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    .result-box { display: none; }
+    .result-box.show { display: block; }
+    .active-icon-large svg { width: 72px; height: 72px; }
+    .metric-card {
+      border: 1px solid rgba(226,232,240,0.86);
+      background: rgba(255,255,255,0.72);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.82);
+    }
+    .download-card {
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s, background-color 0.2s;
+    }
+    .download-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0,102,204,0.28);
+      background: #ffffff;
+    }
+    /* shadcn/ui composition layer for the static HTML implementation. */
+    :root {
+      --radius: 0.75rem;
+      --background: 0 0% 100%;
+      --foreground: 222.2 84% 4.9%;
+      --card: 0 0% 100%;
+      --card-foreground: 222.2 84% 4.9%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 222.2 84% 4.9%;
+      --primary: 221.2 83.2% 53.3%;
+      --primary-foreground: 210 40% 98%;
+      --secondary: 210 40% 96.1%;
+      --secondary-foreground: 222.2 47.4% 11.2%;
+      --muted: 210 40% 96.1%;
+      --muted-foreground: 215.4 16.3% 46.9%;
+      --accent: 210 40% 96.1%;
+      --accent-foreground: 222.2 47.4% 11.2%;
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 210 40% 98%;
+      --border: 214.3 31.8% 91.4%;
+      --input: 214.3 31.8% 91.4%;
+      --ring: 221.2 83.2% 53.3%;
+    }
+    body {
+      background-color: hsl(var(--background));
+      background-image:
+        linear-gradient(to right, hsl(var(--border) / 0.26) 1px, transparent 1px),
+        linear-gradient(to bottom, hsl(var(--border) / 0.22) 1px, transparent 1px);
+      background-size: 44px 44px;
+      color: hsl(var(--foreground));
+      font-family: 'Outfit', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    nav.sticky {
+      background: hsl(var(--background) / 0.92);
+      border-color: hsl(var(--border));
+      box-shadow: none;
+    }
+    .workspace-shell {
+      background:
+        linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--muted) / 0.46) 100%);
+    }
+    .shad-card,
+    .tools-panel,
+    .metric-card {
+      background: hsl(var(--card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+      color: hsl(var(--card-foreground));
+      backdrop-filter: none;
+    }
+    .workspace-header {
+      background: hsl(var(--card));
+      border-color: hsl(var(--border));
+    }
+    .shad-badge {
+      height: 1.65rem;
+      border-radius: calc(var(--radius) - 4px);
+      border-color: hsl(var(--border));
+      background: hsl(var(--secondary));
+      color: hsl(var(--secondary-foreground));
+      padding: 0 0.58rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    .shad-badge.text-primary {
+      background: hsl(var(--primary) / 0.09);
+      color: hsl(var(--primary));
+      border-color: hsl(var(--primary) / 0.18);
+    }
+    .shad-badge.text-accent {
+      background: hsl(142 76% 96%);
+      color: hsl(142 72% 29%);
+      border-color: hsl(142 69% 86%);
+    }
+    .shad-button {
+      border-radius: calc(var(--radius) - 2px);
+      font-size: 0.875rem;
+      font-weight: 700;
+      box-shadow: none;
+    }
+    .shad-button-primary {
+      background: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+      border: 1px solid hsl(var(--primary));
+    }
+    .shad-button-primary:hover {
+      background: hsl(var(--primary) / 0.92);
+    }
+    .shad-button-outline {
+      background: hsl(var(--background));
+      color: hsl(var(--foreground));
+      border: 1px solid hsl(var(--border));
+    }
+    .shad-button-outline:hover {
+      background: hsl(var(--accent));
+      color: hsl(var(--accent-foreground));
+      border-color: hsl(var(--border));
+    }
+    .shad-field {
+      height: 2.75rem;
+      border-radius: calc(var(--radius) - 2px);
+      border-color: hsl(var(--input));
+      background: hsl(var(--background));
+      color: hsl(var(--foreground));
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+    .shad-field:focus {
+      border-color: hsl(var(--ring));
+      box-shadow: 0 0 0 3px hsl(var(--ring) / 0.16);
+    }
+    .tool-tab {
+      border-radius: calc(var(--radius) - 2px) !important;
+      border-color: transparent !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+    .tool-tab:hover {
+      transform: none;
+      background: hsl(var(--accent)) !important;
+      border-color: hsl(var(--border)) !important;
+    }
+    .tool-tab.active {
+      background: hsl(var(--primary) / 0.09) !important;
+      border-color: hsl(var(--primary) / 0.2) !important;
+      color: hsl(var(--primary));
+    }
+    .tool-tab.active::before {
+      display: none;
+    }
+    .tool-list-scroll {
+      scrollbar-color: hsl(var(--border)) transparent;
+    }
+    .drop-zone {
+      border-radius: var(--radius) !important;
+      border-color: hsl(var(--border)) !important;
+      background: hsl(var(--muted) / 0.42) !important;
+      box-shadow: none;
+    }
+    .drop-zone::after {
+      display: none;
+    }
+    .drop-zone:hover,
+    .drop-zone.dragover {
+      transform: none;
+      border-color: hsl(var(--ring)) !important;
+      background: hsl(var(--primary) / 0.05) !important;
+      box-shadow: 0 0 0 3px hsl(var(--ring) / 0.12);
+    }
+    .drop-zone.is-disabled,
+    .drop-zone.is-disabled:hover {
+      background: hsl(var(--muted) / 0.52) !important;
+      border-color: hsl(var(--border)) !important;
+      box-shadow: none;
+    }
+    .result-box.show {
+      border-radius: var(--radius);
+      box-shadow: none;
+    }
+    .download-card {
+      border-radius: calc(var(--radius) - 2px) !important;
+      background: hsl(var(--background)) !important;
+      border-color: hsl(var(--border)) !important;
+      box-shadow: none;
+    }
+    .download-card:hover {
+      transform: none;
+      background: hsl(var(--accent)) !important;
+    }
+    .active-icon-large,
+    .tool-file-icon {
+      border-radius: calc(var(--radius) - 2px) !important;
+      box-shadow: none !important;
+    }
+    .tool-file-icon svg {
+      width: 1.45rem !important;
+      height: 1.45rem !important;
+    }
+    .active-icon-large svg {
+      width: 3.25rem !important;
+      height: 3.25rem !important;
+    }
+    .file-icon-pdf,
+    .file-icon-image,
+    .file-icon-word,
+    .file-icon-text {
+      background: hsl(var(--muted));
+      color: hsl(var(--primary));
+      border-color: hsl(var(--border));
+    }
+    .shad-sidebar {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      max-height: calc(100dvh - 7rem);
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid hsl(var(--border));
+      background: hsl(var(--card));
+      color: hsl(var(--card-foreground));
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+    }
+    .sidebar-header {
+      flex-shrink: 0;
+      padding: 0.9rem;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      border-radius: calc(var(--radius) - 2px);
+      padding: 0.55rem;
+      background: hsl(var(--muted) / 0.62);
+    }
+    .sidebar-brand-icon {
+      display: flex;
+      height: 2rem;
+      width: 2rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: calc(var(--radius) - 4px);
+      background: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+      font-weight: 800;
+    }
+    .sidebar-content {
+      min-height: 0;
+      overflow-y: auto;
+      padding: 0.72rem;
+      scrollbar-width: thin;
+      scrollbar-color: hsl(var(--border)) transparent;
+    }
+    .sidebar-group + .sidebar-group {
+      margin-top: 0.85rem;
+      padding-top: 0.7rem;
+      border-top: 1px solid hsl(var(--border));
+    }
+    .sidebar-group-label {
+      padding: 0 0.55rem 0.42rem;
+      color: hsl(var(--muted-foreground));
+      font-size: 0.72rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .sidebar-menu {
+      display: grid;
+      gap: 0.18rem;
+    }
+    .sidebar-menu-button {
+      position: relative;
+      display: flex;
+      width: 100%;
+      min-width: 0;
+      align-items: center;
+      gap: 0.65rem;
+      border-radius: calc(var(--radius) - 3px);
+      border: 1px solid transparent;
+      background: transparent;
+      padding: 0.48rem 0.55rem;
+      color: hsl(var(--foreground));
+      text-align: left;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+    .sidebar-menu-button:hover {
+      background: hsl(var(--accent));
+      color: hsl(var(--accent-foreground));
+    }
+    .sidebar-menu-button.is-active {
+      background: hsl(var(--primary) / 0.1);
+      border-color: hsl(var(--primary) / 0.22);
+      color: hsl(var(--primary));
+    }
+    .sidebar-menu-icon {
+      display: flex;
+      height: 1.9rem;
+      width: 1.9rem;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      border-radius: calc(var(--radius) - 4px);
+      border: 1px solid hsl(var(--border));
+      background: hsl(var(--background));
+    }
+    .sidebar-menu-icon svg {
+      width: 1.18rem !important;
+      height: 1.18rem !important;
+    }
+    .sidebar-menu-text {
+      min-width: 0;
+      flex: 1;
+    }
+    .sidebar-menu-title {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 0.86rem;
+      font-weight: 650;
+      line-height: 1.2;
+    }
+    .sidebar-menu-meta {
+      display: block;
+      margin-top: 0.1rem;
+      color: hsl(var(--muted-foreground));
+      font-size: 0.68rem;
+      line-height: 1.1;
+    }
+    .sidebar-menu-badge {
+      flex-shrink: 0;
+      border-radius: calc(var(--radius) - 5px);
+      background: hsl(var(--secondary));
+      color: hsl(var(--muted-foreground));
+      padding: 0.18rem 0.36rem;
+      font-size: 0.62rem;
+      font-weight: 700;
+    }
+    .sidebar-menu-button.is-active .sidebar-menu-badge {
+      background: hsl(var(--primary) / 0.12);
+      color: hsl(var(--primary));
+    }
+    @media (max-width: 1023px) {
+      .shad-sidebar {
+        max-height: 27rem;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tool-tab,
+      .tool-file-icon svg,
+      .drop-zone,
+      .drop-zone::after,
+      .download-card {
+        transition: none;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF Tools",
+    "url": "https://verifydocs.online/tools/pdf-tools",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+  }
+  </script>
+</head>
+<body>
+<nav class="bg-white/88 backdrop-blur-md border-b border-border-col sticky top-0 z-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <a href="../index.html" class="flex items-center gap-2 font-bold text-xl text-text-main no-underline">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="7" fill="#0066cc"/>
+        <path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/>
+        <path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>VerifyDocs<span class="text-primary">.online</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted">
+      <a href="../index.html" class="hover:text-primary transition-colors">Home</a>
+      <a href="../index.html#pdf-tools" class="text-primary font-bold">PDF Tools</a>
+      <a href="../blog/index.html" class="hover:text-primary transition-colors">Blog</a>
+      <a href="../about.html" class="hover:text-primary transition-colors">About</a>
+    </div>
+  </div>
+</nav>
+
+<main class="workspace-shell relative overflow-hidden">
+  <section class="relative max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-10">
+    <nav class="text-sm text-text-muted mb-6 flex items-center gap-2">
+      <a href="../index.html" class="hover:text-primary">Home</a>
+      <span>/</span>
+      <a href="../index.html#pdf-tools" class="hover:text-primary">Tools</a>
+      <span>/</span>
+      <span class="text-text-main font-semibold">PDF workspace</span>
+    </nav>
+
+    <div class="grid gap-6 lg:grid-cols-[1fr_390px] lg:items-end mb-7">
+      <div>
+        <div class="flex flex-wrap items-center gap-2 mb-5">
+          <span class="shad-badge text-primary">
+            <span class="h-2 w-2 rounded-full bg-accent"></span>
+            shadcn workspace
+          </span>
+          <span class="shad-badge text-text-muted">31 tools</span>
+          <span class="shad-badge text-text-muted">10 MB/file</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight text-text-main">
+          PDF command center
+        </h1>
+        <p class="mt-4 text-base md:text-lg text-text-muted leading-relaxed max-w-2xl">
+          Convert, organize, secure, and extract documents from a shadcn-style workspace with cards, tabs, alerts, inputs, and download actions.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-3">
+        <div class="metric-card rounded-2xl p-4">
+          <div class="font-mono text-[11px] font-bold text-text-muted uppercase tracking-[0.14em]">Groups</div>
+          <div class="mt-2 text-2xl font-extrabold text-text-main">5</div>
+        </div>
+        <div class="metric-card rounded-2xl p-4">
+          <div class="font-mono text-[11px] font-bold text-text-muted uppercase tracking-[0.14em]">Files</div>
+          <div class="mt-2 text-2xl font-extrabold text-text-main">40</div>
+        </div>
+        <div class="metric-card rounded-2xl p-4">
+          <div class="font-mono text-[11px] font-bold text-text-muted uppercase tracking-[0.14em]">API</div>
+          <div id="api-health" class="mt-2 text-2xl font-extrabold text-text-muted">...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-[300px_minmax(0,1fr)]">
+      <aside class="shad-sidebar lg:sticky lg:top-24" aria-label="PDF tools sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-brand">
+            <span class="sidebar-brand-icon" aria-hidden="true">P</span>
+            <span class="min-w-0">
+              <span class="block truncate text-sm font-extrabold text-text-main">PDF Tools</span>
+              <span class="block truncate text-xs text-text-muted">31 actions</span>
+            </span>
+          </div>
+        </div>
+        <div id="tool-list" class="sidebar-content"></div>
+      </aside>
+
+      <section class="shad-card rounded-[1.5rem] overflow-hidden">
+        <div class="workspace-header border-b border-border-col p-5 md:p-7">
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-5">
+            <div class="flex items-start gap-4">
+              <div id="active-icon" class="active-icon-large flex h-20 w-20 shrink-0 items-center justify-center rounded-[1.35rem] border bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]"></div>
+              <div>
+                <div class="flex flex-wrap items-center gap-2 mb-2">
+                  <span id="active-category" class="shad-badge text-primary"></span>
+                  <span id="active-format" class="shad-badge text-text-muted"></span>
+                </div>
+                <h2 id="active-title" class="text-2xl md:text-4xl font-extrabold tracking-tight text-text-main"></h2>
+                <p id="active-description" class="text-sm md:text-base text-text-muted leading-relaxed mt-2 max-w-2xl"></p>
+              </div>
+            </div>
+            <a href="/api/pdf-tools" class="shad-button shad-button-outline h-11 px-4 text-xs no-underline shrink-0">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 3v18M5 8h14M5 16h14"/></svg>
+              API
+            </a>
+          </div>
+        </div>
+
+        <div class="p-5 md:p-7">
+          <form id="pdf-form" class="space-y-5">
+            <label class="drop-zone block rounded-[1.35rem] border-2 border-dashed border-primary/20 bg-white/68 p-5 md:p-7 cursor-pointer" for="file-input">
+              <input id="file-input" type="file" class="hidden">
+              <span class="relative flex flex-col md:flex-row md:items-center gap-5">
+                <span class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-white bg-white text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_18px_34px_-28px_rgba(0,102,204,0.62)]">
+                  <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 16V4m0 0 4 4m-4-4-4 4M5 16v3h14v-3"/></svg>
+                </span>
+                <span class="min-w-0 flex-1 text-left">
+                  <span class="block text-lg font-extrabold text-text-main">Upload files</span>
+                  <span id="file-help" class="block text-sm text-text-muted mt-1"></span>
+                  <span id="active-accept" class="mt-3 inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600"></span>
+                </span>
+                <span class="shad-button shad-button-outline h-11 px-4 text-xs">Browse</span>
+              </span>
+            </label>
+
+            <div id="selected-files" class="hidden rounded-[1.15rem] border border-border-col bg-white/74 p-4"></div>
+
+            <div id="option-fields" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+
+            <div id="status-box" class="result-box rounded-[1.15rem] border p-4 text-sm" role="status" aria-live="polite"></div>
+
+            <div class="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between pt-2">
+              <button id="run-btn" type="submit" class="shad-button shad-button-primary h-12 px-7">
+                Run tool
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+              <p id="active-limit" class="text-xs text-text-muted"></p>
+            </div>
+          </form>
+
+          <div id="download-area" class="hidden mt-7 pt-6 border-t border-border-col">
+            <div class="flex items-center justify-between gap-3 mb-4">
+              <h3 class="text-sm font-extrabold uppercase tracking-[0.16em] text-text-main">Downloads</h3>
+              <span class="shad-badge text-accent">Ready</span>
+            </div>
+            <div id="download-list" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</main>
+
+<script>
+const TOOLS = {
+  'pdf-to-image': {
+    title: 'PDF to Image',
+    category: 'Convert',
+    icon: 'image',
+    description: 'Render selected PDF pages into PNG images.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF. Output is PNG or a ZIP if multiple pages are selected.',
+    fields: [
+      { id: 'pages', label: 'Pages', type: 'text', placeholder: 'All pages or 1,3-5', helper: 'Leave empty for all pages. Max 20 pages per request.' },
+      { id: 'scale', label: 'Image scale', type: 'select', options: [['1', 'Standard'], ['1.5', 'Sharp'], ['2', 'High detail']] }
+    ]
+  },
+  'image-to-pdf': {
+    title: 'Image to PDF',
+    category: 'Convert',
+    icon: 'image',
+    description: 'Create one PDF from JPG or PNG images.',
+    accept: 'image/png,image/jpeg',
+    multiple: true,
+    help: 'Upload one or more JPG/PNG images.'
+  },
+  'merge-pdf': {
+    title: 'Merge PDF',
+    category: 'Organize',
+    icon: 'pdf',
+    description: 'Combine multiple PDFs into one file in upload order.',
+    accept: '.pdf,application/pdf',
+    multiple: true,
+    help: 'Upload at least two PDFs.'
+  },
+  'split-pdf': {
+    title: 'Split PDF',
+    category: 'Organize',
+    icon: 'pdf',
+    description: 'Split a PDF into page groups or individual pages.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF. Empty pages field splits every page separately.',
+    fields: [
+      { id: 'pages', label: 'Page groups', type: 'text', placeholder: '1-2;3-5 or empty', helper: 'Use semicolon for separate output files.' }
+    ]
+  },
+  'compress-pdf': {
+    title: 'Compress PDF',
+    category: 'Optimize',
+    icon: 'pdf',
+    description: 'Rebuild PDF with object streams for lossless size reduction.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF.'
+  },
+  'rotate-pdf': {
+    title: 'Rotate PDF',
+    category: 'Organize',
+    icon: 'pdf',
+    description: 'Rotate selected pages by 90, 180, or 270 degrees.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF.',
+    fields: [
+      { id: 'rotation', label: 'Rotation', type: 'select', options: [['90', '90 degrees'], ['180', '180 degrees'], ['270', '270 degrees']] },
+      { id: 'pages', label: 'Pages', type: 'text', placeholder: 'All pages or 1,3-5', helper: 'Leave empty for all pages.' }
+    ]
+  },
+  'lock-pdf': {
+    title: 'Lock PDF',
+    category: 'Secure',
+    icon: 'pdf',
+    description: 'Add password protection to a PDF.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF and enter a password.',
+    fields: [
+      { id: 'password', label: 'Password', type: 'password', placeholder: 'Enter password' }
+    ]
+  },
+  'unlock-pdf': {
+    title: 'Unlock PDF',
+    category: 'Secure',
+    icon: 'pdf',
+    description: 'Remove protection from a PDF you own when qpdf is available on the server.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF and enter its password.',
+    fields: [
+      { id: 'password', label: 'PDF password', type: 'password', placeholder: 'Enter password' }
+    ]
+  },
+  'add-watermark': {
+    title: 'Add Watermark',
+    category: 'Secure',
+    icon: 'pdf',
+    description: 'Add a diagonal text watermark across selected PDF pages.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF.',
+    fields: [
+      { id: 'watermarkText', label: 'Watermark text', type: 'text', placeholder: 'VERIFYDOCS' },
+      { id: 'opacity', label: 'Opacity', type: 'select', options: [['0.12', 'Light'], ['0.18', 'Medium'], ['0.28', 'Strong']] },
+      { id: 'pages', label: 'Pages', type: 'text', placeholder: 'All pages or 1,3-5', helper: 'Leave empty for all pages.' }
+    ]
+  },
+  'extract-images': {
+    title: 'Extract Images',
+    category: 'Extract',
+    icon: 'image',
+    description: 'Extract directly embedded JPEG/JPX images from a PDF into a ZIP.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF.'
+  },
+  'extract-text': {
+    title: 'Extract Text',
+    category: 'Extract',
+    icon: 'text',
+    description: 'Extract selectable PDF text into a TXT file.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF.',
+    fields: [
+      { id: 'pages', label: 'Pages', type: 'text', placeholder: 'All pages or 1,3-5', helper: 'Leave empty for all pages.' }
+    ]
+  },
+  'pdf-to-word': {
+    title: 'PDF to Word',
+    category: 'Convert',
+    icon: 'word',
+    description: 'Export selectable PDF text into a DOCX document.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF.',
+    fields: [
+      { id: 'pages', label: 'Pages', type: 'text', placeholder: 'All pages or 1,3-5', helper: 'Leave empty for all pages.' }
+    ]
+  },
+  'word-to-pdf': {
+    title: 'Word to PDF',
+    category: 'Convert',
+    icon: 'word',
+    description: 'Convert DOCX text into a clean PDF.',
+    accept: '.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    multiple: false,
+    help: 'Upload one DOCX file.'
+  },
+  'pdf-to-powerpoint': {
+    title: 'PDF to PowerPoint',
+    category: 'Convert',
+    icon: 'pdf',
+    description: 'Open a PDF as a presentation-ready PPTX workflow.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF.',
+    comingSoon: true,
+    notice: 'PDF to PowerPoint is listed here for quick access. Processing support is coming soon.'
+  },
+  'pdf-to-excel': {
+    title: 'PDF to Excel',
+    category: 'Convert',
+    icon: 'pdf',
+    description: 'Move tables and structured PDF data into spreadsheet workflows.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF.',
+    comingSoon: true,
+    notice: 'PDF to Excel is listed here for quick access. Processing support is coming soon.'
+  },
+  'powerpoint-to-pdf': {
+    title: 'PowerPoint to PDF',
+    category: 'Convert',
+    icon: 'pdf',
+    description: 'Turn PPT and PPTX decks into shareable PDF documents.',
+    accept: '.ppt,.pptx,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation',
+    multiple: false,
+    help: 'Upload one PowerPoint file.',
+    acceptLabel: 'PPT, PPTX',
+    comingSoon: true,
+    notice: 'PowerPoint to PDF is listed here for quick access. Processing support is coming soon.'
+  },
+  'excel-to-pdf': {
+    title: 'Excel to PDF',
+    category: 'Convert',
+    icon: 'pdf',
+    description: 'Convert spreadsheets into clean PDFs for review and sharing.',
+    accept: '.xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    multiple: false,
+    help: 'Upload one spreadsheet file.',
+    acceptLabel: 'XLS, XLSX',
+    comingSoon: true,
+    notice: 'Excel to PDF is listed here for quick access. Processing support is coming soon.'
+  },
+  'edit-pdf': {
+    title: 'Edit PDF',
+    category: 'Edit',
+    icon: 'pdf',
+    description: 'Add text to selected PDF pages and save a new edited document.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF, then add text by page and position.',
+    fields: [
+      { id: 'editText', label: 'Text to add', type: 'text', placeholder: 'Approved, Draft, Name, note...' },
+      { id: 'pages', label: 'Pages', type: 'text', placeholder: 'All pages or 1,3-5', helper: 'Leave empty for all pages.' },
+      { id: 'x', label: 'X position (%)', type: 'number', placeholder: '8', helper: '0 is left, 100 is right.' },
+      { id: 'y', label: 'Y position (%)', type: 'number', placeholder: '12', helper: '0 is top, 100 is bottom.' },
+      { id: 'fontSize', label: 'Font size', type: 'select', options: [['12', 'Small'], ['16', 'Medium'], ['24', 'Large'], ['36', 'Extra large']] },
+      { id: 'color', label: 'Text color', type: 'select', options: [['black', 'Black'], ['blue', 'Blue'], ['green', 'Green'], ['red', 'Red'], ['gray', 'Gray']] },
+      { id: 'bold', label: 'Weight', type: 'select', options: [['no', 'Regular'], ['yes', 'Bold']] },
+      { id: 'opacity', label: 'Opacity', type: 'select', options: [['1', 'Solid'], ['0.65', 'Soft'], ['0.35', 'Faint']] }
+    ]
+  },
+  'sign-pdf': {
+    title: 'Sign PDF',
+    category: 'Edit',
+    icon: 'pdf',
+    description: 'Prepare PDFs for signatures and approval workflows.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF.',
+    comingSoon: true,
+    notice: 'Sign PDF is listed here for quick access. Processing support is coming soon.'
+  },
+  'html-to-pdf': {
+    title: 'HTML to PDF',
+    category: 'Convert',
+    icon: 'text',
+    description: 'Convert webpages or HTML files into PDF documents.',
+    accept: '.html,.htm,text/html',
+    multiple: false,
+    help: 'Upload one HTML file.',
+    acceptLabel: 'HTML file',
+    comingSoon: true,
+    notice: 'HTML to PDF is listed here for quick access. Processing support is coming soon.'
+  },
+  'organize-pdf': {
+    title: 'Organize PDF',
+    category: 'Organize',
+    icon: 'pdf',
+    description: 'Sort, remove, or rearrange pages before saving a new document.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF.',
+    comingSoon: true,
+    notice: 'Use Merge, Split, and Rotate for live organizing tasks. Full visual page organizing is coming soon.'
+  },
+  'pdf-to-pdfa': {
+    title: 'PDF to PDF/A',
+    category: 'Optimize',
+    icon: 'pdf',
+    description: 'Prepare PDFs for long-term archive friendly workflows.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF.',
+    comingSoon: true,
+    notice: 'PDF/A conversion is listed here for quick access. Processing support is coming soon.'
+  },
+  'repair-pdf': {
+    title: 'Repair PDF',
+    category: 'Optimize',
+    icon: 'pdf',
+    description: 'Recover readable content from damaged PDF files when possible.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF.',
+    comingSoon: true,
+    notice: 'Repair PDF is listed here for quick access. Processing support is coming soon.'
+  },
+  'page-numbers': {
+    title: 'Page numbers',
+    category: 'Edit',
+    icon: 'pdf',
+    description: 'Add page numbers with simple position and style controls.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF.',
+    comingSoon: true,
+    notice: 'Page numbering is listed here for quick access. Processing support is coming soon.'
+  },
+  'scan-to-pdf': {
+    title: 'Scan to PDF',
+    category: 'Convert',
+    icon: 'image',
+    description: 'Collect scanned images and send them into a PDF workflow.',
+    accept: 'image/png,image/jpeg',
+    multiple: true,
+    help: 'Upload JPG or PNG scans.',
+    acceptLabel: 'JPG, PNG',
+    comingSoon: true,
+    notice: 'For now, use Image to PDF for live scan-to-PDF style conversion.'
+  },
+  'ocr-pdf': {
+    title: 'OCR PDF',
+    category: 'Intelligence',
+    icon: 'text',
+    description: 'Make scanned PDFs searchable and easier to copy from.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one scanned PDF.',
+    comingSoon: true,
+    notice: 'OCR PDF is listed here for quick access. Processing support is coming soon.'
+  },
+  'compare-pdf': {
+    title: 'Compare PDF',
+    category: 'Intelligence',
+    icon: 'pdf',
+    description: 'Review two PDF versions and spot important differences.',
+    accept: '.pdf,application/pdf',
+    multiple: true,
+    help: 'Upload two PDFs.',
+    limitLabel: 'Two PDF files. Max 10 MB per file.',
+    comingSoon: true,
+    notice: 'Compare PDF is listed here for quick access. Processing support is coming soon.'
+  },
+  'redact-pdf': {
+    title: 'Redact PDF',
+    category: 'Secure',
+    icon: 'pdf',
+    description: 'Permanently remove sensitive text or graphics from PDF pages.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF.',
+    comingSoon: true,
+    notice: 'Redact PDF is listed here for quick access. Processing support is coming soon.'
+  },
+  'crop-pdf': {
+    title: 'Crop PDF',
+    category: 'Edit',
+    icon: 'pdf',
+    description: 'Trim margins or crop selected areas across PDF pages.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF.',
+    comingSoon: true,
+    notice: 'Crop PDF is listed here for quick access. Processing support is coming soon.'
+  },
+  'ai-summarizer': {
+    title: 'AI Summarizer',
+    category: 'Intelligence',
+    icon: 'text',
+    description: 'Generate concise summaries and key points from PDF content.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF.',
+    comingSoon: true,
+    notice: 'AI Summarizer is listed here for quick access. Processing support is coming soon.'
+  },
+  'translate-pdf': {
+    title: 'Translate PDF',
+    category: 'Intelligence',
+    icon: 'text',
+    description: 'Translate PDF text while keeping the workflow in one place.',
+    accept: '.pdf,application/pdf',
+    multiple: false,
+    help: 'Upload one PDF.',
+    comingSoon: true,
+    notice: 'Translate PDF is listed here for quick access. Processing support is coming soon.'
+  }
+};
+
+const toolList = document.getElementById('tool-list');
+const form = document.getElementById('pdf-form');
+const fileInput = document.getElementById('file-input');
+const dropZone = document.querySelector('.drop-zone');
+const fileHelp = document.getElementById('file-help');
+const selectedFiles = document.getElementById('selected-files');
+const optionFields = document.getElementById('option-fields');
+const statusBox = document.getElementById('status-box');
+const runBtn = document.getElementById('run-btn');
+const downloadArea = document.getElementById('download-area');
+const downloadList = document.getElementById('download-list');
+const activeIcon = document.getElementById('active-icon');
+const activeFormat = document.getElementById('active-format');
+const activeAccept = document.getElementById('active-accept');
+const activeLimit = document.getElementById('active-limit');
+const apiHealth = document.getElementById('api-health');
+
+let activeTool = new URLSearchParams(window.location.search).get('tool') || 'pdf-to-image';
+if (!TOOLS[activeTool]) activeTool = 'pdf-to-image';
+const RUN_BUTTON_READY = 'Run tool <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const RUN_BUTTON_BUSY = '<span class="h-2 w-2 rounded-full bg-white/85 animate-pulse"></span> Processing';
+
+const TOOL_ICONS = {
+  pdf: {
+    wrap: 'file-icon-pdf',
+    svg: '<svg class="h-9 w-9" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="pdf-page" x1="15" y1="8" x2="49" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#dbeafe"/></linearGradient><linearGradient id="pdf-fold" x1="41" y1="10" x2="53" y2="23" gradientUnits="userSpaceOnUse"><stop stop-color="#bfdbfe"/><stop offset="1" stop-color="#60a5fa"/></linearGradient><filter id="pdf-shadow" x="7" y="6" width="52" height="56" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#1d4ed8" flood-opacity=".22"/></filter></defs><g filter="url(#pdf-shadow)"><path d="M16 8h26l10 11v35a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4Z" fill="url(#pdf-page)"/><path d="M42 8v12a3 3 0 0 0 3 3h7L42 8Z" fill="url(#pdf-fold)"/><path d="M20 38h24v9H20z" rx="3" fill="#0066cc"/><text x="32" y="44.6" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="800" fill="#fff">PDF</text><path d="M20 19h13M20 25h18M20 31h13" stroke="#60a5fa" stroke-width="2.4" stroke-linecap="round"/></g></svg>'
+  },
+  image: {
+    wrap: 'file-icon-image',
+    svg: '<svg class="h-9 w-9" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="img-frame" x1="13" y1="10" x2="52" y2="55" gradientUnits="userSpaceOnUse"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#dcfce7"/></linearGradient><linearGradient id="img-sky" x1="18" y1="18" x2="46" y2="44" gradientUnits="userSpaceOnUse"><stop stop-color="#bfdbfe"/><stop offset="1" stop-color="#34d399"/></linearGradient><filter id="img-shadow" x="7" y="7" width="52" height="54" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#047857" flood-opacity=".22"/></filter></defs><g filter="url(#img-shadow)"><rect x="11" y="11" width="42" height="43" rx="9" fill="url(#img-frame)"/><rect x="17" y="17" width="30" height="25" rx="5" fill="url(#img-sky)"/><circle cx="39" cy="24" r="4" fill="#fef3c7"/><path d="M18 42l9-10 6 6 5-5 10 9H18Z" fill="#138808"/><rect x="21" y="46" width="22" height="7" rx="3.5" fill="#ffffff" opacity=".9"/><text x="32" y="51.2" text-anchor="middle" font-family="Arial, sans-serif" font-size="6.4" font-weight="800" fill="#138808">IMG</text></g></svg>'
+  },
+  word: {
+    wrap: 'file-icon-word',
+    svg: '<svg class="h-9 w-9" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="word-page" x1="15" y1="8" x2="49" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#dbeafe"/></linearGradient><linearGradient id="word-tile" x1="15" y1="23" x2="39" y2="49" gradientUnits="userSpaceOnUse"><stop stop-color="#3b82f6"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient><filter id="word-shadow" x="7" y="6" width="52" height="56" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#2563eb" flood-opacity=".24"/></filter></defs><g filter="url(#word-shadow)"><path d="M18 8h24l10 11v35a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4Z" fill="url(#word-page)"/><path d="M42 8v12a3 3 0 0 0 3 3h7L42 8Z" fill="#93c5fd"/><path d="M12 24h26a4 4 0 0 1 4 4v17a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V28a4 4 0 0 1 4-4Z" fill="url(#word-tile)"/><text x="25" y="41.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="900" fill="#fff">W</text><path d="M43 30h7M43 36h6M43 42h5" stroke="#60a5fa" stroke-width="2.3" stroke-linecap="round"/></g></svg>'
+  },
+  text: {
+    wrap: 'file-icon-text',
+    svg: '<svg class="h-9 w-9" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="txt-page" x1="15" y1="8" x2="49" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#e2e8f0"/></linearGradient><filter id="txt-shadow" x="7" y="6" width="52" height="56" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#475569" flood-opacity=".18"/></filter></defs><g filter="url(#txt-shadow)"><path d="M16 8h27l9 10v36a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4Z" fill="url(#txt-page)"/><path d="M43 8v11a3 3 0 0 0 3 3h6L43 8Z" fill="#cbd5e1"/><path d="M20 20h20M20 27h23M20 34h18M20 41h21" stroke="#64748b" stroke-width="2.8" stroke-linecap="round"/><rect x="20" y="46" width="24" height="7" rx="3.5" fill="#475569"/><text x="32" y="51.3" text-anchor="middle" font-family="Arial, sans-serif" font-size="6.2" font-weight="800" fill="#fff">TXT</text></g></svg>'
+  }
+};
+
+function renderToolTabs() {
+  const groupLabels = {
+    Convert: 'Convert',
+    Organize: 'Organize',
+    Optimize: 'Optimize',
+    Secure: 'Security',
+    Extract: 'Extract',
+    Edit: 'Edit',
+    Intelligence: 'Intelligence'
+  };
+  const groupOrder = ['Convert', 'Organize', 'Optimize', 'Secure', 'Extract', 'Edit', 'Intelligence'];
+  const entries = Object.entries(TOOLS);
+
+  toolList.innerHTML = groupOrder.map((category) => {
+    const tools = entries.filter(([, tool]) => tool.category === category);
+    if (!tools.length) return '';
+
+    return `
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">${groupLabels[category] || category}</div>
+        <div class="sidebar-menu">
+          ${tools.map(([id, tool]) => {
+            const icon = TOOL_ICONS[tool.icon || 'pdf'] || TOOL_ICONS.pdf;
+            const isActive = id === activeTool;
+            return `
+              <button type="button" data-tool="${id}" aria-pressed="${isActive}" class="sidebar-menu-button ${isActive ? 'is-active' : ''}">
+                <span class="sidebar-menu-icon ${icon.wrap}" aria-hidden="true">${icon.svg}</span>
+                <span class="sidebar-menu-text">
+                  <span class="sidebar-menu-title">${tool.title}</span>
+                  <span class="sidebar-menu-meta">${getAcceptLabel(tool)}</span>
+                </span>
+                <span class="sidebar-menu-badge">${tool.comingSoon ? 'Soon' : 'Live'}</span>
+              </button>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  toolList.querySelectorAll('[data-tool]').forEach((button) => {
+    button.addEventListener('click', () => setTool(button.dataset.tool));
+  });
+  toolList.querySelector('.sidebar-menu-button.is-active')?.scrollIntoView({ block: 'nearest' });
+}
+
+function getAcceptLabel(tool) {
+  if (tool.acceptLabel) return tool.acceptLabel;
+  if (tool.icon === 'image') return tool.title === 'Image to PDF' ? 'JPG, PNG' : 'PDF input';
+  if (tool.icon === 'word') return tool.title === 'Word to PDF' ? 'DOCX input' : 'PDF input';
+  if (tool.icon === 'text') return 'PDF input';
+  return tool.multiple ? 'PDF files' : 'PDF input';
+}
+
+function getLimitLabel(tool) {
+  if (tool.limitLabel) return tool.limitLabel;
+  if (tool.multiple && tool.accept.includes('image')) return 'Up to 40 images. Max 10 MB per file.';
+  if (tool.multiple) return 'Up to 40 PDFs. Max 10 MB per file.';
+  return 'Single file. Max 10 MB.';
+}
+
+function fieldHtml(field) {
+  const helper = field.helper ? `<p class="text-xs text-text-muted mt-1.5">${field.helper}</p>` : '';
+  if (field.type === 'select') {
+    return `
+      <label class="block">
+        <span class="block text-sm font-medium text-text-main mb-2">${field.label}</span>
+        <select id="opt-${field.id}" class="shad-field">
+          ${field.options.map(([value, label]) => `<option value="${value}">${label}</option>`).join('')}
+        </select>
+        ${helper}
+      </label>
+    `;
+  }
+  return `
+    <label class="block">
+      <span class="block text-sm font-medium text-text-main mb-2">${field.label}</span>
+      <input id="opt-${field.id}" type="${field.type}" placeholder="${field.placeholder || ''}" class="shad-field">
+      ${helper}
+    </label>
+  `;
+}
+
+function setTool(id) {
+  activeTool = id;
+  const tool = TOOLS[activeTool];
+  const icon = TOOL_ICONS[tool.icon || 'pdf'] || TOOL_ICONS.pdf;
+  activeIcon.className = `active-icon-large flex h-20 w-20 shrink-0 items-center justify-center rounded-[1.35rem] border ${icon.wrap} shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_18px_42px_-32px_rgba(15,23,42,0.45)]`;
+  activeIcon.innerHTML = icon.svg;
+  activeFormat.textContent = getAcceptLabel(tool);
+  activeAccept.textContent = getAcceptLabel(tool);
+  activeLimit.textContent = getLimitLabel(tool);
+  document.getElementById('active-title').textContent = tool.title;
+  document.getElementById('active-category').textContent = tool.category;
+  document.getElementById('active-description').textContent = tool.description;
+  fileHelp.textContent = tool.help;
+  fileInput.value = '';
+  fileInput.accept = tool.accept;
+  fileInput.multiple = tool.multiple;
+  fileInput.disabled = Boolean(tool.comingSoon);
+  dropZone.classList.toggle('is-disabled', Boolean(tool.comingSoon));
+  selectedFiles.classList.add('hidden');
+  selectedFiles.innerHTML = '';
+  optionFields.innerHTML = (tool.fields || []).map(fieldHtml).join('');
+  if (tool.comingSoon) {
+    showStatus('info', tool.notice || 'This PDF action is listed for quick access. Processing support is coming soon.');
+    runBtn.disabled = true;
+    runBtn.textContent = 'Coming soon';
+  } else {
+    hideStatus();
+    runBtn.disabled = false;
+    runBtn.innerHTML = RUN_BUTTON_READY;
+  }
+  downloadArea.classList.add('hidden');
+  renderToolTabs();
+  history.replaceState(null, '', `?tool=${activeTool}`);
+}
+
+function showStatus(type, message, warnings = []) {
+  const styles = {
+    info: 'show bg-blue-50/90 border-blue-100 text-blue-800',
+    error: 'show bg-red-50/90 border-red-100 text-red-700',
+    success: 'show bg-green-50/90 border-green-100 text-green-800'
+  };
+  const icons = {
+    info: '<svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6v6l4 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>',
+    error: '<svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 9v4m0 4h.01M10.3 4.5h3.4L21 18.5 19.3 21H4.7L3 18.5 10.3 4.5Z"/></svg>',
+    success: '<svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 6 9 17l-5-5"/></svg>'
+  };
+  statusBox.className = `result-box rounded-[1.15rem] border p-4 text-sm ${styles[type] || styles.info}`;
+  statusBox.innerHTML = `
+    <div class="flex items-start gap-3">
+      ${icons[type] || icons.info}
+      <div>
+        <div class="font-extrabold">${escapeHtml(message)}</div>
+        ${warnings.length ? `<ul class="mt-2 list-disc pl-5 space-y-1">${warnings.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+function hideStatus() {
+  statusBox.className = 'result-box rounded-[1.15rem] border p-4 text-sm';
+  statusBox.innerHTML = '';
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (char) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  }[char]));
+}
+
+function fileKindFromName(file) {
+  const name = (file.name || '').toLowerCase();
+  const type = (file.type || '').toLowerCase();
+  if (type.startsWith('image/') || /\.(png|jpe?g)$/i.test(name)) return 'image';
+  if (type.includes('wordprocessingml') || /\.docx$/i.test(name)) return 'word';
+  if (type.startsWith('text/') || /\.txt$/i.test(name)) return 'text';
+  return 'pdf';
+}
+
+function updateSelectedFiles() {
+  const files = Array.from(fileInput.files || []);
+  if (!files.length) {
+    selectedFiles.classList.add('hidden');
+    selectedFiles.innerHTML = '';
+    return;
+  }
+  selectedFiles.classList.remove('hidden');
+  selectedFiles.innerHTML = `
+    <div class="flex items-center justify-between gap-3 mb-3">
+      <div class="text-xs font-extrabold uppercase tracking-[0.16em] text-text-muted">Selected files</div>
+      <div class="font-mono text-[11px] font-bold text-text-muted">${files.length} file${files.length === 1 ? '' : 's'}</div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+      ${files.map((file) => {
+        const kind = fileKindFromName(file);
+        const icon = TOOL_ICONS[kind] || TOOL_ICONS.pdf;
+        return `
+        <div class="flex items-center justify-between gap-3 rounded-2xl border border-border-col bg-white/82 px-3 py-3 text-sm">
+          <span class="flex min-w-0 items-center gap-3">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border ${icon.wrap}">${icon.svg}</span>
+            <span class="min-w-0">
+              <span class="block truncate font-extrabold text-text-main">${escapeHtml(file.name)}</span>
+              <span class="block mt-0.5 font-mono text-[11px] text-text-muted">${formatBytes(file.size)}</span>
+            </span>
+          </span>
+        </div>
+      `; }).join('')}
+    </div>
+  `;
+}
+
+function formatBytes(bytes) {
+  if (!Number.isFinite(bytes)) return '0 B';
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / 1024 / 1024).toFixed(2)} MB`;
+}
+
+function arrayBufferToBase64(buffer) {
+  const bytes = new Uint8Array(buffer);
+  let binary = '';
+  const chunkSize = 0x8000;
+  for (let i = 0; i < bytes.length; i += chunkSize) {
+    binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunkSize));
+  }
+  return btoa(binary);
+}
+
+async function fileToPayload(file) {
+  return {
+    name: file.name,
+    type: file.type,
+    data: arrayBufferToBase64(await file.arrayBuffer())
+  };
+}
+
+function collectOptions() {
+  const options = {};
+  (TOOLS[activeTool].fields || []).forEach((field) => {
+    const input = document.getElementById(`opt-${field.id}`);
+    if (input && input.value.trim()) options[field.id] = input.value.trim();
+  });
+  return options;
+}
+
+function base64ToBlob(data, mimeType) {
+  const binary = atob(data);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i += 1) bytes[i] = binary.charCodeAt(i);
+  return new Blob([bytes], { type: mimeType });
+}
+
+function downloadFile(file) {
+  const blob = base64ToBlob(file.data, file.mimeType);
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = file.fileName;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+function renderDownloads(payload) {
+  const files = payload.files || (payload.file ? [payload.file] : []);
+  downloadArea.classList.toggle('hidden', !files.length);
+  downloadList.innerHTML = files.map((file, index) => `
+    <button type="button" data-download="${index}" class="download-card flex items-center justify-between gap-4 rounded-2xl border border-border-col bg-white/76 p-4 text-left">
+      <span class="flex min-w-0 items-center gap-3">
+        <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border ${TOOL_ICONS[fileKindFromName({ name: file.fileName, type: file.mimeType })].wrap}">
+          ${TOOL_ICONS[fileKindFromName({ name: file.fileName, type: file.mimeType })].svg}
+        </span>
+        <span class="min-w-0">
+          <span class="block truncate text-sm font-extrabold text-text-main">${escapeHtml(file.fileName)}</span>
+          <span class="block mt-1 font-mono text-xs text-text-muted">${formatBytes(file.size)}</span>
+        </span>
+      </span>
+      <span class="shad-button shad-button-primary h-10 px-4 shrink-0 text-xs">Download</span>
+    </button>
+  `).join('');
+
+  downloadList.querySelectorAll('[data-download]').forEach((button) => {
+    button.addEventListener('click', () => downloadFile(files[Number(button.dataset.download)]));
+  });
+}
+
+async function checkApiHealth() {
+  if (!apiHealth) return;
+  try {
+    const response = await fetch('/api/pdf-tools');
+    apiHealth.textContent = response.ok ? 'OK' : 'ERR';
+    apiHealth.className = `mt-2 text-2xl font-extrabold ${response.ok ? 'text-accent' : 'text-red-600'}`;
+  } catch (_) {
+    apiHealth.textContent = 'ERR';
+    apiHealth.className = 'mt-2 text-2xl font-extrabold text-red-600';
+  }
+}
+
+fileInput.addEventListener('change', updateSelectedFiles);
+
+['dragenter', 'dragover'].forEach((eventName) => {
+  dropZone.addEventListener(eventName, (event) => {
+    event.preventDefault();
+    dropZone.classList.add('dragover');
+  });
+});
+
+['dragleave', 'drop'].forEach((eventName) => {
+  dropZone.addEventListener(eventName, (event) => {
+    event.preventDefault();
+    dropZone.classList.remove('dragover');
+  });
+});
+
+dropZone.addEventListener('drop', (event) => {
+  if (!event.dataTransfer.files.length) return;
+  fileInput.files = event.dataTransfer.files;
+  updateSelectedFiles();
+});
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const tool = TOOLS[activeTool];
+  if (tool.comingSoon) {
+    showStatus('info', tool.notice || 'This PDF action is listed for quick access. Processing support is coming soon.');
+    runBtn.disabled = true;
+    runBtn.textContent = 'Coming soon';
+    return;
+  }
+
+  const files = Array.from(fileInput.files || []);
+  if (!files.length) {
+    showStatus('error', 'Please choose file(s) first.');
+    return;
+  }
+
+  runBtn.disabled = true;
+  runBtn.innerHTML = RUN_BUTTON_BUSY;
+  showStatus('info', 'Processing file...');
+  downloadArea.classList.add('hidden');
+  downloadList.innerHTML = '';
+
+  try {
+    const payload = {
+      action: activeTool,
+      options: collectOptions(),
+      files: await Promise.all(files.map(fileToPayload))
+    };
+
+    const response = await fetch('/api/pdf-tools', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+    if (!response.ok || !result.success) {
+      throw new Error(result.error || 'PDF tool failed.');
+    }
+
+    showStatus('success', 'Done. Your output is ready.', result.warnings || []);
+    renderDownloads(result);
+  } catch (error) {
+    showStatus('error', error.message || 'PDF tool failed.');
+  } finally {
+    runBtn.disabled = false;
+    runBtn.innerHTML = RUN_BUTTON_READY;
+  }
+});
+
+setTool(activeTool);
+checkApiHealth();
+</script>
+</body>
+</html>

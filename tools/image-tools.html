@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Tools - Convert, Resize, Compress, Crop and Base64</title>
+  <meta name="description" content="Free browser-based image tools to convert JPG, PNG, WEBP, SVG, resize, compress, crop, rotate, blur, sharpen, watermark, and convert images to or from Base64.">
+  <link rel="canonical" href="https://verifydocs.online/tools/image-tools">
+  <link rel="alternate" hreflang="en-IN" href="https://verifydocs.online/tools/image-tools">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230066cc'/%3E%3Cpath d='M16 6l6 4v6c0 5-6 9-6 9s-6-4-6-9v-6z' fill='white'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0066cc',
+            accent: '#138808',
+            warning: '#ff9933',
+            'text-main': '#0f172a',
+            'text-muted': '#64748b',
+            'bg-main': '#f8fafc',
+            'border-col': '#e2e8f0'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      min-height: 100dvh;
+      background:
+        linear-gradient(rgba(255,255,255,0.78) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.78) 1px, transparent 1px),
+        linear-gradient(180deg, #f8fafc 0%, #f3fbf4 46%, #fff8ef 100%);
+      background-size: 42px 42px, 42px 42px, 100% 100%;
+      color: #0f172a;
+      font-family: 'Inter', sans-serif;
+    }
+    .app-card {
+      border: 1px solid rgba(203,213,225,0.92);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.9);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.86), 0 26px 72px -52px rgba(15,23,42,0.55);
+      backdrop-filter: blur(16px);
+    }
+    .tool-button {
+      position: relative;
+      width: 100%;
+      border: 1px solid rgba(226,232,240,0.95);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.72);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tool-button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(19,136,8,0.28);
+      background: #ffffff;
+    }
+    .tool-button.active {
+      border-color: rgba(0,102,204,0.34);
+      background: rgba(0,102,204,0.065);
+      box-shadow: 0 18px 44px -34px rgba(0,102,204,0.48);
+    }
+    .tool-mini-icon,
+    .active-icon {
+      color: var(--icon-color, #0066cc);
+      background: var(--icon-bg, #e7f1ff);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 14px 28px -24px var(--icon-shadow, rgba(0,102,204,0.58));
+    }
+    .icon-blue { --icon-color: #0066cc; --icon-bg: #e7f1ff; --icon-shadow: rgba(0,102,204,0.58); }
+    .icon-green { --icon-color: #138808; --icon-bg: #e9f8e6; --icon-shadow: rgba(19,136,8,0.45); }
+    .icon-orange { --icon-color: #cc6b10; --icon-bg: #fff1df; --icon-shadow: rgba(255,153,51,0.55); }
+    .icon-rose { --icon-color: #b0476e; --icon-bg: #fde8ef; --icon-shadow: rgba(176,71,110,0.45); }
+    .icon-slate { --icon-color: #475569; --icon-bg: #eef2f7; --icon-shadow: rgba(71,85,105,0.38); }
+    .drop-zone {
+      border: 2px dashed rgba(0,102,204,0.22);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.88), rgba(247,252,247,0.82)),
+        repeating-linear-gradient(135deg, transparent 0 22px, rgba(19,136,8,0.045) 22px 23px);
+      transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    }
+    .drop-zone:hover,
+    .drop-zone.is-dragging {
+      transform: translateY(-1px);
+      border-color: rgba(19,136,8,0.42);
+      background-color: #ffffff;
+    }
+    .control {
+      width: 100%;
+      min-height: 2.85rem;
+      border: 1px solid #dbe4ee;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.92);
+      padding: 0 0.85rem;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+    .control:focus {
+      border-color: rgba(0,102,204,0.5);
+      box-shadow: 0 0 0 4px rgba(0,102,204,0.1);
+      background: #ffffff;
+    }
+    textarea.control {
+      min-height: 9rem;
+      padding: 0.85rem;
+      line-height: 1.55;
+      resize: vertical;
+    }
+    .primary-action,
+    .secondary-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 2.9rem;
+      border-radius: 8px;
+      font-weight: 800;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .primary-action {
+      color: #ffffff;
+      background: #0066cc;
+      box-shadow: 0 20px 36px -28px rgba(0,102,204,0.8);
+    }
+    .primary-action:hover { background: #075baa; transform: translateY(-1px); }
+    .secondary-action {
+      color: #0f172a;
+      border: 1px solid #dbe4ee;
+      background: rgba(255,255,255,0.82);
+    }
+    .secondary-action:hover {
+      color: #0066cc;
+      border-color: rgba(0,102,204,0.34);
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+    .preview-tile {
+      min-height: 260px;
+      border: 1px solid rgba(226,232,240,0.9);
+      border-radius: 8px;
+      background:
+        linear-gradient(45deg, rgba(148,163,184,0.14) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(148,163,184,0.14) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(148,163,184,0.14) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(148,163,184,0.14) 75%),
+        #ffffff;
+      background-size: 18px 18px;
+      background-position: 0 0, 0 9px, 9px -9px, -9px 0;
+    }
+    .preview-tile img {
+      max-width: 100%;
+      max-height: 420px;
+      object-fit: contain;
+    }
+    .status-box {
+      display: none;
+      border-radius: 8px;
+      border: 1px solid;
+      padding: 0.9rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 650;
+    }
+    .status-box.show { display: block; }
+    .status-info { border-color: #bfdbfe; background: #eff6ff; color: #1d4ed8; }
+    .status-success { border-color: #bbf7d0; background: #f0fdf4; color: #166534; }
+    .status-error { border-color: #fecaca; background: #fef2f2; color: #991b1b; }
+    @media (max-width: 767px) {
+      .preview-tile { min-height: 210px; }
+      .preview-tile img { max-height: 300px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tool-button,
+      .drop-zone,
+      .primary-action,
+      .secondary-action {
+        transition: none;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Image Tools",
+    "url": "https://verifydocs.online/tools/image-tools",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+  }
+  </script>
+</head>
+<body>
+<nav class="sticky top-0 z-50 border-b border-border-col bg-white/88 shadow-sm backdrop-blur-md">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
+    <a href="../index.html" class="flex items-center gap-2 text-xl font-bold text-text-main no-underline">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="#0066cc"/>
+        <path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/>
+        <path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>VerifyDocs<span class="text-primary">.online</span></span>
+    </a>
+    <div class="hidden items-center gap-6 text-sm font-medium text-text-muted md:flex">
+      <a href="../index.html" class="transition-colors hover:text-primary">Home</a>
+      <a href="../index.html#image-tools" class="font-bold text-primary">Image Tools</a>
+      <a href="../index.html#pdf-tools" class="transition-colors hover:text-primary">PDF Tools</a>
+      <a href="../blog/index.html" class="transition-colors hover:text-primary">Blog</a>
+      <a href="../about.html" class="transition-colors hover:text-primary">About</a>
+    </div>
+  </div>
+</nav>
+
+<main class="relative overflow-hidden">
+  <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 md:py-10">
+    <nav class="mb-6 flex items-center gap-2 text-sm text-text-muted">
+      <a href="../index.html" class="hover:text-primary">Home</a>
+      <span>/</span>
+      <a href="../index.html#image-tools" class="hover:text-primary">Image Tools</a>
+      <span>/</span>
+      <span class="font-semibold text-text-main">Workspace</span>
+    </nav>
+
+    <div class="mb-7 grid gap-6 lg:grid-cols-[1fr_370px] lg:items-end">
+      <div>
+        <div class="mb-5 flex flex-wrap items-center gap-2">
+          <span class="inline-flex items-center gap-2 rounded-full border border-green-100 bg-white px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.12em] text-accent">
+            <span class="h-2 w-2 rounded-full bg-warning"></span>
+            Client-side image lab
+          </span>
+          <span class="rounded-full border border-border-col bg-white px-3 py-1.5 text-xs font-extrabold text-text-muted">14 tools</span>
+          <span class="rounded-full border border-border-col bg-white px-3 py-1.5 text-xs font-extrabold text-text-muted">No upload</span>
+        </div>
+        <h1 class="max-w-3xl text-4xl font-black leading-tight tracking-normal text-text-main md:text-5xl">
+          Image tools for quick format fixes and polished exports
+        </h1>
+        <p class="mt-4 max-w-2xl text-base font-medium leading-relaxed text-text-muted md:text-lg">
+          Convert, resize, compress, crop, rotate, blur, sharpen, watermark, and handle Base64 or SVG from one responsive workspace.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-3">
+        <div class="app-card p-4">
+          <div class="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-text-muted">Formats</div>
+          <div class="mt-2 text-2xl font-black text-text-main">5</div>
+        </div>
+        <div class="app-card p-4">
+          <div class="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-text-muted">Mode</div>
+          <div class="mt-2 text-2xl font-black text-accent">Local</div>
+        </div>
+        <div class="app-card p-4">
+          <div class="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-text-muted">Canvas</div>
+          <div class="mt-2 text-2xl font-black text-primary">On</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-[310px_minmax(0,1fr)]">
+      <aside class="app-card p-4 lg:sticky lg:top-24 lg:max-h-[calc(100dvh-7rem)] lg:overflow-auto" aria-label="Image tools list">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-green-50 text-xs font-black text-accent">IMG</span>
+          <div>
+            <div class="text-sm font-black text-text-main">Image Tools</div>
+            <div class="text-xs font-semibold text-text-muted">Convert, edit, optimize</div>
+          </div>
+        </div>
+        <div id="tool-list" class="grid gap-2"></div>
+      </aside>
+
+      <section class="app-card overflow-hidden">
+        <div class="border-b border-border-col bg-white/64 p-5 md:p-7">
+          <div class="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
+            <div class="flex items-start gap-4">
+              <div id="active-icon" class="active-icon flex h-16 w-16 shrink-0 items-center justify-center rounded-lg border border-white md:h-20 md:w-20"></div>
+              <div>
+                <div class="mb-2 flex flex-wrap items-center gap-2">
+                  <span id="active-group" class="rounded-full border border-green-100 bg-green-50 px-3 py-1 text-xs font-extrabold text-accent"></span>
+                  <span id="active-format" class="rounded-full border border-border-col bg-white px-3 py-1 text-xs font-extrabold text-text-muted"></span>
+                </div>
+                <h2 id="active-title" class="text-2xl font-black tracking-normal text-text-main md:text-4xl"></h2>
+                <p id="active-description" class="mt-2 max-w-2xl text-sm font-medium leading-relaxed text-text-muted md:text-base"></p>
+              </div>
+            </div>
+            <a href="../index.html#image-tools" class="secondary-action h-11 px-4 text-xs no-underline">All image cards</a>
+          </div>
+        </div>
+
+        <div class="p-5 md:p-7">
+          <form id="image-form" class="space-y-5">
+            <label id="file-drop" class="drop-zone block cursor-pointer p-5 md:p-7" for="file-input">
+              <input id="file-input" type="file" class="hidden">
+              <span class="flex flex-col gap-5 md:flex-row md:items-center">
+                <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg border border-white bg-white text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_18px_34px_-28px_rgba(0,102,204,0.62)]">
+                  <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 16V4m0 0 4 4m-4-4-4 4M5 16v3h14v-3"/></svg>
+                </span>
+                <span class="min-w-0 flex-1 text-left">
+                  <span class="block text-lg font-black text-text-main">Upload image</span>
+                  <span id="file-help" class="mt-1 block text-sm font-medium text-text-muted"></span>
+                  <span id="selected-file" class="mt-3 hidden rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600"></span>
+                </span>
+                <span class="secondary-action h-11 px-4 text-xs">Browse</span>
+              </span>
+            </label>
+
+            <div id="text-panel" class="hidden space-y-3">
+              <label for="text-input" id="text-label" class="block text-sm font-black text-text-main"></label>
+              <textarea id="text-input" class="control font-mono text-xs" spellcheck="false"></textarea>
+            </div>
+
+            <div id="option-fields" class="grid grid-cols-1 gap-4 md:grid-cols-2"></div>
+
+            <div id="status-box" class="status-box" role="status" aria-live="polite"></div>
+
+            <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
+              <button id="run-btn" type="submit" class="primary-action h-12 px-7">
+                Run image tool
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+              <p id="active-note" class="text-xs font-semibold text-text-muted"></p>
+            </div>
+          </form>
+
+          <div class="mt-7 grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <div class="preview-tile flex flex-col items-center justify-center p-4 text-center">
+              <div class="mb-3 text-xs font-black uppercase tracking-[0.14em] text-text-muted">Original</div>
+              <img id="original-preview" class="hidden rounded-md" alt="Original image preview">
+              <p id="original-empty" class="max-w-xs text-sm font-semibold text-text-muted">Upload or paste content to preview the source.</p>
+            </div>
+            <div class="preview-tile flex flex-col items-center justify-center p-4 text-center">
+              <div class="mb-3 text-xs font-black uppercase tracking-[0.14em] text-text-muted">Result</div>
+              <img id="result-preview" class="hidden rounded-md" alt="Processed image preview">
+              <p id="result-empty" class="max-w-xs text-sm font-semibold text-text-muted">Your processed image will appear here.</p>
+            </div>
+          </div>
+
+          <div id="output-text-panel" class="mt-5 hidden space-y-3">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <h3 class="text-sm font-black uppercase tracking-[0.14em] text-text-main">Base64 output</h3>
+              <button id="copy-output" type="button" class="secondary-action h-10 px-4 text-xs">Copy text</button>
+            </div>
+            <textarea id="output-text" class="control font-mono text-xs" readonly></textarea>
+          </div>
+
+          <div id="download-panel" class="mt-6 hidden border-t border-border-col pt-5">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h3 class="text-sm font-black uppercase tracking-[0.14em] text-text-main">Download</h3>
+                <p id="download-meta" class="mt-1 text-sm font-semibold text-text-muted"></p>
+              </div>
+              <a id="download-link" class="primary-action h-11 px-5 text-sm no-underline" href="#" download>Download result</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</main>
+
+<script>
+const TOOLS = {
+  'jpg-to-png': {
+    title: 'JPG to PNG',
+    group: 'Convert',
+    icon: 'file',
+    tone: 'icon-blue',
+    accept: 'image/jpeg,.jpg,.jpeg',
+    acceptLabel: 'JPG, JPEG',
+    description: 'Convert JPEG photos into PNG files with crisp browser rendering.',
+    help: 'Upload one JPG or JPEG image.',
+    note: 'Output: PNG',
+    action: 'convert',
+    output: 'image/png',
+    extension: 'png'
+  },
+  'png-to-jpg': {
+    title: 'PNG to JPG',
+    group: 'Convert',
+    icon: 'image',
+    tone: 'icon-orange',
+    accept: 'image/png,.png',
+    acceptLabel: 'PNG',
+    description: 'Flatten PNG files into JPG images with a clean white background.',
+    help: 'Upload one PNG image.',
+    note: 'Transparent areas become white.',
+    action: 'convert',
+    output: 'image/jpeg',
+    extension: 'jpg',
+    fill: '#ffffff',
+    fields: [{ id: 'quality', label: 'JPG quality', type: 'range', min: 0.35, max: 1, step: 0.05, value: 0.92 }]
+  },
+  'webp-to-jpg': {
+    title: 'WEBP to JPG',
+    group: 'Convert',
+    icon: 'swap',
+    tone: 'icon-green',
+    accept: 'image/webp,.webp',
+    acceptLabel: 'WEBP',
+    description: 'Convert modern WEBP images into widely accepted JPG files.',
+    help: 'Upload one WEBP image.',
+    note: 'Output: JPG',
+    action: 'convert',
+    output: 'image/jpeg',
+    extension: 'jpg',
+    fill: '#ffffff',
+    fields: [{ id: 'quality', label: 'JPG quality', type: 'range', min: 0.35, max: 1, step: 0.05, value: 0.9 }]
+  },
+  'jpg-to-webp': {
+    title: 'JPG to WEBP',
+    group: 'Convert',
+    icon: 'compress',
+    tone: 'icon-green',
+    accept: 'image/jpeg,.jpg,.jpeg',
+    acceptLabel: 'JPG, JPEG',
+    description: 'Create smaller WEBP images from JPG files for websites and sharing.',
+    help: 'Upload one JPG or JPEG image.',
+    note: 'Output: WEBP',
+    action: 'convert',
+    output: 'image/webp',
+    extension: 'webp',
+    fields: [{ id: 'quality', label: 'WEBP quality', type: 'range', min: 0.35, max: 1, step: 0.05, value: 0.86 }]
+  },
+  'resize-image': {
+    title: 'Resize Image',
+    group: 'Optimize',
+    icon: 'resize',
+    tone: 'icon-slate',
+    accept: 'image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp',
+    acceptLabel: 'PNG, JPG, WEBP',
+    description: 'Resize an image to exact dimensions while preserving aspect ratio when one side is blank.',
+    help: 'Upload one image and enter width, height, or both.',
+    note: 'Blank width or height will be calculated automatically.',
+    action: 'resize',
+    fields: [
+      { id: 'width', label: 'Width', type: 'number', min: 1, placeholder: 'Auto' },
+      { id: 'height', label: 'Height', type: 'number', min: 1, placeholder: 'Auto' },
+      { id: 'format', label: 'Output format', type: 'select', options: [['image/png', 'PNG'], ['image/jpeg', 'JPG'], ['image/webp', 'WEBP']], value: 'image/png' },
+      { id: 'quality', label: 'Quality', type: 'range', min: 0.35, max: 1, step: 0.05, value: 0.9 }
+    ]
+  },
+  'compress-image': {
+    title: 'Compress Image',
+    group: 'Optimize',
+    icon: 'compress',
+    tone: 'icon-orange',
+    accept: 'image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp',
+    acceptLabel: 'PNG, JPG, WEBP',
+    description: 'Reduce image size using JPG or WEBP quality controls and optional max width.',
+    help: 'Upload one image.',
+    note: 'Lower quality means smaller file size.',
+    action: 'compress',
+    fields: [
+      { id: 'format', label: 'Output format', type: 'select', options: [['image/jpeg', 'JPG'], ['image/webp', 'WEBP']], value: 'image/jpeg' },
+      { id: 'quality', label: 'Quality', type: 'range', min: 0.25, max: 0.95, step: 0.05, value: 0.72 },
+      { id: 'maxWidth', label: 'Max width', type: 'number', min: 1, placeholder: 'Keep original' }
+    ]
+  },
+  'crop-image': {
+    title: 'Crop Image',
+    group: 'Edit',
+    icon: 'crop',
+    tone: 'icon-blue',
+    accept: 'image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp',
+    acceptLabel: 'PNG, JPG, WEBP',
+    description: 'Crop from the center using square, landscape, portrait, or custom dimensions.',
+    help: 'Upload one image.',
+    note: 'Custom crop uses pixel width and height.',
+    action: 'crop',
+    fields: [
+      { id: 'ratio', label: 'Crop ratio', type: 'select', options: [['square', 'Square'], ['4:3', '4:3 landscape'], ['16:9', '16:9 landscape'], ['3:4', '3:4 portrait'], ['custom', 'Custom pixels']], value: 'square' },
+      { id: 'cropWidth', label: 'Custom width', type: 'number', min: 1, placeholder: 'Optional' },
+      { id: 'cropHeight', label: 'Custom height', type: 'number', min: 1, placeholder: 'Optional' },
+      { id: 'format', label: 'Output format', type: 'select', options: [['image/png', 'PNG'], ['image/jpeg', 'JPG'], ['image/webp', 'WEBP']], value: 'image/png' }
+    ]
+  },
+  'rotate-image': {
+    title: 'Rotate Image',
+    group: 'Edit',
+    icon: 'rotate',
+    tone: 'icon-green',
+    accept: 'image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp',
+    acceptLabel: 'PNG, JPG, WEBP',
+    description: 'Rotate images by 90, 180, or 270 degrees.',
+    help: 'Upload one image.',
+    note: 'Output keeps PNG by default.',
+    action: 'rotate',
+    fields: [
+      { id: 'degrees', label: 'Rotation', type: 'select', options: [['90', '90 degrees'], ['180', '180 degrees'], ['270', '270 degrees']], value: '90' },
+      { id: 'format', label: 'Output format', type: 'select', options: [['image/png', 'PNG'], ['image/jpeg', 'JPG'], ['image/webp', 'WEBP']], value: 'image/png' }
+    ]
+  },
+  'blur-image': {
+    title: 'Blur Image',
+    group: 'Edit',
+    icon: 'blur',
+    tone: 'icon-rose',
+    accept: 'image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp',
+    acceptLabel: 'PNG, JPG, WEBP',
+    description: 'Apply a soft blur for backgrounds, privacy, or visual treatment.',
+    help: 'Upload one image.',
+    note: 'Higher radius creates stronger blur.',
+    action: 'blur',
+    fields: [
+      { id: 'radius', label: 'Blur radius', type: 'range', min: 1, max: 18, step: 1, value: 6 },
+      { id: 'format', label: 'Output format', type: 'select', options: [['image/png', 'PNG'], ['image/jpeg', 'JPG'], ['image/webp', 'WEBP']], value: 'image/png' }
+    ]
+  },
+  'sharpen-image': {
+    title: 'Sharpen Image',
+    group: 'Edit',
+    icon: 'spark',
+    tone: 'icon-slate',
+    accept: 'image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp',
+    acceptLabel: 'PNG, JPG, WEBP',
+    description: 'Improve edge clarity with a controlled sharpening filter.',
+    help: 'Upload one image.',
+    note: 'Moderate sharpening usually looks best.',
+    action: 'sharpen',
+    fields: [
+      { id: 'amount', label: 'Sharpness', type: 'range', min: 0.2, max: 1.6, step: 0.1, value: 0.8 },
+      { id: 'format', label: 'Output format', type: 'select', options: [['image/png', 'PNG'], ['image/jpeg', 'JPG'], ['image/webp', 'WEBP']], value: 'image/png' }
+    ]
+  },
+  'watermark-image': {
+    title: 'Watermark Image',
+    group: 'Edit',
+    icon: 'watermark',
+    tone: 'icon-blue',
+    accept: 'image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp',
+    acceptLabel: 'PNG, JPG, WEBP',
+    description: 'Add a clean text watermark before publishing or sharing.',
+    help: 'Upload one image.',
+    note: 'Watermark is applied directly to the exported image.',
+    action: 'watermark',
+    fields: [
+      { id: 'text', label: 'Watermark text', type: 'text', value: 'verifydocs.online', placeholder: 'Your text' },
+      { id: 'position', label: 'Position', type: 'select', options: [['bottom-right', 'Bottom right'], ['bottom-left', 'Bottom left'], ['top-right', 'Top right'], ['top-left', 'Top left'], ['center', 'Center']], value: 'bottom-right' },
+      { id: 'size', label: 'Text size', type: 'range', min: 3, max: 12, step: 1, value: 6 },
+      { id: 'opacity', label: 'Opacity', type: 'range', min: 0.15, max: 1, step: 0.05, value: 0.55 },
+      { id: 'format', label: 'Output format', type: 'select', options: [['image/png', 'PNG'], ['image/jpeg', 'JPG'], ['image/webp', 'WEBP']], value: 'image/png' }
+    ]
+  },
+  'image-to-base64': {
+    title: 'Image to Base64',
+    group: 'Utility',
+    icon: 'code',
+    tone: 'icon-green',
+    accept: 'image/png,image/jpeg,image/webp,image/svg+xml,.png,.jpg,.jpeg,.webp,.svg',
+    acceptLabel: 'Images',
+    description: 'Generate a Base64 data URL for CSS, HTML, JSON, or quick embeds.',
+    help: 'Upload one image file.',
+    note: 'Output is a data URL.',
+    action: 'image-to-base64'
+  },
+  'base64-to-image': {
+    title: 'Base64 to Image',
+    group: 'Utility',
+    icon: 'image',
+    tone: 'icon-orange',
+    acceptLabel: 'Base64',
+    description: 'Paste a Base64 data URL or raw Base64 string and download it as an image.',
+    help: 'Paste Base64 content below.',
+    note: 'Raw Base64 uses the selected MIME type.',
+    action: 'base64-to-image',
+    textLabel: 'Paste Base64 or data URL',
+    textPlaceholder: 'data:image/png;base64,iVBORw0KGgo...',
+    fields: [{ id: 'mime', label: 'Raw Base64 MIME type', type: 'select', options: [['image/png', 'PNG'], ['image/jpeg', 'JPG'], ['image/webp', 'WEBP'], ['image/svg+xml', 'SVG']], value: 'image/png' }]
+  },
+  'svg-to-png-jpg': {
+    title: 'SVG to PNG/JPG',
+    group: 'Convert',
+    icon: 'code',
+    tone: 'icon-rose',
+    accept: 'image/svg+xml,.svg',
+    acceptLabel: 'SVG',
+    description: 'Rasterize SVG artwork into PNG or JPG at a chosen size.',
+    help: 'Upload an SVG file or paste SVG markup below.',
+    note: 'JPG output uses a white background.',
+    action: 'svg-to-raster',
+    textLabel: 'Paste SVG markup (optional)',
+    textPlaceholder: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240">...</svg>',
+    fields: [
+      { id: 'format', label: 'Output format', type: 'select', options: [['image/png', 'PNG'], ['image/jpeg', 'JPG']], value: 'image/png' },
+      { id: 'width', label: 'Output width', type: 'number', min: 1, placeholder: 'Auto' },
+      { id: 'height', label: 'Output height', type: 'number', min: 1, placeholder: 'Auto' },
+      { id: 'quality', label: 'JPG quality', type: 'range', min: 0.35, max: 1, step: 0.05, value: 0.92 }
+    ]
+  }
+};
+
+const TOOL_ORDER = [
+  'jpg-to-png',
+  'png-to-jpg',
+  'webp-to-jpg',
+  'jpg-to-webp',
+  'resize-image',
+  'compress-image',
+  'crop-image',
+  'rotate-image',
+  'blur-image',
+  'sharpen-image',
+  'watermark-image',
+  'image-to-base64',
+  'base64-to-image',
+  'svg-to-png-jpg'
+];
+
+const ICONS = {
+  file: '<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 3h8l4 4v14H6V3Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M14 3v5h5M8.5 16l2.2-2.7 2 2.2 1.3-1.4 1.8 1.9"/></svg>',
+  image: '<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 5h16v14H4V5Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 13l2-2 2 2 2-3 3 4H7"/></svg>',
+  swap: '<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 7h11m0 0-3-3m3 3-3 3M17 17H6m0 0 3 3m-3-3 3-3"/></svg>',
+  compress: '<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 14h16M8 6h8M7 18h10M10 10h4"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 3 6 6l3 3M15 3l3 3-3 3"/></svg>',
+  resize: '<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 9V4h5M20 15v5h-5M4 4l7 7M20 20l-7-7"/></svg>',
+  crop: '<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 3v14h14M3 7h14v14M7 7h10v10H7V7Z"/></svg>',
+  rotate: '<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 11a8 8 0 1 1-2.35-5.65"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 4v7h-7"/></svg>',
+  blur: '<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 4s5 5.4 5 9a5 5 0 0 1-10 0c0-3.6 5-9 5-9Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 19h14"/></svg>',
+  spark: '<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="m12 3 2.2 6.3H21l-5.4 4 2 6.7-5.6-3.9L6.4 20l2-6.7L3 9.3h6.8L12 3Z"/></svg>',
+  watermark: '<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16v12H4V6Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 15h8M9 10h6"/></svg>',
+  code: '<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 8 4 12l4 4M16 8l4 4-4 4M14 4l-4 16"/></svg>'
+};
+
+const els = {
+  toolList: document.getElementById('tool-list'),
+  activeIcon: document.getElementById('active-icon'),
+  activeTitle: document.getElementById('active-title'),
+  activeGroup: document.getElementById('active-group'),
+  activeFormat: document.getElementById('active-format'),
+  activeDescription: document.getElementById('active-description'),
+  activeNote: document.getElementById('active-note'),
+  fileDrop: document.getElementById('file-drop'),
+  fileInput: document.getElementById('file-input'),
+  fileHelp: document.getElementById('file-help'),
+  selectedFile: document.getElementById('selected-file'),
+  textPanel: document.getElementById('text-panel'),
+  textLabel: document.getElementById('text-label'),
+  textInput: document.getElementById('text-input'),
+  optionFields: document.getElementById('option-fields'),
+  form: document.getElementById('image-form'),
+  statusBox: document.getElementById('status-box'),
+  originalPreview: document.getElementById('original-preview'),
+  originalEmpty: document.getElementById('original-empty'),
+  resultPreview: document.getElementById('result-preview'),
+  resultEmpty: document.getElementById('result-empty'),
+  outputTextPanel: document.getElementById('output-text-panel'),
+  outputText: document.getElementById('output-text'),
+  copyOutput: document.getElementById('copy-output'),
+  downloadPanel: document.getElementById('download-panel'),
+  downloadLink: document.getElementById('download-link'),
+  downloadMeta: document.getElementById('download-meta')
+};
+
+let activeTool = new URLSearchParams(window.location.search).get('tool') || 'jpg-to-png';
+if (!TOOLS[activeTool]) activeTool = 'jpg-to-png';
+
+let selectedFile = null;
+let lastResultUrl = '';
+let lastOriginalUrl = '';
+
+function fileBaseName(name) {
+  return (name || 'image').replace(/\.[^.]+$/, '').replace(/[^a-z0-9_-]+/gi, '-').replace(/^-|-$/g, '') || 'image';
+}
+
+function extensionForMime(mime) {
+  if (mime === 'image/jpeg') return 'jpg';
+  if (mime === 'image/webp') return 'webp';
+  if (mime === 'image/svg+xml') return 'svg';
+  return 'png';
+}
+
+function formatBytes(bytes) {
+  if (!Number.isFinite(bytes)) return '';
+  if (bytes < 1024) return `${bytes} B`;
+  const kb = bytes / 1024;
+  if (kb < 1024) return `${kb.toFixed(1)} KB`;
+  return `${(kb / 1024).toFixed(2)} MB`;
+}
+
+function setStatus(type, message) {
+  els.statusBox.className = `status-box show status-${type}`;
+  els.statusBox.textContent = message;
+}
+
+function clearStatus() {
+  els.statusBox.className = 'status-box';
+  els.statusBox.textContent = '';
+}
+
+function revokeResultUrl() {
+  if (lastResultUrl) URL.revokeObjectURL(lastResultUrl);
+  lastResultUrl = '';
+}
+
+function clearResult() {
+  revokeResultUrl();
+  els.resultPreview.classList.add('hidden');
+  els.resultPreview.removeAttribute('src');
+  els.resultEmpty.classList.remove('hidden');
+  els.outputTextPanel.classList.add('hidden');
+  els.outputText.value = '';
+  els.downloadPanel.classList.add('hidden');
+  els.downloadLink.removeAttribute('href');
+}
+
+function renderToolList() {
+  els.toolList.innerHTML = TOOL_ORDER.map((id) => {
+    const tool = TOOLS[id];
+    return `
+      <button type="button" data-tool="${id}" class="tool-button p-3 text-left ${id === activeTool ? 'active' : ''}">
+        <span class="flex items-center gap-3">
+          <span class="tool-mini-icon ${tool.tone} flex h-10 w-10 shrink-0 items-center justify-center rounded-lg">${ICONS[tool.icon]}</span>
+          <span class="min-w-0">
+            <span class="block truncate text-sm font-black text-text-main">${tool.title}</span>
+            <span class="block truncate text-xs font-semibold text-text-muted">${tool.group}</span>
+          </span>
+        </span>
+      </button>
+    `;
+  }).join('');
+
+  els.toolList.querySelectorAll('[data-tool]').forEach((button) => {
+    button.addEventListener('click', () => setActiveTool(button.dataset.tool));
+  });
+}
+
+function renderFields(tool) {
+  const fields = tool.fields || [];
+  els.optionFields.innerHTML = fields.map((field) => {
+    const value = field.value ?? '';
+    const baseLabel = `<label class="mb-1.5 block text-sm font-black text-text-main" for="field-${field.id}">${field.label}</label>`;
+
+    if (field.type === 'select') {
+      const options = (field.options || []).map(([optionValue, label]) => `<option value="${optionValue}" ${optionValue === value ? 'selected' : ''}>${label}</option>`).join('');
+      return `<div>${baseLabel}<select id="field-${field.id}" data-option="${field.id}" class="control">${options}</select></div>`;
+    }
+
+    if (field.type === 'range') {
+      return `
+        <div>
+          <div class="mb-1.5 flex items-center justify-between gap-3">
+            <label class="block text-sm font-black text-text-main" for="field-${field.id}">${field.label}</label>
+            <span class="font-mono text-xs font-bold text-text-muted" data-range-value="${field.id}">${value}</span>
+          </div>
+          <input id="field-${field.id}" data-option="${field.id}" type="range" min="${field.min}" max="${field.max}" step="${field.step}" value="${value}" class="w-full accent-primary">
+        </div>
+      `;
+    }
+
+    return `<div>${baseLabel}<input id="field-${field.id}" data-option="${field.id}" type="${field.type}" min="${field.min || ''}" value="${value}" placeholder="${field.placeholder || ''}" class="control"></div>`;
+  }).join('');
+
+  els.optionFields.querySelectorAll('input[type="range"]').forEach((input) => {
+    input.addEventListener('input', () => {
+      const label = els.optionFields.querySelector(`[data-range-value="${input.dataset.option}"]`);
+      if (label) label.textContent = input.value;
+    });
+  });
+}
+
+function getOptions() {
+  const options = {};
+  els.optionFields.querySelectorAll('[data-option]').forEach((field) => {
+    options[field.dataset.option] = field.value;
+  });
+  return options;
+}
+
+function setActiveTool(id, updateUrl = true) {
+  activeTool = TOOLS[id] ? id : 'jpg-to-png';
+  const tool = TOOLS[activeTool];
+
+  document.querySelectorAll('[data-tool]').forEach((button) => {
+    button.classList.toggle('active', button.dataset.tool === activeTool);
+  });
+
+  els.activeIcon.className = `active-icon ${tool.tone} flex h-16 w-16 shrink-0 items-center justify-center rounded-lg border border-white md:h-20 md:w-20`;
+  els.activeIcon.innerHTML = ICONS[tool.icon];
+  els.activeTitle.textContent = tool.title;
+  els.activeGroup.textContent = tool.group;
+  els.activeFormat.textContent = tool.acceptLabel || 'Text input';
+  els.activeDescription.textContent = tool.description;
+  els.activeNote.textContent = tool.note || '';
+  els.fileHelp.textContent = tool.help || '';
+  els.fileInput.accept = tool.accept || '';
+  els.fileInput.value = '';
+  selectedFile = null;
+  els.selectedFile.classList.add('hidden');
+  els.selectedFile.textContent = '';
+
+  const needsText = tool.action === 'base64-to-image' || tool.action === 'svg-to-raster';
+  const needsFile = tool.action !== 'base64-to-image';
+  els.fileDrop.classList.toggle('hidden', !needsFile);
+  els.textPanel.classList.toggle('hidden', !needsText);
+  els.textLabel.textContent = tool.textLabel || '';
+  els.textInput.placeholder = tool.textPlaceholder || '';
+  els.textInput.value = '';
+
+  renderFields(tool);
+  clearStatus();
+  clearResult();
+  clearOriginalPreview();
+
+  if (updateUrl) {
+    const url = new URL(window.location.href);
+    url.searchParams.set('tool', activeTool);
+    history.replaceState(null, '', url);
+  }
+}
+
+function clearOriginalPreview() {
+  if (lastOriginalUrl) URL.revokeObjectURL(lastOriginalUrl);
+  lastOriginalUrl = '';
+  els.originalPreview.classList.add('hidden');
+  els.originalPreview.removeAttribute('src');
+  els.originalEmpty.classList.remove('hidden');
+}
+
+function showOriginalPreviewFromFile(file) {
+  clearOriginalPreview();
+  if (!file || !(file.type.startsWith('image/') || /\.(svg|png|jpe?g|webp)$/i.test(file.name))) return;
+  lastOriginalUrl = URL.createObjectURL(file);
+  els.originalPreview.src = lastOriginalUrl;
+  els.originalPreview.classList.remove('hidden');
+  els.originalEmpty.classList.add('hidden');
+}
+
+function showOriginalPreviewFromDataUrl(dataUrl) {
+  clearOriginalPreview();
+  els.originalPreview.src = dataUrl;
+  els.originalPreview.classList.remove('hidden');
+  els.originalEmpty.classList.add('hidden');
+}
+
+function loadImageFromFile(file) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      resolve(img);
+    };
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      reject(new Error('This image could not be loaded by the browser.'));
+    };
+    img.src = url;
+  });
+}
+
+function loadImageFromUrl(url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error('The pasted image data could not be decoded.'));
+    img.src = url;
+  });
+}
+
+function readFileAsDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(new Error('Could not read this file.'));
+    reader.readAsDataURL(file);
+  });
+}
+
+function readFileAsText(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(new Error('Could not read this file.'));
+    reader.readAsText(file);
+  });
+}
+
+function makeCanvas(width, height) {
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.max(1, Math.round(width));
+  canvas.height = Math.max(1, Math.round(height));
+  return canvas;
+}
+
+function drawToCanvas(img, width = img.naturalWidth, height = img.naturalHeight, fill = null) {
+  const canvas = makeCanvas(width, height);
+  const ctx = canvas.getContext('2d');
+  if (fill) {
+    ctx.fillStyle = fill;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  return canvas;
+}
+
+function canvasToBlob(canvas, mime, quality = 0.92) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (blob) resolve(blob);
+      else reject(new Error('The browser could not export this image format.'));
+    }, mime, Number(quality));
+  });
+}
+
+function dataUrlToBlob(dataUrl) {
+  const [meta, data] = dataUrl.split(',');
+  const mime = (meta.match(/data:(.*?);base64/) || [])[1] || 'image/png';
+  const binary = atob(data || '');
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i += 1) bytes[i] = binary.charCodeAt(i);
+  return new Blob([bytes], { type: mime });
+}
+
+function outputFileName(suffix, mime, sourceName = selectedFile?.name) {
+  return `${fileBaseName(sourceName)}-${suffix}.${extensionForMime(mime)}`;
+}
+
+function renderBlobOutput(blob, fileName) {
+  revokeResultUrl();
+  lastResultUrl = URL.createObjectURL(blob);
+  els.resultPreview.src = lastResultUrl;
+  els.resultPreview.classList.remove('hidden');
+  els.resultEmpty.classList.add('hidden');
+  els.downloadPanel.classList.remove('hidden');
+  els.downloadLink.href = lastResultUrl;
+  els.downloadLink.download = fileName;
+  els.downloadMeta.textContent = `${fileName} - ${formatBytes(blob.size)}`;
+  els.outputTextPanel.classList.add('hidden');
+}
+
+function renderTextOutput(text, fileName) {
+  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+  revokeResultUrl();
+  lastResultUrl = URL.createObjectURL(blob);
+  els.outputText.value = text;
+  els.outputTextPanel.classList.remove('hidden');
+  els.downloadPanel.classList.remove('hidden');
+  els.downloadLink.href = lastResultUrl;
+  els.downloadLink.download = fileName;
+  els.downloadMeta.textContent = `${fileName} - ${formatBytes(blob.size)}`;
+  els.resultPreview.classList.add('hidden');
+  els.resultEmpty.classList.remove('hidden');
+}
+
+function parseQuality(options, fallback = 0.92) {
+  const quality = Number(options.quality);
+  return Number.isFinite(quality) ? quality : fallback;
+}
+
+function drawRotated(img, degrees) {
+  const radians = degrees * Math.PI / 180;
+  const swap = degrees === 90 || degrees === 270;
+  const canvas = makeCanvas(swap ? img.naturalHeight : img.naturalWidth, swap ? img.naturalWidth : img.naturalHeight);
+  const ctx = canvas.getContext('2d');
+  ctx.translate(canvas.width / 2, canvas.height / 2);
+  ctx.rotate(radians);
+  ctx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2);
+  return canvas;
+}
+
+function drawCrop(img, options) {
+  let cropWidth = img.naturalWidth;
+  let cropHeight = img.naturalHeight;
+  const ratio = options.ratio || 'square';
+
+  if (ratio === 'custom') {
+    cropWidth = Math.min(Number(options.cropWidth) || img.naturalWidth, img.naturalWidth);
+    cropHeight = Math.min(Number(options.cropHeight) || img.naturalHeight, img.naturalHeight);
+  } else {
+    const ratios = { square: 1, '4:3': 4 / 3, '16:9': 16 / 9, '3:4': 3 / 4 };
+    const target = ratios[ratio] || 1;
+    if (img.naturalWidth / img.naturalHeight > target) {
+      cropHeight = img.naturalHeight;
+      cropWidth = cropHeight * target;
+    } else {
+      cropWidth = img.naturalWidth;
+      cropHeight = cropWidth / target;
+    }
+  }
+
+  const sx = Math.max(0, (img.naturalWidth - cropWidth) / 2);
+  const sy = Math.max(0, (img.naturalHeight - cropHeight) / 2);
+  const canvas = makeCanvas(cropWidth, cropHeight);
+  canvas.getContext('2d').drawImage(img, sx, sy, cropWidth, cropHeight, 0, 0, canvas.width, canvas.height);
+  return canvas;
+}
+
+function drawBlur(img, radius) {
+  const canvas = makeCanvas(img.naturalWidth, img.naturalHeight);
+  const ctx = canvas.getContext('2d');
+  ctx.filter = `blur(${Number(radius) || 1}px)`;
+  ctx.drawImage(img, 0, 0);
+  ctx.filter = 'none';
+  return canvas;
+}
+
+function drawSharpen(img, amount) {
+  const canvas = drawToCanvas(img);
+  const ctx = canvas.getContext('2d');
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const src = imageData.data;
+  const out = new Uint8ClampedArray(src);
+  const width = canvas.width;
+  const height = canvas.height;
+  const a = Number(amount) || 0.8;
+
+  for (let y = 1; y < height - 1; y += 1) {
+    for (let x = 1; x < width - 1; x += 1) {
+      const idx = (y * width + x) * 4;
+      for (let c = 0; c < 3; c += 1) {
+        const center = src[idx + c] * (1 + 4 * a);
+        const left = src[idx - 4 + c] * a;
+        const right = src[idx + 4 + c] * a;
+        const top = src[idx - width * 4 + c] * a;
+        const bottom = src[idx + width * 4 + c] * a;
+        out[idx + c] = Math.max(0, Math.min(255, center - left - right - top - bottom));
+      }
+    }
+  }
+
+  imageData.data.set(out);
+  ctx.putImageData(imageData, 0, 0);
+  return canvas;
+}
+
+function drawWatermark(img, options) {
+  const mime = options.format || 'image/png';
+  const canvas = drawToCanvas(img, img.naturalWidth, img.naturalHeight, mime === 'image/jpeg' ? '#ffffff' : null);
+  const ctx = canvas.getContext('2d');
+  const text = (options.text || 'verifydocs.online').trim() || 'verifydocs.online';
+  const fontSize = Math.max(14, Math.round(canvas.width * (Number(options.size) || 6) / 100));
+  const pad = Math.max(14, Math.round(fontSize * 0.7));
+
+  ctx.font = `900 ${fontSize}px Inter, Arial, sans-serif`;
+  ctx.textBaseline = 'middle';
+  ctx.globalAlpha = Number(options.opacity) || 0.55;
+  ctx.shadowColor = 'rgba(0,0,0,0.5)';
+  ctx.shadowBlur = Math.round(fontSize * 0.18);
+  ctx.fillStyle = '#ffffff';
+
+  const metrics = ctx.measureText(text);
+  let x = canvas.width - metrics.width - pad;
+  let y = canvas.height - fontSize / 2 - pad;
+  if (options.position === 'bottom-left') x = pad;
+  if (options.position === 'top-left') { x = pad; y = pad + fontSize / 2; }
+  if (options.position === 'top-right') y = pad + fontSize / 2;
+  if (options.position === 'center') {
+    x = (canvas.width - metrics.width) / 2;
+    y = canvas.height / 2;
+  }
+
+  ctx.fillText(text, x, y);
+  ctx.globalAlpha = 1;
+  ctx.shadowBlur = 0;
+  return canvas;
+}
+
+async function processImageTool(tool, options) {
+  if (!selectedFile) throw new Error('Please upload an image first.');
+  const img = await loadImageFromFile(selectedFile);
+  let canvas;
+  let mime = tool.output || options.format || 'image/png';
+  let suffix = 'processed';
+
+  if (tool.action === 'convert') {
+    canvas = drawToCanvas(img, img.naturalWidth, img.naturalHeight, tool.fill || (mime === 'image/jpeg' ? '#ffffff' : null));
+    suffix = 'converted';
+  }
+
+  if (tool.action === 'resize') {
+    const requestedWidth = Number(options.width);
+    const requestedHeight = Number(options.height);
+    const width = requestedWidth || (requestedHeight ? img.naturalWidth * (requestedHeight / img.naturalHeight) : img.naturalWidth);
+    const height = requestedHeight || (requestedWidth ? img.naturalHeight * (requestedWidth / img.naturalWidth) : img.naturalHeight);
+    mime = options.format || 'image/png';
+    canvas = drawToCanvas(img, width, height, mime === 'image/jpeg' ? '#ffffff' : null);
+    suffix = `${Math.round(width)}x${Math.round(height)}`;
+  }
+
+  if (tool.action === 'compress') {
+    mime = options.format || 'image/jpeg';
+    const maxWidth = Number(options.maxWidth);
+    const scale = maxWidth && img.naturalWidth > maxWidth ? maxWidth / img.naturalWidth : 1;
+    canvas = drawToCanvas(img, img.naturalWidth * scale, img.naturalHeight * scale, mime === 'image/jpeg' ? '#ffffff' : null);
+    suffix = 'compressed';
+  }
+
+  if (tool.action === 'crop') {
+    mime = options.format || 'image/png';
+    canvas = drawCrop(img, options);
+    if (mime === 'image/jpeg') {
+      const jpgCanvas = drawToCanvas(await loadImageFromUrl(canvas.toDataURL('image/png')), canvas.width, canvas.height, '#ffffff');
+      canvas = jpgCanvas;
+    }
+    suffix = 'cropped';
+  }
+
+  if (tool.action === 'rotate') {
+    mime = options.format || 'image/png';
+    canvas = drawRotated(img, Number(options.degrees) || 90);
+    suffix = `rotated-${options.degrees || 90}`;
+  }
+
+  if (tool.action === 'blur') {
+    mime = options.format || 'image/png';
+    canvas = drawBlur(img, options.radius);
+    suffix = 'blurred';
+  }
+
+  if (tool.action === 'sharpen') {
+    mime = options.format || 'image/png';
+    canvas = drawSharpen(img, options.amount);
+    suffix = 'sharpened';
+  }
+
+  if (tool.action === 'watermark') {
+    mime = options.format || 'image/png';
+    canvas = drawWatermark(img, options);
+    suffix = 'watermarked';
+  }
+
+  if (!canvas) throw new Error('This tool is not available yet.');
+  const blob = await canvasToBlob(canvas, mime, parseQuality(options));
+  renderBlobOutput(blob, outputFileName(suffix, mime));
+  setStatus('success', `Done. Created ${formatBytes(blob.size)} ${extensionForMime(mime).toUpperCase()} file.`);
+}
+
+async function processImageToBase64() {
+  if (!selectedFile) throw new Error('Please upload an image first.');
+  const dataUrl = await readFileAsDataUrl(selectedFile);
+  showOriginalPreviewFromDataUrl(dataUrl);
+  renderTextOutput(dataUrl, `${fileBaseName(selectedFile.name)}-base64.txt`);
+  setStatus('success', `Done. Generated a Base64 data URL from ${selectedFile.name}.`);
+}
+
+async function processBase64ToImage(options) {
+  const raw = els.textInput.value.trim();
+  if (!raw) throw new Error('Please paste Base64 content first.');
+  const dataUrl = raw.startsWith('data:')
+    ? raw
+    : `data:${options.mime || 'image/png'};base64,${raw.replace(/\s+/g, '')}`;
+
+  await loadImageFromUrl(dataUrl);
+  showOriginalPreviewFromDataUrl(dataUrl);
+  const blob = dataUrlToBlob(dataUrl);
+  const mime = blob.type || options.mime || 'image/png';
+  renderBlobOutput(blob, `base64-image.${extensionForMime(mime)}`);
+  setStatus('success', `Done. Decoded ${formatBytes(blob.size)} image file.`);
+}
+
+async function processSvgToRaster(options) {
+  let svgText = els.textInput.value.trim();
+  let sourceName = 'svg-artwork.svg';
+  if (!svgText && selectedFile) {
+    svgText = await readFileAsText(selectedFile);
+    sourceName = selectedFile.name;
+  }
+  if (!svgText) throw new Error('Upload an SVG or paste SVG markup first.');
+
+  const svgBlob = new Blob([svgText], { type: 'image/svg+xml;charset=utf-8' });
+  const svgUrl = URL.createObjectURL(svgBlob);
+  try {
+    const img = await loadImageFromUrl(svgUrl);
+    const width = Number(options.width) || img.naturalWidth || 800;
+    const height = Number(options.height) || img.naturalHeight || 600;
+    const mime = options.format || 'image/png';
+    const canvas = drawToCanvas(img, width, height, mime === 'image/jpeg' ? '#ffffff' : null);
+    const blob = await canvasToBlob(canvas, mime, parseQuality(options));
+    showOriginalPreviewFromDataUrl(`data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgText)}`);
+    renderBlobOutput(blob, outputFileName('rasterized', mime, sourceName));
+    setStatus('success', `Done. Rasterized SVG to ${Math.round(width)} x ${Math.round(height)}.`);
+  } finally {
+    URL.revokeObjectURL(svgUrl);
+  }
+}
+
+async function runTool(event) {
+  event.preventDefault();
+  const tool = TOOLS[activeTool];
+  const options = getOptions();
+  clearStatus();
+  clearResult();
+  setStatus('info', 'Working locally in your browser...');
+
+  try {
+    if (tool.action === 'image-to-base64') {
+      await processImageToBase64();
+      return;
+    }
+    if (tool.action === 'base64-to-image') {
+      await processBase64ToImage(options);
+      return;
+    }
+    if (tool.action === 'svg-to-raster') {
+      await processSvgToRaster(options);
+      return;
+    }
+    await processImageTool(tool, options);
+  } catch (error) {
+    setStatus('error', error.message || 'Something went wrong while processing the image.');
+  }
+}
+
+els.fileInput.addEventListener('change', () => {
+  selectedFile = els.fileInput.files?.[0] || null;
+  clearStatus();
+  clearResult();
+  if (selectedFile) {
+    els.selectedFile.textContent = `${selectedFile.name} - ${formatBytes(selectedFile.size)}`;
+    els.selectedFile.classList.remove('hidden');
+    showOriginalPreviewFromFile(selectedFile);
+  } else {
+    els.selectedFile.classList.add('hidden');
+    clearOriginalPreview();
+  }
+});
+
+['dragenter', 'dragover'].forEach((eventName) => {
+  els.fileDrop.addEventListener(eventName, (event) => {
+    event.preventDefault();
+    els.fileDrop.classList.add('is-dragging');
+  });
+});
+
+['dragleave', 'drop'].forEach((eventName) => {
+  els.fileDrop.addEventListener(eventName, (event) => {
+    event.preventDefault();
+    els.fileDrop.classList.remove('is-dragging');
+  });
+});
+
+els.fileDrop.addEventListener('drop', (event) => {
+  const file = event.dataTransfer.files?.[0];
+  if (!file) return;
+  selectedFile = file;
+  const transfer = new DataTransfer();
+  transfer.items.add(file);
+  els.fileInput.files = transfer.files;
+  els.selectedFile.textContent = `${file.name} - ${formatBytes(file.size)}`;
+  els.selectedFile.classList.remove('hidden');
+  clearStatus();
+  clearResult();
+  showOriginalPreviewFromFile(file);
+});
+
+els.copyOutput.addEventListener('click', async () => {
+  if (!els.outputText.value) return;
+  try {
+    await navigator.clipboard.writeText(els.outputText.value);
+    setStatus('success', 'Copied Base64 text to clipboard.');
+  } catch (_) {
+    els.outputText.select();
+    document.execCommand('copy');
+    setStatus('success', 'Copied Base64 text to clipboard.');
+  }
+});
+
+els.form.addEventListener('submit', runTool);
+
+renderToolList();
+setActiveTool(activeTool, false);
+</script>
+</body>
+</html>

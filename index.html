@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TJP64DQB');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>verifydocs.online — Free Indian Document Validator | Aadhaar, PAN, GST, IFSC</title>
-  <meta name="description" content="Free online tools to validate Aadhaar, PAN card, GST number, IFSC code, Voter ID, Passport and Driving License. 100% browser-based. We never store your data.">
-  <meta name="google-site-verification" content="IZhBea6GzVwcE8PPF7XbHhWLduUQne6vEMLQxD4EAwM">
-  <meta name="keywords" content="aadhaar validator, pan card checker, gst number verifier, ifsc validator, voter id check, indian document tools">
+  <title>verifydocs.online - Free Document, PDF, Image, Developer and Utility Tools</title>
+  <meta name="description" content="Free online tools to validate Aadhaar, PAN, GST, IFSC, convert PDFs, edit images, format code, generate QR codes, and use everyday utilities.">
+  <meta name="google-site-verification" content="G_r_lqmCMsld0PJn7VoGH_32MaCPYXvdzeNFVI7MAMI">
+  <meta name="keywords" content="aadhaar validator, pan card checker, gst number verifier, ifsc validator, voter id check, indian document tools, pdf tools, image tools, jpg to png, png to jpg, compress image, developer tools, utility tools, media tools, psd to png">
   <link rel="canonical" href="https://verifydocs.online/">
   <link rel="alternate" hreflang="en-IN" href="https://verifydocs.online/">
-  <meta property="og:title" content="verifydocs.online — Free Indian Document Validator">
-  <meta property="og:description" content="Validate Aadhaar, PAN, GST, IFSC and more. Free, instant, 100% browser-based.">
+  <meta property="og:title" content="verifydocs.online - Free Document, PDF, Image and Utility Tools">
+  <meta property="og:description" content="Validate Aadhaar, work with PDFs and images, format developer content, generate QR codes, and use free online utilities.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://verifydocs.online/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="robots" content="index, follow">
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230066cc'/%3E%3Cpath d='M16 6l6 4v6c0 5-6 9-6 9s-6-4-6-9v-6z' fill='white'/%3E%3C/svg%3E">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T80N8X570N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-T80N8X570N');
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -44,7 +59,7 @@
     }
   </script>
   <style>
-    body { background: #f8fafc; font-family: 'Inter', sans-serif; color: #0f172a; }
+    body { background: #f8fafc; font-family: 'Inter', sans-serif; color: #0f172a; overflow-x: hidden; }
     .tool-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,102,204,0.12); }
     .tool-card { transition: transform 0.2s, box-shadow 0.2s; }
     .faq-answer { display: none; }
@@ -55,8 +70,709 @@
     .result-box.show { display: block; }
     @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
     .fade-in { animation: fadeIn 0.3s ease forwards; }
+    .pdf-suite-section {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(248,250,252,0.98), rgba(244,247,251,0.98)),
+        #f8fafc;
+    }
+    .pdf-suite-section::before,
+    .pdf-suite-section::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      border: 2px solid rgba(226,232,240,0.62);
+      opacity: 0.72;
+      transform: rotate(44deg);
+    }
+    .pdf-suite-section::before {
+      width: 34rem;
+      height: 34rem;
+      left: -18rem;
+      top: -20rem;
+      border-radius: 5rem;
+      background: rgba(244,238,244,0.72);
+    }
+    .pdf-suite-section::after {
+      width: 42rem;
+      height: 42rem;
+      right: -19rem;
+      bottom: -24rem;
+      border-radius: 7rem;
+      background: rgba(246,239,243,0.78);
+    }
+    .pdf-filter-pill {
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+    .pdf-filter-pill:hover {
+      transform: translateY(-1px);
+      border-color: rgba(15,23,42,0.2);
+    }
+    .pdf-filter-pill.is-active {
+      background: #23242c;
+      border-color: #23242c;
+      color: #ffffff;
+      box-shadow: 0 12px 24px -18px rgba(15,23,42,0.6);
+    }
+    .pdf-suite-card {
+      min-height: 174px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(203,213,225,0.85);
+      box-shadow: 0 18px 45px -38px rgba(15,23,42,0.5);
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
+    }
+    .pdf-suite-card:hover,
+    .pdf-suite-card:focus-visible {
+      transform: translateY(-4px);
+      border-color: rgba(0,102,204,0.28);
+      background: #ffffff;
+      box-shadow: 0 26px 62px -42px rgba(0,102,204,0.48);
+    }
+    .pdf-suite-title {
+      display: block;
+      color: #30323a;
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+    .pdf-suite-copy {
+      display: block;
+      margin-top: 0.62rem;
+      color: #7b8190;
+      font-size: 0.78rem;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+    .pdf-suite-badge {
+      position: absolute;
+      right: 0.8rem;
+      top: 0.78rem;
+      border-radius: 5px;
+      background: #e9f4fb;
+      color: #6b8292;
+      font-size: 0.62rem;
+      font-weight: 800;
+      line-height: 1;
+      padding: 0.28rem 0.42rem;
+    }
+    .pdf-suite-icon {
+      --icon-solid: #0066cc;
+      --icon-soft: #dbeafe;
+      --icon-shadow: rgba(0,102,204,0.26);
+      position: relative;
+      display: block;
+      width: 2.7rem;
+      height: 2.7rem;
+      margin-bottom: 1.18rem;
+    }
+    .pdf-suite-icon::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: flex;
+      width: 1.72rem;
+      height: 1.72rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.42rem;
+      background: var(--icon-solid);
+      color: #ffffff;
+      box-shadow: 0 8px 18px -10px var(--icon-shadow);
+      font-size: 0.74rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .pdf-suite-icon::after {
+      content: "";
+      position: absolute;
+      right: 0.44rem;
+      bottom: 0.44rem;
+      width: 1.3rem;
+      height: 1.3rem;
+      border-radius: 0.38rem;
+      background: var(--icon-soft);
+      box-shadow: 0 7px 16px -12px var(--icon-shadow);
+    }
+    .pdf-suite-icon .pdf-icon-mark {
+      position: absolute;
+      right: 0.78rem;
+      bottom: 0.78rem;
+      z-index: 1;
+      width: 0.44rem;
+      height: 0.44rem;
+      border-right: 2px solid var(--icon-solid);
+      border-bottom: 2px solid var(--icon-solid);
+      transform: rotate(-45deg);
+    }
+    .pdf-suite-icon.label-wide::before {
+      width: 2rem;
+      font-size: 0.53rem;
+    }
+    .pdf-suite-icon.icon-green { --icon-solid: #69a75f; --icon-soft: #dbeed5; --icon-shadow: rgba(105,167,95,0.34); }
+    .pdf-suite-icon.icon-orange { --icon-solid: #e87354; --icon-soft: #f7ddd4; --icon-shadow: rgba(232,115,84,0.34); }
+    .pdf-suite-icon.icon-blue { --icon-solid: #567eb4; --icon-soft: #d8e4f4; --icon-shadow: rgba(86,126,180,0.34); }
+    .pdf-suite-icon.icon-purple { --icon-solid: #a0608f; --icon-soft: #ecd7e6; --icon-shadow: rgba(160,96,143,0.32); }
+    .pdf-suite-icon.icon-yellow { --icon-solid: #d7bd42; --icon-soft: #f3e9aa; --icon-shadow: rgba(215,189,66,0.3); }
+    .pdf-suite-icon.icon-violet { --icon-solid: #6f55dd; --icon-soft: #e4dcff; --icon-shadow: rgba(111,85,221,0.32); }
+    .image-lab-section {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.98), rgba(246,249,250,0.98)),
+        #f8fafc;
+    }
+    .image-lab-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+      background-size: 42px 42px;
+      opacity: 0.75;
+    }
+    .image-lab-track {
+      position: absolute;
+      left: -10rem;
+      right: -10rem;
+      top: 3.5rem;
+      height: 10.5rem;
+      transform: skewY(-4deg);
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(0,102,204,0.11), rgba(19,136,8,0.08), rgba(255,153,51,0.12)),
+        repeating-linear-gradient(90deg, rgba(15,23,42,0.08) 0 1px, transparent 1px 42px);
+      clip-path: polygon(0 18%, 100% 0, 100% 72%, 0 100%);
+    }
+    .image-filter-pill {
+      transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .image-filter-pill:hover {
+      transform: translateY(-1px);
+      border-color: rgba(15,23,42,0.2);
+    }
+    .image-filter-pill.is-active {
+      background: #12312a;
+      border-color: #12312a;
+      color: #ffffff;
+      box-shadow: 0 14px 28px -22px rgba(18,49,42,0.72);
+    }
+    .image-tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1rem;
+    }
+    .image-tool-card {
+      position: relative;
+      isolation: isolate;
+      min-height: 180px;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid rgba(203,213,225,0.9);
+      background: rgba(255,255,255,0.94);
+      box-shadow: 0 18px 48px -40px rgba(15,23,42,0.46);
+      transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.24s ease, box-shadow 0.24s ease, background-color 0.24s ease;
+    }
+    .image-tool-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0), rgba(0,102,204,0.035)),
+        repeating-linear-gradient(135deg, transparent 0 18px, rgba(15,23,42,0.035) 18px 19px);
+      opacity: 0;
+      transition: opacity 0.24s ease;
+    }
+    .image-tool-card:hover,
+    .image-tool-card:focus-visible {
+      transform: translateY(-5px);
+      border-color: rgba(19,136,8,0.28);
+      background: #ffffff;
+      box-shadow: 0 28px 68px -46px rgba(19,136,8,0.55);
+    }
+    .image-tool-card:hover::after,
+    .image-tool-card:focus-visible::after {
+      opacity: 1;
+    }
+    .image-tool-icon {
+      display: inline-flex;
+      width: 2.85rem;
+      height: 2.85rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.7);
+      color: var(--image-icon-color, #0066cc);
+      background: var(--image-icon-bg, #e7f1ff);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.86), 0 14px 26px -22px var(--image-icon-shadow, rgba(0,102,204,0.6));
+      transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .image-tool-icon svg {
+      width: 1.55rem;
+      height: 1.55rem;
+    }
+    .image-tool-card:hover .image-tool-icon,
+    .image-tool-card:focus-visible .image-tool-icon {
+      transform: translateY(-2px) scale(1.05);
+    }
+    .image-tool-title {
+      display: block;
+      margin-top: 1rem;
+      color: #14201d;
+      font-size: 1rem;
+      font-weight: 850;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+    .image-tool-copy {
+      display: block;
+      margin-top: 0.55rem;
+      color: #64748b;
+      font-size: 0.78rem;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+    .image-tool-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.65rem;
+      margin-top: 1.05rem;
+      color: #0f766e;
+      font-size: 0.68rem;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .image-icon-blue { --image-icon-color: #0066cc; --image-icon-bg: #e7f1ff; --image-icon-shadow: rgba(0,102,204,0.55); }
+    .image-icon-green { --image-icon-color: #138808; --image-icon-bg: #e9f8e6; --image-icon-shadow: rgba(19,136,8,0.42); }
+    .image-icon-orange { --image-icon-color: #cc6b10; --image-icon-bg: #fff1df; --image-icon-shadow: rgba(255,153,51,0.55); }
+    .image-icon-rose { --image-icon-color: #b0476e; --image-icon-bg: #fde8ef; --image-icon-shadow: rgba(176,71,110,0.45); }
+    .image-icon-slate { --image-icon-color: #475569; --image-icon-bg: #eef2f7; --image-icon-shadow: rgba(71,85,105,0.38); }
+    .ad-placement {
+      display: flex;
+      min-height: 96px;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed rgba(148,163,184,0.65);
+      border-radius: 8px;
+      background:
+        repeating-linear-gradient(135deg, rgba(148,163,184,0.08) 0 12px, transparent 12px 24px),
+        rgba(255,255,255,0.76);
+      color: #94a3b8;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .tools-category-section {
+      position: relative;
+      overflow: hidden;
+      padding: 4.5rem 1rem;
+    }
+    .tools-category-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(203,213,225,0.9);
+      background: rgba(255,255,255,0.86);
+      padding: 0.45rem 0.78rem;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .tools-category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1rem;
+    }
+    .category-tool-card {
+      position: relative;
+      min-height: 168px;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid rgba(203,213,225,0.9);
+      background: rgba(255,255,255,0.94);
+      box-shadow: 0 18px 44px -38px rgba(15,23,42,0.44);
+      transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.24s ease, box-shadow 0.24s ease, background-color 0.24s ease;
+    }
+    .category-tool-card:hover,
+    .category-tool-card:focus-visible {
+      transform: translateY(-5px);
+      border-color: rgba(0,102,204,0.28);
+      background: #ffffff;
+      box-shadow: 0 28px 72px -48px rgba(0,102,204,0.5);
+    }
+    .category-tool-icon {
+      display: inline-flex;
+      width: 2.85rem;
+      height: 2.85rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      color: var(--category-icon-color, #0066cc);
+      background: var(--category-icon-bg, #e7f1ff);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.86), 0 14px 28px -24px var(--category-icon-shadow, rgba(0,102,204,0.58));
+    }
+    .category-tool-icon svg {
+      width: 1.55rem;
+      height: 1.55rem;
+    }
+    .category-tool-title {
+      display: block;
+      margin-top: 1rem;
+      color: #0f172a;
+      font-size: 1rem;
+      font-weight: 900;
+      line-height: 1.15;
+    }
+    .category-tool-copy {
+      display: block;
+      margin-top: 0.55rem;
+      color: #64748b;
+      font-size: 0.78rem;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+    .category-tool-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      color: #0066cc;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+    .design-tools-section {
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.98), rgba(247,245,251,0.98)),
+        #f8fafc;
+    }
+    .design-tools-section .category-tool-card::after {
+      content: "";
+      position: absolute;
+      right: -2.7rem;
+      top: -2.7rem;
+      width: 6rem;
+      height: 6rem;
+      border-radius: 999px;
+      background: rgba(255,153,51,0.1);
+    }
+    .dev-tools-section {
+      background:
+        linear-gradient(180deg, rgba(248,250,252,0.99), rgba(241,245,249,0.99)),
+        #f8fafc;
+    }
+    .dev-tools-section .category-tool-card {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.98));
+    }
+    .dev-tools-section .category-tool-title,
+    .dev-tools-section .category-tool-link {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .utility-tools-section {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(19,136,8,0.08), transparent 28rem),
+        linear-gradient(180deg, #ffffff, #f8fafc);
+    }
+    .media-tools-section {
+      background:
+        linear-gradient(135deg, rgba(13,18,27,0.98), rgba(20,31,44,0.98)),
+        #111827;
+      color: #f8fafc;
+    }
+    .media-tools-section .tools-category-eyebrow {
+      border-color: rgba(148,163,184,0.22);
+      background: rgba(15,23,42,0.74);
+      color: #e2e8f0;
+    }
+    .media-tools-section .category-tool-card {
+      border-color: rgba(148,163,184,0.22);
+      background: rgba(15,23,42,0.76);
+      box-shadow: 0 24px 70px -46px rgba(0,0,0,0.86);
+    }
+    .media-tools-section .category-tool-card:hover,
+    .media-tools-section .category-tool-card:focus-visible {
+      border-color: rgba(255,153,51,0.42);
+      background: rgba(23,32,46,0.96);
+      box-shadow: 0 30px 82px -48px rgba(255,153,51,0.45);
+    }
+    .media-tools-section .category-tool-title {
+      color: #f8fafc;
+    }
+    .media-tools-section .category-tool-copy {
+      color: #aebdcc;
+    }
+    .media-tools-section .category-tool-link {
+      color: #ffbd76;
+    }
+    .icon-design { --category-icon-color: #7c3aed; --category-icon-bg: #f0e9ff; --category-icon-shadow: rgba(124,58,237,0.5); }
+    .icon-dev { --category-icon-color: #0f766e; --category-icon-bg: #e7f7f4; --category-icon-shadow: rgba(15,118,110,0.42); }
+    .icon-util { --category-icon-color: #0066cc; --category-icon-bg: #e7f1ff; --category-icon-shadow: rgba(0,102,204,0.5); }
+    .icon-media { --category-icon-color: #ffbd76; --category-icon-bg: rgba(255,153,51,0.16); --category-icon-shadow: rgba(255,153,51,0.45); }
+    @media (max-width: 640px) {
+      .pdf-suite-section::before,
+      .pdf-suite-section::after {
+        display: none;
+      }
+      .pdf-suite-card {
+        min-height: 156px;
+      }
+      .image-lab-track {
+        display: none;
+      }
+      .image-tool-card {
+        min-height: 160px;
+      }
+      .ad-placement {
+        min-height: 74px;
+      }
+      .tools-category-section {
+        padding: 3.5rem 1rem;
+      }
+      .category-tool-card {
+        min-height: 152px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .image-filter-pill,
+      .image-tool-card,
+      .image-tool-card::after,
+      .image-tool-icon,
+      .category-tool-card {
+        transition: none;
+      }
+    }
     #announcement-bar { transition: max-height 0.3s, opacity 0.3s; max-height: 60px; overflow: hidden; }
     #announcement-bar.hidden { max-height: 0; opacity: 0; }
+    .category-tabs-container {
+      background:
+        linear-gradient(180deg, #10151d 0%, #131923 52%, #171c2f 100%);
+      padding: 2.75rem 1rem 2.25rem;
+      position: relative;
+      z-index: 20;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      overflow: hidden;
+    }
+    .category-tabs-container::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+      background-size: 44px 44px;
+      opacity: 0.55;
+    }
+    .category-tabs-wrapper {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 0.85rem;
+      overflow: visible;
+      padding: 0.5rem 0 1.2rem;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      position: relative;
+      z-index: 1;
+    }
+    .category-tabs-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+    #tools,
+    #pdf-tools,
+    #image-tools,
+    #design-tools,
+    #developer-tools,
+    #utility-tools,
+    #media-tools {
+      scroll-margin-top: 5.5rem;
+    }
+    .category-tab {
+      --tab-canvas: #eef0ee;
+      --tab-accent: #2f79d8;
+      min-width: 0;
+      min-height: 210px;
+      background:
+        linear-gradient(180deg, var(--tab-canvas) 0 54%, #151a25 54% 100%);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 24px;
+      padding: 0.78rem 0.72rem 0.92rem;
+      text-align: center;
+      transition: transform 0.34s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 24px 52px -36px rgba(0,0,0,0.82);
+    }
+    .category-tab:nth-child(1) { --tab-canvas: #e8e8e6; --tab-accent: #2f79d8; }
+    .category-tab:nth-child(2) { --tab-canvas: #fdfdfd; --tab-accent: #3b82f6; }
+    .category-tab:nth-child(3) { --tab-canvas: #edf0ee; --tab-accent: #15925d; }
+    .category-tab:nth-child(4) { --tab-canvas: #fcfefb; --tab-accent: #9467d6; }
+    .category-tab:nth-child(5) { --tab-canvas: #e9e9e7; --tab-accent: #2c8cbf; }
+    .category-tab:nth-child(6) { --tab-canvas: #f9f9f7; --tab-accent: #2879c8; }
+    .category-tab:nth-child(7) { --tab-canvas: #eceee9; --tab-accent: #d0733e; }
+    .category-tab::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 21%, rgba(255,255,255,0.52), transparent 4.75rem),
+        linear-gradient(180deg, rgba(255,255,255,0.34), transparent 38%, rgba(0,0,0,0.18) 100%);
+      opacity: 0.85;
+    }
+    .category-tab::after {
+      content: "";
+      position: absolute;
+      left: 0.9rem;
+      right: 0.9rem;
+      top: 51%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+    }
+    .category-tab:hover {
+      transform: translateY(-7px);
+      border-color: color-mix(in srgb, var(--tab-accent) 62%, white 18%);
+      box-shadow: 0 30px 68px -42px color-mix(in srgb, var(--tab-accent) 46%, black 54%);
+    }
+    .category-tab.active {
+      background:
+        linear-gradient(180deg, var(--tab-canvas) 0 54%, color-mix(in srgb, var(--tab-accent) 24%, #121722 76%) 54% 100%);
+      border-color: color-mix(in srgb, var(--tab-accent) 72%, white 10%);
+      box-shadow: 0 30px 72px -42px color-mix(in srgb, var(--tab-accent) 58%, black 42%);
+    }
+    .category-tab img {
+      width: 88px;
+      height: 88px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 0.9rem;
+      filter: saturate(1.08) contrast(1.04);
+      mix-blend-mode: multiply;
+      transition: transform 0.4s ease;
+      position: relative;
+      z-index: 1;
+    }
+    .category-tab:hover img {
+      transform: scale(1.08) rotate(4deg);
+    }
+    .category-tab .tab-title {
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.92rem;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .category-tab .tab-badge {
+      display: inline-block;
+      padding: 0.3rem 0.58rem;
+      background: color-mix(in srgb, var(--tab-accent) 34%, rgba(255,255,255,0.08) 66%);
+      color: #f8fbff;
+      border-radius: 999px;
+      font-size: 0.64rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border: 1px solid color-mix(in srgb, var(--tab-accent) 42%, rgba(255,255,255,0.18) 58%);
+      box-shadow: 0 8px 18px -14px color-mix(in srgb, var(--tab-accent) 70%, black 30%);
+      position: relative;
+      z-index: 1;
+    }
+    .hero-section {
+      background:
+        linear-gradient(180deg, rgba(248,250,252,0.98), rgba(239,244,249,0.98)),
+        #f8fafc;
+    }
+    .hero-section h1,
+    .hero-section p {
+      text-wrap: balance;
+    }
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(15,23,42,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.42;
+    }
+    .hero-floating-icon {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(0.4px) saturate(1.04);
+      animation: heroFloat 8s ease-in-out infinite;
+      opacity: 0.26;
+      mix-blend-mode: multiply;
+    }
+    @keyframes heroFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(10deg); }
+    }
+    @media (max-width: 1100px) {
+      .category-tabs-wrapper {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 768px) {
+      .category-tabs-container {
+        padding: 2rem 1rem 1.75rem;
+      }
+      .category-tabs-wrapper {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.8rem;
+      }
+      .category-tab {
+        min-height: 186px;
+        padding: 0.72rem 0.62rem 0.85rem;
+        border-radius: 20px;
+      }
+      .category-tab img {
+        width: 76px;
+        height: 76px;
+        border-radius: 16px;
+        margin-bottom: 0.75rem;
+      }
+    }
+    @media (max-width: 640px) {
+      .hero-section {
+        padding-top: 4.5rem;
+        padding-bottom: 4.75rem;
+      }
+      .hero-section > div {
+        max-width: 22.5rem;
+      }
+      .hero-section h1 {
+        font-size: 2.45rem;
+        line-height: 1.08;
+      }
+      .hero-section p {
+        font-size: 1.02rem;
+        line-height: 1.55;
+      }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -81,6 +797,10 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1094606266002530" crossorigin="anonymous"></script>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJP64DQB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- Announcement Bar -->
 <div id="announcement-bar" class="bg-accent text-white text-sm flex items-center justify-between px-4 py-2">
@@ -118,6 +838,31 @@
           <a href="./tools/upi-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">💸 UPI Validator</a>
           <a href="./tools/vehicle-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">🚦 Vehicle Checker</a>
           <a href="./tools/lic-validator.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">📜 LIC Policy</a>
+          <div class="my-2 border-t border-border-col"></div>
+          <a href="./tools/pdf-tools.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">
+            <span class="flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-[11px] font-black text-primary">PDF</span>
+            PDF Tools
+          </a>
+          <a href="./tools/image-tools.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-green-50 text-text-main text-sm">
+            <span class="flex h-6 w-6 items-center justify-center rounded-md bg-green-50 text-[11px] font-black text-accent">IMG</span>
+            Image Tools
+          </a>
+          <a href="#design-tools" class="flex items-center gap-3 p-2 rounded-lg hover:bg-violet-50 text-text-main text-sm">
+            <span class="flex h-6 w-6 items-center justify-center rounded-md bg-violet-50 text-[11px] font-black text-violet-700">PSD</span>
+            Design Tools
+          </a>
+          <a href="#developer-tools" class="flex items-center gap-3 p-2 rounded-lg hover:bg-teal-50 text-text-main text-sm">
+            <span class="flex h-6 w-6 items-center justify-center rounded-md bg-teal-50 text-[11px] font-black text-teal-700">DEV</span>
+            Developer Tools
+          </a>
+          <a href="#utility-tools" class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 text-text-main text-sm">
+            <span class="flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-[11px] font-black text-primary">UTL</span>
+            Utility Tools
+          </a>
+          <a href="#media-tools" class="flex items-center gap-3 p-2 rounded-lg hover:bg-orange-50 text-text-main text-sm">
+            <span class="flex h-6 w-6 items-center justify-center rounded-md bg-orange-50 text-[11px] font-black text-orange-700">MED</span>
+            Media Tools
+          </a>
         </div>
       </div>
       <a href="./blog/index.html" class="hover:text-primary transition-colors">Blog</a>
@@ -137,6 +882,13 @@
     <a href="./tools/gst-validator.html" class="block py-2 text-sm text-text-main pl-2">🏢 GST Verifier</a>
     <a href="./tools/upi-validator.html" class="block py-2 text-sm text-text-main pl-2">💸 UPI Validator</a>
     <a href="./tools/vehicle-validator.html" class="block py-2 text-sm text-text-main pl-2">🚦 Vehicle Checker</a>
+    <div class="pt-2 pb-1 text-xs font-bold text-text-muted uppercase tracking-wider">File Tools</div>
+    <a href="./tools/pdf-tools.html" class="block py-2 text-sm text-text-main pl-2">PDF Tools</a>
+    <a href="./tools/image-tools.html" class="block py-2 text-sm text-text-main pl-2">Image Tools</a>
+    <a href="#design-tools" class="block py-2 text-sm text-text-main pl-2">Design Tools</a>
+    <a href="#developer-tools" class="block py-2 text-sm text-text-main pl-2">Developer Tools</a>
+    <a href="#utility-tools" class="block py-2 text-sm text-text-main pl-2">Utility Tools</a>
+    <a href="#media-tools" class="block py-2 text-sm text-text-main pl-2">Media Tools</a>
     <a href="./blog/index.html" class="block py-2 text-sm text-text-main font-semibold border-t pt-2">Blog</a>
     <a href="./about.html" class="block py-2 text-sm text-text-main">About</a>
     <a href="./contact.html" class="block py-2 text-sm text-text-main">Contact</a>
@@ -144,56 +896,68 @@
 </nav>
 
 <!-- Hero Section -->
-<section class="py-16 md:py-20 px-4 text-center">
-  <div class="max-w-3xl mx-auto">
-    <div class="inline-flex items-center gap-2 bg-blue-50 text-primary text-xs font-semibold px-3 py-1.5 rounded-full mb-5 border border-blue-100">
-      🇮🇳 INDIAN DOCUMENT TOOLS
+<section class="hero-section relative py-20 md:py-28 px-4 text-center overflow-hidden">
+  <!-- Floating Background Elements -->
+  <img src="./assets/pdf_3d.png" alt="" class="hero-floating-icon w-24 h-24 top-20 left-[9%]" style="animation-delay: 0s;">
+  <img src="./assets/image_3d.png" alt="" class="hero-floating-icon w-20 h-20 bottom-40 left-[16%]" style="animation-delay: -2s;">
+  <img src="./assets/design_3d.png" alt="" class="hero-floating-icon w-28 h-28 top-36 right-[10%]" style="animation-delay: -4s;">
+  <img src="./assets/dev_3d.png" alt="" class="hero-floating-icon w-20 h-20 bottom-20 right-[18%]" style="animation-delay: -1s;">
+  <img src="./assets/util_3d.png" alt="" class="hero-floating-icon hidden md:block w-20 h-20 top-16 right-[30%]" style="animation-delay: -5s;">
+  
+  <div class="max-w-6xl mx-auto relative z-10">
+    <div class="inline-flex items-center gap-2 bg-blue-50 text-primary text-xs font-bold px-4 py-2 rounded-full mb-6 border border-blue-100 shadow-sm">
+      ALL-IN-ONE FREE TOOLKIT
     </div>
-    <h1 class="text-4xl md:text-5xl font-extrabold text-text-main leading-tight mb-4">
-      <span class="text-primary">Validate</span> Indian Documents<br>in Seconds
+    <h1 class="text-5xl md:text-7xl font-extrabold text-text-main leading-tight mb-6 tracking-tight">
+      Free tools for <br><span class="text-primary">files, images,<br class="sm:hidden"> code and daily<br class="sm:hidden"> tasks</span>
     </h1>
-    <p class="text-lg text-text-muted max-w-xl mx-auto leading-relaxed mb-6">
-      Free tools to check if your Aadhaar, PAN, GST, and other document numbers are in valid format. 100% browser-based — we never upload your data.
+    <p class="text-xl text-text-muted max-w-2xl mx-auto leading-relaxed mb-10 font-medium">
+      Convert PDFs, resize images, format developer data, create QR assets, clean media files, and finish everyday utilities from one fast browser workspace.
     </p>
+    
     <!-- Trust badges -->
-    <div class="flex flex-wrap justify-center gap-3 mb-10">
-      <span class="inline-flex items-center gap-1.5 text-accent text-sm font-medium bg-green-50 px-3 py-1.5 rounded-full border border-green-100">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        100% Private (no upload)
-      </span>
-      <span class="inline-flex items-center gap-1.5 text-primary text-sm font-medium bg-blue-50 px-3 py-1.5 rounded-full border border-blue-100">
-        ⚡ Instant results
-      </span>
-      <span class="inline-flex items-center gap-1.5 text-text-muted text-sm font-medium bg-white px-3 py-1.5 rounded-full border border-border-col">
-        🆓 Free forever
-      </span>
+    <div class="flex flex-wrap justify-center gap-4 mb-12">
+      <div class="flex items-center gap-2 text-accent bg-green-50/50 px-4 py-2 rounded-2xl border border-green-100 backdrop-blur-sm">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <span class="font-bold text-sm">Browser based</span>
+      </div>
+      <div class="flex items-center gap-2 text-primary bg-blue-50/50 px-4 py-2 rounded-2xl border border-blue-100 backdrop-blur-sm">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        <span class="font-bold text-sm">50+ fast tools</span>
+      </div>
+      <div class="flex items-center gap-2 text-text-main bg-white/50 px-4 py-2 rounded-2xl border border-border-col backdrop-blur-sm">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span class="font-bold text-sm">Free Forever</span>
+      </div>
     </div>
 
     <!-- Quick Validator Widget -->
-    <div class="bg-white rounded-2xl border border-border-col shadow-md p-6 md:p-8 max-w-xl mx-auto text-left">
-      <label class="block text-sm font-semibold text-text-main mb-2">Paste any document number</label>
-      <div class="flex flex-col sm:flex-row gap-3">
+    <div class="hidden bg-white/80 backdrop-blur-xl rounded-[2rem] border border-border-col shadow-2xl p-6 md:p-10 max-w-2xl mx-auto text-left transform transition hover:scale-[1.01]">
+      <label class="block text-base font-bold text-text-main mb-3 ml-1">Paste any document number</label>
+      <div class="flex flex-col sm:flex-row gap-4">
         <input
           type="text"
           id="quick-input"
-          placeholder="Enter Aadhaar / PAN / GST / IFSC / Voter ID..."
-          class="flex-1 h-14 px-4 border border-border-col rounded-xl text-sm md:text-base font-mono focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
+          placeholder="Aadhaar / PAN / GST / IFSC / Voter ID..."
+          class="flex-1 h-16 px-6 border-2 border-border-col rounded-2xl text-lg font-mono focus:outline-none focus:ring-4 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400"
           oninput="quickAutoDetect()"
           onkeydown="if(event.key==='Enter') quickValidate()"
         >
-        <button onclick="quickValidate()" class="h-14 w-full sm:w-auto px-6 bg-primary text-white font-semibold rounded-xl hover:bg-blue-700 transition whitespace-nowrap">
+        <button onclick="quickValidate()" class="h-16 px-8 bg-primary text-white text-lg font-bold rounded-2xl hover:bg-blue-700 hover:shadow-lg hover:shadow-primary/30 transition-all active:scale-95 whitespace-nowrap">
           Validate →
         </button>
       </div>
-      <p class="text-xs text-text-muted mt-2" id="quick-hint">Start typing — we'll auto-detect the document type</p>
+      <p class="text-sm text-text-muted mt-3 ml-1 font-medium" id="quick-hint">
+        <span class="text-primary">✨ Pro tip:</span> We automatically detect the document type for you.
+      </p>
 
       <!-- Result panel -->
-      <div id="quick-result" class="hidden mt-4 p-4 rounded-xl border fade-in">
-        <div class="flex items-center gap-3">
-          <div id="quick-res-icon" class="w-10 h-10 rounded-full flex items-center justify-center text-lg"></div>
+      <div id="quick-result" class="hidden mt-6 p-5 rounded-2xl border-2 fade-in">
+        <div class="flex items-center gap-4">
+          <div id="quick-res-icon" class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shadow-inner"></div>
           <div>
-            <div id="quick-res-title" class="font-bold text-sm"></div>
-            <div id="quick-res-msg" class="text-xs text-text-muted"></div>
+            <div id="quick-res-title" class="font-black text-lg"></div>
+            <div id="quick-res-msg" class="text-sm text-text-muted font-medium"></div>
           </div>
         </div>
       </div>
@@ -201,8 +965,142 @@
   </div>
 </section>
 
+<!-- 3D Category Tabbing Section -->
+<section id="tool-categories-tabs" class="category-tabs-container">
+  <div class="max-w-7xl mx-auto">
+    <div class="category-tabs-wrapper">
+      <!-- Tab 1: Documents -->
+      <a href="#tools" class="category-tab active" onclick="setActiveTab(this)">
+        <img src="./assets/docs_3d.png" alt="Indian Documents">
+        <span class="tab-title">Indian Docs</span>
+        <span class="tab-badge">9+ Tools</span>
+      </a>
+      
+      <!-- Tab 2: PDF Tools -->
+      <a href="#pdf-tools" class="category-tab" onclick="setActiveTab(this)">
+        <img src="./assets/pdf_3d.png" alt="PDF Tools">
+        <span class="tab-title">PDF Suite</span>
+        <span class="tab-badge">20+ Tools</span>
+      </a>
+      
+      <!-- Tab 3: Image Tools -->
+      <a href="#image-tools" class="category-tab" onclick="setActiveTab(this)">
+        <img src="./assets/image_3d.png" alt="Image Tools">
+        <span class="tab-title">Image Lab</span>
+        <span class="tab-badge">14+ Tools</span>
+      </a>
+
+      <!-- Tab 4: Design Tools -->
+      <a href="#design-tools" class="category-tab" onclick="setActiveTab(this)">
+        <img src="./assets/design_3d.png" alt="Design Tools">
+        <span class="tab-title">Design Studio</span>
+        <span class="tab-badge">6+ Tools</span>
+      </a>
+      
+      <!-- Tab 5: Developer Tools -->
+      <a href="#developer-tools" class="category-tab" onclick="setActiveTab(this)">
+        <img src="./assets/dev_3d.png" alt="Developer Tools">
+        <span class="tab-title">Dev Tools</span>
+        <span class="tab-badge">10+ Tools</span>
+      </a>
+      
+      <!-- Tab 5: Utility Tools -->
+      <a href="#utility-tools" class="category-tab" onclick="setActiveTab(this)">
+        <img src="./assets/util_3d.png" alt="Utility Tools">
+        <span class="tab-title">Utilities</span>
+        <span class="tab-badge">9+ Tools</span>
+      </a>
+      
+      <!-- Tab 6: Media Tools -->
+      <a href="#media-tools" class="category-tab" onclick="setActiveTab(this)">
+        <img src="./assets/media_3d.png" alt="Media Tools">
+        <span class="tab-title">Media Hub</span>
+        <span class="tab-badge">5+ Tools</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  function setActiveTab(element) {
+    document.querySelectorAll('.category-tab').forEach(tab => tab.classList.remove('active'));
+    element.classList.add('active');
+  }
+
+  // Smooth scroll and scroll spy
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = [
+      { id: 'tools', tabIdx: 0 },
+      { id: 'pdf-tools', tabIdx: 1 },
+      { id: 'image-tools', tabIdx: 2 },
+      { id: 'design-tools', tabIdx: 3 },
+      { id: 'developer-tools', tabIdx: 4 },
+      { id: 'utility-tools', tabIdx: 5 },
+      { id: 'media-tools', tabIdx: 6 }
+    ];
+
+    const tabs = document.querySelectorAll('.category-tab');
+    const tabsWrapper = document.querySelector('.category-tabs-wrapper');
+    const stickyNav = document.querySelector('nav');
+
+    function centerTabInStrip(tab) {
+      if (!tabsWrapper || !tab) return;
+      const left = tab.offsetLeft - ((tabsWrapper.clientWidth - tab.clientWidth) / 2);
+      tabsWrapper.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+    }
+    
+    // Intersection Observer for Scroll Spy
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          const sectionData = sections.find(s => s.id === sectionId);
+          if (sectionData) {
+            tabs.forEach(tab => tab.classList.remove('active'));
+            const activeTab = tabs[sectionData.tabIdx];
+            activeTab.classList.add('active');
+            
+            // Keep the tab strip aligned horizontally without moving the page vertically.
+            centerTabInStrip(activeTab);
+          }
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(s => {
+      const el = document.getElementById(s.id);
+      if (el) observer.observe(el);
+    });
+
+    // Handle click for smooth scroll
+    tabs.forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = tab.getAttribute('href').substring(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          const navOffset = (stickyNav?.offsetHeight || 64) + 16;
+          const targetTop = targetEl.getBoundingClientRect().top + window.pageYOffset - navOffset;
+          window.scrollTo({
+            top: Math.max(0, targetTop),
+            behavior: 'smooth'
+          });
+          setActiveTab(tab);
+          centerTabInStrip(tab);
+        }
+      });
+    });
+  });
+</script>
+
 <!-- All Tools Grid -->
-<section class="py-12 px-4 bg-white border-y border-border-col">
+<section id="tools" class="py-12 px-4 bg-white border-y border-border-col">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-10">
       <h2 class="text-3xl font-extrabold text-text-main mb-2">All Indian Document Tools</h2>
@@ -324,6 +1222,511 @@
     </div>
   </div>
 </section>
+
+<!-- PDF Tools Section -->
+<section id="pdf-tools" class="pdf-suite-section py-16 md:py-20 px-4 border-y border-border-col">
+  <div class="relative z-10 mx-auto max-w-[1600px]">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight text-text-main">
+        Every tool you need to work with PDFs in one place
+      </h2>
+      <p class="mx-auto mt-3 max-w-3xl text-base md:text-lg font-medium leading-relaxed text-text-muted">
+        Every PDF tool at your fingertips. Merge, split, compress, convert, rotate, unlock, watermark, and explore smart PDF workflows from one clean workspace.
+      </p>
+    </div>
+
+    <div class="mt-7 flex flex-wrap items-center justify-center gap-2" aria-label="PDF tool categories">
+      <button type="button" data-pdf-filter="all" aria-pressed="true" class="pdf-filter-pill is-active rounded-full border border-border-col bg-white px-4 py-2 text-xs font-extrabold text-text-main">All</button>
+      <button type="button" data-pdf-filter="workflows" aria-pressed="false" class="pdf-filter-pill rounded-full border border-border-col bg-white px-4 py-2 text-xs font-extrabold text-text-muted">Workflows</button>
+      <button type="button" data-pdf-filter="organize" aria-pressed="false" class="pdf-filter-pill rounded-full border border-border-col bg-white px-4 py-2 text-xs font-extrabold text-text-muted">Organize PDF</button>
+      <button type="button" data-pdf-filter="optimize" aria-pressed="false" class="pdf-filter-pill rounded-full border border-border-col bg-white px-4 py-2 text-xs font-extrabold text-text-muted">Optimize PDF</button>
+      <button type="button" data-pdf-filter="convert" aria-pressed="false" class="pdf-filter-pill rounded-full border border-border-col bg-white px-4 py-2 text-xs font-extrabold text-text-muted">Convert PDF</button>
+      <button type="button" data-pdf-filter="edit" aria-pressed="false" class="pdf-filter-pill rounded-full border border-border-col bg-white px-4 py-2 text-xs font-extrabold text-text-muted">Edit PDF</button>
+      <button type="button" data-pdf-filter="security" aria-pressed="false" class="pdf-filter-pill rounded-full border border-border-col bg-white px-4 py-2 text-xs font-extrabold text-text-muted">PDF Security</button>
+      <button type="button" data-pdf-filter="intelligence" aria-pressed="false" class="pdf-filter-pill rounded-full border border-border-col bg-white px-4 py-2 text-xs font-extrabold text-text-muted">PDF Intelligence</button>
+    </div>
+
+    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      <a href="./tools/pdf-tools.html?tool=merge-pdf" data-pdf-category="workflows organize" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-orange" data-label="M" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Merge PDF</span>
+        <span class="pdf-suite-copy">Combine PDFs in the order you need with a simple browser upload.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=split-pdf" data-pdf-category="workflows organize" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-orange" data-label="S" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Split PDF</span>
+        <span class="pdf-suite-copy">Separate selected pages or page ranges into independent PDF files.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=compress-pdf" data-pdf-category="workflows optimize" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-green" data-label="C" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Compress PDF</span>
+        <span class="pdf-suite-copy">Reduce file size with a clean optimized PDF rebuild.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=pdf-to-word" data-pdf-category="convert" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-blue" data-label="W" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">PDF to Word</span>
+        <span class="pdf-suite-copy">Convert selectable PDF text into an editable DOCX file.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=pdf-to-powerpoint" data-pdf-category="convert" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-orange" data-label="P" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">PDF to PowerPoint</span>
+        <span class="pdf-suite-copy">Open a PDF as a presentation-ready PPTX workflow.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=pdf-to-excel" data-pdf-category="convert" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-green" data-label="X" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">PDF to Excel</span>
+        <span class="pdf-suite-copy">Move tables and structured PDF data into spreadsheet workflows.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=word-to-pdf" data-pdf-category="convert" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-blue" data-label="W" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Word to PDF</span>
+        <span class="pdf-suite-copy">Save DOCX files as polished PDFs for final delivery.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=powerpoint-to-pdf" data-pdf-category="convert" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-orange" data-label="P" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">PowerPoint to PDF</span>
+        <span class="pdf-suite-copy">Turn PPT and PPTX decks into shareable PDF documents.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=excel-to-pdf" data-pdf-category="convert" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-green" data-label="X" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Excel to PDF</span>
+        <span class="pdf-suite-copy">Convert spreadsheets into clean PDFs for review and sharing.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=edit-pdf" data-pdf-category="workflows edit" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-purple" data-label="E" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Edit PDF</span>
+        <span class="pdf-suite-copy">Add text, images, shapes, and annotations to PDF pages.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=pdf-to-image" data-pdf-category="convert" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-yellow label-wide" data-label="JPG" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">PDF to JPG</span>
+        <span class="pdf-suite-copy">Export PDF pages as crisp image files for previews and uploads.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=image-to-pdf" data-pdf-category="convert" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-yellow label-wide" data-label="JPG" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">JPG to PDF</span>
+        <span class="pdf-suite-copy">Convert JPG and PNG images into one ordered PDF file.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=sign-pdf" data-pdf-category="workflows edit security" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-blue" data-label="S" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Sign PDF</span>
+        <span class="pdf-suite-copy">Prepare PDFs for signatures and approval workflows.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=add-watermark" data-pdf-category="edit security" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-purple" data-label="W" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Watermark</span>
+        <span class="pdf-suite-copy">Stamp text over PDF pages for drafts, approvals, and shared copies.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=rotate-pdf" data-pdf-category="organize edit" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-purple" data-label="R" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Rotate PDF</span>
+        <span class="pdf-suite-copy">Fix sideways pages and save the corrected orientation.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=html-to-pdf" data-pdf-category="convert" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-yellow label-wide" data-label="HTML" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">HTML to PDF</span>
+        <span class="pdf-suite-copy">Convert webpages or HTML files into PDF documents.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=unlock-pdf" data-pdf-category="security" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-blue" data-label="U" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Unlock PDF</span>
+        <span class="pdf-suite-copy">Remove passwords from PDF files that you own and can access.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=lock-pdf" data-pdf-category="security" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-blue" data-label="P" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Protect PDF</span>
+        <span class="pdf-suite-copy">Add password protection before sending sensitive PDF files.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=organize-pdf" data-pdf-category="workflows organize" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-orange" data-label="O" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Organize PDF</span>
+        <span class="pdf-suite-copy">Sort, remove, or rearrange pages before saving a new document.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=pdf-to-pdfa" data-pdf-category="convert optimize" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-blue label-wide" data-label="/A" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">PDF to PDF/A</span>
+        <span class="pdf-suite-copy">Prepare PDFs for long-term archive friendly workflows.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=repair-pdf" data-pdf-category="optimize" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-green" data-label="R" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Repair PDF</span>
+        <span class="pdf-suite-copy">Recover readable content from damaged PDF files when possible.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=page-numbers" data-pdf-category="edit" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-purple" data-label="12" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Page numbers</span>
+        <span class="pdf-suite-copy">Add page numbers with simple position and style controls.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=scan-to-pdf" data-pdf-category="workflows convert" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-orange" data-label="S" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Scan to PDF</span>
+        <span class="pdf-suite-copy">Collect scanned images and send them into a PDF workflow.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=ocr-pdf" data-pdf-category="intelligence" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-green label-wide" data-label="OCR" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">OCR PDF</span>
+        <span class="pdf-suite-copy">Make scanned PDFs searchable and easier to copy from.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=compare-pdf" data-pdf-category="workflows intelligence" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-blue" data-label="C" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Compare PDF</span>
+        <span class="pdf-suite-copy">Review two PDF versions and spot important differences.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=redact-pdf" data-pdf-category="edit security" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-blue" data-label="R" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Redact PDF</span>
+        <span class="pdf-suite-copy">Permanently remove sensitive text or graphics from PDF pages.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=crop-pdf" data-pdf-category="edit optimize" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-icon icon-purple" data-label="C" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Crop PDF</span>
+        <span class="pdf-suite-copy">Trim margins or crop selected areas across PDF pages.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=ai-summarizer" data-pdf-category="intelligence" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-badge">New</span>
+        <span class="pdf-suite-icon icon-violet label-wide" data-label="AI" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">AI Summarizer</span>
+        <span class="pdf-suite-copy">Generate concise summaries and key points from PDF content.</span>
+      </a>
+
+      <a href="./tools/pdf-tools.html?tool=translate-pdf" data-pdf-category="intelligence" class="pdf-suite-card relative block p-6 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="pdf-suite-badge">New</span>
+        <span class="pdf-suite-icon icon-violet" data-label="T" aria-hidden="true"><span class="pdf-icon-mark"></span></span>
+        <span class="pdf-suite-title">Translate PDF</span>
+        <span class="pdf-suite-copy">Translate PDF text while keeping the workflow in one place.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Image Tools Section -->
+<section id="image-tools" class="image-lab-section py-16 md:py-20 px-4 border-b border-border-col">
+  <div class="image-lab-track" aria-hidden="true"></div>
+  <div class="relative z-10 mx-auto max-w-[1600px]">
+    <div class="mx-auto max-w-4xl text-center">
+      <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-green-100 bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-[0.12em] text-accent shadow-sm">
+        <span class="h-2 w-2 rounded-full bg-warning"></span>
+        Image tools
+      </div>
+      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight text-text-main">
+        Fast image converters and editors in one clean workspace
+      </h2>
+      <p class="mx-auto mt-3 max-w-3xl text-base md:text-lg font-medium leading-relaxed text-text-muted">
+        Convert JPG, PNG, WEBP, SVG, resize, compress, crop, rotate, blur, sharpen, watermark, and move images in or out of Base64.
+      </p>
+    </div>
+
+    <div class="mt-7 flex flex-wrap items-center justify-center gap-2" aria-label="Image tool categories">
+      <button type="button" data-image-filter="all" aria-pressed="true" class="image-filter-pill is-active rounded-full border border-border-col bg-white px-4 py-2 text-xs font-extrabold text-text-main">All</button>
+      <button type="button" data-image-filter="convert" aria-pressed="false" class="image-filter-pill rounded-full border border-border-col bg-white px-4 py-2 text-xs font-extrabold text-text-muted">Convert</button>
+      <button type="button" data-image-filter="edit" aria-pressed="false" class="image-filter-pill rounded-full border border-border-col bg-white px-4 py-2 text-xs font-extrabold text-text-muted">Edit</button>
+      <button type="button" data-image-filter="optimize" aria-pressed="false" class="image-filter-pill rounded-full border border-border-col bg-white px-4 py-2 text-xs font-extrabold text-text-muted">Optimize</button>
+      <button type="button" data-image-filter="utility" aria-pressed="false" class="image-filter-pill rounded-full border border-border-col bg-white px-4 py-2 text-xs font-extrabold text-text-muted">Utility</button>
+    </div>
+
+    <div class="image-tools-grid mt-8">
+      <a href="./tools/image-tools.html?tool=jpg-to-png" data-image-category="convert" class="image-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+        <span class="image-tool-icon image-icon-blue" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 3h8l4 4v14H6V3Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M14 3v5h5M8.5 16l2.2-2.7 2 2.2 1.3-1.4 1.8 1.9"/></svg></span>
+        <span class="image-tool-title">JPG to PNG</span>
+        <span class="image-tool-copy">Convert JPEG photos into PNG files with crisp output.</span>
+        <span class="image-tool-meta"><span>Convert</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/image-tools.html?tool=png-to-jpg" data-image-category="convert" class="image-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+        <span class="image-tool-icon image-icon-orange" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 7h10v10H7V7Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 4h5M15 4h5M4 20h5M15 20h5M4 9V4M20 9V4M4 20v-5M20 20v-5"/></svg></span>
+        <span class="image-tool-title">PNG to JPG</span>
+        <span class="image-tool-copy">Flatten transparent PNGs to lightweight JPG images.</span>
+        <span class="image-tool-meta"><span>Convert</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/image-tools.html?tool=webp-to-jpg" data-image-category="convert" class="image-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+        <span class="image-tool-icon image-icon-green" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 8h10a4 4 0 0 1 0 8H4V8Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 12h6M18 7l2 2-2 2M20 9h-4"/></svg></span>
+        <span class="image-tool-title">WEBP to JPG</span>
+        <span class="image-tool-copy">Make WEBP uploads compatible with JPG-only forms.</span>
+        <span class="image-tool-meta"><span>Convert</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/image-tools.html?tool=jpg-to-webp" data-image-category="convert optimize" class="image-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+        <span class="image-tool-icon image-icon-green" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 7h14v10H5V7Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 11h8M8 14h5M17 4l3 3-3 3"/></svg></span>
+        <span class="image-tool-title">JPG to WEBP</span>
+        <span class="image-tool-copy">Create smaller WEBP files for websites and sharing.</span>
+        <span class="image-tool-meta"><span>Convert</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/image-tools.html?tool=resize-image" data-image-category="optimize edit" class="image-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+        <span class="image-tool-icon image-icon-slate" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 9V4h5M20 15v5h-5M4 4l7 7M20 20l-7-7"/></svg></span>
+        <span class="image-tool-title">Resize Image</span>
+        <span class="image-tool-copy">Set exact width and height while keeping proportions.</span>
+        <span class="image-tool-meta"><span>Optimize</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/image-tools.html?tool=compress-image" data-image-category="optimize" class="image-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+        <span class="image-tool-icon image-icon-orange" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 14h16M8 6h8M7 18h10M10 10h4"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 3 6 6l3 3M15 3l3 3-3 3"/></svg></span>
+        <span class="image-tool-title">Compress Image</span>
+        <span class="image-tool-copy">Reduce file size with adjustable quality controls.</span>
+        <span class="image-tool-meta"><span>Optimize</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/image-tools.html?tool=crop-image" data-image-category="edit" class="image-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+        <span class="image-tool-icon image-icon-blue" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 3v14h14M3 7h14v14M7 7h10v10H7V7Z"/></svg></span>
+        <span class="image-tool-title">Crop Image</span>
+        <span class="image-tool-copy">Crop center, square, portrait, or custom image areas.</span>
+        <span class="image-tool-meta"><span>Edit</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/image-tools.html?tool=rotate-image" data-image-category="edit" class="image-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+        <span class="image-tool-icon image-icon-green" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 11a8 8 0 1 1-2.35-5.65"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 4v7h-7"/></svg></span>
+        <span class="image-tool-title">Rotate Image</span>
+        <span class="image-tool-copy">Turn images 90, 180, or 270 degrees in the browser.</span>
+        <span class="image-tool-meta"><span>Edit</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/image-tools.html?tool=blur-image" data-image-category="edit" class="image-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+        <span class="image-tool-icon image-icon-rose" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 4s5 5.4 5 9a5 5 0 0 1-10 0c0-3.6 5-9 5-9Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 19h14"/></svg></span>
+        <span class="image-tool-title">Blur Image</span>
+        <span class="image-tool-copy">Apply soft blur for backgrounds, privacy, or style.</span>
+        <span class="image-tool-meta"><span>Edit</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/image-tools.html?tool=sharpen-image" data-image-category="edit optimize" class="image-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+        <span class="image-tool-icon image-icon-slate" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="m12 3 2.2 6.3H21l-5.4 4 2 6.7-5.6-3.9L6.4 20l2-6.7L3 9.3h6.8L12 3Z"/></svg></span>
+        <span class="image-tool-title">Sharpen Image</span>
+        <span class="image-tool-copy">Add crispness to soft images with a controlled pass.</span>
+        <span class="image-tool-meta"><span>Edit</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/image-tools.html?tool=watermark-image" data-image-category="edit utility" class="image-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+        <span class="image-tool-icon image-icon-blue" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16v12H4V6Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 15h8M9 10h6"/></svg></span>
+        <span class="image-tool-title">Watermark Image</span>
+        <span class="image-tool-copy">Add custom text watermark before publishing or sharing.</span>
+        <span class="image-tool-meta"><span>Edit</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/image-tools.html?tool=image-to-base64" data-image-category="utility" class="image-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+        <span class="image-tool-icon image-icon-green" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 8 4 12l4 4M16 8l4 4-4 4M14 4l-4 16"/></svg></span>
+        <span class="image-tool-title">Image to Base64</span>
+        <span class="image-tool-copy">Generate a data URL for CSS, HTML, or quick embeds.</span>
+        <span class="image-tool-meta"><span>Utility</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/image-tools.html?tool=base64-to-image" data-image-category="utility convert" class="image-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+        <span class="image-tool-icon image-icon-orange" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 5h16v14H4V5Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 13l2-2 2 2 2-3 3 4H7"/></svg></span>
+        <span class="image-tool-title">Base64 to Image</span>
+        <span class="image-tool-copy">Paste Base64 and download it as a real image file.</span>
+        <span class="image-tool-meta"><span>Utility</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/image-tools.html?tool=svg-to-png-jpg" data-image-category="convert utility" class="image-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+        <span class="image-tool-icon image-icon-rose" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 3h8l4 4v14H6V3Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 13 7 15l2 2M15 13l2 2-2 2M14 11l-4 8"/></svg></span>
+        <span class="image-tool-title">SVG to PNG/JPG</span>
+        <span class="image-tool-copy">Rasterize SVG artwork into PNG or JPG files.</span>
+        <span class="image-tool-meta"><span>Convert</span><span>Open</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="bg-white px-4 py-6">
+  <div class="mx-auto max-w-6xl">
+    <div class="ad-placement" aria-label="Advertisement placement">Advertisement</div>
+  </div>
+</div>
+
+<!-- Design Tools Section -->
+<section id="design-tools" class="tools-category-section design-tools-section border-b border-border-col">
+  <div class="mx-auto max-w-[1500px]">
+    <div class="mb-8 grid gap-5 lg:grid-cols-[minmax(0,1fr)_26rem] lg:items-end">
+      <div>
+        <div class="tools-category-eyebrow text-violet-700">
+          <span class="h-2 w-2 rounded-full bg-warning"></span>
+          PSD and design tools
+        </div>
+        <h2 class="mt-4 max-w-3xl text-3xl font-extrabold leading-tight text-text-main md:text-5xl">
+          Premium design format converters for creative files
+        </h2>
+      </div>
+      <p class="text-base font-medium leading-relaxed text-text-muted">
+        Quick clean-URL pages for PSD, AI, and SVG conversion workflows, built with a polished card layout that works on mobile and desktop.
+      </p>
+    </div>
+
+    <div class="tools-category-grid">
+      <a href="./tools/psd-to-png.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="category-tool-icon icon-design" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 4h14v16H5V4Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 9h3a2 2 0 0 1 0 4H8V9Zm8 0h-2v4h2a2 2 0 0 0 0-4Z"/></svg></span>
+        <span class="category-tool-title">PSD to PNG</span>
+        <span class="category-tool-copy">Convert Photoshop artwork into transparent PNG-ready exports.</span>
+        <span class="category-tool-link"><span>Design</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/psd-to-jpg.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="category-tool-icon icon-design" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 3h8l4 4v14H6V3Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M14 3v5h5M8 16l2-2 2 2 2-3 3 4"/></svg></span>
+        <span class="category-tool-title">PSD to JPG</span>
+        <span class="category-tool-copy">Prepare Photoshop designs as JPG files for previews and uploads.</span>
+        <span class="category-tool-link"><span>Design</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/ai-to-png.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="category-tool-icon icon-design" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 20 10 4h4l6 16M8 14h8M12 4v16"/></svg></span>
+        <span class="category-tool-title">AI to PNG</span>
+        <span class="category-tool-copy">Export Illustrator artwork into PNG assets for web and product use.</span>
+        <span class="category-tool-link"><span>Design</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/ai-to-jpg.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="category-tool-icon icon-design" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 19 11 5h2l6 14M8 14h8"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 21h12"/></svg></span>
+        <span class="category-tool-title">AI to JPG</span>
+        <span class="category-tool-copy">Turn vector design files into shareable JPG previews.</span>
+        <span class="category-tool-link"><span>Design</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/svg-to-png.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="category-tool-icon icon-design" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 3h10v18H7V3Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10 13 8 15l2 2M14 13l2 2-2 2M14 9l-4 10"/></svg></span>
+        <span class="category-tool-title">SVG to PNG</span>
+        <span class="category-tool-copy">Rasterize SVG logos and icons into clean PNG files.</span>
+        <span class="category-tool-link"><span>Design</span><span>Open</span></span>
+      </a>
+
+      <a href="./tools/svg-to-jpg.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span class="category-tool-icon icon-design" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 5h16v14H4V5Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 14l3-3 2 2 2-3 3 4"/></svg></span>
+        <span class="category-tool-title">SVG to JPG</span>
+        <span class="category-tool-copy">Convert vector SVG artwork into JPG with a clean background.</span>
+        <span class="category-tool-link"><span>Design</span><span>Open</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Developer Tools Section -->
+<section id="developer-tools" class="tools-category-section dev-tools-section border-b border-border-col">
+  <div class="mx-auto max-w-[1500px]">
+    <div class="mb-8 grid gap-5 lg:grid-cols-[minmax(0,1fr)_26rem] lg:items-end">
+      <div>
+        <div class="tools-category-eyebrow text-teal-700">
+          <span class="font-mono text-[0.72rem]">&lt;/&gt;</span>
+          Text and developer tools
+        </div>
+        <h2 class="mt-4 max-w-3xl text-3xl font-extrabold leading-tight text-text-main md:text-5xl">
+          Coding-style utilities for text, JSON, XML, HTML, CSS, and JS
+        </h2>
+      </div>
+      <p class="font-mono text-sm font-semibold leading-relaxed text-text-muted">
+        Format, count, clean, and minify common developer content from fast SEO-friendly tool pages.
+      </p>
+    </div>
+
+    <div class="tools-category-grid">
+      <a href="./tools/word-counter.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40"><span class="category-tool-icon icon-dev" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h10M4 18h7"/></svg></span><span class="category-tool-title">Word Counter</span><span class="category-tool-copy">Count words, reading length, and text density quickly.</span><span class="category-tool-link"><span>Text</span><span>Open</span></span></a>
+      <a href="./tools/character-counter.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40"><span class="category-tool-icon icon-dev" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 7h14M8 4v16M16 4v16M5 17h14"/></svg></span><span class="category-tool-title">Character Counter</span><span class="category-tool-copy">Measure characters, spaces, lines, and limits for any copy.</span><span class="category-tool-link"><span>Text</span><span>Open</span></span></a>
+      <a href="./tools/case-converter.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40"><span class="category-tool-icon icon-dev" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 18 10 6h2l6 12M7 14h8M20 8v10"/></svg></span><span class="category-tool-title">Case Converter</span><span class="category-tool-copy">Switch text between upper, lower, title, sentence, and slug case.</span><span class="category-tool-link"><span>Text</span><span>Open</span></span></a>
+      <a href="./tools/remove-duplicate-lines.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40"><span class="category-tool-icon icon-dev" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 6h12M5 10h12M5 14h9M5 18h6M18 14l2 2-2 2"/></svg></span><span class="category-tool-title">Remove Duplicate Lines</span><span class="category-tool-copy">Clean lists and logs by keeping unique lines only.</span><span class="category-tool-link"><span>Text</span><span>Open</span></span></a>
+      <a href="./tools/json-formatter.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40"><span class="category-tool-icon icon-dev" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 0 0-2 2v2a2 2 0 0 1-1 1.7A2 2 0 0 1 4 12.4V15a2 2 0 0 0 2 2h2M16 5h2a2 2 0 0 1 2 2v2a2 2 0 0 0 1 1.7 2 2 0 0 0-1 1.7V15a2 2 0 0 1-2 2h-2"/></svg></span><span class="category-tool-title">JSON Formatter</span><span class="category-tool-copy">Pretty print JSON for debugging, docs, and API reviews.</span><span class="category-tool-link"><span>Code</span><span>Open</span></span></a>
+      <a href="./tools/json-minifier.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40"><span class="category-tool-icon icon-dev" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 7H5v3M16 7h3v3M8 17H5v-3M16 17h3v-3M9 12h6"/></svg></span><span class="category-tool-title">JSON Minifier</span><span class="category-tool-copy">Compress JSON into smaller payloads for sharing or storage.</span><span class="category-tool-link"><span>Code</span><span>Open</span></span></a>
+      <a href="./tools/xml-formatter.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40"><span class="category-tool-icon icon-dev" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m9 8-4 4 4 4M15 8l4 4-4 4M13 5l-2 14"/></svg></span><span class="category-tool-title">XML Formatter</span><span class="category-tool-copy">Indent XML markup so nodes and attributes are easier to scan.</span><span class="category-tool-link"><span>Code</span><span>Open</span></span></a>
+      <a href="./tools/html-minifier.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40"><span class="category-tool-icon icon-dev" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m8 9-3 3 3 3M16 9l3 3-3 3M11 6h2v12h-2z"/></svg></span><span class="category-tool-title">HTML Minifier</span><span class="category-tool-copy">Reduce HTML whitespace for leaner snippets and pages.</span><span class="category-tool-link"><span>Code</span><span>Open</span></span></a>
+      <a href="./tools/css-minifier.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40"><span class="category-tool-icon icon-dev" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M7 4h10l-1 16-4 1-4-1L7 4Zm3 5h5M10 13h4"/></svg></span><span class="category-tool-title">CSS Minifier</span><span class="category-tool-copy">Compress CSS rules while preserving selector behavior.</span><span class="category-tool-link"><span>Code</span><span>Open</span></span></a>
+      <a href="./tools/js-minifier.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-accent/40"><span class="category-tool-icon icon-dev" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 5h14v14H5V5Zm4 10c1.5 1 3 1 4 0 .8-.8.4-2-1-2.5l-1.5-.5c-1.4-.5-1.8-1.7-1-2.5 1-1 2.5-1 4 0"/></svg></span><span class="category-tool-title">JS Minifier</span><span class="category-tool-copy">Minify JavaScript snippets for smaller embeds and demos.</span><span class="category-tool-link"><span>Code</span><span>Open</span></span></a>
+    </div>
+  </div>
+</section>
+
+<div class="bg-slate-50 px-4 py-6">
+  <div class="mx-auto max-w-6xl">
+    <div class="ad-placement" aria-label="Advertisement placement">Advertisement</div>
+  </div>
+</div>
+
+<!-- Utility Tools Section -->
+<section id="utility-tools" class="tools-category-section utility-tools-section border-b border-border-col">
+  <div class="mx-auto max-w-[1500px]">
+    <div class="mb-8 grid gap-5 lg:grid-cols-[minmax(0,1fr)_26rem] lg:items-end">
+      <div>
+        <div class="tools-category-eyebrow text-primary">
+          <span class="h-2 w-2 rounded-full bg-primary"></span>
+          Utility tools
+        </div>
+        <h2 class="mt-4 max-w-3xl text-3xl font-extrabold leading-tight text-text-main md:text-5xl">
+          Everyday generators, encoders, hashes, colors, and converters
+        </h2>
+      </div>
+      <p class="text-base font-medium leading-relaxed text-text-muted">
+        A practical utility shelf for QR codes, barcodes, secure passwords, Base64, URL encoding, colors, hashes, and units.
+      </p>
+    </div>
+
+    <div class="tools-category-grid">
+      <a href="./tools/qr-code-generator.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40"><span class="category-tool-icon icon-util" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 4h6v6H4V4Zm10 0h6v6h-6V4ZM4 14h6v6H4v-6Zm11 1h2v2h-2v-2Zm3 3h2v2h-2v-2Zm-4 1h2v1h-2v-1Z"/></svg></span><span class="category-tool-title">QR Code Generator</span><span class="category-tool-copy">Create QR codes for URLs, text, contact details, and more.</span><span class="category-tool-link"><span>Utility</span><span>Open</span></span></a>
+      <a href="./tools/barcode-generator.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40"><span class="category-tool-icon icon-util" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 5v14M8 5v14M12 5v14M15 5v14M19 5v14"/></svg></span><span class="category-tool-title">Barcode Generator</span><span class="category-tool-copy">Generate simple barcode assets for labels and inventory flows.</span><span class="category-tool-link"><span>Utility</span><span>Open</span></span></a>
+      <a href="./tools/password-generator.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40"><span class="category-tool-icon icon-util" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M7 10V8a5 5 0 0 1 10 0v2M6 10h12v10H6V10Zm6 4v2"/></svg></span><span class="category-tool-title">Password Generator</span><span class="category-tool-copy">Create strong random passwords with length and symbol controls.</span><span class="category-tool-link"><span>Security</span><span>Open</span></span></a>
+      <a href="./tools/url-encoder-decoder.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40"><span class="category-tool-icon icon-util" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M10 13a4 4 0 0 0 5.7 0l2-2a4 4 0 1 0-5.7-5.7l-1 1M14 11a4 4 0 0 0-5.7 0l-2 2A4 4 0 1 0 12 18.7l1-1"/></svg></span><span class="category-tool-title">URL Encoder / Decoder</span><span class="category-tool-copy">Encode or decode URLs, query strings, and special characters.</span><span class="category-tool-link"><span>Utility</span><span>Open</span></span></a>
+      <a href="./tools/base64-encode-decode.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40"><span class="category-tool-icon icon-util" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 8 4 12l4 4M16 8l4 4-4 4M14 4l-4 16"/></svg></span><span class="category-tool-title">Base64 Encode / Decode</span><span class="category-tool-copy">Convert plain text to Base64 and decode Base64 back to text.</span><span class="category-tool-link"><span>Utility</span><span>Open</span></span></a>
+      <a href="./tools/md5-sha-generator.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40"><span class="category-tool-icon icon-util" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 3 4 7v6c0 5 8 8 8 8s8-3 8-8V7l-8-4Zm-3 9h6M12 9v6"/></svg></span><span class="category-tool-title">MD5 / SHA Generator</span><span class="category-tool-copy">Generate common hashes for text checks and developer workflows.</span><span class="category-tool-link"><span>Hash</span><span>Open</span></span></a>
+      <a href="./tools/color-picker.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40"><span class="category-tool-icon icon-util" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m15 4 5 5-9 9H6v-5l9-9Zm-2 2 5 5"/></svg></span><span class="category-tool-title">Color Picker</span><span class="category-tool-copy">Pick, preview, and copy colors for design and development.</span><span class="category-tool-link"><span>Color</span><span>Open</span></span></a>
+      <a href="./tools/hex-to-rgb.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40"><span class="category-tool-icon icon-util" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M7 4 5 20M14 4l-2 16M4 17h16"/></svg></span><span class="category-tool-title">HEX to RGB</span><span class="category-tool-copy">Convert HEX colors into RGB values for CSS and design systems.</span><span class="category-tool-link"><span>Color</span><span>Open</span></span></a>
+      <a href="./tools/unit-converter.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-primary/40"><span class="category-tool-icon icon-util" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 7h14M7 5v4M17 5v4M6 17h12M9 15v4M15 15v4M12 10v4"/></svg></span><span class="category-tool-title">Unit Converter</span><span class="category-tool-copy">Convert common length, weight, temperature, and data units.</span><span class="category-tool-link"><span>Utility</span><span>Open</span></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- Media Tools Section -->
+<section id="media-tools" class="tools-category-section media-tools-section">
+  <div class="mx-auto max-w-[1500px]">
+    <div class="mb-8 grid gap-5 lg:grid-cols-[minmax(0,1fr)_26rem] lg:items-end">
+      <div>
+        <div class="tools-category-eyebrow">
+          <span class="h-2 w-2 rounded-full bg-warning"></span>
+          Media tools
+        </div>
+        <h2 class="mt-4 max-w-3xl text-3xl font-extrabold leading-tight md:text-5xl">
+          Premium dark workspace cards for audio, video, and GIF workflows
+        </h2>
+      </div>
+      <p class="text-base font-medium leading-relaxed text-slate-300">
+        Modern media utility pages for extracting audio, compressing video or audio, and creating GIF assets.
+      </p>
+    </div>
+
+    <div class="tools-category-grid">
+      <a href="./tools/video-to-mp3.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-warning/40"><span class="category-tool-icon icon-media" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 7h10v10H4V7Zm10 3 5-3v10l-5-3"/></svg></span><span class="category-tool-title">Video to MP3</span><span class="category-tool-copy">Extract audio from video files into MP3-ready workflows.</span><span class="category-tool-link"><span>Media</span><span>Open</span></span></a>
+      <a href="./tools/audio-compressor.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-warning/40"><span class="category-tool-icon icon-media" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 14h3l4 4V6l-4 4H4v4Zm12-5c1 1.2 1 4.8 0 6M19 7c2 2.7 2 7.3 0 10"/></svg></span><span class="category-tool-title">Audio Compressor</span><span class="category-tool-copy">Reduce audio size for faster uploads and lighter sharing.</span><span class="category-tool-link"><span>Media</span><span>Open</span></span></a>
+      <a href="./tools/video-compressor.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-warning/40"><span class="category-tool-icon icon-media" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 6h14v12H5V6Zm4 4 5 2-5 2v-4Z"/><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 3h8M8 21h8"/></svg></span><span class="category-tool-title">Video Compressor</span><span class="category-tool-copy">Prepare smaller video files for forms, chats, and uploads.</span><span class="category-tool-link"><span>Media</span><span>Open</span></span></a>
+      <a href="./tools/gif-maker.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-warning/40"><span class="category-tool-icon icon-media" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 5h14v14H5V5Zm4 4h6v6H9V9Z"/><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 2v3M16 19v3"/></svg></span><span class="category-tool-title">GIF Maker</span><span class="category-tool-copy">Create GIF workflows for clips, reactions, and product previews.</span><span class="category-tool-link"><span>GIF</span><span>Open</span></span></a>
+      <a href="./tools/image-to-gif.html" class="category-tool-card block p-5 no-underline outline-none focus-visible:ring-2 focus-visible:ring-warning/40"><span class="category-tool-icon icon-media" aria-hidden="true"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 6h12v12H4V6Zm4 8 2-2 2 2 1-1 2 2"/><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M18 8h2v12H8v-2"/></svg></span><span class="category-tool-title">Image to GIF</span><span class="category-tool-copy">Combine images into a GIF-ready animation workflow.</span><span class="category-tool-link"><span>GIF</span><span>Open</span></span></a>
+    </div>
+  </div>
+</section>
+
+<div class="bg-slate-950 px-4 py-6">
+  <div class="mx-auto max-w-6xl">
+    <div class="ad-placement bg-slate-900/60 text-slate-500" aria-label="Advertisement placement">Advertisement</div>
+  </div>
+</div>
 
 <!-- Why Use Us -->
 <section class="py-14 px-4">
@@ -459,6 +1862,12 @@
           <li><a href="./tools/pan-validator.html" class="hover:text-white transition">PAN Checker</a></li>
           <li><a href="./tools/gst-validator.html" class="hover:text-white transition">GST Verifier</a></li>
           <li><a href="./tools/upi-validator.html" class="hover:text-white transition">UPI Validator</a></li>
+          <li><a href="./tools/pdf-tools.html" class="hover:text-white transition">PDF Tools</a></li>
+          <li><a href="./tools/image-tools.html" class="hover:text-white transition">Image Tools</a></li>
+          <li><a href="#design-tools" class="hover:text-white transition">Design Tools</a></li>
+          <li><a href="#developer-tools" class="hover:text-white transition">Developer Tools</a></li>
+          <li><a href="#utility-tools" class="hover:text-white transition">Utility Tools</a></li>
+          <li><a href="#media-tools" class="hover:text-white transition">Media Tools</a></li>
         </ul>
       </div>
       <div>
@@ -481,7 +1890,8 @@
 </footer>
 
 <script src="./assets/js/validators.js"></script>
-<script>
+<script type="text/plain" id="legacy-home-script">
+// Legacy homepage script kept inert after the PDF section refresh.
 // Mobile menu
 function toggleMobileMenu() {
   document.getElementById('mobile-menu').classList.toggle('hidden');
@@ -632,6 +2042,133 @@ function quickValidate() {
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-T80N8X570N');
+</script>
+<script>
+const toolLinks = {
+  aadhaar: './tools/aadhaar-validator.html',
+  pan: './tools/pan-validator.html',
+  gst: './tools/gst-validator.html',
+  ifsc: './tools/ifsc-validator.html',
+  voterid: './tools/voter-id-validator.html',
+  passport: './tools/passport-validator.html',
+  dl: './tools/driving-license-validator.html',
+  upi: './tools/upi-validator.html',
+  vehicle: './tools/vehicle-validator.html',
+  lic: './tools/lic-validator.html'
+};
+
+function toggleMobileMenu() {
+  document.getElementById('mobile-menu')?.classList.toggle('hidden');
+}
+
+function toggleFAQ(btn) {
+  const item = btn.closest('.faq-item');
+  if (!item) return;
+  const answer = item.querySelector('.faq-answer');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach((faqItem) => {
+    faqItem.classList.remove('open');
+    faqItem.querySelector('.faq-answer')?.classList.remove('open');
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    answer?.classList.add('open');
+  }
+}
+
+function quickAutoDetect() {
+  const input = document.getElementById('quick-input');
+  const hint = document.getElementById('quick-hint');
+  const result = document.getElementById('quick-result');
+  if (!input || !hint) return;
+
+  const clean = input.value.trim().replace(/\s/g, '').toUpperCase();
+  if (!clean) {
+    hint.textContent = "Start typing - we'll auto-detect the document type";
+    result?.classList.add('hidden');
+    return;
+  }
+
+  const detected = autoDetect(input.value);
+  if (detected) {
+    hint.innerHTML = `Detected: <span class="text-primary font-bold">${detected.label}</span> - press Validate`;
+    return;
+  }
+
+  hint.textContent = /^\d+$/.test(clean)
+    ? `${clean.length} digit(s) entered - Aadhaar needs 12 digits`
+    : `${clean.length} character(s) entered - keep typing`;
+}
+
+function quickValidate() {
+  const input = document.getElementById('quick-input');
+  const quickResult = document.getElementById('quick-result');
+  const quickIcon = document.getElementById('quick-res-icon');
+  const quickTitle = document.getElementById('quick-res-title');
+  const quickMsg = document.getElementById('quick-res-msg');
+  if (!input || !quickResult || !quickIcon || !quickTitle || !quickMsg) return;
+
+  const value = input.value.trim();
+  if (!value) {
+    quickResult.className = 'result-box show fade-in mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-xl text-sm text-yellow-800';
+    quickResult.textContent = 'Please enter a document number first.';
+    return;
+  }
+
+  const detected = autoDetect(value);
+  quickResult.classList.remove('hidden');
+
+  if (detected?.result?.valid) {
+    quickResult.className = 'mt-4 p-4 rounded-xl border border-green-200 bg-green-50 fade-in';
+    quickIcon.className = 'w-10 h-10 rounded-full flex items-center justify-center text-lg bg-green-100 text-green-700';
+    quickIcon.textContent = 'OK';
+    quickTitle.className = 'font-bold text-sm text-green-800';
+    quickTitle.textContent = `Valid ${detected.label}`;
+    const href = toolLinks[detected.type] || '#tools';
+    quickMsg.innerHTML = `${detected.result.formatted || value}<br><a href="${href}" class="text-primary font-bold hover:underline mt-1 inline-block">See details &rarr;</a>`;
+    return;
+  }
+
+  quickResult.className = 'mt-4 p-4 rounded-xl border border-red-200 bg-red-50 fade-in';
+  quickIcon.className = 'w-10 h-10 rounded-full flex items-center justify-center text-lg bg-red-100 text-red-700';
+  quickIcon.textContent = 'NO';
+  quickTitle.className = 'font-bold text-sm text-red-800';
+  quickTitle.textContent = detected ? `Invalid ${detected.label}` : 'Unknown format';
+  quickMsg.textContent = detected?.result?.reason || 'Could not detect document type. Try a specific tool below.';
+}
+
+document.querySelectorAll('[data-pdf-filter]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const filter = button.dataset.pdfFilter;
+    document.querySelectorAll('[data-pdf-filter]').forEach((item) => {
+      const isActive = item === button;
+      item.classList.toggle('is-active', isActive);
+      item.setAttribute('aria-pressed', String(isActive));
+    });
+
+    document.querySelectorAll('[data-pdf-category]').forEach((card) => {
+      const categories = (card.dataset.pdfCategory || '').split(/\s+/);
+      card.classList.toggle('hidden', filter !== 'all' && !categories.includes(filter));
+    });
+  });
+});
+
+document.querySelectorAll('[data-image-filter]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const filter = button.dataset.imageFilter;
+    document.querySelectorAll('[data-image-filter]').forEach((item) => {
+      const isActive = item === button;
+      item.classList.toggle('is-active', isActive);
+      item.setAttribute('aria-pressed', String(isActive));
+    });
+
+    document.querySelectorAll('[data-image-category]').forEach((card) => {
+      const categories = (card.dataset.imageCategory || '').split(/\s+/);
+      card.classList.toggle('hidden', filter !== 'all' && !categories.includes(filter));
+    });
+  });
+});
+
 </script>
 </body>
 </html>
