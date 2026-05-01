@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Admin — verifydocs.online</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#0066cc','text-main':'#0f172a','text-muted':'#64748b','border-col':'#e2e8f0'}}}}</script>
+  <style>body{font-family:'Inter',sans-serif;background:#f8fafc}</style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<!-- Login Screen -->
+<div id="login-screen" class="min-h-screen flex items-center justify-center px-4">
+  <div class="bg-white rounded-2xl border border-border-col shadow-lg p-8 w-full max-w-sm">
+    <div class="flex items-center gap-2 mb-6">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="7" fill="#0066cc"/><path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/><path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="font-bold text-text-main">Blog Admin</span>
+    </div>
+    <h1 class="text-xl font-bold text-text-main mb-6">Sign In</h1>
+    <div class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-text-main mb-1">Email</label>
+        <input id="login-email" type="email" placeholder="admin@example.com"
+          class="w-full border border-border-col rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-text-main mb-1">Password</label>
+        <input id="login-password" type="password" placeholder="••••••••"
+          class="w-full border border-border-col rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+      </div>
+      <p id="login-error" class="text-red-500 text-sm hidden"></p>
+      <button onclick="signIn()" id="login-btn"
+        class="w-full bg-primary text-white rounded-xl py-2.5 font-semibold text-sm hover:bg-blue-700 transition">
+        Sign In
+      </button>
+    </div>
+    <p class="text-xs text-text-muted mt-4 text-center">Supabase Auth se protected hai</p>
+  </div>
+</div>
+
+<!-- Admin Dashboard -->
+<div id="admin-screen" class="hidden min-h-screen">
+
+  <!-- Top bar -->
+  <header class="bg-white border-b border-border-col sticky top-0 z-50 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="7" fill="#0066cc"/><path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/><path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="font-bold text-text-main">Blog Admin</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span id="user-email" class="text-sm text-text-muted hidden md:block"></span>
+        <a href="./index.html" target="_blank" class="text-sm text-primary hover:underline">View Blog ↗</a>
+        <button onclick="signOut()" class="text-sm text-red-500 hover:text-red-700 font-medium">Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl font-bold text-text-main">Blog Posts</h2>
+      <button onclick="openModal()" class="bg-primary text-white rounded-xl px-5 py-2 text-sm font-semibold hover:bg-blue-700 transition flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        New Post
+      </button>
+    </div>
+
+    <!-- Toast notification -->
+    <div id="toast" class="fixed top-4 right-4 bg-green-600 text-white px-5 py-3 rounded-xl shadow-lg text-sm font-medium hidden z-50 transition-all"></div>
+
+    <!-- Posts table -->
+    <div class="bg-white rounded-2xl border border-border-col overflow-hidden">
+      <div id="posts-loading" class="py-16 text-center text-text-muted text-sm">Loading posts...</div>
+      <table id="posts-table" class="w-full hidden">
+        <thead class="bg-gray-50 border-b border-border-col">
+          <tr>
+            <th class="text-left px-5 py-3 text-xs font-semibold text-text-muted uppercase tracking-wide">Post</th>
+            <th class="text-left px-5 py-3 text-xs font-semibold text-text-muted uppercase tracking-wide hidden md:table-cell">Category</th>
+            <th class="text-left px-5 py-3 text-xs font-semibold text-text-muted uppercase tracking-wide hidden md:table-cell">Published</th>
+            <th class="text-left px-5 py-3 text-xs font-semibold text-text-muted uppercase tracking-wide">Status</th>
+            <th class="text-right px-5 py-3 text-xs font-semibold text-text-muted uppercase tracking-wide">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="posts-tbody" class="divide-y divide-border-col"></tbody>
+      </table>
+      <div id="no-posts" class="py-16 text-center text-text-muted text-sm hidden">Koi post nahi. "New Post" se banao.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Add/Edit Post Modal -->
+<div id="post-modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+    <div class="p-6 border-b border-border-col flex items-center justify-between sticky top-0 bg-white z-10">
+      <h3 id="modal-title" class="text-lg font-bold text-text-main">New Post</h3>
+      <button onclick="closeModal()" class="p-2 hover:bg-gray-100 rounded-lg text-text-muted">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="p-6 space-y-4">
+      <input type="hidden" id="edit-id">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-text-main mb-1">Title <span class="text-red-500">*</span></label>
+          <input id="f-title" type="text" placeholder="Post ka title"
+            class="w-full border border-border-col rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-text-main mb-1">Slug <span class="text-red-500">*</span></label>
+          <input id="f-slug" type="text" placeholder="post-ka-slug"
+            class="w-full border border-border-col rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+          <p class="text-xs text-text-muted mt-1">URL: /blog/<span id="slug-preview" class="text-primary">post-ka-slug</span></p>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-text-main mb-1">Description</label>
+        <textarea id="f-description" rows="3" placeholder="Short description (SEO ke liye)"
+          class="w-full border border-border-col rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary resize-none"></textarea>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-text-main mb-1">Emoji</label>
+          <input id="f-emoji" type="text" placeholder="📄" maxlength="4"
+            class="w-full border border-border-col rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-text-main mb-1">Category</label>
+          <input id="f-category" type="text" placeholder="Blog"
+            class="w-full border border-border-col rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-text-main mb-1">Read Time</label>
+          <input id="f-readtime" type="text" placeholder="5 min read"
+            class="w-full border border-border-col rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-text-main mb-1">Published Date</label>
+          <input id="f-date" type="date"
+            class="w-full border border-border-col rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <input id="f-published" type="checkbox" checked class="w-4 h-4 rounded text-primary">
+        <label for="f-published" class="text-sm font-medium text-text-main">Published (live dikhe)</label>
+      </div>
+
+      <p id="form-error" class="text-red-500 text-sm hidden"></p>
+
+      <div class="flex gap-3 pt-2">
+        <button onclick="savePost()" id="save-btn"
+          class="flex-1 bg-primary text-white rounded-xl py-2.5 font-semibold text-sm hover:bg-blue-700 transition">
+          Save Post
+        </button>
+        <button onclick="closeModal()"
+          class="px-6 border border-border-col rounded-xl py-2.5 text-sm font-semibold text-text-muted hover:bg-gray-50 transition">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete confirm modal -->
+<div id="delete-modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6">
+    <h3 class="text-lg font-bold text-text-main mb-2">Post delete karo?</h3>
+    <p class="text-sm text-text-muted mb-6">Ye action undo nahi ho sakta.</p>
+    <div class="flex gap-3">
+      <button onclick="confirmDelete()" class="flex-1 bg-red-500 text-white rounded-xl py-2.5 font-semibold text-sm hover:bg-red-600 transition">Delete</button>
+      <button onclick="closeDeleteModal()" class="flex-1 border border-border-col rounded-xl py-2.5 text-sm font-semibold text-text-muted hover:bg-gray-50 transition">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// =============================================
+// SUPABASE CONFIG — blog/index.html wala hi key use karo
+// =============================================
+const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let deleteTargetId = null;
+
+// ---- AUTH ----
+async function signIn() {
+  const email    = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+  const errEl    = document.getElementById('login-error');
+  const btn      = document.getElementById('login-btn');
+
+  if (!email || !password) { errEl.textContent = 'Email aur password dono bharo.'; errEl.classList.remove('hidden'); return; }
+
+  btn.textContent = 'Signing in...'; btn.disabled = true;
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  btn.textContent = 'Sign In'; btn.disabled = false;
+
+  if (error) { errEl.textContent = error.message; errEl.classList.remove('hidden'); return; }
+
+  showDashboard(data.user);
+}
+
+async function signOut() {
+  await supabase.auth.signOut();
+  document.getElementById('admin-screen').classList.add('hidden');
+  document.getElementById('login-screen').classList.remove('hidden');
+}
+
+async function checkSession() {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (session) showDashboard(session.user);
+}
+
+function showDashboard(user) {
+  document.getElementById('login-screen').classList.add('hidden');
+  document.getElementById('admin-screen').classList.remove('hidden');
+  document.getElementById('user-email').textContent = user.email;
+  loadPosts();
+}
+
+// ---- POSTS ----
+async function loadPosts() {
+  const loadEl = document.getElementById('posts-loading');
+  const tableEl = document.getElementById('posts-table');
+  const noneEl = document.getElementById('no-posts');
+  const tbody = document.getElementById('posts-tbody');
+
+  loadEl.classList.remove('hidden');
+  tableEl.classList.add('hidden');
+  noneEl.classList.add('hidden');
+
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .select('*')
+    .order('published_at', { ascending: false });
+
+  loadEl.classList.add('hidden');
+
+  if (error || !data) { loadEl.textContent = 'Error: ' + (error?.message || 'Load failed'); loadEl.classList.remove('hidden'); return; }
+  if (data.length === 0) { noneEl.classList.remove('hidden'); return; }
+
+  tbody.innerHTML = data.map(p => `
+    <tr class="hover:bg-gray-50 transition">
+      <td class="px-5 py-4">
+        <div class="flex items-center gap-3">
+          <span class="text-xl">${p.emoji || '📄'}</span>
+          <div>
+            <p class="text-sm font-semibold text-text-main leading-snug">${p.title}</p>
+            <p class="text-xs text-text-muted mt-0.5">/blog/${p.slug}</p>
+          </div>
+        </div>
+      </td>
+      <td class="px-5 py-4 text-sm text-text-muted hidden md:table-cell">${p.category || '—'}</td>
+      <td class="px-5 py-4 text-sm text-text-muted hidden md:table-cell">${new Date(p.published_at).toLocaleDateString('en-IN')}</td>
+      <td class="px-5 py-4">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${p.is_published ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}">
+          ${p.is_published ? 'Live' : 'Draft'}
+        </span>
+      </td>
+      <td class="px-5 py-4 text-right">
+        <div class="flex items-center justify-end gap-2">
+          <button onclick="editPost(${JSON.stringify(p).replace(/"/g,'&quot;')})" class="text-xs text-primary font-medium hover:underline">Edit</button>
+          <button onclick="deletePost(${p.id})" class="text-xs text-red-500 font-medium hover:underline">Delete</button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+
+  tableEl.classList.remove('hidden');
+}
+
+// ---- MODAL ----
+function openModal(post = null) {
+  document.getElementById('edit-id').value = '';
+  document.getElementById('f-title').value = '';
+  document.getElementById('f-slug').value = '';
+  document.getElementById('f-description').value = '';
+  document.getElementById('f-emoji').value = '📄';
+  document.getElementById('f-category').value = 'Blog';
+  document.getElementById('f-readtime').value = '5 min read';
+  document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
+  document.getElementById('f-published').checked = true;
+  document.getElementById('slug-preview').textContent = 'post-ka-slug';
+  document.getElementById('modal-title').textContent = 'New Post';
+  document.getElementById('form-error').classList.add('hidden');
+  document.getElementById('post-modal').classList.remove('hidden');
+}
+
+function editPost(post) {
+  document.getElementById('edit-id').value = post.id;
+  document.getElementById('f-title').value = post.title;
+  document.getElementById('f-slug').value = post.slug;
+  document.getElementById('f-description').value = post.description || '';
+  document.getElementById('f-emoji').value = post.emoji || '📄';
+  document.getElementById('f-category').value = post.category || 'Blog';
+  document.getElementById('f-readtime').value = post.read_time || '5 min read';
+  document.getElementById('f-date').value = post.published_at?.split('T')[0] || new Date().toISOString().split('T')[0];
+  document.getElementById('f-published').checked = post.is_published;
+  document.getElementById('slug-preview').textContent = post.slug;
+  document.getElementById('modal-title').textContent = 'Edit Post';
+  document.getElementById('form-error').classList.add('hidden');
+  document.getElementById('post-modal').classList.remove('hidden');
+}
+
+function closeModal() {
+  document.getElementById('post-modal').classList.add('hidden');
+}
+
+// Auto-generate slug from title
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('f-title')?.addEventListener('input', function() {
+    const editId = document.getElementById('edit-id').value;
+    if (editId) return; // Editing mein slug auto-change mat karo
+    const slug = this.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    document.getElementById('f-slug').value = slug;
+    document.getElementById('slug-preview').textContent = slug || 'post-ka-slug';
+  });
+  document.getElementById('f-slug')?.addEventListener('input', function() {
+    document.getElementById('slug-preview').textContent = this.value || 'post-ka-slug';
+  });
+});
+
+async function savePost() {
+  const id          = document.getElementById('edit-id').value;
+  const title       = document.getElementById('f-title').value.trim();
+  const slug        = document.getElementById('f-slug').value.trim().toLowerCase().replace(/[^a-z0-9-]/g, '-');
+  const description = document.getElementById('f-description').value.trim();
+  const emoji       = document.getElementById('f-emoji').value.trim() || '📄';
+  const category    = document.getElementById('f-category').value.trim() || 'Blog';
+  const read_time   = document.getElementById('f-readtime').value.trim() || '5 min read';
+  const published_at = document.getElementById('f-date').value;
+  const is_published = document.getElementById('f-published').checked;
+  const errEl        = document.getElementById('form-error');
+  const btn          = document.getElementById('save-btn');
+
+  errEl.classList.add('hidden');
+  if (!title) { errEl.textContent = 'Title zaroori hai.'; errEl.classList.remove('hidden'); return; }
+  if (!slug)  { errEl.textContent = 'Slug zaroori hai.'; errEl.classList.remove('hidden'); return; }
+
+  btn.textContent = 'Saving...'; btn.disabled = true;
+
+  const payload = { slug, title, description, emoji, category, read_time, published_at, is_published };
+
+  let error;
+  if (id) {
+    ({ error } = await supabase.from('blog_posts').update(payload).eq('id', id));
+  } else {
+    ({ error } = await supabase.from('blog_posts').insert(payload));
+  }
+
+  btn.textContent = 'Save Post'; btn.disabled = false;
+
+  if (error) { errEl.textContent = error.message; errEl.classList.remove('hidden'); return; }
+
+  closeModal();
+  showToast(id ? 'Post update ho gaya ✓' : 'Post add ho gaya ✓');
+  loadPosts();
+}
+
+// ---- DELETE ----
+function deletePost(id) {
+  deleteTargetId = id;
+  document.getElementById('delete-modal').classList.remove('hidden');
+}
+
+async function confirmDelete() {
+  if (!deleteTargetId) return;
+  const { error } = await supabase.from('blog_posts').delete().eq('id', deleteTargetId);
+  closeDeleteModal();
+  if (error) { showToast('Error: ' + error.message, true); return; }
+  showToast('Post delete ho gaya ✓');
+  loadPosts();
+}
+
+function closeDeleteModal() {
+  deleteTargetId = null;
+  document.getElementById('delete-modal').classList.add('hidden');
+}
+
+// ---- TOAST ----
+function showToast(msg, isError = false) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = `fixed top-4 right-4 px-5 py-3 rounded-xl shadow-lg text-sm font-medium z-50 transition-all ${isError ? 'bg-red-600' : 'bg-green-600'} text-white`;
+  el.classList.remove('hidden');
+  setTimeout(() => el.classList.add('hidden'), 3000);
+}
+
+// On load check session
+checkSession();
+</script>
+</body>
+</html>

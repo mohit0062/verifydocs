@@ -8,25 +8,29 @@
   <link rel="alternate" hreflang="en-IN" href="https://verifydocs.online/blog/index.html">
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230066cc'/%3E%3Cpath d='M16 6l6 4v6c0 5-6 9-6 9s-6-4-6-9v-6z' fill='white'/%3E%3C/svg%3E">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;5h00;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config={theme:{extend:{colors:{primary:'#0066cc',accent:'#138808','text-main':'#0f172a','text-muted':'#64748b','border-col':'#e2e8f0'},fontFamily:{sans:['Inter','sans-serif']}}}}</script>
-  <style>body{background:#f8fafc;font-family:'Inter',sans-serif}.post-card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,102,204,.1)}.post-card{transition:transform .2s,box-shadow .2s}</style>
+  <style>
+    body{background:#f8fafc;font-family:'Inter',sans-serif}
+    .post-card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,102,204,.1)}
+    .post-card{transition:transform .2s,box-shadow .2s}
+    .skeleton{background:linear-gradient(90deg,#e2e8f0 25%,#f1f5f9 50%,#e2e8f0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite}
+    @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  </style>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-T80N8X570N"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T80N8X570N"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-T80N8X570N');</script>
 
-  gtag('config', 'G-T80N8X570N');
-</script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1094606266002530" crossorigin="anonymous"></script>
 
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1094606266002530" crossorigin="anonymous"></script>
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
+
 <nav class="bg-white/80 backdrop-blur-md border-b border-border-col sticky top-0 z-50 shadow-sm">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
     <a href="../index.html" class="flex items-center gap-2 font-bold text-xl text-text-main no-underline">
@@ -59,11 +63,10 @@
       <a href="../about.html" class="hover:text-primary transition-colors">About</a>
       <a href="../contact.html" class="hover:text-primary transition-colors">Contact</a>
     </div>
-    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100" onclick="toggleMobileMenu()">
+    <button class="md:hidden p-2 rounded-lg hover:bg-gray-100" onclick="toggleMobileMenu()">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
   </div>
-  <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-border-col px-4 py-3 space-y-2">
     <a href="../index.html" class="block py-2 text-sm text-text-main font-semibold">Home</a>
     <div class="pt-2 pb-1 text-xs font-bold text-text-muted uppercase tracking-wider">Document Tools</div>
@@ -84,106 +87,63 @@
     <p class="text-text-muted">In-depth guides on Indian documents, validation, and privacy.</p>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-    <a href="./online-document-verification-guide" class="post-card bg-white border border-border-col rounded-2xl p-6 block no-underline">
+  <!-- Posts grid — Supabase se dynamic load hoga -->
+  <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Skeleton loaders -->
+    <div class="bg-white border border-border-col rounded-2xl p-6">
       <div class="flex items-start gap-4">
-        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-primary text-xs font-bold flex-shrink-0">POST</div>
-        <div class="flex-1">
-          <div class="text-xs text-text-muted mb-1.5">2026-05-01 &middot; Blog</div>
-          <h2 class="text-lg font-bold text-text-main mb-2">Online Document Verification: Detect Fake, Edited &amp; AI-Generated Files Instantly</h2>
-          <p class="text-sm text-text-muted leading-relaxed">Learn how to verify documents online and detect fake, forged, edited, or AI-generated files instantly using VerifyDocs. Fast, secure, and AI-powered.</p>
-          <span class="inline-block mt-3 text-primary text-sm font-semibold">Read guide &rarr;</span>
+        <div class="w-12 h-12 skeleton rounded-xl flex-shrink-0"></div>
+        <div class="flex-1 space-y-2">
+          <div class="h-3 skeleton rounded w-1/3"></div>
+          <div class="h-5 skeleton rounded w-full"></div>
+          <div class="h-5 skeleton rounded w-4/5"></div>
+          <div class="h-4 skeleton rounded w-full"></div>
+          <div class="h-4 skeleton rounded w-3/4"></div>
         </div>
       </div>
-    </a>
-
-
-    <a href="/blog/why-document-verification-matters-2026" class="post-card bg-white border border-border-col rounded-2xl p-6 block no-underline">
+    </div>
+    <div class="bg-white border border-border-col rounded-2xl p-6">
       <div class="flex items-start gap-4">
-        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🛡️</div>
-        <div class="flex-1">
-          <div class="text-xs text-text-muted mb-1.5">2026-04-29 &middot; Blog</div>
-          <h2 class="text-lg font-bold text-text-main mb-2">Why Document Verification Matters in 2026: Protect Yourself from Fake &amp; AI-Generated Documents</h2>
-          <p class="text-sm text-text-muted leading-relaxed">Discover why document verification is essential in 2026. Learn how to detect fake, forged, edited, and AI-generated documents online with VerifyDocs.</p>
-          <span class="inline-block mt-3 text-primary text-sm font-semibold">Read guide &rarr;</span>
+        <div class="w-12 h-12 skeleton rounded-xl flex-shrink-0"></div>
+        <div class="flex-1 space-y-2">
+          <div class="h-3 skeleton rounded w-1/3"></div>
+          <div class="h-5 skeleton rounded w-full"></div>
+          <div class="h-5 skeleton rounded w-4/5"></div>
+          <div class="h-4 skeleton rounded w-full"></div>
+          <div class="h-4 skeleton rounded w-3/4"></div>
         </div>
       </div>
-    </a>
-
-
-    <a href="/blog/how-to-verify-documents-online" class="post-card bg-white border border-border-col rounded-2xl p-6 block no-underline">
+    </div>
+    <div class="bg-white border border-border-col rounded-2xl p-6">
       <div class="flex items-start gap-4">
-        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">📄</div>
-        <div class="flex-1">
-          <div class="text-xs text-text-muted mb-1.5">2026-04-28 &middot; Blog</div>
-          <h2 class="text-lg font-bold text-text-main mb-2">How to Verify Documents Online and Detect Fake, Forged, or AI-Generated Files</h2>
-          <p class="text-sm text-text-muted leading-relaxed">Learn how to verify documents online and detect fake, forged, edited, or AI-generated files instantly with VerifyDocs. Secure, fast, and AI-powered fraud detection.</p>
-          <span class="inline-block mt-3 text-primary text-sm font-semibold">Read guide &rarr;</span>
+        <div class="w-12 h-12 skeleton rounded-xl flex-shrink-0"></div>
+        <div class="flex-1 space-y-2">
+          <div class="h-3 skeleton rounded w-1/3"></div>
+          <div class="h-5 skeleton rounded w-full"></div>
+          <div class="h-5 skeleton rounded w-4/5"></div>
+          <div class="h-4 skeleton rounded w-full"></div>
+          <div class="h-4 skeleton rounded w-3/4"></div>
         </div>
       </div>
-    </a>    <a href="/blog/verify-documents-online" class="post-card bg-white border border-border-col rounded-2xl p-6 block no-underline">
+    </div>
+    <div class="bg-white border border-border-col rounded-2xl p-6">
       <div class="flex items-start gap-4">
-        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🔍</div>
-        <div class="flex-1">
-          <div class="text-xs text-text-muted mb-1.5">2026-04-28 &middot; Blog</div>
-          <h2 class="text-lg font-bold text-text-main mb-2">Verify Documents Online – Detect Fake, Forged &amp; AI-Generated Files Instantly</h2>
-          <p class="text-sm text-text-muted leading-relaxed">VerifyDocs helps you detect fake, forged, edited, or AI-generated documents instantly. Upload PDFs, images, and certificates for fast online verification and fraud detection.</p>
-          <span class="inline-block mt-3 text-primary text-sm font-semibold">Read guide &rarr;</span>
+        <div class="w-12 h-12 skeleton rounded-xl flex-shrink-0"></div>
+        <div class="flex-1 space-y-2">
+          <div class="h-3 skeleton rounded w-1/3"></div>
+          <div class="h-5 skeleton rounded w-full"></div>
+          <div class="h-5 skeleton rounded w-4/5"></div>
+          <div class="h-4 skeleton rounded w-full"></div>
+          <div class="h-4 skeleton rounded w-3/4"></div>
         </div>
       </div>
-    </a>
+    </div>
+  </div>
 
-
-
-    <a href="/blog/how-to-validate-aadhaar" class="post-card bg-white border border-border-col rounded-2xl p-6 block no-underline">
-      <div class="flex items-start gap-4">
-        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🆔</div>
-        <div class="flex-1">
-          <div class="text-xs text-text-muted mb-1.5">January 2024 · 8 min read · Aadhaar</div>
-          <h2 class="text-lg font-bold text-text-main mb-2">How to Validate Your Aadhaar Number Online — Complete Guide</h2>
-          <p class="text-sm text-text-muted leading-relaxed">Everything you need to know about Aadhaar format validation, the Verhoeff algorithm, common mistakes, and how to check if a number is valid without contacting UIDAI.</p>
-          <span class="inline-block mt-3 text-primary text-sm font-semibold">Read guide →</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/blog/pan-card-format-explained" class="post-card bg-white border border-border-col rounded-2xl p-6 block no-underline">
-      <div class="flex items-start gap-4">
-        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">💳</div>
-        <div class="flex-1">
-          <div class="text-xs text-text-muted mb-1.5">January 2024 · 6 min read · PAN</div>
-          <h2 class="text-lg font-bold text-text-main mb-2">PAN Card Format Explained — What Each Character Means</h2>
-          <p class="text-sm text-text-muted leading-relaxed">A deep dive into the 10-character PAN format: jurisdiction codes, entity types, surname initials, and the logic behind each position. With real examples.</p>
-          <span class="inline-block mt-3 text-primary text-sm font-semibold">Read guide →</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/blog/gst-number-structure" class="post-card bg-white border border-border-col rounded-2xl p-6 block no-underline">
-      <div class="flex items-start gap-4">
-        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🏢</div>
-        <div class="flex-1">
-          <div class="text-xs text-text-muted mb-1.5">January 2024 · 7 min read · GST</div>
-          <h2 class="text-lg font-bold text-text-main mb-2">GST Number Structure Decoded — State Code, PAN, Entity Number</h2>
-          <p class="text-sm text-text-muted leading-relaxed">Breaking down the 15-character GSTIN: what each segment means, how to find the state from any GST number, and why the 'Z' is always there.</p>
-          <span class="inline-block mt-3 text-primary text-sm font-semibold">Read guide →</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/blog/aadhaar-masking-why-important" class="post-card bg-white border border-border-col rounded-2xl p-6 block no-underline">
-      <div class="flex items-start gap-4">
-        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🔒</div>
-        <div class="flex-1">
-          <div class="text-xs text-text-muted mb-1.5">January 2024 · 5 min read · Privacy</div>
-          <h2 class="text-lg font-bold text-text-main mb-2">Why You Should Always Mask Your Aadhaar Before Sharing</h2>
-          <p class="text-sm text-text-muted leading-relaxed">UIDAI recommends sharing only masked Aadhaar. Here's why it matters, what risks you face by sharing full Aadhaar, and how to create a masked copy for free.</p>
-          <span class="inline-block mt-3 text-primary text-sm font-semibold">Read guide →</span>
-        </div>
-      </div>
-    </a>
-
+  <div id="error-msg" class="hidden text-center py-16 text-text-muted">
+    <p class="text-4xl mb-4">😕</p>
+    <p class="font-semibold text-text-main mb-1">Posts load nahi hue</p>
+    <p class="text-sm">Supabase connection check karo.</p>
   </div>
 </main>
 
@@ -227,9 +187,66 @@
 </footer>
 
 <script>
+// =============================================
+// SUPABASE CONFIG — Apni details yahan bharo
+// supabase.com > Project Settings > API
+// =============================================
+const SUPABASE_URL  = 'YOUR_SUPABASE_URL';   // e.g. https://abcxyz.supabase.co
+const SUPABASE_KEY  = 'YOUR_SUPABASE_ANON_KEY'; // anon / public key
+
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+function formatDate(dateStr) {
+  const d = new Date(dateStr);
+  return d.toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+function renderCard(post) {
+  return `
+    <a href="/blog/${post.slug}" class="post-card bg-white border border-border-col rounded-2xl p-6 block no-underline">
+      <div class="flex items-start gap-4">
+        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">${post.emoji || '📄'}</div>
+        <div class="flex-1">
+          <div class="text-xs text-text-muted mb-1.5">${formatDate(post.published_at)} &middot; ${post.read_time || ''} &middot; ${post.category || 'Blog'}</div>
+          <h2 class="text-lg font-bold text-text-main mb-2">${post.title}</h2>
+          <p class="text-sm text-text-muted leading-relaxed">${post.description || ''}</p>
+          <span class="inline-block mt-3 text-primary text-sm font-semibold">Read guide &rarr;</span>
+        </div>
+      </div>
+    </a>`;
+}
+
+async function loadPosts() {
+  const grid = document.getElementById('posts-grid');
+  const errEl = document.getElementById('error-msg');
+
+  try {
+    const { data, error } = await supabase
+      .from('blog_posts')
+      .select('slug, title, description, emoji, category, read_time, published_at')
+      .eq('is_published', true)
+      .order('published_at', { ascending: false });
+
+    if (error) throw error;
+
+    if (!data || data.length === 0) {
+      grid.innerHTML = '<p class="col-span-2 text-center text-text-muted py-16">Abhi koi post nahi hai.</p>';
+      return;
+    }
+
+    grid.innerHTML = data.map(renderCard).join('');
+  } catch (err) {
+    console.error('Supabase error:', err);
+    grid.innerHTML = '';
+    errEl.classList.remove('hidden');
+  }
+}
+
 function toggleMobileMenu() {
   document.getElementById('mobile-menu').classList.toggle('hidden');
 }
+
+loadPosts();
 </script>
 </body>
 </html>
