@@ -4,11 +4,23 @@
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vehicle Registration Validator — Check Plate Number Format (Free)</title>
   <meta name="description" content="Validate your Indian Vehicle Registration (Number Plate) format instantly. Decode the state and district code privately. 100% browser-based tool.">
+  <meta name="keywords" content="vehicle number validator, rto number plate check, indian vehicle registration format, check number plate online">
   <link rel="canonical" href="https://verifydocs.online/tools/vehicle-validator.html">
   <link rel="alternate" hreflang="en-IN" href="https://verifydocs.online/tools/vehicle-validator.html">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230066cc'/%3E%3Cpath d='M16 6l6 4v6c0 5-6 9-6 9s-6-4-6-9v-6z' fill='white'/%3E%3C/svg%3E">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { primary: '#0066cc', accent: '#138808', 'text-main': '#0f172a', 'text-muted': '#64748b', 'border-col': '#e2e8f0' }, fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] } } }
+    }
+  </script>
+  <style>
+    .faq-answer { display: none; }
+    .faq-answer.open { display: block; }
+    .faq-item.open .faq-icon { transform: rotate(180deg); }
+    .faq-icon { transition: transform 0.2s; }
+  </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T80N8X570N"></script>
 <script>
@@ -21,57 +33,205 @@
 <script type="application/ld+json">
 { "@context": "https://schema.org", "@type": "WebApplication", "name": "Vehicle Registration Validator — Check Plate Number Format (Free)", "description": "Validate your Indian Vehicle Registration (Number Plate) format instantly. Decode the state and district code privately. 100% browser-based tool.", "url": "https://verifydocs.online/tools/vehicle-validator.html", "applicationCategory": "UtilityApplication", "operatingSystem": "Any browser", "inLanguage": "en-IN", "areaServed": { "@type": "Country", "name": "India" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" } }
 </script>
-<!-- Google AdSense -->`n<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1094606266002530" crossorigin="anonymous"></script>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1094606266002530" crossorigin="anonymous"></script>
 </head>
 <body class="bg-[#f8fafc] font-sans text-text-main">
 
-<nav class="bg-white/80 backdrop-blur-md border-b border-border-col sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-    <a href="../index.html" class="font-bold text-xl no-underline">VerifyDocs<span class="text-primary">.online</span></a>
-    <a href="../index.html" class="text-sm font-medium text-text-muted">← Home</a>
+<nav class="bg-white/80 backdrop-blur-md border-b border-border-col sticky top-0 z-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <a href="../index.html" class="flex items-center gap-2 font-bold text-xl text-text-main no-underline">
+      <span>VerifyDocs<span class="text-primary">.online</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted">
+      <a href="../index.html" class="hover:text-primary transition-colors">Home</a>
+      <a href="../blog/index.html" class="hover:text-primary transition-colors">Blog</a>
+      <a href="../about.html" class="hover:text-primary transition-colors">About</a>
+    </div>
   </div>
 </nav>
 
-<main class="max-w-3xl mx-auto px-4 py-10 md:py-16">
-  <h1 class="text-3xl font-extrabold text-text-main mb-6">Vehicle Registration Validator</h1>
-  
-  <div class="bg-white rounded-3xl border border-border-col p-6 mb-10 text-text-muted">
-    <p>Indian vehicle number plates follow the format: State Code (2 letters) + District Code (2 digits) + Series (0-3 letters) + 4 digits. Example: DL 01 C 1234. Our tool verifies this format and identifies the state.</p>
+<main class="max-w-4xl mx-auto px-4 py-10 md:py-16">
+  <!-- Breadcrumb -->
+  <nav class="text-xs text-text-muted mb-6 flex items-center gap-1.5">
+    <a href="../index.html" class="hover:text-primary">Home</a>
+    <span>›</span>
+    <a href="../index.html#tools" class="hover:text-primary">Tools</a>
+    <span>›</span>
+    <span class="text-text-main font-medium">Vehicle Validator</span>
+  </nav>
+
+  <h1 class="text-3xl md:text-4xl font-extrabold text-text-main mb-6 leading-tight">
+    Vehicle Registration Validator — Check Number Plate Format Online (Free)
+  </h1>
+
+  <div class="bg-white rounded-3xl border border-border-col p-6 md:p-8 mb-10 shadow-sm leading-relaxed text-text-muted">
+    <p class="mb-4">
+      Indian vehicle number plates follow a specific hierarchical structure defined by the Ministry of Road Transport and Highways. Our free <strong>Vehicle Registration Validator</strong> helps you verify if a number plate follows the official format: State Code, District Code, Series, and Sequential Number.
+    </p>
+    <p>
+      This tool runs entirely in your browser. No data is sent to our servers, ensuring your privacy. Note: This tool validates the <strong>FORMAT</strong> only. To check the owner's details, insurance status, or RTO records, you must use the official <strong>Parivahan Sewa</strong> portal or mParivahan app.
+    </p>
   </div>
 
-  <div class="bg-white rounded-3xl border-2 border-primary/20 p-6 md:p-10 shadow-xl">
-    <label class="block text-sm font-bold mb-3 uppercase">Enter Vehicle Number (e.g. DL01C1234)</label>
+  <div class="bg-white rounded-3xl border-2 border-primary/20 p-6 md:p-10 mb-16 shadow-xl relative overflow-hidden">
+    <div class="absolute top-0 right-0 bg-primary/5 px-4 py-1 rounded-bl-xl text-[10px] font-bold text-primary uppercase tracking-widest">Secure Browser-Side Tool</div>
+    
+    <label for="vehicle-input" class="block text-sm font-bold text-text-main mb-3 uppercase tracking-wider">Enter Vehicle Number (e.g. MH 12 AB 1234)</label>
     <div class="flex flex-col sm:flex-row gap-4">
       <input 
         type="text" 
         id="vehicle-input" 
-        placeholder="DL01C1234" 
-        maxlength="12"
-        class="flex-1 h-16 px-6 border-2 border-border-col rounded-2xl text-xl font-mono focus:outline-none focus:border-primary uppercase tracking-widest"
+        placeholder="MH 12 AB 1234" 
+        maxlength="13"
+        class="flex-1 h-16 px-6 border-2 border-border-col rounded-2xl text-xl font-mono focus:outline-none focus:border-primary transition-all uppercase tracking-widest"
       >
-      <button onclick="handleVehicleValidate()" class="h-16 px-10 bg-primary text-white font-bold rounded-2xl hover:bg-blue-700 transition">Validate →</button>
+      <button onclick="handleVehicleValidate()" class="h-16 px-10 bg-primary text-white font-bold rounded-2xl hover:bg-blue-700 transition shadow-lg shadow-primary/20 whitespace-nowrap">
+        Validate Now →
+      </button>
     </div>
-    <div id="vehicle-result" class="mt-8 hidden"></div>
+    <div id="vehicle-result" class="mt-8 hidden animate-fade-in"></div>
+  </div>
+
+  <div class="prose prose-blue max-w-none text-text-muted leading-relaxed space-y-12">
+    <section>
+      <h2 class="text-2xl font-bold text-text-main mb-4">Understanding Indian Number Plates</h2>
+      <p>
+        A typical Indian vehicle registration number (like <code>DL 01 C 1234</code>) consists of four distinct parts:
+      </p>
+      <ul class="list-disc pl-6 mt-4 space-y-4">
+        <li><strong>Part 1 (State Code):</strong> The first two letters represent the state or union territory where the vehicle is registered (e.g., DL for Delhi, MH for Maharashtra).</li>
+        <li><strong>Part 2 (District Code):</strong> The next two digits represent the specific RTO (Regional Transport Office) within that state (e.g., 01 for Central Delhi).</li>
+        <li><strong>Part 3 (Unique Series):</strong> This alphanumeric part (one, two, or three letters) represents the current series being issued by the RTO.</li>
+        <li><strong>Part 4 (Sequential Number):</strong> The final four digits are a unique number assigned to the vehicle (ranging from 0001 to 9999).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold text-text-main mb-4">Number Plate Color Coding</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-4 border border-border-col rounded-2xl bg-white">
+          <p class="font-bold text-text-main mb-1">White Plate, Black Text</p>
+          <p class="text-xs">Private non-commercial vehicles (cars, bikes).</p>
+        </div>
+        <div class="p-4 border border-border-col rounded-2xl bg-yellow-50">
+          <p class="font-bold text-text-main mb-1">Yellow Plate, Black Text</p>
+          <p class="text-xs">Commercial vehicles (taxis, trucks, buses).</p>
+        </div>
+        <div class="p-4 border border-border-col rounded-2xl bg-green-50">
+          <p class="font-bold text-text-main mb-1">Green Plate, White Text</p>
+          <p class="text-xs">Electric vehicles (EVs).</p>
+        </div>
+        <div class="p-4 border border-border-col rounded-2xl bg-blue-50">
+          <p class="font-bold text-text-main mb-1">Blue Plate, White Text</p>
+          <p class="text-xs">Vehicles belonging to foreign consulates.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-16">
+      <h2 class="text-2xl font-bold text-text-main mb-8 text-center">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>What is the BH series number plate?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            BH (Bharat) series is a special registration mark for vehicles that belong to government employees or employees of private companies with offices in multiple states. It eliminates the need for re-registration when moving between states.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Can I find owner details using this tool?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            No. For privacy reasons, we do not connect to government databases. This tool only validates the format. For owner details, please use the official Parivahan website.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="mt-16 p-6 bg-yellow-50 border border-yellow-100 rounded-2xl text-xs text-yellow-800 text-center">
+      <p><strong>Disclaimer:</strong> verifydocs.online is not affiliated with the RTO or Parivahan. Use for format validation only.</p>
+    </div>
+  </div>
+
+  <!-- Related Guides & Tools -->
+  <div class="mt-20">
+    <h3 class="text-lg font-bold text-text-main mb-6">Related Guides & Tools</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <a href="../blog/how-to-verify-documents-online.html" class="p-4 bg-white border border-border-col rounded-2xl hover:border-primary transition group">
+        <div class="text-xs font-bold text-primary mb-2 uppercase tracking-wide">Read Guide</div>
+        <div class="font-bold text-sm text-text-main group-hover:text-primary transition-colors">How to Verify Documents Online</div>
+        <div class="text-xs text-text-muted mt-2">A complete guide to checking Indian IDs and certificates.</div>
+      </a>
+      <a href="./driving-license-validator.html" class="p-4 bg-white border border-border-col rounded-2xl hover:border-primary transition group">
+        <div class="text-xl mb-2">🚗</div>
+        <div class="font-bold text-sm text-text-main group-hover:text-primary transition-colors">DL Validator</div>
+        <div class="text-xs text-text-muted mt-2">Check the format of your Indian Driving License.</div>
+      </a>
+      <a href="./aadhaar-validator.html" class="p-4 bg-white border border-border-col rounded-2xl hover:border-primary transition group">
+        <div class="text-xl mb-2">🆔</div>
+        <div class="font-bold text-sm text-text-main group-hover:text-primary transition-colors">Aadhaar Checker</div>
+        <div class="text-xs text-text-muted mt-2">Verify the format of your Aadhaar number.</div>
+      </a>
+    </div>
   </div>
 </main>
 
+<footer class="bg-white border-t border-border-col py-10 px-4 mt-20 text-center">
+  <p class="text-xs text-text-muted">© 2026 verifydocs.online — Privacy-First Utility Hub.</p>
+</footer>
+
 <script src="../assets/js/validators.js"></script>
 <script>
+  function toggleFAQ(btn) {
+    const item = btn.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    item.classList.toggle('open');
+    answer.classList.toggle('open');
+  }
+
+  const input = document.getElementById('vehicle-input');
+  const resArea = document.getElementById('vehicle-result');
+
+  input.addEventListener('input', (e) => {
+    let v = e.target.value.toUpperCase();
+    e.target.value = v;
+  });
+
   function handleVehicleValidate() {
-    const val = document.getElementById('vehicle-input').value.trim().toUpperCase().replace(/\s/g, '');
-    const resArea = document.getElementById('vehicle-result');
+    const val = input.value.trim().toUpperCase().replace(/\s/g, '');
     if (!val) return;
     
     const res = validateVehicle(val);
     resArea.classList.remove('hidden');
     
     if (res.valid) {
-      resArea.innerHTML = `<div class="p-6 bg-green-50 border border-green-200 rounded-2xl"><p class="font-bold text-green-800">✓ Valid Registration Format</p><p class="text-sm text-green-700 mt-1">State: ${res.stateName} | Formatted: ${res.formatted}</p></div>`;
+      resArea.innerHTML = `
+        <div class="p-6 bg-green-50 border border-green-200 rounded-2xl flex items-start gap-4">
+          <div class="w-10 h-10 bg-green-100 text-green-700 rounded-full flex items-center justify-center flex-shrink-0 text-xl font-bold">✓</div>
+          <div>
+            <p class="font-bold text-green-800">Valid Registration Format</p>
+            <p class="text-sm text-green-700 mt-1">State: <span class="font-bold">${res.stateName}</span></p>
+            <p class="text-xs text-green-600 mt-3 font-mono tracking-widest">Formatted: ${res.formatted}</p>
+          </div>
+        </div>
+      `;
     } else {
-      resArea.innerHTML = `<div class="p-6 bg-red-50 border border-red-200 rounded-2xl"><p class="font-bold text-red-800">✗ Invalid Format</p><p class="text-sm text-red-700 mt-1">${res.reason}</p></div>`;
+      resArea.innerHTML = `
+        <div class="p-6 bg-red-50 border border-red-200 rounded-2xl flex items-start gap-4">
+          <div class="w-10 h-10 bg-red-100 text-red-700 rounded-full flex items-center justify-center flex-shrink-0 text-xl font-bold">✗</div>
+          <div>
+            <p class="font-bold text-red-800">Invalid Format</p>
+            <p class="text-sm text-red-700 mt-1">${res.reason}</p>
+          </div>
+        </div>
+      `;
     }
   }
 </script>
 </body>
 </html>
-
