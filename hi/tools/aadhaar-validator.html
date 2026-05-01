@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>आधार वैलिडेटर — ऑनलाइन 12-डिजिट UID फॉर्मेट चेक करें (फ्री)</title>
+  <meta name="description" content="Verhoeff एल्गोरिथ्म का उपयोग करके आधार नंबर फॉर्मेट की जांच करें। 100% सुरक्षित और ब्राउज़र-आधारित आधार वैलिडेटर।">
+  <meta name="keywords" content="आधार वैलिडेटर, आधार नंबर चेक, UIDAI फॉर्मेट, आधार कार्ड वेरिफिकेशन">
+  <link rel="canonical" href="https://verifydocs.online/hi/tools/aadhaar-validator.html">
+  <link rel="alternate" hreflang="hi-IN" href="https://verifydocs.online/hi/tools/aadhaar-validator.html">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230066cc'/%3E%3Cpath d='M16 6l6 4v6c0 5-6 9-6 9s-6-4-6-9v-6z' fill='white'/%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { primary: '#0066cc', accent: '#138808', 'text-main': '#0f172a', 'text-muted': '#64748b', 'border-col': '#e2e8f0' }, fontFamily: { sans: ['Inter', 'Noto Sans Devanagari', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] } } }
+    }
+  </script>
+  <style>
+    body { background: #f8fafc; font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; }
+    .faq-answer { display: none; }
+    .faq-answer.open { display: block; }
+    .faq-item.open .faq-icon { transform: rotate(180deg); }
+    .faq-icon { transition: transform 0.2s; }
+  </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T80N8X570N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T80N8X570N');
+</script>
+</head>
+<body class="bg-[#f8fafc] text-text-main">
+
+<nav class="bg-white/80 backdrop-blur-md border-b border-border-col sticky top-0 z-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <a href="../index.html" class="flex items-center gap-2 font-bold text-xl text-text-main no-underline">
+      <span>VerifyDocs<span class="text-primary">.online</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted">
+      <a href="../index.html">होम</a>
+      <a href="../../blog/index.html">ब्लॉग</a>
+      <div class="flex items-center gap-2 border-l border-border-col pl-6">
+        <a href="../../tools/aadhaar-validator.html" class="text-xs font-bold text-text-muted hover:text-primary transition-colors">EN</a>
+        <span class="text-border-col">|</span>
+        <a href="./aadhaar-validator.html" class="text-xs font-bold text-primary">हिन्दी</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="max-w-4xl mx-auto px-4 py-10 md:py-16">
+  <nav class="text-xs text-text-muted mb-6 flex items-center gap-1.5">
+    <a href="../index.html">होम</a>
+    <span>›</span>
+    <span class="text-text-main font-medium">आधार वैलिडेटर</span>
+  </nav>
+
+  <h1 class="text-3xl md:text-4xl font-extrabold text-text-main mb-6 leading-tight">
+    आधार नंबर वैलिडेटर — 12-डिजिट UID फॉर्मेट चेक करें
+  </h1>
+
+  <div class="bg-white rounded-3xl border border-border-col p-6 md:p-8 mb-10 shadow-sm leading-relaxed text-text-muted">
+    <p class="mb-4">
+      आधिकारिक <strong>Verhoeff checksum algorithm</strong> का उपयोग करके आधार नंबर के फॉर्मेट की जांच करें। हमारा फ्री आधार वैलिडेटर पूरी तरह से आपके ब्राउज़र में चलता है — आपका आधार नंबर हमारे पास कभी स्टोर नहीं होता।
+    </p>
+    <p>
+      ध्यान दें: यह केवल <strong>FORMAT</strong> को वैलिडेट करता है। यह चेक करने के लिए कि आधार सक्रिय है या नहीं, आपको UIDAI के आधिकारिक पोर्टल का उपयोग करना चाहिए।
+    </p>
+  </div>
+
+  <!-- Validator Widget -->
+  <div class="bg-white rounded-3xl border-2 border-primary/20 p-6 md:p-10 mb-16 shadow-xl relative overflow-hidden">
+    <label for="aadhaar-input" class="block text-sm font-bold text-text-main mb-3 uppercase tracking-wider">12-डिजिट आधार नंबर डालें</label>
+    <div class="flex flex-col sm:flex-row gap-4">
+      <input 
+        type="text" 
+        id="aadhaar-input" 
+        placeholder="XXXX XXXX XXXX" 
+        maxlength="14"
+        class="flex-1 h-16 px-6 border-2 border-border-col rounded-2xl text-xl font-mono focus:outline-none focus:border-primary transition-all tracking-[0.2em]"
+      >
+      <button onclick="handleValidate()" class="h-16 px-10 bg-primary text-white font-bold rounded-2xl hover:bg-blue-700 transition shadow-lg shadow-primary/20 whitespace-nowrap">
+        अभी चेक करें →
+      </button>
+    </div>
+    <div id="result-area" class="mt-8 hidden animate-fade-in"></div>
+  </div>
+
+  <div class="prose prose-blue max-w-none text-text-muted leading-relaxed space-y-12">
+    <section>
+      <h2 class="text-2xl font-bold text-text-main mb-4">आधार वैलिडेशन कैसे काम करता है?</h2>
+      <p>
+        आधार नंबर केवल 12 अंकों की एक स्ट्रिंग नहीं है। यह एक गणितीय संरचना (Verhoeff Algorithm) का पालन करता है। यह एल्गोरिथ्म टाइपिंग की गलतियों को पकड़ने के लिए बनाया गया है।
+      </p>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="mt-16">
+      <h2 class="text-2xl font-bold text-text-main mb-8 text-center">अक्सर पूछे जाने वाले प्रश्न (FAQ)</h2>
+      <div class="space-y-4">
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>क्या मेरा आधार नंबर स्टोर किया जाता है?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            नहीं। बिल्कुल नहीं। सारा वैलिडेशन आपके ब्राउज़र में जावास्क्रिप्ट के माध्यम से होता है। हम कोई डेटा स्टोर नहीं करते।
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="bg-white border-t border-border-col py-10 px-4 mt-20 text-center">
+  <p class="text-xs text-text-muted">© 2026 VerifyDocs.online — आपकी सुरक्षा हमारी प्राथमिकता।</p>
+</footer>
+
+<script src="../../assets/js/validators.js"></script>
+<script>
+  function toggleFAQ(btn) {
+    const item = btn.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    item.classList.toggle('open');
+    answer.classList.toggle('open');
+  }
+
+  const input = document.getElementById('aadhaar-input');
+  const resArea = document.getElementById('result-area');
+
+  input.addEventListener('input', (e) => {
+    let v = e.target.value.replace(/\D/g, '');
+    if (v.length > 0) {
+      v = v.match(/.{1,4}/g).join(' ');
+    }
+    e.target.value = v;
+  });
+
+  function handleValidate() {
+    const val = input.value.replace(/\s/g, '');
+    if (!val) return;
+    
+    const res = validateAadhaar(val);
+    resArea.classList.remove('hidden');
+    
+    if (res.valid) {
+      resArea.innerHTML = `
+        <div class="p-6 bg-green-50 border border-green-200 rounded-2xl">
+          <p class="font-bold text-green-800">✓ वैध आधार फॉर्मेट</p>
+          <p class="text-sm text-green-700 mt-1">गणितीय फॉर्मेट और चेकम सही है।</p>
+        </div>
+      `;
+    } else {
+      resArea.innerHTML = `
+        <div class="p-6 bg-red-50 border border-red-200 rounded-2xl">
+          <p class="font-bold text-red-800">✗ अवैध फॉर्मेट</p>
+          <p class="text-sm text-red-700 mt-1">${res.reason}</p>
+        </div>
+      `;
+    }
+  }
+</script>
+</body>
+</html>
