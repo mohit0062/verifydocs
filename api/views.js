@@ -2,6 +2,9 @@ const SUPABASE_URL = (process.env.SUPABASE_URL || '').trim();
 const SUPABASE_KEY = (process.env.SUPABASE_KEY || '').trim();
 
 module.exports = async function handler(req, res) {
+  if (!SUPABASE_URL || !SUPABASE_KEY) {
+    return res.status(500).json({ error: 'Database configuration missing' });
+  }
   const { slug } = req.query;
   if (!slug) return res.status(400).json({ error: 'Slug required' });
 
