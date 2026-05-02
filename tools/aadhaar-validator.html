@@ -255,23 +255,26 @@
   </div>
 
   <!-- Related Guides & Tools -->
-  <div class="mt-20">
-    <h3 class="text-lg font-bold text-text-main mb-6">Related Guides & Tools</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <a href="../blog/how-to-validate-aadhaar.html" class="p-4 bg-white border border-border-col rounded-2xl hover:border-primary transition group">
-        <div class="text-xs font-bold text-primary mb-2 uppercase tracking-wide">Read Guide</div>
-        <div class="font-bold text-sm text-text-main group-hover:text-primary transition-colors">How Aadhaar Validation Works</div>
-        <div class="text-xs text-text-muted mt-2">Understand the Verhoeff algorithm and why it matters.</div>
+  <div class="mt-20 border-t border-border-col pt-12">
+    <h3 class="text-xl font-bold text-text-main mb-8 flex items-center gap-3">
+      <span class="w-8 h-8 bg-primary/10 text-primary rounded-lg flex items-center justify-center text-sm">🛠️</span>
+      Related Verification Tools
+    </h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <a href="../blog/how-to-validate-aadhaar.html" class="p-5 bg-white border border-border-col rounded-2xl hover:border-primary hover:shadow-md transition group">
+        <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">📜</div>
+        <div class="font-bold text-sm text-text-main group-hover:text-primary transition-colors">Aadhaar Validation Logic</div>
+        <div class="text-xs text-text-muted mt-2 leading-relaxed">Deep dive into the Verhoeff algorithm and how it catches typos in Indian identity documents.</div>
       </a>
-      <a href="../blog/aadhaar-masking-why-important.html" class="p-4 bg-white border border-border-col rounded-2xl hover:border-primary transition group">
-        <div class="text-xs font-bold text-primary mb-2 uppercase tracking-wide">Read Guide</div>
-        <div class="font-bold text-sm text-text-main group-hover:text-primary transition-colors">Why You Must Mask Aadhaar</div>
-        <div class="text-xs text-text-muted mt-2">Protect your privacy before sharing documents.</div>
-      </a>
-      <a href="./aadhaar-masking-tool.html" class="p-4 bg-white border border-border-col rounded-2xl hover:border-primary transition group">
-        <div class="text-xl mb-2">🔒</div>
+      <a href="./aadhaar-masking-tool.html" class="p-5 bg-white border border-border-col rounded-2xl hover:border-primary hover:shadow-md transition group">
+        <div class="w-10 h-10 bg-orange-50 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">🔒</div>
         <div class="font-bold text-sm text-text-main group-hover:text-primary transition-colors">Aadhaar Masking Tool</div>
-        <div class="text-xs text-text-muted mt-2">Securely hide the first 8 digits in your browser.</div>
+        <div class="text-xs text-text-muted mt-2 leading-relaxed">Securely mask the first 8 digits of your Aadhaar card for privacy before sharing it online.</div>
+      </a>
+      <a href="./pan-validator.html" class="p-5 bg-white border border-border-col rounded-2xl hover:border-primary hover:shadow-md transition group">
+        <div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">💳</div>
+        <div class="font-bold text-sm text-text-main group-hover:text-primary transition-colors">PAN Card Checker</div>
+        <div class="text-xs text-text-muted mt-2 leading-relaxed">Validate Permanent Account Number format and verify if it matches Individual or Business status.</div>
       </a>
     </div>
   </div>
