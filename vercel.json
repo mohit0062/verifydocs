@@ -10,6 +10,11 @@
       "source": "/blog/how-to-validate-your-aadhaar-number-online-in-india",
       "destination": "/blog/how-to-validate-aadhaar",
       "permanent": true
+    },
+    {
+      "source": "/:path*.html",
+      "destination": "/:path*",
+      "permanent": true
     }
   ],
   "headers": [
