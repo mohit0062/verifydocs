@@ -135,17 +135,72 @@
           </div>
 
           <div class="panel mt-8 p-5 md:p-7">
-            <h2 class="text-2xl font-black ">Tool workspace</h2>
-            <p class="muted mt-2 text-sm font-semibold leading-relaxed">Paste or upload content when the live processor is connected, then use this clean URL as the dedicated QR Code Generator workspace.</p>
-            <div class="input-shell mt-5 flex flex-col items-center justify-center p-6 text-center">
-              <div class="text-sm font-black text-text-main">QR Code Generator input area</div>
-              <p class="muted mt-2 max-w-lg text-sm">This SEO-friendly page is ready for the live processor. The clean URL, metadata, schema, and ad-safe layout are already in place.</p>
-            </div>
-            <div class="mt-5 flex flex-col gap-3 sm:flex-row">
-              <a href="../index.html#utility-tools" class="inline-flex h-11 items-center justify-center rounded-lg bg-primary px-5 text-sm font-black text-white no-underline">View all Utility Tools</a>
-              
+            <h2 class="text-2xl font-black mb-6">QR Code Generator</h2>
+            
+            <div class="space-y-6">
+              <div class="flex flex-col md:flex-row gap-8">
+                <!-- Inputs -->
+                <div class="flex-1 space-y-4">
+                  <div class="space-y-2">
+                    <label class="text-sm font-bold text-text-main uppercase tracking-wider">Content (URL or Text)</label>
+                    <textarea id="qr-content" class="w-full h-32 p-4 bg-white border-2 border-primary/20 rounded-xl text-sm font-medium focus:outline-none focus:border-primary/50 resize-none" placeholder="Enter text or paste a link..." oninput="generateQR()"></textarea>
+                  </div>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                      <label class="text-xs font-bold text-text-muted uppercase">Foreground Color</label>
+                      <input type="color" id="qr-fg" value="#000000" class="w-full h-10 rounded-lg cursor-pointer" oninput="generateQR()">
+                    </div>
+                    <div class="space-y-2">
+                      <label class="text-xs font-bold text-text-muted uppercase">Background Color</label>
+                      <input type="color" id="qr-bg" value="#ffffff" class="w-full h-10 rounded-lg cursor-pointer" oninput="generateQR()">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Preview -->
+                <div class="w-full md:w-64 flex flex-col items-center gap-4">
+                  <div id="qr-result" class="p-4 bg-white border border-border-col rounded-2xl shadow-sm min-h-[256px] min-w-[256px] flex items-center justify-center">
+                    <!-- QR code will be rendered here -->
+                  </div>
+                  <button onclick="downloadQR()" class="w-full h-12 bg-primary text-white rounded-xl font-bold hover:bg-blue-700 transition shadow-md">Download PNG</button>
+                </div>
+              </div>
             </div>
           </div>
+
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+          <script>
+            let qrcode = null;
+
+            function generateQR() {
+              const content = document.getElementById('qr-content').value || 'https://verifydocs.online';
+              const fg = document.getElementById('qr-fg').value;
+              const bg = document.getElementById('qr-bg').value;
+              const container = document.getElementById('qr-result');
+              
+              container.innerHTML = '';
+              qrcode = new QRCode(container, {
+                text: content,
+                width: 256,
+                height: 256,
+                colorDark: fg,
+                colorLight: bg,
+                correctLevel: QRCode.CorrectLevel.H
+              });
+            }
+
+            function downloadQR() {
+              const img = document.querySelector('#qr-result img');
+              if (!img) return;
+              
+              const link = document.createElement('a');
+              link.download = 'verifydocs-qr.png';
+              link.href = img.src;
+              link.click();
+            }
+
+            window.onload = generateQR;
+          </script>
 
           <section class="panel mt-6 p-5 md:p-7">
             <h2 class="text-2xl font-black">How to use QR Code Generator</h2>

@@ -135,17 +135,100 @@
           </div>
 
           <div class="panel mt-8 p-5 md:p-7">
-            <h2 class="text-2xl font-black ">Tool workspace</h2>
-            <p class="muted mt-2 text-sm font-semibold leading-relaxed">Paste or upload content when the live processor is connected, then use this clean URL as the dedicated Color Picker workspace.</p>
-            <div class="input-shell mt-5 flex flex-col items-center justify-center p-6 text-center">
-              <div class="text-sm font-black text-text-main">Color Picker input area</div>
-              <p class="muted mt-2 max-w-lg text-sm">This SEO-friendly page is ready for the live processor. The clean URL, metadata, schema, and ad-safe layout are already in place.</p>
-            </div>
-            <div class="mt-5 flex flex-col gap-3 sm:flex-row">
-              <a href="../index.html#utility-tools" class="inline-flex h-11 items-center justify-center rounded-lg bg-primary px-5 text-sm font-black text-white no-underline">View all Utility Tools</a>
-              
+            <h2 class="text-2xl font-black mb-6">Interactive Color Picker</h2>
+            
+            <div class="space-y-6">
+              <div class="flex flex-col md:flex-row gap-8 items-center">
+                <!-- Color Input -->
+                <div class="relative group">
+                  <input type="color" id="color-input" value="#0066cc" class="w-48 h-48 rounded-3xl cursor-pointer border-8 border-white shadow-2xl transition-transform group-hover:scale-105" oninput="updateColor(this.value)">
+                  <div class="absolute inset-0 rounded-3xl pointer-events-none ring-1 ring-inset ring-black/5"></div>
+                </div>
+
+                <!-- Values -->
+                <div class="flex-1 w-full space-y-4">
+                  <div class="space-y-2">
+                    <label class="text-[10px] font-black text-text-muted uppercase tracking-widest">Hex Code</label>
+                    <div class="relative">
+                      <input type="text" id="hex-output" readonly class="w-full h-12 px-4 bg-slate-50 border-2 border-border-col/50 rounded-xl font-mono text-primary font-bold" value="#0066CC">
+                      <button onclick="copyVal('hex-output')" class="absolute right-2 top-2 bottom-2 px-3 bg-white border border-border-col rounded-lg text-[10px] font-bold hover:bg-slate-50">Copy</button>
+                    </div>
+                  </div>
+                  <div class="space-y-2">
+                    <label class="text-[10px] font-black text-text-muted uppercase tracking-widest">RGB Value</label>
+                    <div class="relative">
+                      <input type="text" id="rgb-output" readonly class="w-full h-12 px-4 bg-slate-50 border-2 border-border-col/50 rounded-xl font-mono text-text-main font-bold" value="rgb(0, 102, 204)">
+                      <button onclick="copyVal('rgb-output')" class="absolute right-2 top-2 bottom-2 px-3 bg-white border border-border-col rounded-lg text-[10px] font-bold hover:bg-slate-50">Copy</button>
+                    </div>
+                  </div>
+                  <div class="space-y-2">
+                    <label class="text-[10px] font-black text-text-muted uppercase tracking-widest">HSL Value</label>
+                    <div class="relative">
+                      <input type="text" id="hsl-output" readonly class="w-full h-12 px-4 bg-slate-50 border-2 border-border-col/50 rounded-xl font-mono text-text-main font-bold" value="hsl(210, 100%, 40%)">
+                      <button onclick="copyVal('hsl-output')" class="absolute right-2 top-2 bottom-2 px-3 bg-white border border-border-col rounded-lg text-[10px] font-bold hover:bg-slate-50">Copy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-6 md:grid-cols-12 gap-2 pt-6 border-t border-border-col/50">
+                <!-- Swatches -->
+                <button onclick="updateColor('#ef4444')" class="h-8 rounded-md bg-[#ef4444] shadow-sm hover:scale-110 transition"></button>
+                <button onclick="updateColor('#f97316')" class="h-8 rounded-md bg-[#f97316] shadow-sm hover:scale-110 transition"></button>
+                <button onclick="updateColor('#f59e0b')" class="h-8 rounded-md bg-[#f59e0b] shadow-sm hover:scale-110 transition"></button>
+                <button onclick="updateColor('#10b981')" class="h-8 rounded-md bg-[#10b981] shadow-sm hover:scale-110 transition"></button>
+                <button onclick="updateColor('#06b6d4')" class="h-8 rounded-md bg-[#06b6d4] shadow-sm hover:scale-110 transition"></button>
+                <button onclick="updateColor('#3b82f6')" class="h-8 rounded-md bg-[#3b82f6] shadow-sm hover:scale-110 transition"></button>
+                <button onclick="updateColor('#6366f1')" class="h-8 rounded-md bg-[#6366f1] shadow-sm hover:scale-110 transition"></button>
+                <button onclick="updateColor('#8b5cf6')" class="h-8 rounded-md bg-[#8b5cf6] shadow-sm hover:scale-110 transition"></button>
+                <button onclick="updateColor('#ec4899')" class="h-8 rounded-md bg-[#ec4899] shadow-sm hover:scale-110 transition"></button>
+                <button onclick="updateColor('#f43f5e')" class="h-8 rounded-md bg-[#f43f5e] shadow-sm hover:scale-110 transition"></button>
+                <button onclick="updateColor('#0f172a')" class="h-8 rounded-md bg-[#0f172a] shadow-sm hover:scale-110 transition"></button>
+                <button onclick="updateColor('#ffffff')" class="h-8 rounded-md bg-[#ffffff] border border-border-col shadow-sm hover:scale-110 transition"></button>
+              </div>
             </div>
           </div>
+
+          <script>
+            function updateColor(hex) {
+              hex = hex.toUpperCase();
+              document.getElementById('color-input').value = hex;
+              document.getElementById('hex-output').value = hex;
+              
+              // Convert to RGB
+              const r = parseInt(hex.slice(1, 3), 16);
+              const g = parseInt(hex.slice(3, 5), 16);
+              const b = parseInt(hex.slice(5, 7), 16);
+              document.getElementById('rgb-output').value = `rgb(${r}, ${g}, ${b})`;
+
+              // Convert to HSL
+              let h, s, l;
+              const rNorm = r / 255, gNorm = g / 255, bNorm = b / 255;
+              const max = Math.max(rNorm, gNorm, bNorm), min = Math.min(rNorm, gNorm, bNorm);
+              l = (max + min) / 2;
+              if (max === min) h = s = 0;
+              else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                  case rNorm: h = (gNorm - bNorm) / d + (gNorm < bNorm ? 6 : 0); break;
+                  case gNorm: h = (bNorm - rNorm) / d + 2; break;
+                  case bNorm: h = (rNorm - gNorm) / d + 4; break;
+                }
+                h /= 6;
+              }
+              document.getElementById('hsl-output').value = `hsl(${Math.round(h*360)}, ${Math.round(s*100)}%, ${Math.round(l*100)}%)`;
+            }
+
+            function copyVal(id) {
+              const el = document.getElementById(id);
+              el.select();
+              document.execCommand('copy');
+              const btn = event.target;
+              btn.innerText = 'Copied!';
+              setTimeout(() => btn.innerText = 'Copy', 2000);
+            }
+          </script>
 
           <section class="panel mt-6 p-5 md:p-7">
             <h2 class="text-2xl font-black">How to use Color Picker</h2>

@@ -135,17 +135,71 @@
           </div>
 
           <div class="panel mt-8 p-5 md:p-7">
-            <h2 class="text-2xl font-black ">Tool workspace</h2>
-            <p class="muted mt-2 text-sm font-semibold leading-relaxed">Paste or upload content when the live processor is connected, then use this clean URL as the dedicated MD5 / SHA Generator workspace.</p>
-            <div class="input-shell mt-5 flex flex-col items-center justify-center p-6 text-center">
-              <div class="text-sm font-black text-text-main">MD5 / SHA Generator input area</div>
-              <p class="muted mt-2 max-w-lg text-sm">This SEO-friendly page is ready for the live processor. The clean URL, metadata, schema, and ad-safe layout are already in place.</p>
-            </div>
-            <div class="mt-5 flex flex-col gap-3 sm:flex-row">
-              <a href="../index.html#utility-tools" class="inline-flex h-11 items-center justify-center rounded-lg bg-primary px-5 text-sm font-black text-white no-underline">View all Utility Tools</a>
+            <h2 class="text-2xl font-black mb-6">MD5 / SHA Hash Generator</h2>
+            
+            <div class="space-y-6">
+              <div class="space-y-3">
+                <label class="block text-sm font-bold text-text-main uppercase tracking-wider">Input Text</label>
+                <textarea id="hash-input" class="w-full h-32 p-4 bg-white border-2 border-primary/10 rounded-xl text-sm font-medium focus:outline-none focus:border-primary/40 resize-none" placeholder="Enter text to hash..."></textarea>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="space-y-2">
+                  <label class="text-xs font-bold text-text-muted uppercase">SHA-256 Hash</label>
+                  <div class="relative">
+                    <input type="text" id="sha256-output" readonly class="w-full h-12 px-4 bg-slate-50 border border-border-col rounded-xl text-xs font-mono" placeholder="SHA-256 result...">
+                    <button onclick="copyHash('sha256-output')" class="absolute right-2 top-2 bottom-2 px-3 bg-white border border-border-col rounded-lg text-[10px] font-bold hover:bg-slate-50">Copy</button>
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <label class="text-xs font-bold text-text-muted uppercase">SHA-1 Hash</label>
+                  <div class="relative">
+                    <input type="text" id="sha1-output" readonly class="w-full h-12 px-4 bg-slate-50 border border-border-col rounded-xl text-xs font-mono" placeholder="SHA-1 result...">
+                    <button onclick="copyHash('sha1-output')" class="absolute right-2 top-2 bottom-2 px-3 bg-white border border-border-col rounded-lg text-[10px] font-bold hover:bg-slate-50">Copy</button>
+                  </div>
+                </div>
+              </div>
+
+              <button onclick="generateHashes()" class="w-full h-14 bg-slate-900 text-white font-bold rounded-2xl hover:bg-black transition shadow-lg flex items-center justify-center gap-2">
+                <span>⚡ Generate Hashes</span>
+              </button>
               
+              <p class="text-[10px] text-text-muted text-center">* MD5 is not supported via native browser crypto API. Use SHA-256 for secure hashing.</p>
             </div>
           </div>
+
+          <script>
+            async function generateHashes() {
+              const text = document.getElementById('hash-input').value;
+              if (!text) return;
+
+              const encoder = new TextEncoder();
+              const data = encoder.encode(text);
+
+              // SHA-256
+              const hash256 = await crypto.subtle.digest('SHA-256', data);
+              document.getElementById('sha256-output').value = bufferToHex(hash256);
+
+              // SHA-1
+              const hash1 = await crypto.subtle.digest('SHA-1', data);
+              document.getElementById('sha1-output').value = bufferToHex(hash1);
+            }
+
+            function bufferToHex(buffer) {
+              return Array.from(new Uint8Array(buffer))
+                .map(b => b.toString(16).padStart(2, '0'))
+                .join('');
+            }
+
+            function copyHash(id) {
+              const el = document.getElementById(id);
+              el.select();
+              document.execCommand('copy');
+              const btn = event.target;
+              btn.innerText = 'Copied!';
+              setTimeout(() => btn.innerText = 'Copy', 2000);
+            }
+          </script>
 
           <section class="panel mt-6 p-5 md:p-7">
             <h2 class="text-2xl font-black">How to use MD5 / SHA Generator</h2>

@@ -179,7 +179,7 @@ module.exports = async function handler(req, res) {
 </html>`;
 
   const saveToSupabase = async () => {
-    const supabaseRes = await fetch(`${SUPABASE_URL}/rest/v1/blogs`, {
+    const supabaseRes = await fetch(`${SUPABASE_URL}/rest/v1/blog_posts`, {
       method: 'POST',
       headers: {
         'apikey': SUPABASE_KEY,
@@ -191,8 +191,11 @@ module.exports = async function handler(req, res) {
         title: safeTitle,
         slug: safeSlug,
         description: safeDescription,
-        content,
-        author: 'Admin'
+        emoji: '📄',
+        category: 'Blog',
+        read_time: '5 min read',
+        published_at: dateStr,
+        is_published: true
       })
     });
 
@@ -208,30 +211,26 @@ module.exports = async function handler(req, res) {
 
   const updateBlogIndex = async () => {
     const { sha, content: indexContent } = await getFile('blog/index.html');
-    const blogHrefRegex = new RegExp(`href=["'](?:\\.\\/|\\.\\.\\/blog\\/)${safeSlug}(?:\\.html)?["']`);
+    
+    // Avoid double entry
+    if (indexContent.includes(`slug: '${safeSlug}.html'`)) return;
 
-    if (blogHrefRegex.test(indexContent)) return;
+    const newPostObj = `{
+        slug: '${safeSlug}.html',
+        title: '${safeTitle.replace(/'/g, "\\'")}',
+        description: '${safeDescription.replace(/'/g, "\\'")}',
+        emoji: '📄',
+        category: 'Blog',
+        read_time: '5 min read',
+        published_at: '${dateStr}'
+      },`;
 
-    const newCard = `
-    <a href="./${safeSlug}" class="post-card bg-white border border-border-col rounded-2xl p-6 block no-underline">
-      <div class="flex items-start gap-4">
-        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-primary text-xs font-bold flex-shrink-0">POST</div>
-        <div class="flex-1">
-          <div class="text-xs text-text-muted mb-1.5">${dateStr} &middot; Blog</div>
-          <h2 class="text-lg font-bold text-text-main mb-2">${escapeHtml(safeTitle)}</h2>
-          <p class="text-sm text-text-muted leading-relaxed">${escapeHtml(safeDescription)}</p>
-          <span class="inline-block mt-3 text-primary text-sm font-semibold">Read guide &rarr;</span>
-        </div>
-      </div>
-    </a>
-`;
-
-    const targetMarker = '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">';
+    const targetMarker = 'allPosts = [';
     if (!indexContent.includes(targetMarker)) {
-      throw new Error('Blog index grid marker not found');
+      throw new Error('Blog index (allPosts array) not found in blog/index.html');
     }
 
-    const updatedContent = indexContent.replace(targetMarker, `${targetMarker}\n${newCard}`);
+    const updatedContent = indexContent.replace(targetMarker, `${targetMarker}\n      ${newPostObj}`);
     await commitFile('blog/index.html', updatedContent, `Add ${safeTitle} to blog index`, sha);
   };
 

@@ -135,17 +135,108 @@
           </div>
 
           <div class="panel mt-8 p-5 md:p-7">
-            <h2 class="text-2xl font-black ">Tool workspace</h2>
-            <p class="muted mt-2 text-sm font-semibold leading-relaxed">Paste or upload content when the live processor is connected, then use this clean URL as the dedicated Unit Converter workspace.</p>
-            <div class="input-shell mt-5 flex flex-col items-center justify-center p-6 text-center">
-              <div class="text-sm font-black text-text-main">Unit Converter input area</div>
-              <p class="muted mt-2 max-w-lg text-sm">This SEO-friendly page is ready for the live processor. The clean URL, metadata, schema, and ad-safe layout are already in place.</p>
-            </div>
-            <div class="mt-5 flex flex-col gap-3 sm:flex-row">
-              <a href="../index.html#utility-tools" class="inline-flex h-11 items-center justify-center rounded-lg bg-primary px-5 text-sm font-black text-white no-underline">View all Utility Tools</a>
-              
+            <h2 class="text-2xl font-black mb-6">Multi-Unit Converter</h2>
+            
+            <div class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- From -->
+                <div class="space-y-3">
+                  <label class="block text-sm font-bold text-text-main uppercase tracking-wider">From Value</label>
+                  <div class="flex gap-2">
+                    <input type="number" id="from-val" class="flex-1 h-14 px-4 bg-white border-2 border-primary/20 rounded-xl font-bold text-lg focus:outline-none focus:border-primary/50" value="1" oninput="convert()">
+                    <select id="from-unit" class="w-32 h-14 px-3 bg-slate-50 border-2 border-border-col/50 rounded-xl font-bold text-sm" onchange="convert()">
+                      <optgroup label="Length">
+                        <option value="m">Meters</option>
+                        <option value="km">Kilometers</option>
+                        <option value="ft">Feet</option>
+                        <option value="in">Inches</option>
+                      </optgroup>
+                      <optgroup label="Weight">
+                        <option value="kg">Kilograms</option>
+                        <option value="lb">Pounds</option>
+                        <option value="oz">Ounces</option>
+                      </optgroup>
+                      <optgroup label="Temp">
+                        <option value="c">Celsius</option>
+                        <option value="f">Fahrenheit</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- To -->
+                <div class="space-y-3">
+                  <label class="block text-sm font-bold text-text-main uppercase tracking-wider">To Result</label>
+                  <div class="flex gap-2">
+                    <input type="text" id="to-val" readonly class="flex-1 h-14 px-4 bg-slate-50 border-2 border-border-col/50 rounded-xl font-bold text-lg text-primary" value="0.001">
+                    <select id="to-unit" class="w-32 h-14 px-3 bg-slate-50 border-2 border-border-col/50 rounded-xl font-bold text-sm" onchange="convert()">
+                      <optgroup label="Length">
+                        <option value="m">Meters</option>
+                        <option value="km" selected>Kilometers</option>
+                        <option value="ft">Feet</option>
+                        <option value="in">Inches</option>
+                      </optgroup>
+                      <optgroup label="Weight">
+                        <option value="kg">Kilograms</option>
+                        <option value="lb">Pounds</option>
+                        <option value="oz">Ounces</option>
+                      </optgroup>
+                      <optgroup label="Temp">
+                        <option value="c">Celsius</option>
+                        <option value="f">Fahrenheit</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex justify-center">
+                <button onclick="swap()" class="p-3 bg-white border-2 border-border-col/50 rounded-full hover:bg-slate-50 transition shadow-sm">
+                  <svg class="w-6 h-6 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg>
+                </button>
+              </div>
             </div>
           </div>
+
+          <script>
+            const factors = {
+              // Standardized to meters
+              m: 1, km: 1000, ft: 0.3048, in: 0.0254,
+              // Standardized to kg
+              kg: 1, lb: 0.453592, oz: 0.0283495
+            };
+
+            function convert() {
+              const val = parseFloat(document.getElementById('from-val').value);
+              const from = document.getElementById('from-unit').value;
+              const to = document.getElementById('to-unit').value;
+              const out = document.getElementById('to-val');
+
+              if (isNaN(val)) { out.value = ''; return; }
+
+              // Temperature special case
+              if (from === 'c' && to === 'f') out.value = (val * 9/5 + 32).toFixed(2);
+              else if (from === 'f' && to === 'c') out.value = ((val - 32) * 5/9).toFixed(2);
+              else if (from === to) out.value = val;
+              else if (factors[from] && factors[to]) {
+                const result = (val * factors[from]) / factors[to];
+                out.value = result < 0.0001 ? result.toExponential(4) : result.toFixed(4);
+              } else {
+                out.value = 'Incompatible units';
+              }
+            }
+
+            function swap() {
+              const fU = document.getElementById('from-unit');
+              const tU = document.getElementById('to-unit');
+              const temp = fU.value;
+              fU.value = tU.value;
+              tU.value = temp;
+              convert();
+            }
+
+            window.onload = convert;
+          </script>
 
           <section class="panel mt-6 p-5 md:p-7">
             <h2 class="text-2xl font-black">How to use Unit Converter</h2>

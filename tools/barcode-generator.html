@@ -135,17 +135,88 @@
           </div>
 
           <div class="panel mt-8 p-5 md:p-7">
-            <h2 class="text-2xl font-black ">Tool workspace</h2>
-            <p class="muted mt-2 text-sm font-semibold leading-relaxed">Paste or upload content when the live processor is connected, then use this clean URL as the dedicated Barcode Generator workspace.</p>
-            <div class="input-shell mt-5 flex flex-col items-center justify-center p-6 text-center">
-              <div class="text-sm font-black text-text-main">Barcode Generator input area</div>
-              <p class="muted mt-2 max-w-lg text-sm">This SEO-friendly page is ready for the live processor. The clean URL, metadata, schema, and ad-safe layout are already in place.</p>
-            </div>
-            <div class="mt-5 flex flex-col gap-3 sm:flex-row">
-              <a href="../index.html#utility-tools" class="inline-flex h-11 items-center justify-center rounded-lg bg-primary px-5 text-sm font-black text-white no-underline">View all Utility Tools</a>
-              
+            <h2 class="text-2xl font-black mb-6">Barcode Generator</h2>
+            
+            <div class="space-y-6">
+              <div class="flex flex-col md:flex-row gap-8">
+                <!-- Inputs -->
+                <div class="flex-1 space-y-4">
+                  <div class="space-y-2">
+                    <label class="text-sm font-bold text-text-main uppercase tracking-wider">Barcode Content</label>
+                    <input type="text" id="barcode-content" class="w-full h-14 px-4 bg-white border-2 border-primary/20 rounded-xl font-bold text-lg focus:outline-none focus:border-primary/50" value="12345678" oninput="generateBarcode()">
+                  </div>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                      <label class="text-xs font-bold text-text-muted uppercase">Format</label>
+                      <select id="barcode-format" class="w-full h-10 px-2 bg-slate-50 border border-border-col rounded-lg font-bold text-xs" onchange="generateBarcode()">
+                        <option value="CODE128">CODE128</option>
+                        <option value="EAN13">EAN13</option>
+                        <option value="UPC">UPC</option>
+                        <option value="CODE39">CODE39</option>
+                        <option value="ITF14">ITF14</option>
+                        <option value="MSI">MSI</option>
+                        <option value="pharmacode">Pharmacode</option>
+                      </select>
+                    </div>
+                    <div class="space-y-2">
+                      <label class="text-xs font-bold text-text-muted uppercase">Line Color</label>
+                      <input type="color" id="barcode-color" value="#000000" class="w-full h-10 rounded-lg cursor-pointer" oninput="generateBarcode()">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Preview -->
+                <div class="w-full md:w-80 flex flex-col items-center gap-4">
+                  <div class="p-6 bg-white border border-border-col rounded-2xl shadow-sm min-h-[160px] flex items-center justify-center overflow-hidden w-full">
+                    <svg id="barcode-svg"></svg>
+                  </div>
+                  <button onclick="downloadBarcode()" class="w-full h-12 bg-primary text-white rounded-xl font-bold hover:bg-blue-700 transition shadow-md">Download SVG</button>
+                </div>
+              </div>
             </div>
           </div>
+
+          <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+          <script>
+            function generateBarcode() {
+              const content = document.getElementById('barcode-content').value;
+              const format = document.getElementById('barcode-format').value;
+              const color = document.getElementById('barcode-color').value;
+
+              try {
+                JsBarcode("#barcode-svg", content, {
+                  format: format,
+                  lineColor: color,
+                  width: 2,
+                  height: 100,
+                  displayValue: true
+                });
+              } catch (e) {
+                // Ignore errors for invalid inputs while typing
+              }
+            }
+
+            function downloadBarcode() {
+              const svg = document.getElementById('barcode-svg');
+              const serializer = new XMLSerializer();
+              let source = serializer.serializeToString(svg);
+              
+              if(!source.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)){
+                  source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+              }
+              if(!source.match(/^<svg[^>]+xmlns\:xlink="http\:\/\/www\.w3\.org\/1999\/xlink"/)){
+                  source = source.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
+              }
+
+              const url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(source);
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = 'verifydocs-barcode.svg';
+              link.click();
+            }
+
+            window.onload = generateBarcode;
+          </script>
 
           <section class="panel mt-6 p-5 md:p-7">
             <h2 class="text-2xl font-black">How to use Barcode Generator</h2>

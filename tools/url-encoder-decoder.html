@@ -135,17 +135,53 @@
           </div>
 
           <div class="panel mt-8 p-5 md:p-7">
-            <h2 class="text-2xl font-black ">Tool workspace</h2>
-            <p class="muted mt-2 text-sm font-semibold leading-relaxed">Paste or upload content when the live processor is connected, then use this clean URL as the dedicated URL Encoder / Decoder workspace.</p>
-            <div class="input-shell mt-5 flex flex-col items-center justify-center p-6 text-center">
-              <div class="text-sm font-black text-text-main">URL Encoder / Decoder input area</div>
-              <p class="muted mt-2 max-w-lg text-sm">This SEO-friendly page is ready for the live processor. The clean URL, metadata, schema, and ad-safe layout are already in place.</p>
-            </div>
-            <div class="mt-5 flex flex-col gap-3 sm:flex-row">
-              <a href="../index.html#utility-tools" class="inline-flex h-11 items-center justify-center rounded-lg bg-primary px-5 text-sm font-black text-white no-underline">View all Utility Tools</a>
-              
+            <h2 class="text-2xl font-black mb-6">URL Encoder & Decoder</h2>
+            
+            <div class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-3">
+                  <label class="block text-sm font-bold text-text-main uppercase tracking-wider">Raw Text / URL</label>
+                  <textarea id="raw-input" class="w-full h-48 p-4 bg-white border-2 border-primary/10 rounded-xl text-sm font-medium focus:outline-none focus:border-primary/40 resize-none" placeholder="Enter URL or text here..."></textarea>
+                </div>
+                <div class="space-y-3">
+                  <label class="block text-sm font-bold text-text-main uppercase tracking-wider">Encoded Output</label>
+                  <textarea id="encoded-input" class="w-full h-48 p-4 bg-white border-2 border-primary/10 rounded-xl text-sm font-mono focus:outline-none focus:border-primary/40 resize-none" placeholder="Encoded URL will appear here..."></textarea>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap gap-4 justify-center pt-4 border-t border-border-col/50">
+                <button onclick="encode()" class="px-8 h-12 bg-slate-900 text-white rounded-xl font-bold hover:bg-black transition shadow-lg flex items-center gap-2">Encode URL ➔</button>
+                <button onclick="decode()" class="px-8 h-12 bg-slate-100 text-text-main rounded-xl font-bold hover:bg-slate-200 transition shadow-md flex items-center gap-2">⬅ Decode URL</button>
+                <button onclick="clearAll()" class="px-6 h-12 bg-slate-50 text-text-muted rounded-xl font-bold hover:bg-slate-100 transition">Clear All</button>
+              </div>
             </div>
           </div>
+
+          <script>
+            const rawInput = document.getElementById('raw-input');
+            const encodedInput = document.getElementById('encoded-input');
+
+            function encode() {
+              try {
+                encodedInput.value = encodeURIComponent(rawInput.value);
+              } catch (e) {
+                alert('Encoding error: ' + e.message);
+              }
+            }
+
+            function decode() {
+              try {
+                rawInput.value = decodeURIComponent(encodedInput.value);
+              } catch (e) {
+                alert('Decoding error: Invalid encoded string');
+              }
+            }
+
+            function clearAll() {
+              rawInput.value = '';
+              encodedInput.value = '';
+            }
+          </script>
 
           <section class="panel mt-6 p-5 md:p-7">
             <h2 class="text-2xl font-black">How to use URL Encoder / Decoder</h2>

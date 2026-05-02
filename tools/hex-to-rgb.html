@@ -135,17 +135,70 @@
           </div>
 
           <div class="panel mt-8 p-5 md:p-7">
-            <h2 class="text-2xl font-black ">Tool workspace</h2>
-            <p class="muted mt-2 text-sm font-semibold leading-relaxed">Paste or upload content when the live processor is connected, then use this clean URL as the dedicated HEX to RGB workspace.</p>
-            <div class="input-shell mt-5 flex flex-col items-center justify-center p-6 text-center">
-              <div class="text-sm font-black text-text-main">HEX to RGB input area</div>
-              <p class="muted mt-2 max-w-lg text-sm">This SEO-friendly page is ready for the live processor. The clean URL, metadata, schema, and ad-safe layout are already in place.</p>
-            </div>
-            <div class="mt-5 flex flex-col gap-3 sm:flex-row">
-              <a href="../index.html#utility-tools" class="inline-flex h-11 items-center justify-center rounded-lg bg-primary px-5 text-sm font-black text-white no-underline">View all Utility Tools</a>
-              
+            <h2 class="text-2xl font-black mb-6">HEX to RGB Converter</h2>
+            
+            <div class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-4">
+                  <div class="space-y-2">
+                    <label class="text-sm font-bold text-text-main uppercase tracking-wider">HEX Color</label>
+                    <div class="flex gap-2">
+                      <div id="color-preview" class="w-14 h-12 rounded-xl border border-border-col shadow-sm bg-[#0066CC]"></div>
+                      <input type="text" id="hex-input" class="flex-1 h-12 px-4 border-2 border-primary/20 rounded-xl font-mono font-bold text-primary focus:outline-none focus:border-primary/50" value="#0066CC" oninput="convertHex(this.value)">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="space-y-4">
+                  <div class="space-y-2">
+                    <label class="text-sm font-bold text-text-muted uppercase tracking-wider">RGB Result</label>
+                    <div class="relative">
+                      <input type="text" id="rgb-output" readonly class="w-full h-12 px-4 bg-slate-50 border-2 border-border-col/50 rounded-xl font-mono font-bold text-text-main" value="rgb(0, 102, 204)">
+                      <button onclick="copyVal('rgb-output')" class="absolute right-2 top-2 bottom-2 px-3 bg-white border border-border-col rounded-lg text-xs font-bold hover:bg-slate-50 transition">Copy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-6 bg-slate-50 rounded-2xl border border-border-col/50 space-y-4">
+                <h3 class="text-xs font-black text-text-muted uppercase tracking-widest">CSS Code Snippet</h3>
+                <code id="css-snippet" class="block p-4 bg-slate-900 text-blue-300 rounded-xl text-sm font-mono leading-relaxed">
+                  color: #0066CC; <br>
+                  background-color: rgb(0, 102, 204);
+                </code>
+              </div>
             </div>
           </div>
+
+          <script>
+            function convertHex(hex) {
+              // Clean hex
+              hex = hex.replace('#', '');
+              if (hex.length === 3) {
+                hex = hex.split('').map(c => c + c).join('');
+              }
+              
+              if (/^[0-9A-F]{6}$/i.test(hex)) {
+                const r = parseInt(hex.slice(0, 2), 16);
+                const g = parseInt(hex.slice(2, 4), 16);
+                const b = parseInt(hex.slice(4, 6), 16);
+                
+                const rgb = `rgb(${r}, ${g}, ${b})`;
+                document.getElementById('rgb-output').value = rgb;
+                document.getElementById('color-preview').style.backgroundColor = '#' + hex;
+                document.getElementById('css-snippet').innerHTML = `color: #${hex.toUpperCase()}; <br> background-color: ${rgb};`;
+              }
+            }
+
+            function copyVal(id) {
+              const el = document.getElementById(id);
+              el.select();
+              document.execCommand('copy');
+              const btn = event.target;
+              btn.innerText = 'Copied!';
+              setTimeout(() => btn.innerText = 'Copy', 2000);
+            }
+          </script>
 
           <section class="panel mt-6 p-5 md:p-7">
             <h2 class="text-2xl font-black">How to use HEX to RGB</h2>
