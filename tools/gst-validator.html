@@ -151,33 +151,96 @@
     </section>
 
     <section>
-      <h2 class="text-2xl font-bold text-text-main mb-8 text-center">Frequently Asked Questions</h2>
+      <h2 class="text-2xl font-bold text-text-main mb-8 text-center">Frequently Asked Questions (FAQ)</h2>
       <div class="space-y-4">
         <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
           <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
-            <span>What is the state code for Delhi in GST?</span>
-            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <span>Is GST verification on VerifyDocs.online safe for my business?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
-            The GST state code for Delhi is 07. Each state in India has a unique 2-digit code used as the prefix for GSTINs.
+            Yes, it is completely safe. Our GST validator processes data locally in your browser using JavaScript. No business data or GSTIN is ever sent to our servers, ensuring your business privacy is fully protected.
           </div>
         </div>
         <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
           <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
-            <span>Does this tool verify the legal name of the taxpayer?</span>
-            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <span>Does this tool store my GSTIN or PAN?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
-            No. This tool only validates the format and checksum of the GSTIN. To verify the legal name or business status, you must use the "Search Taxpayer" feature on the official <a href="https://www.gst.gov.in" class="text-primary underline">gst.gov.in</a> portal.
+            No. We have a zero-retention policy. Any GSTIN or embedded PAN entered for validation is instantly cleared when you close the tab or refresh the page.
           </div>
         </div>
         <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
           <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
-            <span>Is the 'Z' in GSTIN always the same?</span>
-            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <span>How does the GST validation logic work?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
-            Yes, the 14th character of a GSTIN is currently fixed as 'Z' by the government for all taxpayers.
+            Our tool checks for the 15-digit structure: first 2 digits (State Code), next 10 digits (PAN), 13th digit (Entity Code), 14th digit (fixed 'Z'), and the 15th digit (Checksum).
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Can I use this for official GST compliance?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            This tool is for format validation. For official compliance, return filing, or checking active taxpayer status, you must use the official GST Common Portal (gst.gov.in).
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Is the GST validator tool free for businesses?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            Yes, VerifyDocs.online offers all its business utility tools 100% free with no limits on daily usage or premium paywalls.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Do I need to register my company to use this?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            No registration or business profile is required. You can validate any GSTIN instantly without sharing any personal or corporate information.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Is the GST tool mobile-friendly for field agents?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            Yes. Our platform is mobile-responsive and high-speed, making it ideal for field agents or accountants who need to verify GSTINs on the go.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Why choose VerifyDocs.online for business validation?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            We provide a secure, ad-lite, and fast platform with technical precision in decoding state codes and embedded PAN numbers from GSTINs.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Can I validate bulk GSTIN numbers?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            You can validate GSTINs one by one at high speed. For large batches, our clean UI allows for rapid sequential checks.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>How often are the GST validation rules updated?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            Our algorithms are regularly reviewed to match the latest notifications and guidelines issued by the GST Council and GSTN.
           </div>
         </div>
       </div>

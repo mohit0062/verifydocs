@@ -184,65 +184,92 @@
       <div class="space-y-4">
         <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
           <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
-            <span>Is my Aadhaar number stored when I use this tool?</span>
-            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <span>Is Aadhaar verification on VerifyDocs.online safe?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
-            No. Absolutely not. All validation logic runs in JavaScript within your browser. We do not have a backend database for document numbers, and no data is ever uploaded to our servers.
+            Yes, it is completely safe. Our Aadhaar validator uses the Verhoeff algorithm entirely in client-side JavaScript. This means your 12-digit number is processed locally in your browser and is never sent to our servers or any third party.
           </div>
         </div>
         <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
           <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
-            <span>What if my Aadhaar fails validation?</span>
-            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <span>Does this tool store my Aadhaar number?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
-            First, double-check the 12 digits from your physical or e-Aadhaar card. Most errors are simple typos. If it still fails, ensure you haven't swapped any numbers. A failure means the number is mathematically impossible according to UIDAI's structure.
+            No. We have a zero-retention policy for sensitive document data. Once the validation is complete and you leave the page, all information is cleared instantly from your session.
           </div>
         </div>
         <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
           <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
-            <span>Can two people have the same Aadhaar number?</span>
-            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <span>How does the Aadhaar validation logic work?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
-            No. The Aadhaar system is designed to provide a unique identity to every resident of India based on biometric and demographic data.
+            We use the Verhoeff algorithm, which is a mathematical formula designed to catch transcription errors in long numbers. The 12th digit of an Aadhaar number is a checksum digit calculated based on the previous 11 digits.
           </div>
         </div>
         <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
           <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
-            <span>Is this tool authorized by UIDAI?</span>
-            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <span>Can I use this for official government authentication?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
-            No. verifydocs.online is an independent utility. We use public domain algorithms (Verhoeff) to help users check their document formats. We are not affiliated with UIDAI.
+            No. This tool only performs a format and mathematical check. For official identity verification using OTP or Biometrics, you must use the official UIDAI portal or authorized mAadhaar services.
           </div>
         </div>
         <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
           <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
-            <span>What's the difference between format check and identity verification?</span>
-            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <span>Is this Aadhaar checker free to use?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
-            A format check (what we do) only tells you if the number is mathematically valid. Identity verification (what banks do via OTP/Biometrics) confirms that the number belongs to YOU and is active in the government database.
+            Yes, VerifyDocs.online provides all document utility tools 100% free of charge. There are no limits on the number of checks you can perform daily.
           </div>
         </div>
         <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
           <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
-            <span>Can I validate someone else's Aadhaar?</span>
-            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <span>Do I need to create an account?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
-            Yes, if you have their permission to check for typos. Since no data is stored or transmitted, it is safe to use for format checking only.
+            No registration is required. We believe in providing fast, hassle-free tools without demanding personal information or email addresses from our users.
           </div>
         </div>
         <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
           <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
-            <span>Is masking the same as validation?</span>
-            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <span>Is the tool mobile-friendly?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
-            No. Masking is a privacy feature that hides the first 8 digits. Validation is a format check that ensures the 12 digits are correct. You can use our <a href="./aadhaar-masking-tool.html" class="text-primary hover:underline">Aadhaar Masking Tool</a> for privacy.
+            Yes. Our entire platform is fully optimized for mobile devices, allowing you to validate documents on the go with high speed and precision.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Why choose VerifyDocs.online?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            We provide an ad-lite, privacy-focused experience with technical accuracy. Our tools are designed for professionals who need quick verification without compromising data security.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Can I verify multiple Aadhaar numbers?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            Yes, our validator supports high-frequency use. Simply clear the field and enter the next number for instant format validation.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>How often are the validation rules updated?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            Our technical team monitors all official UIDAI documentation and checksum algorithm updates to ensure that our checker remains 100% accurate.
           </div>
         </div>
       </div>

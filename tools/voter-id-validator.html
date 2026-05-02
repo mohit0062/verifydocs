@@ -128,29 +128,92 @@
       <div class="space-y-4">
         <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
           <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
-            <span>What is an EPIC number?</span>
-            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <span>Is document verification on VerifyDocs.online safe?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
-            EPIC stands for Electors Photo Identity Card number. It is the unique identification number printed on your Voter ID card.
+            Yes, it is completely safe. Our tools use client-side JavaScript for validation, meaning your data is processed directly in your browser and never sent to or stored on our servers.
           </div>
         </div>
         <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
           <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
-            <span>Does this tool verify my voting status?</span>
-            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <span>Does this tool store my Voter ID (EPIC) number?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
-            No. This tool only validates the format of your Voter ID. To check if your name is in the voter list, you must visit the official <a href="https://voters.eci.gov.in" class="text-primary underline">voters.eci.gov.in</a> portal.
+            No. We have a strict zero-data retention policy. Once you close the tab or refresh the page, all entered data is instantly cleared from your browser's memory.
           </div>
         </div>
         <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
           <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
-            <span>Can I use my Voter ID as address proof?</span>
-            <svg class="faq-icon w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <span>How does the Voter ID validation logic work?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
-            Yes, Voter ID is widely accepted as valid proof of identity and address across India for various services like passport applications and bank account opening.
+            Our algorithm checks for the standard ECI (Election Commission of India) EPIC format, which typically includes a 3-letter functional code followed by a 7-digit unique serial number.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Can I use this for official government verification?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            This tool is for format validation and informational purposes only. To check your actual enrollment status, please use the official NVSP or Voters' Service Portal.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Is this Voter ID validator free to use?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            Yes, all document utility tools on VerifyDocs.online are 100% free with no daily limits, hidden charges, or premium subscriptions.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Do I need to create an account?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            No registration is required. You can start validating your document formats instantly without providing any personal information or email.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Is the tool mobile-friendly?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            Absolutely. Our website is fully responsive and optimized for a seamless experience on all mobile devices, tablets, and desktops.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Why choose VerifyDocs.online?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            We offer a clean, ad-lite, and high-speed platform for document utility tasks, prioritizing user privacy and technical accuracy above all else.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>Can I verify multiple Voter IDs?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            Yes, you can verify as many EPIC numbers as you need. Our system is designed for high-frequency utility tasks.
+          </div>
+        </div>
+        <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden">
+          <button onclick="toggleFAQ(this)" class="w-full px-6 py-5 text-left font-bold text-text-main flex items-center justify-between hover:bg-gray-50 transition">
+            <span>How often are the validation rules updated?</span>
+            <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-sm text-text-muted">
+            We regularly update our validation algorithms based on the latest guidelines from official authorities like ECI, UIDAI, and IT Department.
           </div>
         </div>
       </div>
