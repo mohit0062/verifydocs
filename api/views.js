@@ -1,5 +1,5 @@
-const SUPABASE_URL = (process.env.SUPABASE_URL || '').trim();
-const SUPABASE_KEY = (process.env.SUPABASE_KEY || '').trim();
+const SUPABASE_URL = (process.env.SUPABASE_URL || 'https://onkvkaldgndyilwkmzqi.supabase.co').trim();
+const SUPABASE_KEY = (process.env.SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ua3ZrYWxkZ25keWlsd2ttenFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyMDUwNTYsImV4cCI6MjA5Mjc4MTA1Nn0.f3Tm6yShjmOy4I0x6sVGNddu7pVrAtBW3KDh8QNdLR4').trim();
 
 module.exports = async function handler(req, res) {
   if (!SUPABASE_URL || !SUPABASE_KEY) {
