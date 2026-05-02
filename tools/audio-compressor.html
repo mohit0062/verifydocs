@@ -134,18 +134,168 @@
             </div>
           </div>
 
-          <div class="panel mt-8 p-5 md:p-7">
-            <h2 class="text-2xl font-black ">Tool workspace</h2>
-            <p class="muted mt-2 text-sm font-semibold leading-relaxed">Paste or upload content when the live processor is connected, then use this clean URL as the dedicated Audio Compressor workspace.</p>
-            <div class="input-shell mt-5 flex flex-col items-center justify-center p-6 text-center">
-              <div class="text-sm font-black text-slate-100">Audio Compressor input area</div>
-              <p class="muted mt-2 max-w-lg text-sm">This SEO-friendly page is ready for the live processor. The clean URL, metadata, schema, and ad-safe layout are already in place.</p>
+          <div class="panel mt-8 p-6 md:p-10 bg-slate-900/50 border-primary/20 backdrop-blur-xl">
+            <div class="flex items-center justify-between mb-8">
+              <div>
+                <h2 class="text-2xl font-black text-white">Audio Workspace</h2>
+                <p class="text-slate-400 text-sm mt-1">Professional client-side audio optimization</p>
+              </div>
+              <div id="status-badge" class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                <span class="w-2 h-2 bg-slate-500 rounded-full animate-pulse"></span>
+                System Ready
+              </div>
             </div>
-            <div class="mt-5 flex flex-col gap-3 sm:flex-row">
-              <a href="../index.html#media-tools" class="inline-flex h-11 items-center justify-center rounded-lg bg-primary px-5 text-sm font-black text-white no-underline">View all Media Tools</a>
-              
+
+            <div id="upload-zone" class="relative group cursor-pointer">
+              <input type="file" id="audio-input" accept="audio/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+              <div class="input-shell min-h-[16rem] border-2 border-dashed border-slate-700 group-hover:border-primary/50 transition-all bg-slate-800/30 rounded-3xl flex flex-col items-center justify-center p-8 text-center">
+                <div class="w-20 h-20 bg-primary/10 text-primary rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform">🎵</div>
+                <h3 class="text-xl font-bold text-white mb-2">Drop audio here or click to browse</h3>
+                <p class="text-slate-400 text-sm max-w-sm">MP3, WAV, M4A, or OGG. Your file stays private and never leaves your device.</p>
+              </div>
+            </div>
+
+            <div id="process-zone" class="hidden mt-8 space-y-6">
+              <div class="flex items-center gap-4 p-4 bg-slate-800/50 rounded-2xl border border-slate-700">
+                <div class="w-12 h-12 bg-slate-700 rounded-xl flex items-center justify-center text-xl">📻</div>
+                <div class="flex-1 min-w-0">
+                  <p id="file-name" class="font-bold text-white truncate text-sm">audio_file.mp3</p>
+                  <p id="file-size" class="text-xs text-slate-500">8.4 MB</p>
+                </div>
+                <button onclick="resetTool()" class="text-xs font-bold text-slate-400 hover:text-white uppercase tracking-wider">Remove</button>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="space-y-2">
+                  <label class="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">Target Bitrate</label>
+                  <select id="audio-bitrate" class="w-full h-12 bg-slate-800 border border-slate-700 rounded-xl px-4 text-sm font-bold text-white focus:outline-none focus:border-primary">
+                    <option value="64k">Low (64 kbps - Smallest)</option>
+                    <option value="128k" selected>Standard (128 kbps)</option>
+                    <option value="192k">High (192 kbps)</option>
+                  </select>
+                </div>
+                <div class="flex items-end">
+                  <button id="convert-btn" onclick="processAudio()" class="w-full h-12 bg-primary hover:bg-blue-600 text-white font-black rounded-xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+                    Start Compression →
+                  </button>
+                </div>
+              </div>
+
+              <div id="progress-container" class="hidden space-y-3">
+                <div class="flex items-center justify-between text-xs font-bold uppercase tracking-widest">
+                  <span id="progress-status" class="text-primary">Optimizing Audio...</span>
+                  <span id="progress-percent" class="text-white">0%</span>
+                </div>
+                <div class="h-2 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
+                  <div id="progress-bar" class="h-full bg-primary w-0 transition-all duration-300 shadow-[0_0_15px_rgba(0,102,204,0.5)]"></div>
+                </div>
+              </div>
+            </div>
+
+            <div id="result-zone" class="hidden mt-8 p-6 bg-green-500/10 border border-green-500/20 rounded-3xl animate-fade-in">
+              <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center text-2xl mb-4">✓</div>
+                <h3 class="text-xl font-bold text-white mb-2">Audio Optimized!</h3>
+                <p class="text-slate-400 text-sm mb-6">Your audio file size has been successfully reduced.</p>
+                <a id="download-link" href="#" download="optimized.mp3" class="h-12 px-8 bg-green-600 hover:bg-green-700 text-white font-black rounded-xl transition-all flex items-center gap-2">
+                  Download MP3 📥
+                </a>
+              </div>
             </div>
           </div>
+
+          <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.7/dist/umd/ffmpeg.min.js"></script>
+          <script src="https://unpkg.com/@ffmpeg/util@0.12.1/dist/umd/index.js"></script>
+          
+          <script>
+            const { FFmpeg } = FFmpegWASM;
+            const { fetchFile, toBlobURL } = FFmpegUtil;
+            
+            let ffmpeg = null;
+            let currentFile = null;
+
+            const audioInput = document.getElementById('audio-input');
+            const uploadZone = document.getElementById('upload-zone');
+            const processZone = document.getElementById('process-zone');
+            const resultZone = document.getElementById('result-zone');
+            const progressBar = document.getElementById('progress-bar');
+            const progressPercent = document.getElementById('progress-percent');
+            const progressContainer = document.getElementById('progress-container');
+            const statusBadge = document.getElementById('status-badge');
+
+            audioInput.addEventListener('change', (e) => {
+              const file = e.target.files[0];
+              if (!file) return;
+              currentFile = file;
+              document.getElementById('file-name').textContent = file.name;
+              document.getElementById('file-size').textContent = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
+              uploadZone.classList.add('hidden');
+              processZone.classList.remove('hidden');
+              resultZone.classList.add('hidden');
+            });
+
+            async function loadFFmpeg() {
+              if (ffmpeg) return;
+              statusBadge.innerHTML = `<span class="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></span> Initializing Engine...`;
+              ffmpeg = new FFmpeg();
+              ffmpeg.on('progress', ({ progress }) => {
+                const p = Math.round(progress * 100);
+                progressBar.style.width = `${p}%`;
+                progressPercent.textContent = `${p}%`;
+              });
+              const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd';
+              await ffmpeg.load({
+                coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+                wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
+              });
+              statusBadge.innerHTML = `<span class="w-2 h-2 bg-green-500 rounded-full"></span> Engine Online`;
+            }
+
+            async function processAudio() {
+              if (!currentFile) return;
+              try {
+                await loadFFmpeg();
+                document.getElementById('convert-btn').disabled = true;
+                document.getElementById('convert-btn').textContent = 'Processing...';
+                progressContainer.classList.remove('hidden');
+                
+                const bitrate = document.getElementById('audio-bitrate').value;
+                const fileName = 'input_audio';
+                const outputName = 'output.mp3';
+                
+                await ffmpeg.writeFile(fileName, await fetchFile(currentFile));
+                
+                // Compress audio: -ab (bitrate)
+                await ffmpeg.exec(['-i', fileName, '-ab', bitrate, outputName]);
+                
+                const data = await ffmpeg.readFile(outputName);
+                const url = URL.createObjectURL(new Blob([data.buffer], { type: 'audio/mp3' }));
+                
+                const downloadLink = document.getElementById('download-link');
+                downloadLink.href = url;
+                downloadLink.download = 'compressed_' + currentFile.name.split('.')[0] + '.mp3';
+                
+                processZone.classList.add('hidden');
+                resultZone.classList.remove('hidden');
+              } catch (err) {
+                console.error(err);
+                alert('Error processing audio.');
+              } finally {
+                document.getElementById('convert-btn').disabled = false;
+                document.getElementById('convert-btn').textContent = 'Start Compression →';
+              }
+            }
+
+            function resetTool() {
+              currentFile = null;
+              audioInput.value = '';
+              uploadZone.classList.remove('hidden');
+              processZone.classList.add('hidden');
+              resultZone.classList.add('hidden');
+              progressContainer.classList.add('hidden');
+              progressBar.style.width = '0%';
+            }
+          </script>
 
           <section class="panel mt-6 p-5 md:p-7">
             <h2 class="text-2xl font-black">How to use Audio Compressor</h2>
