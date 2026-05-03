@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>8K Image Upscaler - Enlarge Images Free Online</title>
+  <meta name="description" content="Free 8K image upscaler. Enlarge JPG, PNG, and WEBP images up to 8K in your browser with sharpening, smoothing, and cleanup. No upload required.">
+  <link rel="canonical" href="https://verifydocs.online/tools/image-upscaler">
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+  <link rel="apple-touch-icon" href="/assets/icon.svg">
+  <link rel="shortcut icon" href="/assets/icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2563d8',
+            violet: '#7c3aed',
+            ink: '#0b1020',
+            muted: '#667085',
+            paper: '#f6f8fc',
+            line: '#dbe3f0'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --ink: #0b1020;
+      --muted: #667085;
+      --paper: #f6f8fc;
+      --line: #dbe3f0;
+      --blue: #2563d8;
+      --violet: #7c3aed;
+      --shadow: 0 32px 90px -54px rgba(15, 23, 42, 0.55);
+    }
+    * { box-sizing: border-box; }
+    body {
+      min-height: 100dvh;
+      background:
+        radial-gradient(circle at 18% 8%, rgba(124, 58, 237, 0.08), transparent 30rem),
+        radial-gradient(circle at 88% 14%, rgba(37, 99, 216, 0.08), transparent 28rem),
+        linear-gradient(180deg, #fbfcff 0%, var(--paper) 100%);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+    }
+    .topbar {
+      background: rgba(251, 252, 255, 0.86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(219, 227, 240, 0.86);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      border: 1px solid #e3dbff;
+      background: linear-gradient(180deg, rgba(249, 247, 255, 0.98), rgba(241, 237, 255, 0.88));
+      color: var(--violet);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+    .badge-dot {
+      width: 0.72rem;
+      height: 0.72rem;
+      border-radius: 999px;
+      background: var(--violet);
+      box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.16);
+    }
+    .hero-title {
+      letter-spacing: -0.075em;
+      line-height: 0.92;
+    }
+    .tool-shell {
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(219, 227, 240, 0.94);
+      box-shadow: var(--shadow);
+    }
+    .drop-zone {
+      min-height: 30rem;
+      border: 2px dashed #cbd6e8;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.72), rgba(248,250,255,0.9)),
+        radial-gradient(circle at 50% 20%, rgba(124,58,237,0.08), transparent 20rem);
+      transition: transform 0.24s ease, border-color 0.24s ease, background-color 0.24s ease;
+    }
+    .drop-zone:hover,
+    .drop-zone.dragging {
+      transform: translateY(-2px);
+      border-color: var(--violet);
+      background-color: #fbfaff;
+    }
+    .icon-tile {
+      background: linear-gradient(180deg, #f6f3ff, #eeebff);
+      color: var(--violet);
+      border: 1px solid #e4ddff;
+      box-shadow: 0 16px 32px -26px rgba(76, 29, 149, 0.8);
+    }
+    .pill {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.88);
+      color: #667085;
+    }
+    .option-card {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.82);
+      transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+    }
+    .option-card:hover {
+      transform: translateY(-1px);
+      border-color: #b9c7dc;
+    }
+    .option-card input:checked + span {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+    .range-accent { accent-color: var(--violet); }
+    .loading-overlay {
+      display: none !important;
+      background: rgba(251,252,255,0.74);
+      backdrop-filter: blur(10px);
+    }
+    .loading-overlay.is-active {
+      display: flex !important;
+    }
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .preview-box {
+      min-height: 20rem;
+      background:
+        linear-gradient(45deg, #edf2fa 25%, transparent 25%),
+        linear-gradient(-45deg, #edf2fa 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #edf2fa 75%),
+        linear-gradient(-45deg, transparent 75%, #edf2fa 75%),
+        #fff;
+      background-size: 24px 24px;
+      background-position: 0 0, 0 12px, 12px -12px, -12px 0;
+    }
+    .meta-chip {
+      background: rgba(11, 16, 32, 0.82);
+      color: white;
+      backdrop-filter: blur(8px);
+    }
+    .quality-card {
+      border: 1px solid rgba(219, 227, 240, 0.92);
+      background: rgba(255,255,255,0.74);
+    }
+    @media (max-width: 768px) {
+      .drop-zone { min-height: 22rem; padding: 2rem 1rem; }
+      .preview-grid { grid-template-columns: 1fr; }
+      .hero-title { letter-spacing: -0.055em; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar sticky top-0 z-50">
+    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
+      <a href="/" class="flex items-center gap-2 text-xl font-black tracking-tight">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect width="32" height="32" rx="7" fill="#2563d8"/>
+          <path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/>
+          <path d="M13 16l2.5 2.5 4-4" stroke="#2563d8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>VerifyDocs<span class="text-primary">.online</span></span>
+      </a>
+      <a href="/tools/image-tools" class="text-sm font-bold text-slate-500 transition hover:text-primary">All Image Tools</a>
+    </div>
+  </nav>
+
+  <main class="mx-auto max-w-7xl px-4 py-12 md:py-16">
+    <section class="mx-auto max-w-5xl text-center">
+      <div class="badge rounded-full px-6 py-2 text-sm font-black uppercase tracking-[0.16em]">
+        <span class="badge-dot"></span>
+        8K-Ready Enhancer
+      </div>
+      <h1 class="hero-title mt-8 text-5xl font-black md:text-7xl lg:text-8xl">
+        Image <span class="text-primary">Upscaler</span>
+      </h1>
+      <p class="mx-auto mt-8 max-w-3xl text-xl font-semibold leading-relaxed text-slate-500 md:text-2xl">
+        Enlarge photos, logos, and document images up to an 8K long edge. Runs in your browser with smoothing, cleanup, and crisp-edge sharpening.
+      </p>
+    </section>
+
+    <section class="tool-shell relative mt-14 overflow-hidden rounded-[2rem] p-5 md:p-10">
+      <div id="loading-overlay" class="loading-overlay absolute inset-0 z-30 flex flex-col items-center justify-center p-8 text-center">
+        <div class="h-3 w-full max-w-lg overflow-hidden rounded-full bg-slate-200 shadow-inner">
+          <div id="progress-fill" class="h-full w-0 rounded-full bg-primary transition-all duration-300"></div>
+        </div>
+        <p id="loading-text" class="mt-5 text-xl font-black text-primary">Preparing image...</p>
+        <p id="loading-detail" class="mt-2 max-w-md text-sm font-semibold text-slate-500">Large 8K exports can take a few seconds depending on your device.</p>
+      </div>
+
+      <div id="upload-section" class="grid gap-8 lg:grid-cols-[1fr_22rem]">
+        <label for="image-input" class="drop-zone flex cursor-pointer flex-col items-center justify-center rounded-[1.5rem] p-8 text-center">
+          <input type="file" id="image-input" class="hidden" accept="image/jpeg,image/png,image/webp,image/bmp">
+          <div class="icon-tile flex h-28 w-28 items-center justify-center rounded-[1.5rem]">
+            <svg class="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5"/>
+            </svg>
+          </div>
+          <h2 class="mt-9 text-4xl font-black tracking-tight md:text-5xl">Enhance an image</h2>
+          <p class="mt-4 max-w-xl text-lg font-semibold text-slate-500">Drop an image here or click to browse. Best for logos, small photos, thumbnails, product shots, and scanned images.</p>
+          <div class="mt-9 flex flex-wrap justify-center gap-3">
+            <span class="pill rounded-xl px-4 py-2 text-sm font-black">Up to 8K</span>
+            <span class="pill rounded-xl px-4 py-2 text-sm font-black">Sharp Edges</span>
+            <span class="pill rounded-xl px-4 py-2 text-sm font-black">No Upload</span>
+          </div>
+        </label>
+
+        <aside class="space-y-4">
+          <div class="option-card rounded-3xl p-5">
+            <h3 class="text-sm font-black uppercase tracking-[0.18em] text-slate-400">Output Size</h3>
+            <div class="mt-4 grid grid-cols-2 gap-3">
+              <label class="option-card cursor-pointer rounded-2xl p-2 text-center">
+                <input class="peer sr-only" type="radio" name="scale" value="2" checked>
+                <span class="block rounded-xl border border-transparent px-3 py-3 text-sm font-black">2X</span>
+              </label>
+              <label class="option-card cursor-pointer rounded-2xl p-2 text-center">
+                <input class="peer sr-only" type="radio" name="scale" value="4">
+                <span class="block rounded-xl border border-transparent px-3 py-3 text-sm font-black">4X</span>
+              </label>
+              <label class="option-card col-span-2 cursor-pointer rounded-2xl p-2 text-center">
+                <input class="peer sr-only" type="radio" name="scale" value="8k">
+                <span class="block rounded-xl border border-transparent px-3 py-3 text-sm font-black">Fit to 8K</span>
+              </label>
+            </div>
+            <p class="mt-4 text-xs font-semibold leading-relaxed text-slate-500">8K means the longest side is capped at 8192 pixels to protect browser memory.</p>
+          </div>
+
+          <div class="option-card rounded-3xl p-5">
+            <label for="sharpness" class="flex items-center justify-between text-sm font-black uppercase tracking-[0.16em] text-slate-400">
+              Sharpness <span id="sharpness-value" class="text-primary">55%</span>
+            </label>
+            <input id="sharpness" class="range-accent mt-4 w-full" type="range" min="0" max="100" value="55">
+          </div>
+
+          <div class="option-card rounded-3xl p-5">
+            <label for="denoise" class="flex items-center justify-between text-sm font-black uppercase tracking-[0.16em] text-slate-400">
+              Cleanup <span id="denoise-value" class="text-primary">18%</span>
+            </label>
+            <input id="denoise" class="range-accent mt-4 w-full" type="range" min="0" max="60" value="18">
+          </div>
+
+          <div class="option-card rounded-3xl p-5">
+            <label for="format" class="text-sm font-black uppercase tracking-[0.16em] text-slate-400">Download Format</label>
+            <select id="format" class="mt-4 w-full rounded-2xl border border-line bg-white px-4 py-3 text-sm font-black text-ink outline-none focus:border-primary">
+              <option value="image/png">PNG</option>
+              <option value="image/jpeg">JPG</option>
+              <option value="image/webp">WEBP</option>
+            </select>
+          </div>
+        </aside>
+      </div>
+
+      <div id="result-section" class="hidden space-y-8">
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="text-sm font-black uppercase tracking-[0.18em] text-violet">Enhanced Output</p>
+            <h2 class="mt-2 text-3xl font-black tracking-tight md:text-5xl">Ready to download</h2>
+          </div>
+          <div id="dimension-summary" class="rounded-2xl border border-line bg-white px-5 py-3 text-sm font-black text-slate-500"></div>
+        </div>
+
+        <div class="preview-grid overflow-hidden rounded-[1.5rem] border border-line bg-white">
+          <figure class="relative border-b border-line md:border-b-0 md:border-r">
+            <div class="preview-box flex items-center justify-center p-4">
+              <img id="original-preview" class="max-h-[32rem] max-w-full object-contain" alt="Original preview">
+            </div>
+            <figcaption class="meta-chip absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-black uppercase tracking-[0.14em]">Original</figcaption>
+          </figure>
+          <figure class="relative">
+            <div class="preview-box flex items-center justify-center p-4">
+              <img id="result-preview" class="max-h-[32rem] max-w-full object-contain" alt="Upscaled preview">
+            </div>
+            <figcaption class="absolute left-4 top-4 rounded-full bg-primary px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-white">Upscaled</figcaption>
+          </figure>
+        </div>
+
+        <div class="flex flex-col gap-3 border-t border-line pt-8 sm:flex-row sm:justify-center">
+          <a id="download-link" href="#" download="8k-upscaled-image.png" class="inline-flex items-center justify-center gap-3 rounded-2xl bg-primary px-10 py-4 text-base font-black text-white shadow-lg shadow-blue-200 transition hover:-translate-y-0.5 hover:bg-blue-700">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0L8 8m4-4v12"/></svg>
+            Download Upscaled Image
+          </a>
+          <button id="reset-button" class="rounded-2xl border border-line bg-white px-10 py-4 text-base font-black text-slate-500 transition hover:text-ink">Upscale Another</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-16 grid gap-5 md:grid-cols-3">
+      <article class="quality-card rounded-3xl p-6">
+        <h3 class="text-xl font-black">8K long-edge export</h3>
+        <p class="mt-3 text-sm font-semibold leading-relaxed text-slate-500">Choose 2X, 4X, or fit the longest side to 8192 pixels without sending your image to any server.</p>
+      </article>
+      <article class="quality-card rounded-3xl p-6">
+        <h3 class="text-xl font-black">Browser-side enhancement</h3>
+        <p class="mt-3 text-sm font-semibold leading-relaxed text-slate-500">Multi-step high-quality scaling plus optional cleanup and edge sharpening for cleaner results.</p>
+      </article>
+      <article class="quality-card rounded-3xl p-6">
+        <h3 class="text-xl font-black">Private by default</h3>
+        <p class="mt-3 text-sm font-semibold leading-relaxed text-slate-500">The file stays on your device. The page only creates a local downloadable output in your browser.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="mt-20 border-t border-line bg-white/70 px-4 py-10 text-center text-sm font-bold text-slate-500">
+    &copy; 2026 VerifyDocs.online
+  </footer>
+
+  <script>
+    const MAX_EDGE = 8192;
+    const MAX_SOURCE_MB = 25;
+    const MAX_PROCESS_PIXELS = 8192 * 8192;
+
+    const imageInput = document.getElementById('image-input');
+    const loadingOverlay = document.getElementById('loading-overlay');
+    const progressFill = document.getElementById('progress-fill');
+    const loadingText = document.getElementById('loading-text');
+    const loadingDetail = document.getElementById('loading-detail');
+    const uploadSection = document.getElementById('upload-section');
+    const resultSection = document.getElementById('result-section');
+    const originalPreview = document.getElementById('original-preview');
+    const resultPreview = document.getElementById('result-preview');
+    const downloadLink = document.getElementById('download-link');
+    const dimensionSummary = document.getElementById('dimension-summary');
+    const sharpness = document.getElementById('sharpness');
+    const denoise = document.getElementById('denoise');
+    const sharpnessValue = document.getElementById('sharpness-value');
+    const denoiseValue = document.getElementById('denoise-value');
+    const formatSelect = document.getElementById('format');
+    const resetButton = document.getElementById('reset-button');
+    const dropZone = document.querySelector('.drop-zone');
+
+    let lastObjectUrl = null;
+    let lastDownloadUrl = null;
+
+    sharpness.addEventListener('input', () => sharpnessValue.textContent = `${sharpness.value}%`);
+    denoise.addEventListener('input', () => denoiseValue.textContent = `${denoise.value}%`);
+    imageInput.addEventListener('change', (event) => {
+      const file = event.target.files && event.target.files[0];
+      if (file) processFile(file);
+    });
+    resetButton.addEventListener('click', resetTool);
+
+    dropZone.addEventListener('dragover', (event) => {
+      event.preventDefault();
+      dropZone.classList.add('dragging');
+    });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragging'));
+    dropZone.addEventListener('drop', (event) => {
+      event.preventDefault();
+      dropZone.classList.remove('dragging');
+      const file = event.dataTransfer.files && event.dataTransfer.files[0];
+      if (file) processFile(file);
+    });
+
+    function selectedScale() {
+      return document.querySelector('input[name="scale"]:checked').value;
+    }
+
+    function setProgress(percent, title, detail) {
+      progressFill.style.width = `${percent}%`;
+      loadingText.textContent = title;
+      if (detail) loadingDetail.textContent = detail;
+    }
+
+    function showLoader(percent, title, detail) {
+      setProgress(percent, title, detail);
+      loadingOverlay.classList.add('is-active');
+    }
+
+    function hideLoader() {
+      loadingOverlay.classList.remove('is-active');
+    }
+
+    function cleanupUrl(url) {
+      if (url) URL.revokeObjectURL(url);
+    }
+
+    function readImage(file) {
+      return new Promise((resolve, reject) => {
+        const url = URL.createObjectURL(file);
+        const image = new Image();
+        image.onload = () => resolve({ image, url });
+        image.onerror = () => {
+          URL.revokeObjectURL(url);
+          reject(new Error('This image could not be opened. Please try JPG, PNG, WEBP, or BMP.'));
+        };
+        image.src = url;
+      });
+    }
+
+    function getTargetSize(width, height) {
+      const mode = selectedScale();
+      let targetWidth;
+      let targetHeight;
+
+      if (mode === '8k') {
+        const scale = MAX_EDGE / Math.max(width, height);
+        targetWidth = Math.round(width * Math.max(1, scale));
+        targetHeight = Math.round(height * Math.max(1, scale));
+      } else {
+        const scale = Number(mode);
+        targetWidth = width * scale;
+        targetHeight = height * scale;
+      }
+
+      const clamp = Math.min(1, MAX_EDGE / Math.max(targetWidth, targetHeight));
+      targetWidth = Math.max(1, Math.round(targetWidth * clamp));
+      targetHeight = Math.max(1, Math.round(targetHeight * clamp));
+
+      const pixels = targetWidth * targetHeight;
+      if (pixels > MAX_PROCESS_PIXELS) {
+        const pixelClamp = Math.sqrt(MAX_PROCESS_PIXELS / pixels);
+        targetWidth = Math.max(1, Math.round(targetWidth * pixelClamp));
+        targetHeight = Math.max(1, Math.round(targetHeight * pixelClamp));
+      }
+
+      return { width: targetWidth, height: targetHeight };
+    }
+
+    function createCanvas(width, height) {
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      return canvas;
+    }
+
+    function drawImageToCanvas(image, width, height) {
+      const canvas = createCanvas(width, height);
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(image, 0, 0, width, height);
+      return canvas;
+    }
+
+    function stagedUpscale(image, targetWidth, targetHeight) {
+      let currentWidth = image.naturalWidth || image.width;
+      let currentHeight = image.naturalHeight || image.height;
+      let current = drawImageToCanvas(image, currentWidth, currentHeight);
+
+      while (currentWidth * 1.8 < targetWidth || currentHeight * 1.8 < targetHeight) {
+        currentWidth = Math.min(targetWidth, Math.round(currentWidth * 1.65));
+        currentHeight = Math.min(targetHeight, Math.round(currentHeight * 1.65));
+        const next = createCanvas(currentWidth, currentHeight);
+        const ctx = next.getContext('2d', { willReadFrequently: true });
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(current, 0, 0, currentWidth, currentHeight);
+        current = next;
+      }
+
+      if (current.width !== targetWidth || current.height !== targetHeight) {
+        const finalCanvas = createCanvas(targetWidth, targetHeight);
+        const ctx = finalCanvas.getContext('2d', { willReadFrequently: true });
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(current, 0, 0, targetWidth, targetHeight);
+        current = finalCanvas;
+      }
+
+      return current;
+    }
+
+    function enhanceCanvas(canvas, cleanupAmount, sharpAmount) {
+      const pixels = canvas.width * canvas.height;
+      if (pixels > 26000000 && (cleanupAmount > 0 || sharpAmount > 0)) {
+        return canvas;
+      }
+
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const original = new Uint8ClampedArray(data);
+      const width = canvas.width;
+      const height = canvas.height;
+      const cleanupMix = cleanupAmount / 100;
+      const sharpMix = sharpAmount / 100;
+
+      if (cleanupMix > 0) {
+        const blurred = new Uint8ClampedArray(data.length);
+        for (let y = 0; y < height; y++) {
+          for (let x = 0; x < width; x++) {
+            const index = (y * width + x) * 4;
+            let r = 0;
+            let g = 0;
+            let b = 0;
+            let a = 0;
+            let count = 0;
+            for (let oy = -1; oy <= 1; oy++) {
+              const yy = y + oy;
+              if (yy < 0 || yy >= height) continue;
+              for (let ox = -1; ox <= 1; ox++) {
+                const xx = x + ox;
+                if (xx < 0 || xx >= width) continue;
+                const neighbor = (yy * width + xx) * 4;
+                r += original[neighbor];
+                g += original[neighbor + 1];
+                b += original[neighbor + 2];
+                a += original[neighbor + 3];
+                count++;
+              }
+            }
+            blurred[index] = r / count;
+            blurred[index + 1] = g / count;
+            blurred[index + 2] = b / count;
+            blurred[index + 3] = a / count;
+          }
+        }
+        for (let i = 0; i < data.length; i += 4) {
+          data[i] = original[i] * (1 - cleanupMix) + blurred[i] * cleanupMix;
+          data[i + 1] = original[i + 1] * (1 - cleanupMix) + blurred[i + 1] * cleanupMix;
+          data[i + 2] = original[i + 2] * (1 - cleanupMix) + blurred[i + 2] * cleanupMix;
+        }
+      }
+
+      if (sharpMix > 0) {
+        const base = new Uint8ClampedArray(data);
+        for (let y = 1; y < height - 1; y++) {
+          for (let x = 1; x < width - 1; x++) {
+            const index = (y * width + x) * 4;
+            for (let channel = 0; channel < 3; channel++) {
+              const center = base[index + channel] * 5;
+              const left = base[index - 4 + channel];
+              const right = base[index + 4 + channel];
+              const top = base[index - width * 4 + channel];
+              const bottom = base[index + width * 4 + channel];
+              const sharpened = center - left - right - top - bottom;
+              data[index + channel] = Math.max(0, Math.min(255, base[index + channel] * (1 - sharpMix) + sharpened * sharpMix));
+            }
+          }
+        }
+      }
+
+      ctx.putImageData(imageData, 0, 0);
+      return canvas;
+    }
+
+    function canvasToBlob(canvas, type) {
+      return new Promise((resolve) => {
+        canvas.toBlob((blob) => resolve(blob), type, type === 'image/jpeg' ? 0.92 : 0.96);
+      });
+    }
+
+    async function processFile(file) {
+      if (!file.type.startsWith('image/')) {
+        alert('Please upload an image file.');
+        return;
+      }
+      if (file.size > MAX_SOURCE_MB * 1024 * 1024) {
+        alert(`Please upload an image smaller than ${MAX_SOURCE_MB} MB.`);
+        return;
+      }
+
+      showLoader(8, 'Opening image...', 'Reading the image locally in your browser.');
+
+      try {
+        cleanupUrl(lastObjectUrl);
+        cleanupUrl(lastDownloadUrl);
+
+        const { image, url } = await readImage(file);
+        lastObjectUrl = url;
+        originalPreview.src = url;
+
+        const sourceWidth = image.naturalWidth || image.width;
+        const sourceHeight = image.naturalHeight || image.height;
+        const target = getTargetSize(sourceWidth, sourceHeight);
+
+        if (target.width === sourceWidth && target.height === sourceHeight) {
+          throw new Error('This image is already at or above the selected size. Choose another image or use 2X/4X only when the output stays under 8K.');
+        }
+
+        setProgress(28, 'Upscaling pixels...', `${sourceWidth} x ${sourceHeight} -> ${target.width} x ${target.height}`);
+        await new Promise(requestAnimationFrame);
+
+        let canvas = stagedUpscale(image, target.width, target.height);
+        setProgress(62, 'Enhancing detail...', 'Applying cleanup and edge sharpening.');
+        await new Promise(requestAnimationFrame);
+
+        canvas = enhanceCanvas(canvas, Number(denoise.value), Number(sharpness.value));
+        setProgress(86, 'Creating download...', 'Preparing your final image file.');
+        await new Promise(requestAnimationFrame);
+
+        const format = formatSelect.value;
+        const blob = await canvasToBlob(canvas, format);
+        if (!blob) throw new Error('Your browser could not export this image. Try PNG or a smaller scale.');
+
+        lastDownloadUrl = URL.createObjectURL(blob);
+        resultPreview.src = lastDownloadUrl;
+        downloadLink.href = lastDownloadUrl;
+        const extension = format === 'image/jpeg' ? 'jpg' : format.split('/')[1];
+        downloadLink.download = `verifydocs-upscaled-${target.width}x${target.height}.${extension}`;
+        dimensionSummary.textContent = `${sourceWidth} x ${sourceHeight} -> ${target.width} x ${target.height}`;
+
+        setProgress(100, 'Done', 'Your upscaled image is ready.');
+        hideLoader();
+        uploadSection.style.display = 'none';
+        resultSection.style.display = 'block';
+      } catch (error) {
+        console.error(error);
+        hideLoader();
+        alert(error.message || 'Image upscaling failed. Please try another image.');
+      }
+    }
+
+    function resetTool() {
+      imageInput.value = '';
+      uploadSection.style.display = 'grid';
+      resultSection.style.display = 'none';
+      progressFill.style.width = '0%';
+      loadingText.textContent = 'Preparing image...';
+      loadingDetail.textContent = 'Large 8K exports can take a few seconds depending on your device.';
+      hideLoader();
+    }
+  </script>
+</body>
+</html>

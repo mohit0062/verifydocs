@@ -91,6 +91,7 @@ async function makeSampleDocx() {
   const second = { name: 'second.pdf', type: 'application/pdf', buffer: await makeSamplePdf('Second PDF') };
   const jpeg = { name: 'sample.jpg', type: 'image/jpeg', buffer: makeSampleJpeg() };
   const docx = { name: 'sample.docx', type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', buffer: await makeSampleDocx() };
+  const html = { name: 'sample.html', type: 'text/html', buffer: Buffer.from('<h1>Sample HTML</h1><p>This file tests HTML to PDF.</p>', 'utf8') };
 
   await call('pdf-to-image', [first], { pages: '1', scale: '0.5' });
   const imagePdf = await call('image-to-pdf', [jpeg]);
@@ -106,4 +107,21 @@ async function makeSampleDocx() {
   await call('extract-text', [first]);
   await call('pdf-to-word', [first]);
   await call('word-to-pdf', [docx]);
+  const pptx = await call('pdf-to-powerpoint', [first], { pages: '1' });
+  const xlsx = await call('pdf-to-excel', [first], { pages: '1' });
+  await call('powerpoint-to-pdf', [fileFromResult(pptx, 'sample.pptx')]);
+  await call('excel-to-pdf', [fileFromResult(xlsx, 'sample.xlsx')]);
+  await call('sign-pdf', [first], { signature: 'Signed by VerifyDocs', pages: '1' });
+  await call('html-to-pdf', [html]);
+  await call('organize-pdf', [first], { pages: '1' });
+  await call('pdf-to-pdfa', [first]);
+  await call('repair-pdf', [first]);
+  await call('page-numbers', [first], { position: 'bottom-center', prefix: 'Page ' });
+  await call('scan-to-pdf', [jpeg]);
+  await call('ocr-pdf', [first]);
+  await call('compare-pdf', [first, second]);
+  await call('redact-pdf', [first], { pages: '1', x: '10', y: '10', width: '35', height: '12' });
+  await call('crop-pdf', [first], { pages: '1', margin: '5' });
+  await call('ai-summarizer', [first]);
+  await call('translate-pdf', [first], { targetLang: 'hi' });
 })();

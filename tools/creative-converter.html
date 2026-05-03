@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative File Converter - AI, PSD, SVG to PNG/JPG</title>
+  <meta name="description" content="Premium creative converter for AI, PSD and SVG files. Convert to PNG or JPG with a fast web workflow.">
+  <link rel="canonical" href="https://verifydocs.online/tools/creative-converter">
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: Inter, system-ui, sans-serif; background: linear-gradient(180deg,#f8fafc,#eef5ff); }
+    .card { border: 1px solid #e2e8f0; background: rgba(255,255,255,.92); border-radius: 16px; box-shadow: 0 30px 60px -45px rgba(15,23,42,.35); }
+  </style>
+</head>
+<body class="min-h-screen text-slate-900">
+  <main class="max-w-5xl mx-auto px-4 py-10">
+    <a href="/tools/image-tools" class="text-sm font-semibold text-blue-600">← Back to Image Tools</a>
+    <h1 class="text-4xl md:text-5xl font-black tracking-tight mt-4">Creative Converter Studio</h1>
+    <p class="mt-3 text-slate-600 font-medium">Convert AI, PSD, and SVG files into clean PNG/JPG output.</p>
+
+    <section class="card mt-8 p-6 md:p-8">
+      <div class="grid gap-4 md:grid-cols-3">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wide text-slate-500 mb-2">Tool</label>
+          <select id="action" class="w-full h-11 px-3 border border-slate-200 rounded-xl bg-white font-semibold">
+            <option value="ai-to-png">AI to PNG</option>
+            <option value="ai-to-jpg">AI to JPG</option>
+            <option value="psd-to-png">PSD to PNG</option>
+            <option value="psd-to-jpg">PSD to JPG</option>
+            <option value="svg-to-png">SVG to PNG</option>
+            <option value="svg-to-jpg">SVG to JPG</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wide text-slate-500 mb-2">Quality (JPG)</label>
+          <input id="quality" type="range" min="35" max="100" value="92" class="w-full h-11">
+        </div>
+        <div class="flex items-end">
+          <span id="quality-text" class="text-sm font-bold text-slate-600">92%</span>
+        </div>
+      </div>
+
+      <div class="mt-5">
+        <label class="block text-xs font-bold uppercase tracking-wide text-slate-500 mb-2">File</label>
+        <input id="file" type="file" class="w-full h-11 px-3 border border-slate-200 rounded-xl bg-white">
+      </div>
+
+      <div id="svg-panel" class="mt-5 hidden">
+        <label class="block text-xs font-bold uppercase tracking-wide text-slate-500 mb-2">SVG Markup (Optional)</label>
+        <textarea id="svg-text" class="w-full h-36 p-3 border border-slate-200 rounded-xl bg-white text-xs font-mono" placeholder="<svg ...>...</svg>"></textarea>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <button id="convert" class="h-11 px-6 rounded-xl bg-blue-600 text-white font-bold hover:bg-blue-700">Convert Now</button>
+        <a id="download" class="h-11 px-6 rounded-xl border border-slate-200 bg-white font-bold text-slate-400 pointer-events-none inline-flex items-center" href="#">Download Result</a>
+      </div>
+      <p id="status" class="mt-4 text-sm font-semibold text-slate-500">Upload file and click convert.</p>
+    </section>
+  </main>
+
+  <script>
+    const actionEl = document.getElementById('action');
+    const fileEl = document.getElementById('file');
+    const qualityEl = document.getElementById('quality');
+    const qualityTextEl = document.getElementById('quality-text');
+    const svgPanel = document.getElementById('svg-panel');
+    const svgTextEl = document.getElementById('svg-text');
+    const convertBtn = document.getElementById('convert');
+    const downloadEl = document.getElementById('download');
+    const statusEl = document.getElementById('status');
+
+    const preset = new URLSearchParams(location.search).get('tool');
+    if (preset && Array.from(actionEl.options).some(o => o.value === preset)) actionEl.value = preset;
+
+    const setStatus = (msg, isError = false) => {
+      statusEl.textContent = msg;
+      statusEl.className = `mt-4 text-sm font-semibold ${isError ? 'text-red-600' : 'text-slate-600'}`;
+    };
+
+    const syncUi = () => {
+      const action = actionEl.value;
+      svgPanel.classList.toggle('hidden', !action.startsWith('svg-to-'));
+      qualityTextEl.textContent = `${qualityEl.value}%`;
+      fileEl.accept = action.startsWith('ai-to-') ? '.ai,application/postscript,application/pdf'
+        : action.startsWith('psd-to-') ? '.psd'
+        : '.svg,image/svg+xml';
+    };
+
+    qualityEl.addEventListener('input', syncUi);
+    actionEl.addEventListener('change', syncUi);
+    syncUi();
+
+    async function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    convertBtn.addEventListener('click', async () => {
+      const action = actionEl.value;
+      const file = fileEl.files[0];
+      if (!file && !(action.startsWith('svg-to-') && svgTextEl.value.trim())) {
+        setStatus('Please choose a file first.', true);
+        return;
+      }
+
+      convertBtn.disabled = true;
+      setStatus('Converting file...');
+      downloadEl.classList.add('pointer-events-none');
+      downloadEl.classList.add('text-slate-400');
+
+      try {
+        const payload = {
+          action,
+          file: file ? { name: file.name, type: file.type || '', data: await fileToBase64(file) } : null,
+          options: {
+            quality: Number(qualityEl.value) / 100,
+            svgText: svgTextEl.value || ''
+          }
+        };
+
+        const res = await fetch('/api/creative-convert', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const json = await res.json();
+        if (!res.ok || !json.success) throw new Error(json.error || 'Conversion failed');
+
+        const out = json.file;
+        const href = `data:${out.mimeType};base64,${out.data}`;
+        downloadEl.href = href;
+        downloadEl.download = out.fileName;
+        downloadEl.classList.remove('pointer-events-none');
+        downloadEl.classList.remove('text-slate-400');
+        setStatus(`Ready: ${out.fileName}${json.warnings?.length ? ` (${json.warnings[0]})` : ''}`);
+      } catch (err) {
+        setStatus(err.message || 'Conversion failed', true);
+      } finally {
+        convertBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
+

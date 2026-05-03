@@ -8,7 +8,9 @@
   },
   "scripts": {
     "dev": "node scripts/dev-server.js",
-    "test:pdf-tools": "node scripts/test-pdf-tools.js"
+    "test:pdf-tools": "node scripts/test-pdf-tools.js",
+    "security:audit": "npm audit --audit-level=moderate",
+    "security:scan": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/security-scan.ps1"
   },
   "dependencies": {
     "@napi-rs/canvas": "^0.1.100",
@@ -17,6 +19,7 @@
     "jszip": "^3.10.1",
     "mammoth": "^1.12.0",
     "pdf-lib": "^1.17.1",
-    "pdfjs-dist": "^5.7.284"
+    "pdfjs-dist": "^5.7.284",
+    "pptxgenjs": "^4.0.1"
   }
 }

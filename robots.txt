@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /blog/admin
+Disallow: /api/
 
 Sitemap: https://verifydocs.online/sitemap.xml

@@ -87,7 +87,9 @@
   ]
 }
 </script>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230066cc'/%3E%3Cpath d='M16 6l6 4v6c0 5-6 9-6 9s-6-4-6-9v-6z' fill='white'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+  <link rel="apple-touch-icon" href="/assets/icon.svg">
+  <link rel="shortcut icon" href="/assets/icon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -883,7 +885,7 @@
   </section>
 
     <section id="answer-faq" class="mt-10 rounded-[8px] border border-border-col bg-white p-6">
-      <h2 class="text-2xl font-extrabold text-text-main">Frequently Asked Questions</h2>
+      <h2 class="text-2xl font-extrabold text-text-main">Free PDF to Word Converter & PDF Tools FAQ</h2>
       <div class="mt-5 space-y-5">
         <div><h3 class="text-base font-bold text-text-main">What is the PDF command center?</h3><p class="mt-2 text-sm leading-relaxed text-text-muted">The PDF command center is a browser-based workspace for common PDF actions such as merging, splitting, compressing, converting, rotating, locking, and organizing PDF files.</p></div>
         <div><h3 class="text-base font-bold text-text-main">Are PDF files uploaded to VerifyDocs?</h3><p class="mt-2 text-sm leading-relaxed text-text-muted">PDF actions are designed around privacy-first browser processing where supported. Sensitive files should not be sent by email or pasted into unknown tools.</p></div>
@@ -1048,9 +1050,11 @@ const TOOLS = {
     description: 'Open a PDF as a presentation-ready PPTX workflow.',
     accept: '.pdf,application/pdf',
     multiple: false,
-    help: 'Upload one PDF.',
-    comingSoon: true,
-    notice: 'PDF to PowerPoint is listed here for quick access. Processing support is coming soon.'
+    help: 'Upload one PDF. Each PDF page becomes one PowerPoint slide.',
+    fields: [
+      { id: 'pages', label: 'Pages', type: 'text', placeholder: 'All pages or 1,3-5', helper: 'Leave empty for all pages. Max 20 pages per request.' }
+    ],
+    notice: 'PDF to PowerPoint is listed here for quick access. Runs in serverless compatibility mode.'
   },
   'pdf-to-excel': {
     title: 'PDF to Excel',
@@ -1059,33 +1063,33 @@ const TOOLS = {
     description: 'Move tables and structured PDF data into spreadsheet workflows.',
     accept: '.pdf,application/pdf',
     multiple: false,
-    help: 'Upload one PDF.',
-    comingSoon: true,
-    notice: 'PDF to Excel is listed here for quick access. Processing support is coming soon.'
+    help: 'Upload one PDF. Selectable text is exported into spreadsheet rows.',
+    fields: [
+      { id: 'pages', label: 'Pages', type: 'text', placeholder: 'All pages or 1,3-5', helper: 'Leave empty for all pages.' }
+    ],
+    notice: 'PDF to Excel is listed here for quick access. Runs in serverless compatibility mode.'
   },
   'powerpoint-to-pdf': {
     title: 'PowerPoint to PDF',
     category: 'Convert',
     icon: 'pdf',
     description: 'Turn PPT and PPTX decks into shareable PDF documents.',
-    accept: '.ppt,.pptx,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation',
+    accept: '.pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation',
     multiple: false,
-    help: 'Upload one PowerPoint file.',
-    acceptLabel: 'PPT, PPTX',
-    comingSoon: true,
-    notice: 'PowerPoint to PDF is listed here for quick access. Processing support is coming soon.'
+    help: 'Upload one PPTX file. Slide text is exported into a PDF.',
+    acceptLabel: 'PPTX',
+    notice: 'PowerPoint to PDF is listed here for quick access. Runs in serverless compatibility mode.'
   },
   'excel-to-pdf': {
     title: 'Excel to PDF',
     category: 'Convert',
     icon: 'pdf',
     description: 'Convert spreadsheets into clean PDFs for review and sharing.',
-    accept: '.xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    accept: '.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     multiple: false,
-    help: 'Upload one spreadsheet file.',
-    acceptLabel: 'XLS, XLSX',
-    comingSoon: true,
-    notice: 'Excel to PDF is listed here for quick access. Processing support is coming soon.'
+    help: 'Upload one XLSX file. Cell text is exported into a PDF.',
+    acceptLabel: 'XLSX',
+    notice: 'Excel to PDF is listed here for quick access. Runs in serverless compatibility mode.'
   },
   'edit-pdf': {
     title: 'Edit PDF',
@@ -1113,9 +1117,16 @@ const TOOLS = {
     description: 'Prepare PDFs for signatures and approval workflows.',
     accept: '.pdf,application/pdf',
     multiple: false,
-    help: 'Upload one PDF.',
-    comingSoon: true,
-    notice: 'Sign PDF is listed here for quick access. Processing support is coming soon.'
+    help: 'Upload one PDF and add a visual signature stamp.',
+    fields: [
+      { id: 'signature', label: 'Signature text', type: 'text', placeholder: 'Signed by Name' },
+      { id: 'pages', label: 'Pages', type: 'text', placeholder: 'All pages or 1,3-5', helper: 'Leave empty for all pages.' },
+      { id: 'x', label: 'X position (%)', type: 'number', placeholder: '65' },
+      { id: 'y', label: 'Y position (%)', type: 'number', placeholder: '90' },
+      { id: 'fontSize', label: 'Signature size', type: 'select', options: [['12', 'Small'], ['16', 'Medium'], ['24', 'Large']] },
+      { id: 'color', label: 'Signature color', type: 'select', options: [['blue', 'Blue'], ['black', 'Black'], ['green', 'Green'], ['red', 'Red']] }
+    ],
+    notice: 'Sign PDF is listed here for quick access. Runs in serverless compatibility mode.'
   },
   'html-to-pdf': {
     title: 'HTML to PDF',
@@ -1124,10 +1135,9 @@ const TOOLS = {
     description: 'Convert webpages or HTML files into PDF documents.',
     accept: '.html,.htm,text/html',
     multiple: false,
-    help: 'Upload one HTML file.',
+    help: 'Upload one HTML file. Readable text is converted into a PDF.',
     acceptLabel: 'HTML file',
-    comingSoon: true,
-    notice: 'HTML to PDF is listed here for quick access. Processing support is coming soon.'
+    notice: 'HTML to PDF is listed here for quick access. Runs in serverless compatibility mode.'
   },
   'organize-pdf': {
     title: 'Organize PDF',
@@ -1136,9 +1146,11 @@ const TOOLS = {
     description: 'Sort, remove, or rearrange pages before saving a new document.',
     accept: '.pdf,application/pdf',
     multiple: false,
-    help: 'Upload one PDF.',
-    comingSoon: true,
-    notice: 'Use Merge, Split, and Rotate for live organizing tasks. Full visual page organizing is coming soon.'
+    help: 'Upload one PDF and enter the final page order.',
+    fields: [
+      { id: 'pages', label: 'Page order', type: 'text', placeholder: '1,3,2 or 1-4', helper: 'Reorder, remove, or keep pages by entering the desired sequence.' }
+    ],
+    notice: 'Use Merge, Split, and Rotate for live organizing tasks. Visual drag-and-drop organize UI is planned; page-order processing is already active.'
   },
   'pdf-to-pdfa': {
     title: 'PDF to PDF/A',
@@ -1147,9 +1159,8 @@ const TOOLS = {
     description: 'Prepare PDFs for long-term archive friendly workflows.',
     accept: '.pdf,application/pdf',
     multiple: false,
-    help: 'Upload one PDF.',
-    comingSoon: true,
-    notice: 'PDF/A conversion is listed here for quick access. Processing support is coming soon.'
+    help: 'Upload one PDF. The file is rebuilt into a cleaner archive-friendly PDF.',
+    notice: 'PDF/A conversion is listed here for quick access. Runs in serverless compatibility mode.'
   },
   'repair-pdf': {
     title: 'Repair PDF',
@@ -1158,9 +1169,8 @@ const TOOLS = {
     description: 'Recover readable content from damaged PDF files when possible.',
     accept: '.pdf,application/pdf',
     multiple: false,
-    help: 'Upload one PDF.',
-    comingSoon: true,
-    notice: 'Repair PDF is listed here for quick access. Processing support is coming soon.'
+    help: 'Upload one PDF. The file is rebuilt to recover readable structure where possible.',
+    notice: 'Repair PDF is listed here for quick access. Runs in serverless compatibility mode.'
   },
   'page-numbers': {
     title: 'Page numbers',
@@ -1169,9 +1179,15 @@ const TOOLS = {
     description: 'Add page numbers with simple position and style controls.',
     accept: '.pdf,application/pdf',
     multiple: false,
-    help: 'Upload one PDF.',
-    comingSoon: true,
-    notice: 'Page numbering is listed here for quick access. Processing support is coming soon.'
+    help: 'Upload one PDF and choose where page numbers should appear.',
+    fields: [
+      { id: 'position', label: 'Position', type: 'select', options: [['bottom-center', 'Bottom center'], ['bottom-left', 'Bottom left'], ['bottom-right', 'Bottom right'], ['top-center', 'Top center'], ['top-left', 'Top left'], ['top-right', 'Top right']] },
+      { id: 'prefix', label: 'Prefix', type: 'text', placeholder: 'Page ' },
+      { id: 'fontSize', label: 'Text size', type: 'select', options: [['10', 'Small'], ['12', 'Medium'], ['16', 'Large']] },
+      { id: 'color', label: 'Text color', type: 'select', options: [['gray', 'Gray'], ['black', 'Black'], ['blue', 'Blue']] },
+      { id: 'pages', label: 'Pages', type: 'text', placeholder: 'All pages or 1,3-5', helper: 'Leave empty for all pages.' }
+    ],
+    notice: 'Page numbering is listed here for quick access. Runs in serverless compatibility mode.'
   },
   'scan-to-pdf': {
     title: 'Scan to PDF',
@@ -1180,9 +1196,8 @@ const TOOLS = {
     description: 'Collect scanned images and send them into a PDF workflow.',
     accept: 'image/png,image/jpeg',
     multiple: true,
-    help: 'Upload JPG or PNG scans.',
+    help: 'Upload JPG or PNG scans. They will be combined into one PDF.',
     acceptLabel: 'JPG, PNG',
-    comingSoon: true,
     notice: 'For now, use Image to PDF for live scan-to-PDF style conversion.'
   },
   'ocr-pdf': {
@@ -1192,9 +1207,11 @@ const TOOLS = {
     description: 'Make scanned PDFs searchable and easier to copy from.',
     accept: '.pdf,application/pdf',
     multiple: false,
-    help: 'Upload one scanned PDF.',
-    comingSoon: true,
-    notice: 'OCR PDF is listed here for quick access. Processing support is coming soon.'
+    help: 'Upload one PDF. Selectable text is exported into a clean PDF.',
+    fields: [
+      { id: 'pages', label: 'Pages', type: 'text', placeholder: 'All pages or 1,3-5', helper: 'Leave empty for all pages.' }
+    ],
+    notice: 'OCR PDF is listed here for quick access. Runs in serverless compatibility mode.'
   },
   'compare-pdf': {
     title: 'Compare PDF',
@@ -1204,9 +1221,8 @@ const TOOLS = {
     accept: '.pdf,application/pdf',
     multiple: true,
     help: 'Upload two PDFs.',
-    limitLabel: 'Two PDF files. Max 10 MB per file.',
-    comingSoon: true,
-    notice: 'Compare PDF is listed here for quick access. Processing support is coming soon.'
+    limitLabel: 'Exactly two PDF files. Max 10 MB per file.',
+    notice: 'Compare PDF is listed here for quick access. Runs in serverless compatibility mode.'
   },
   'redact-pdf': {
     title: 'Redact PDF',
@@ -1215,9 +1231,15 @@ const TOOLS = {
     description: 'Permanently remove sensitive text or graphics from PDF pages.',
     accept: '.pdf,application/pdf',
     multiple: false,
-    help: 'Upload one PDF.',
-    comingSoon: true,
-    notice: 'Redact PDF is listed here for quick access. Processing support is coming soon.'
+    help: 'Upload one PDF and enter the redaction rectangle position.',
+    fields: [
+      { id: 'pages', label: 'Pages', type: 'text', placeholder: 'All pages or 1,3-5', helper: 'Leave empty for all pages.' },
+      { id: 'x', label: 'X position (%)', type: 'number', placeholder: '10' },
+      { id: 'y', label: 'Y position (%)', type: 'number', placeholder: '10' },
+      { id: 'width', label: 'Width (%)', type: 'number', placeholder: '40' },
+      { id: 'height', label: 'Height (%)', type: 'number', placeholder: '10' }
+    ],
+    notice: 'Redact PDF is listed here for quick access. Runs in serverless compatibility mode.'
   },
   'crop-pdf': {
     title: 'Crop PDF',
@@ -1226,9 +1248,12 @@ const TOOLS = {
     description: 'Trim margins or crop selected areas across PDF pages.',
     accept: '.pdf,application/pdf',
     multiple: false,
-    help: 'Upload one PDF.',
-    comingSoon: true,
-    notice: 'Crop PDF is listed here for quick access. Processing support is coming soon.'
+    help: 'Upload one PDF and trim page margins.',
+    fields: [
+      { id: 'margin', label: 'Crop margin (%)', type: 'number', placeholder: '5' },
+      { id: 'pages', label: 'Pages', type: 'text', placeholder: 'All pages or 1,3-5', helper: 'Leave empty for all pages.' }
+    ],
+    notice: 'Crop PDF is listed here for quick access. Runs in serverless compatibility mode.'
   },
   'ai-summarizer': {
     title: 'AI Summarizer',
@@ -1237,9 +1262,11 @@ const TOOLS = {
     description: 'Generate concise summaries and key points from PDF content.',
     accept: '.pdf,application/pdf',
     multiple: false,
-    help: 'Upload one PDF.',
-    comingSoon: true,
-    notice: 'AI Summarizer is listed here for quick access. Processing support is coming soon.'
+    help: 'Upload one PDF. Selectable text is summarized into a TXT file.',
+    fields: [
+      { id: 'pages', label: 'Pages', type: 'text', placeholder: 'All pages or 1,3-5', helper: 'Leave empty for all pages.' }
+    ],
+    notice: 'AI Summarizer is listed here for quick access. Runs in serverless compatibility mode.'
   },
   'translate-pdf': {
     title: 'Translate PDF',
@@ -1248,9 +1275,12 @@ const TOOLS = {
     description: 'Translate PDF text while keeping the workflow in one place.',
     accept: '.pdf,application/pdf',
     multiple: false,
-    help: 'Upload one PDF.',
-    comingSoon: true,
-    notice: 'Translate PDF is listed here for quick access. Processing support is coming soon.'
+    help: 'Upload one PDF. Selectable English terms are translated into Hindi where available.',
+    fields: [
+      { id: 'targetLang', label: 'Language', type: 'select', options: [['hi', 'Hindi']] },
+      { id: 'pages', label: 'Pages', type: 'text', placeholder: 'All pages or 1,3-5', helper: 'Leave empty for all pages.' }
+    ],
+    notice: 'Translate PDF is listed here for quick access. Runs in serverless compatibility mode.'
   }
 };
 
@@ -1270,6 +1300,7 @@ const activeFormat = document.getElementById('active-format');
 const activeAccept = document.getElementById('active-accept');
 const activeLimit = document.getElementById('active-limit');
 const apiHealth = document.getElementById('api-health');
+const MAX_FILE_BYTES = 10 * 1024 * 1024;
 
 let activeTool = new URLSearchParams(window.location.search).get('tool') || 'pdf-to-image';
 if (!TOOLS[activeTool]) activeTool = 'pdf-to-image';
@@ -1326,7 +1357,7 @@ function renderToolTabs() {
                   <span class="sidebar-menu-title">${tool.title}</span>
                   <span class="sidebar-menu-meta">${getAcceptLabel(tool)}</span>
                 </span>
-                <span class="sidebar-menu-badge">${tool.comingSoon ? 'Soon' : 'Live'}</span>
+                <span class="sidebar-menu-badge">Live</span>
               </button>
             `;
           }).join('')}
@@ -1394,20 +1425,14 @@ function setTool(id) {
   fileInput.value = '';
   fileInput.accept = tool.accept;
   fileInput.multiple = tool.multiple;
-  fileInput.disabled = Boolean(tool.comingSoon);
-  dropZone.classList.toggle('is-disabled', Boolean(tool.comingSoon));
+  fileInput.disabled = false;
+  dropZone.classList.remove('is-disabled');
   selectedFiles.classList.add('hidden');
   selectedFiles.innerHTML = '';
   optionFields.innerHTML = (tool.fields || []).map(fieldHtml).join('');
-  if (tool.comingSoon) {
-    showStatus('info', tool.notice || 'This PDF action is listed for quick access. Processing support is coming soon.');
-    runBtn.disabled = true;
-    runBtn.textContent = 'Coming soon';
-  } else {
-    hideStatus();
-    runBtn.disabled = false;
-    runBtn.innerHTML = RUN_BUTTON_READY;
-  }
+  hideStatus();
+  runBtn.disabled = false;
+  runBtn.innerHTML = RUN_BUTTON_READY;
   downloadArea.classList.add('hidden');
   renderToolTabs();
   history.replaceState(null, '', `?tool=${activeTool}`);
@@ -1510,6 +1535,9 @@ function arrayBufferToBase64(buffer) {
 }
 
 async function fileToPayload(file) {
+  if (file.size > MAX_FILE_BYTES) {
+    throw new Error(`${file.name} is too large. Max 10 MB per file.`);
+  }
   return {
     name: file.name,
     type: file.type,
@@ -1534,6 +1562,15 @@ function base64ToBlob(data, mimeType) {
 }
 
 function downloadFile(file) {
+  if (file.blobUrl) {
+    const link = document.createElement('a');
+    link.href = file.blobUrl;
+    link.download = file.fileName;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    return;
+  }
   const blob = base64ToBlob(file.data, file.mimeType);
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
@@ -1543,6 +1580,26 @@ function downloadFile(file) {
   link.click();
   link.remove();
   URL.revokeObjectURL(url);
+}
+
+function filenameFromDisposition(value, fallback) {
+  const match = String(value || '').match(/filename\*=UTF-8''([^;]+)|filename="([^"]+)"|filename=([^;]+)/i);
+  const raw = match ? (match[1] || match[2] || match[3]) : fallback;
+  try {
+    return decodeURIComponent(raw).replace(/[\\/]/g, '-');
+  } catch (_) {
+    return String(raw || fallback).replace(/[\\/]/g, '-');
+  }
+}
+
+function warningsFromHeader(value) {
+  if (!value) return [];
+  try {
+    const parsed = JSON.parse(decodeURIComponent(value));
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (_) {
+    return [];
+  }
 }
 
 function renderDownloads(payload) {
@@ -1605,13 +1662,6 @@ dropZone.addEventListener('drop', (event) => {
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const tool = TOOLS[activeTool];
-  if (tool.comingSoon) {
-    showStatus('info', tool.notice || 'This PDF action is listed for quick access. Processing support is coming soon.');
-    runBtn.disabled = true;
-    runBtn.textContent = 'Coming soon';
-    return;
-  }
-
   const files = Array.from(fileInput.files || []);
   if (!files.length) {
     showStatus('error', 'Please choose file(s) first.');
@@ -1633,17 +1683,30 @@ form.addEventListener('submit', async (event) => {
 
     const response = await fetch('/api/pdf-tools', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'X-VerifyDocs-Download': 'binary' },
       body: JSON.stringify(payload)
     });
 
-    const result = await response.json();
-    if (!response.ok || !result.success) {
-      throw new Error(result.error || 'PDF tool failed.');
+    if (!response.ok) {
+      const rawResult = await response.text();
+      let errorMessage = `Server error ${response.status}. Try a smaller file or fewer pages.`;
+      try {
+        const parsed = JSON.parse(rawResult);
+        errorMessage = parsed.error || errorMessage;
+      } catch (_) {}
+      throw new Error(errorMessage);
     }
 
-    showStatus('success', 'Done. Your output is ready.', result.warnings || []);
-    renderDownloads(result);
+    const blob = await response.blob();
+    const fileName = filenameFromDisposition(response.headers.get('content-disposition'), `${activeTool}-output`);
+    const file = {
+      fileName,
+      mimeType: response.headers.get('content-type') || 'application/octet-stream',
+      size: blob.size,
+      blobUrl: URL.createObjectURL(blob)
+    };
+    showStatus('success', 'Done. Your output is ready.', warningsFromHeader(response.headers.get('x-verifydocs-warnings')));
+    renderDownloads({ file });
   } catch (error) {
     showStatus('error', error.message || 'PDF tool failed.');
   } finally {
@@ -1657,3 +1720,5 @@ checkApiHealth();
 </script>
 </body>
 </html>
+
+
