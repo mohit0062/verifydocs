@@ -117,7 +117,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Archivo:wght@500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -134,7 +134,8 @@
             'border-col': '#e2e8f0'
           },
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
+            sans: ['Manrope', 'sans-serif'],
+            display: ['Archivo', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace']
           }
         }
@@ -142,10 +143,46 @@
     }
   </script>
   <style>
-    body { background: #f8fafc; font-family: 'Inter', sans-serif; color: #0f172a; overflow-x: hidden; width: 100%; position: relative; }
+    :root {
+      --home-ink: #101624;
+      --home-muted: #5d687a;
+      --home-paper: #f7fafc;
+      --home-line: #dce5ef;
+      --home-blue: #0b63f6;
+      --home-green: #14905f;
+      --home-orange: #d97706;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+    }
+    body {
+      background:
+        linear-gradient(rgba(255,255,255,0.72) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.72) 1px, transparent 1px),
+        linear-gradient(180deg, #f7fafc 0%, #eef5f1 48%, #fbf8f0 100%);
+      background-size: 38px 38px, 38px 38px, 100% 100%;
+      font-family: 'Manrope', sans-serif;
+      color: var(--home-ink);
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
+    }
     html { overflow-x: hidden; width: 100%; }
-    .tool-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,102,204,0.12); }
-    .tool-card { transition: transform 0.2s, box-shadow 0.2s; }
+    .tool-card {
+      border-radius: 8px !important;
+      background: rgba(255,255,255,0.9) !important;
+      box-shadow: 0 18px 48px -42px rgba(16,22,36,0.45);
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
+    }
+    .tool-card:hover {
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--home-blue) 35%, #dce5ef 65%) !important;
+      background: rgba(255,255,255,0.98) !important;
+      box-shadow: 0 24px 58px -40px rgba(11,99,246,0.48);
+    }
     .faq-answer { display: none; }
     .faq-answer.open { display: block; }
     .faq-item.open .faq-icon { transform: rotate(180deg); }
@@ -639,6 +676,78 @@
         transition: none;
       }
     }
+    .section-eyebrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      padding: 0.42rem 0.9rem;
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .why-use-section {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, #f8fafc 0%, #eef5f9 100%);
+    }
+    .why-use-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(11,99,246,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(11,99,246,0.04) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+    .why-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid rgba(203,213,225,0.85);
+      background: rgba(255,255,255,0.96);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 18px 48px -34px rgba(15,23,42,0.22);
+      transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.24s ease, border-color 0.24s ease;
+    }
+    .why-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 64px -36px rgba(11,99,246,0.28);
+      border-color: rgba(11,99,246,0.22);
+    }
+    .why-card-icon {
+      display: inline-flex;
+      width: 3.5rem;
+      height: 3.5rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      font-size: 1.55rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 12px 28px -18px var(--icon-shadow, rgba(11,99,246,0.45));
+    }
+    .faq-section-premium {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(11,99,246,0.06), transparent 28rem),
+        linear-gradient(180deg, #ffffff, #f8fafc);
+    }
+    .faq-item-premium {
+      border-radius: 12px;
+      border: 1px solid rgba(203,213,225,0.85);
+      background: rgba(255,255,255,0.96);
+      overflow: hidden;
+      box-shadow: 0 8px 28px -20px rgba(15,23,42,0.18);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .faq-item-premium.open,
+    .faq-item-premium:focus-within {
+      border-color: rgba(11,99,246,0.25);
+      box-shadow: 0 12px 36px -22px rgba(11,99,246,0.2);
+    }
     #announcement-bar { transition: max-height 0.3s, opacity 0.3s; max-height: 60px; overflow: hidden; }
     #announcement-bar.hidden { max-height: 0; opacity: 0; }
     .category-tabs-container {
@@ -692,7 +801,7 @@
       background:
         linear-gradient(180deg, var(--tab-canvas) 0 54%, #151a25 54% 100%);
       border: 1px solid rgba(255,255,255,0.13);
-      border-radius: 24px;
+      border-radius: 8px;
       padding: 0.78rem 0.72rem 0.92rem;
       text-align: center;
       transition: transform 0.34s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
@@ -782,10 +891,24 @@
       position: relative;
       z-index: 1;
     }
+    .home-announcement {
+      background: #0f5132;
+      color: #f1fff8;
+      box-shadow: inset 0 -1px rgba(255,255,255,0.14);
+    }
+    .home-nav {
+      background: rgba(250,252,255,0.86) !important;
+      border-color: rgba(220,229,239,0.92) !important;
+      box-shadow: 0 12px 32px -30px rgba(16,22,36,0.45);
+    }
     .hero-section {
+      min-height: calc(100svh - 104px);
+      display: flex;
+      align-items: center;
       background:
-        linear-gradient(180deg, rgba(248,250,252,0.98), rgba(239,244,249,0.98)),
-        #f8fafc;
+        radial-gradient(circle at 8% 18%, rgba(20,144,95,0.13), transparent 24rem),
+        radial-gradient(circle at 92% 12%, rgba(11,99,246,0.13), transparent 25rem),
+        linear-gradient(180deg, rgba(247,250,252,0.72), rgba(239,245,241,0.92));
     }
     .hero-section h1,
     .hero-section p {
@@ -796,10 +919,8 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      background-image:
-        linear-gradient(rgba(15,23,42,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
-      background-size: 48px 48px;
+      background-image: linear-gradient(120deg, rgba(16,22,36,0.08) 0 1px, transparent 1px);
+      background-size: 28px 28px;
       opacity: 0.42;
     }
     .hero-floating-icon {
@@ -808,8 +929,60 @@
       z-index: 0;
       filter: blur(0.4px) saturate(1.04);
       animation: heroFloat 8s ease-in-out infinite;
-      opacity: 0.26;
+      opacity: 0.34;
       mix-blend-mode: multiply;
+    }
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      border: 1px solid rgba(11,99,246,0.22);
+      background: rgba(255,255,255,0.92);
+      color: var(--home-blue);
+      border-radius: 999px;
+      padding: 0.55rem 1rem;
+      box-shadow: 0 12px 32px -22px rgba(11,99,246,0.38), inset 0 1px 0 rgba(255,255,255,0.9);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .hero-kicker::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: currentColor;
+      opacity: 0.7;
+    }
+    .hero-title {
+      font-family: 'Archivo', sans-serif;
+      letter-spacing: -0.01em;
+      text-wrap: balance;
+    }
+    .hero-title-gradient {
+      background: linear-gradient(135deg, #0b63f6 0%, #14905f 55%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-primary-panel {
+      border: 1px solid rgba(220,229,239,0.96);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 28px 72px -48px rgba(16,22,36,0.42);
+    }
+    .hero-link-card {
+      border: 1px solid rgba(220,229,239,0.96);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.74);
+      transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+    .hero-link-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(11,99,246,0.26);
+      background: rgba(255,255,255,0.96);
     }
     @keyframes heroFloat {
       0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -831,30 +1004,34 @@
       .category-tab {
         min-height: 186px;
         padding: 0.72rem 0.62rem 0.85rem;
-        border-radius: 20px;
+        border-radius: 8px;
       }
       .category-tab img {
         width: 76px;
         height: 76px;
-        border-radius: 16px;
+        border-radius: 8px;
         margin-bottom: 0.75rem;
       }
     }
     @media (max-width: 640px) {
       .hero-section {
-        padding-top: 4.5rem;
-        padding-bottom: 4.75rem;
+        min-height: auto;
+        padding-top: 3.25rem;
+        padding-bottom: 3.5rem;
       }
       .hero-section > div {
-        max-width: 22.5rem;
+        max-width: 100%;
       }
       .hero-section h1 {
-        font-size: 2.45rem;
-        line-height: 1.08;
+        font-size: clamp(2.35rem, 12vw, 3.35rem);
+        line-height: 1.02;
       }
       .hero-section p {
-        font-size: 1.02rem;
+        font-size: 1rem;
         line-height: 1.55;
+      }
+      .hero-primary-panel .grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -887,16 +1064,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <!-- Announcement Bar -->
-<div id="announcement-bar" class="bg-accent text-white text-xs md:text-sm flex items-center justify-between px-4 py-2 min-h-[40px]">
+<div id="announcement-bar" class="home-announcement text-xs md:text-sm flex items-center justify-between px-4 py-2 min-h-[40px]">
   <div class="flex items-center gap-2 mx-auto text-center leading-tight">
-    <span class="hidden sm:inline">🔒</span>
-    <span><strong>Privacy First</strong> — All checks happen in your browser. We never see your data.</span>
+    <span class="hidden sm:inline font-black tracking-[0.12em]">LOCK</span>
+    <span><strong>Privacy First</strong> - browser-based checks for documents, PDFs, images, and daily utilities.</span>
   </div>
-  <button onclick="document.getElementById('announcement-bar').classList.add('hidden')" class="text-white/80 hover:text-white text-xl leading-none flex-shrink-0 ml-2">×</button>
+  <button onclick="document.getElementById('announcement-bar').classList.add('hidden')" class="text-white/80 hover:text-white text-xl leading-none flex-shrink-0 ml-2">&times;</button>
 </div>
 
 <!-- Navigation -->
-<nav class="bg-white/80 backdrop-blur-md border-b border-border-col sticky top-0 z-50 shadow-sm">
+<nav class="home-nav backdrop-blur-md border-b border-border-col sticky top-0 z-50 shadow-sm">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
     <a href="./" class="flex items-center gap-2 font-bold text-xl text-text-main no-underline">
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1009,30 +1186,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <img src="./assets/bg_remover_3d.png" alt="3D background remover icon" loading="lazy" decoding="async" class="hero-floating-icon hidden lg:block w-24 h-24 bottom-10 right-[35%]" style="animation-delay: -3s;">
   <img src="./assets/upscaler_3d.png" alt="3D upscaler icon" loading="lazy" decoding="async" class="hero-floating-icon hidden lg:block w-20 h-20 top-40 left-[30%]" style="animation-delay: -6s;">
   
-  <div class="max-w-6xl mx-auto relative z-10">
-    <div class="inline-flex items-center gap-2 bg-blue-50 text-primary text-xs font-bold px-4 py-2 rounded-full mb-6 border border-blue-100 shadow-sm">
-      ALL-IN-ONE FREE TOOLKIT
-    </div>
-    <h1 class="text-5xl md:text-7xl font-extrabold text-text-main leading-tight mb-6 tracking-tight">
-      Free tools for <br><span class="text-primary">document validation,<br class="sm:hidden"> PDFs, images &<br class="sm:hidden"> daily tasks</span>
-    </h1>
-    <p class="text-xl text-text-muted max-w-2xl mx-auto leading-relaxed mb-10 font-medium">
-      Validate Aadhaar & PAN, convert PDFs, resize images, format code, and finish everyday utilities securely from one fast browser workspace.
-    </p>
-    
-    <!-- Trust badges -->
-    <div class="flex flex-wrap justify-center gap-4 mb-12">
-      <div class="flex items-center gap-2 text-accent bg-green-50/50 px-4 py-2 rounded-2xl border border-green-100 backdrop-blur-sm">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        <span class="font-bold text-sm">Browser based</span>
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center text-left">
+      <div>
+        <div class="hero-kicker mb-6">
+          All-in-one India toolkit
+        </div>
+        <h1 class="hero-title text-5xl md:text-7xl font-extrabold text-text-main leading-[0.98] mb-6">
+          Validate, convert, compress, and <span class="hero-title-gradient">clean files</span> from one calm workspace.
+        </h1>
+        <p class="text-lg md:text-xl text-text-muted max-w-2xl leading-relaxed mb-8 font-semibold">
+          Aadhaar, PAN, GST, IFSC, PDF tools, image conversion, developer utilities, and daily helpers built for fast browser use.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="#tools" class="inline-flex h-12 items-center justify-center rounded-lg px-7 text-sm font-extrabold text-white no-underline" style="background:linear-gradient(135deg,#0b63f6,#0052cc);box-shadow:0 18px 40px -24px rgba(11,99,246,0.72),inset 0 1px 0 rgba(255,255,255,0.16);">Explore Tools →</a>
+          <a href="./tools/pdf-tools" class="inline-flex h-12 items-center justify-center rounded-lg border border-border-col bg-white/90 px-6 text-sm font-extrabold text-text-main no-underline" style="box-shadow:0 8px 24px -16px rgba(15,23,42,0.18);">Open PDF Suite</a>
+        </div>
       </div>
-      <div class="flex items-center gap-2 text-primary bg-blue-50/50 px-4 py-2 rounded-2xl border border-blue-100 backdrop-blur-sm">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        <span class="font-bold text-sm">50+ fast tools</span>
-      </div>
-      <div class="flex items-center gap-2 text-text-main bg-white/50 px-4 py-2 rounded-2xl border border-border-col backdrop-blur-sm">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <span class="font-bold text-sm">Free Forever</span>
+
+      <div class="hero-primary-panel p-4 md:p-5">
+        <div class="grid grid-cols-2 gap-3">
+          <a href="./tools/aadhaar-validator" class="hero-link-card p-4 no-underline">
+            <span class="block text-xs font-black uppercase tracking-[0.14em] text-primary">Identity</span>
+            <span class="mt-2 block text-lg font-extrabold text-text-main">Aadhaar Validator</span>
+            <span class="mt-2 block text-sm font-semibold text-text-muted">Private format and checksum check.</span>
+          </a>
+          <a href="./tools/pan-validator" class="hero-link-card p-4 no-underline">
+            <span class="block text-xs font-black uppercase tracking-[0.14em] text-primary">Tax</span>
+            <span class="mt-2 block text-lg font-extrabold text-text-main">PAN Checker</span>
+            <span class="mt-2 block text-sm font-semibold text-text-muted">Decode structure and holder type.</span>
+          </a>
+          <a href="./tools/pdf-tools" class="hero-link-card p-4 no-underline">
+            <span class="block text-xs font-black uppercase tracking-[0.14em] text-accent">Files</span>
+            <span class="mt-2 block text-lg font-extrabold text-text-main">PDF Suite</span>
+            <span class="mt-2 block text-sm font-semibold text-text-muted">Merge, split, compress, convert.</span>
+          </a>
+          <a href="./tools/image-tools" class="hero-link-card p-4 no-underline">
+            <span class="block text-xs font-black uppercase tracking-[0.14em] text-accent">Creative</span>
+            <span class="mt-2 block text-lg font-extrabold text-text-main">Image Lab</span>
+            <span class="mt-2 block text-sm font-semibold text-text-muted">Resize, convert, sharpen, export.</span>
+          </a>
+        </div>
+        <div class="mt-3 rounded-lg px-4 py-3 text-sm font-extrabold text-slate-100 flex items-center justify-between" style="background:linear-gradient(135deg,#0b1220,#0f1e36);box-shadow:inset 0 1px 0 rgba(255,255,255,0.07);">
+          <span>50+ tools. Browser-first. No sign-up needed.</span>
+          <span class="text-emerald-400 text-xs font-black tracking-wider">ZERO SERVER</span>
+        </div>
       </div>
     </div>
 
@@ -1205,11 +1403,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 
 <!-- All Tools Grid -->
-<section id="tools" class="py-12 px-4 bg-white border-y border-border-col">
+<section id="tools" class="py-16 px-4 bg-white/78 border-y border-border-col">
   <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-10">
-      <h2 class="text-3xl font-extrabold text-text-main mb-2">Free Aadhaar Validator, PAN, GST & PDF Tools Online</h2>
-      <p class="text-text-muted">Pick a specific tool for detailed validation and explanation.</p>
+    <div class="mb-10 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+      <div>
+        <div class="section-eyebrow-pill border border-blue-100 bg-blue-50/80 text-primary shadow-sm">
+          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+          Most used in India
+        </div>
+        <h2 class="mt-1 max-w-3xl text-3xl md:text-4xl font-extrabold text-text-main leading-tight">Document checks that stay fast, private, and easy to explain</h2>
+      </div>
+      <p class="max-w-md text-sm md:text-base font-semibold leading-relaxed text-text-muted">Pick a specific tool for detailed validation, format rules, and next-step guidance.</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
 
@@ -1332,6 +1536,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="pdf-tools" class="pdf-suite-section py-16 md:py-20 px-4 border-y border-border-col">
   <div class="relative z-10 mx-auto max-w-[1600px]">
     <div class="mx-auto max-w-4xl text-center">
+      <div class="section-eyebrow-pill border border-blue-100 bg-white text-primary shadow-sm">
+        <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+        PDF Tools Suite — 20+ Tools
+      </div>
       <h2 class="text-3xl md:text-5xl font-extrabold leading-tight text-text-main">
         Every tool you need to work with PDFs in one place
       </h2>
@@ -1852,38 +2060,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- Why Use Us -->
-<section class="py-14 px-4">
-  <div class="max-w-5xl mx-auto">
-    <h2 class="text-3xl font-extrabold text-center text-text-main mb-10">Why Use Our Free Indian Document Validation Tools?</h2>
+<section class="why-use-section py-16 md:py-20 px-4 border-t border-border-col">
+  <div class="relative z-10 max-w-5xl mx-auto text-center">
+    <div class="section-eyebrow-pill border border-green-100 bg-white text-accent shadow-sm">
+      <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
+      Why VerifyDocs
+    </div>
+    <h2 class="text-3xl md:text-4xl font-extrabold text-text-main leading-tight mb-3">Built for India. Trusted by users who care about privacy.</h2>
+    <p class="text-base font-medium text-text-muted max-w-2xl mx-auto mb-12">No uploads. No signups. No server access to your data — ever. All processing stays in your browser.</p>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="bg-white border border-border-col rounded-2xl p-6 text-center">
-        <div class="text-4xl mb-4">🔒</div>
-        <h3 class="font-bold text-lg text-text-main mb-2">100% Private</h3>
-        <p class="text-text-muted text-sm leading-relaxed">All validation happens in your browser. We never see, store, or upload your document numbers. Not even to our own server.</p>
+      <div class="why-card" style="--icon-shadow: rgba(11,99,246,0.4);">
+        <div class="why-card-icon bg-blue-50 text-primary" style="--icon-shadow:rgba(11,99,246,0.4);">🔒</div>
+        <h3 class="font-extrabold text-lg text-text-main mb-2">100% Private</h3>
+        <p class="text-text-muted text-sm leading-relaxed">Validation runs locally in your browser using JavaScript. Your document numbers never leave your device and are never uploaded to any server.</p>
       </div>
-      <div class="bg-white border border-border-col rounded-2xl p-6 text-center">
-        <div class="text-4xl mb-4">⚡</div>
-        <h3 class="font-bold text-lg text-text-main mb-2">Instant Results</h3>
-        <p class="text-text-muted text-sm leading-relaxed">No signups, no waiting, no captchas. Paste your document number and get validation results in under 1 second.</p>
+      <div class="why-card" style="--icon-shadow: rgba(255,153,51,0.4);">
+        <div class="why-card-icon bg-amber-50 text-amber-500" style="--icon-shadow:rgba(255,153,51,0.4);">⚡</div>
+        <h3 class="font-extrabold text-lg text-text-main mb-2">Instant Results</h3>
+        <p class="text-text-muted text-sm leading-relaxed">No signups, no waiting, no captchas. Paste your document number and get validation results in under 1 second, every time.</p>
       </div>
-      <div class="bg-white border border-border-col rounded-2xl p-6 text-center">
-        <div class="text-4xl mb-4">🇮🇳</div>
-        <h3 class="font-bold text-lg text-text-main mb-2">Made for India</h3>
-        <p class="text-text-muted text-sm leading-relaxed">Built specifically for Indian government documents using official public algorithms (Verhoeff for Aadhaar, standard regex for PAN/GST).</p>
+      <div class="why-card" style="--icon-shadow: rgba(19,136,8,0.38);">
+        <div class="why-card-icon bg-green-50 text-accent" style="--icon-shadow:rgba(19,136,8,0.38);">🇮🇳</div>
+        <h3 class="font-extrabold text-lg text-text-main mb-2">Made for India</h3>
+        <p class="text-text-muted text-sm leading-relaxed">Built for Aadhaar, PAN, GST, IFSC, and more — using official public algorithms like Verhoeff checksum, standard GSTIN regex, and EPIC formats.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FAQ Section -->
-<section class="py-14 px-4 bg-white border-t border-border-col">
-  <div class="max-w-3xl mx-auto">
-    <h2 class="text-3xl font-extrabold text-center text-text-main mb-2">Frequently Asked Questions About Free Document Validation Tools</h2>
-    <p class="text-center text-text-muted mb-10">Everything you need to know about document validation.</p>
+<section class="faq-section-premium py-16 md:py-20 px-4 border-t border-border-col">
+  <div class="max-w-3xl mx-auto text-center">
+    <div class="section-eyebrow-pill border border-slate-200 bg-white text-text-muted shadow-sm">
+      <span class="h-1.5 w-1.5 rounded-full bg-text-muted"></span>
+      Frequently Asked Questions
+    </div>
+    <h2 class="text-3xl md:text-4xl font-extrabold text-text-main mb-2 leading-tight">Everything you need to know about VerifyDocs</h2>
+    <p class="text-text-muted mb-10 font-medium">Privacy, accuracy, limits, and how it all works.</p>
 
-    <div class="space-y-4" id="faq-list">
+    <div class="space-y-3 text-left" id="faq-list">
 
-      <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden shadow-sm">
+      <div class="faq-item faq-item-premium">
         <button class="w-full flex items-center justify-between px-6 py-5 text-left font-bold text-text-main hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
           <span>Is it safe to enter my Aadhaar or PAN number here?</span>
           <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -1893,7 +2110,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden shadow-sm">
+      <div class="faq-item faq-item-premium">
         <button class="w-full flex items-center justify-between px-6 py-5 text-left font-bold text-text-main hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
           <span>Does this tool verify the authenticity of the document?</span>
           <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -1903,7 +2120,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden shadow-sm">
+      <div class="faq-item faq-item-premium">
         <button class="w-full flex items-center justify-between px-6 py-5 text-left font-bold text-text-main hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
           <span>What is the "Zero-Server" policy of VerifyDocs?</span>
           <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -1913,7 +2130,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden shadow-sm">
+      <div class="faq-item faq-item-premium">
         <button class="w-full flex items-center justify-between px-6 py-5 text-left font-bold text-text-main hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
           <span>Which Indian documents can I validate here?</span>
           <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -1923,7 +2140,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden shadow-sm">
+      <div class="faq-item faq-item-premium">
         <button class="w-full flex items-center justify-between px-6 py-5 text-left font-bold text-text-main hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
           <span>Are the developer tools also private?</span>
           <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -1933,7 +2150,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden shadow-sm">
+      <div class="faq-item faq-item-premium">
         <button class="w-full flex items-center justify-between px-6 py-5 text-left font-bold text-text-main hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
           <span>How does the image conversion work?</span>
           <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -1943,7 +2160,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden shadow-sm">
+      <div class="faq-item faq-item-premium">
         <button class="w-full flex items-center justify-between px-6 py-5 text-left font-bold text-text-main hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
           <span>Is there a limit to how many tools I can use?</span>
           <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -1953,7 +2170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden shadow-sm">
+      <div class="faq-item faq-item-premium">
         <button class="w-full flex items-center justify-between px-6 py-5 text-left font-bold text-text-main hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
           <span>Why should I use VerifyDocs over other online tools?</span>
           <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -1963,7 +2180,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden shadow-sm">
+      <div class="faq-item faq-item-premium">
         <button class="w-full flex items-center justify-between px-6 py-5 text-left font-bold text-text-main hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
           <span>Is the website mobile-friendly?</span>
           <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -1973,7 +2190,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <div class="faq-item bg-white border border-border-col rounded-2xl overflow-hidden shadow-sm">
+      <div class="faq-item faq-item-premium">
         <button class="w-full flex items-center justify-between px-6 py-5 text-left font-bold text-text-main hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
           <span>How can I contribute or report a bug?</span>
           <svg class="faq-icon w-5 h-5 text-text-muted transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -1987,54 +2204,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<footer class="bg-text-main text-white pt-16 pb-8 px-4 mt-16">
-  <div class="max-w-7xl mx-auto">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-12 mb-16">
-      <div class="col-span-2 md:col-span-1">
-        <div class="flex items-center gap-2 font-extrabold text-2xl mb-6 tracking-tight">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0066cc"/><path d="M16 7l7 4.5v7C23 23.5 16 27 16 27s-7-3.5-7-8.5v-7z" fill="white"/><path d="M13 16l2.5 2.5 4-4" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          verifydocs.online
+<footer class="vd-footer" style="margin-top:64px;background:#0b1220;color:#fff;padding:56px 16px 28px;">
+  <div style="max-width:1120px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px;margin-bottom:40px;">
+      <div style="grid-column:span 2;min-width:0;">
+        <a href="/" style="display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800;font-size:22px;letter-spacing:0;">
+          <img src="/assets/icon.svg" alt="VerifyDocs" width="32" height="32" style="border-radius:8px;">
+          <span>VerifyDocs<span style="color:#60a5fa;">.online</span></span>
+        </a>
+        <p style="max-width:420px;margin:18px 0 0;color:#aeb9ca;font-size:14px;line-height:1.7;">Privacy-first tools for Indian document checks, PDF workflows, image conversion, and creator utilities.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;font-size:13px;font-weight:700;">
+          <a href="mailto:mohitmeena0062@gmail.com" style="color:#dbeafe;text-decoration:none;">mohitmeena0062@gmail.com</a>
+          <span style="color:#526078;">/</span>
+          <a href="tel:+916350266793" style="color:#dbeafe;text-decoration:none;">+91 6350266793</a>
         </div>
-        <p class="text-gray-400 text-sm leading-relaxed mb-6">100% browser-based utility tools for Indian documents, PDF, and design. Privacy is our first priority.</p>
-        <div class="flex gap-4">
-          <a href="https://x.com/Mohitme74740671" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
-          <a href="https://www.instagram.com/mohit_minaa" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      </div>
+      <div>
+        <h3 style="margin:0 0 14px;color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.14em;">Tools</h3>
+        <div style="display:grid;gap:10px;font-size:14px;">
+          <a href="/tools/aadhaar-validator" style="color:#aeb9ca;text-decoration:none;">Aadhaar Validator</a>
+          <a href="/tools/pan-validator" style="color:#aeb9ca;text-decoration:none;">PAN Checker</a>
+          <a href="/tools/gst-validator" style="color:#aeb9ca;text-decoration:none;">GST Verifier</a>
+          <a href="/tools/pdf-tools" style="color:#aeb9ca;text-decoration:none;">PDF Tools</a>
+          <a href="/tools/image-tools" style="color:#aeb9ca;text-decoration:none;">Image Tools</a>
         </div>
       </div>
       <div>
-        <h4 class="font-bold text-sm mb-6 text-gray-200 uppercase tracking-widest">Tools</h4>
-        <ul class="space-y-3 text-sm text-gray-400">
-          <li><a href="./tools/aadhaar-validator" class="hover:text-white transition">Aadhaar Validator</a></li>
-          <li><a href="./tools/pan-validator" class="hover:text-white transition">PAN Checker</a></li>
-          <li><a href="./tools/gst-validator" class="hover:text-white transition">GST Verifier</a></li>
-          <li><a href="./tools/upi-validator" class="hover:text-white transition">UPI Validator</a></li>
-          <li><a href="./tools/pdf-tools" class="hover:text-white transition">PDF Tools</a></li>
-          <li><a href="./tools/image-tools" class="hover:text-white transition">Image Tools</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-bold text-sm mb-6 text-gray-200 uppercase tracking-widest">Resources</h4>
-        <ul class="space-y-3 text-sm text-gray-400">
-          <li><a href="./blog/" class="hover:text-white transition">Blog</a></li>
-          <li><a href="./about" class="hover:text-white transition">About Us</a></li>
-          <li><a href="./contact" class="hover:text-white transition">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-bold text-sm mb-6 text-gray-200 uppercase tracking-widest">Legal</h4>
-        <ul class="space-y-3 text-sm text-gray-400">
-          <li><a href="./privacy-policy" class="hover:text-white transition">Privacy Policy</a></li>
-          <li><a href="./terms" class="hover:text-white transition">Terms of Service</a></li>
-        </ul>
+        <h3 style="margin:0 0 14px;color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.14em;">Company</h3>
+        <div style="display:grid;gap:10px;font-size:14px;">
+          <a href="/blog/" style="color:#aeb9ca;text-decoration:none;">Blog</a>
+          <a href="/about" style="color:#aeb9ca;text-decoration:none;">About</a>
+          <a href="/contact" style="color:#aeb9ca;text-decoration:none;">Contact</a>
+          <a href="/privacy-policy" style="color:#aeb9ca;text-decoration:none;">Privacy Policy</a>
+          <a href="/terms" style="color:#aeb9ca;text-decoration:none;">Terms</a>
+        </div>
       </div>
     </div>
-    <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-      <div class="text-gray-500 text-xs font-semibold">
-        &copy; 2026 verifydocs.online. Built with privacy in mind.
-      </div>
-      <div class="text-gray-600 text-[10px] uppercase tracking-widest font-bold">
-        All tools run locally in your browser
-      </div>
+    <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;color:#738098;font-size:12px;font-weight:700;">
+      <span>&copy; 2026 verifydocs.online. Built with privacy in mind.</span>
+      <span>Browser-first utilities. Official portals remain final authority.</span>
     </div>
   </div>
 </footer>
