@@ -3,8 +3,29 @@
   "functions": {
     "api/pdf-tools.js": {
       "maxDuration": 60
+    },
+    "api/creative-convert.js": {
+      "maxDuration": 60
     }
   },
+  "rewrites": [
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy-policy.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html"
+    }
+  ],
   "redirects": [
     {
       "source": "/(.*)",
