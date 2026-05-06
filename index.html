@@ -144,6 +144,15 @@
     }
   </script>
   <style>
+
+    @keyframes float-3d-gif {
+      0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+      50% { transform: translateY(-6px) scale(1.02) rotate(2deg); }
+    }
+    .animate-3d-gif {
+      animation: float-3d-gif 3.5s ease-in-out infinite;
+    }
+
     :root {
       --home-ink: #101624;
       --home-muted: #5d687a;
@@ -1275,7 +1284,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Document Checks -->
     <a href="/tools/document-tools" class="block bg-white rounded-2xl border border-border-col p-8 shadow-sm hover:shadow-[0_20px_50px_-12px_rgba(34,197,94,0.25)] hover:-translate-y-1 hover:border-primary transition-all duration-300">
        <div class="bg-green-50 w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
-         <img src="./assets/docs_3d.png" class="w-14 h-14 object-contain drop-shadow-md">
+         <img src="./assets/docs_3d.png" class="w-14 h-14 object-contain drop-shadow-md animate-3d-gif">
        </div>
        <h3 class="text-xl font-extrabold text-text-main mb-2">Document Checks</h3>
        <p class="text-sm font-semibold text-text-muted">Fast, private, and easy to explain. Verify Aadhaar, PAN, GST and more instantly.</p>
@@ -1284,7 +1293,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- PDF Tools -->
     <a href="/tools/pdf-tools" class="block bg-white rounded-2xl border border-border-col p-8 shadow-sm hover:shadow-[0_20px_50px_-12px_rgba(59,130,246,0.25)] hover:-translate-y-1 hover:border-blue-500 transition-all duration-300">
        <div class="bg-blue-50 w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
-         <img src="./assets/pdf_3d.png" class="w-14 h-14 object-contain drop-shadow-md">
+         <img src="./assets/pdf_3d.png" class="w-14 h-14 object-contain drop-shadow-md animate-3d-gif">
        </div>
        <h3 class="text-xl font-extrabold text-text-main mb-2">PDF Suite</h3>
        <p class="text-sm font-semibold text-text-muted">Merge, split, compress, and convert PDFs without uploading to servers.</p>
@@ -1293,7 +1302,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Image Tools -->
     <a href="/tools/image-tools" class="block bg-white rounded-2xl border border-border-col p-8 shadow-sm hover:shadow-[0_20px_50px_-12px_rgba(249,115,22,0.25)] hover:-translate-y-1 hover:border-orange-500 transition-all duration-300">
        <div class="bg-orange-50 w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
-         <img src="./assets/image_3d.png" class="w-14 h-14 object-contain drop-shadow-md">
+         <img src="./assets/image_3d.png" class="w-14 h-14 object-contain drop-shadow-md animate-3d-gif">
        </div>
        <h3 class="text-xl font-extrabold text-text-main mb-2">Image Lab</h3>
        <p class="text-sm font-semibold text-text-muted">Compress, resize, and upscale images. Remove backgrounds automatically.</p>
@@ -1305,10 +1314,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="/tools/developer-tools" class="block bg-white rounded-2xl border border-border-col p-8 shadow-sm hover:shadow-[0_20px_50px_-12px_rgba(139,92,246,0.25)] hover:-translate-y-1 hover:border-purple-500 transition-all duration-300 relative overflow-hidden">
        <div class="flex gap-4 mb-6">
            <div class="bg-purple-50 w-16 h-16 rounded-2xl flex items-center justify-center z-10">
-             <img src="./assets/dev_3d.png" class="w-10 h-10 object-contain drop-shadow-md">
+             <img src="./assets/dev_3d.png" class="w-10 h-10 object-contain drop-shadow-md animate-3d-gif">
            </div>
            <div class="bg-pink-50 w-16 h-16 rounded-2xl flex items-center justify-center z-10">
-             <img src="./assets/design_3d.png" class="w-10 h-10 object-contain drop-shadow-md">
+             <img src="./assets/design_3d.png" class="w-10 h-10 object-contain drop-shadow-md animate-3d-gif">
            </div>
        </div>
        <h3 class="text-xl font-extrabold text-text-main mb-2 relative z-10">Developer & Design</h3>
@@ -1324,10 +1333,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="/tools/media-tools" class="block bg-white rounded-2xl border border-border-col p-8 shadow-sm hover:shadow-[0_20px_50px_-12px_rgba(236,72,153,0.25)] hover:-translate-y-1 hover:border-pink-500 transition-all duration-300 relative overflow-hidden">
        <div class="flex gap-4 mb-6">
            <div class="bg-pink-50 w-16 h-16 rounded-2xl flex items-center justify-center z-10">
-             <img src="./assets/media_3d.png" class="w-10 h-10 object-contain drop-shadow-md">
+             <img src="./assets/media_3d.png" class="w-10 h-10 object-contain drop-shadow-md animate-3d-gif">
            </div>
            <div class="bg-blue-50 w-16 h-16 rounded-2xl flex items-center justify-center z-10">
-             <img src="./assets/util_3d.png" class="w-10 h-10 object-contain drop-shadow-md">
+             <img src="./assets/util_3d.png" class="w-10 h-10 object-contain drop-shadow-md animate-3d-gif">
            </div>
        </div>
        <h3 class="text-xl font-extrabold text-text-main mb-2 relative z-10">Media & Utilities</h3>
