@@ -1,4 +1,4 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/site-typography.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog Admin â€” verifydocs.online</title>
+  <title>Blog Admin — verifydocs.online</title>
   <meta name="description" content="Free browser-based document validation, PDF, image, media, and utility tools from VerifyDocs.online.">
   <link rel="canonical" href="https://verifydocs.online/blog/admin">
   <link rel="alternate" hreflang="en-IN" href="https://verifydocs.online/blog/admin">
@@ -15,11 +15,11 @@
   <meta name="robots" content="noindex, nofollow">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://verifydocs.online/blog/admin">
-  <meta property="og:title" content="Blog Admin â€” verifydocs.online">
+  <meta property="og:title" content="Blog Admin — verifydocs.online">
   <meta property="og:description" content="Free browser-based document validation, PDF, image, media, and utility tools from VerifyDocs.online.">
   <meta property="og:image" content="https://verifydocs.online/assets/docs_3d.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Blog Admin â€” verifydocs.online">
+  <meta name="twitter:title" content="Blog Admin — verifydocs.online">
   <meta name="twitter:description" content="Free browser-based document validation, PDF, image, media, and utility tools from VerifyDocs.online.">
   <meta name="twitter:image" content="https://verifydocs.online/assets/docs_3d.png">
   <script type="application/ld+json">
@@ -52,6 +52,15 @@
   <script>tailwind.config={theme:{extend:{colors:{primary:'#0066cc','text-main':'#0f172a','text-muted':'#64748b','border-col':'#e2e8f0'}}}}</script>
   <style>body{font-family:'Inter',sans-serif;background:#f8fafc}</style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T80N8X570N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T80N8X570N');
+</script>
 </head>
 <body>
 
@@ -71,7 +80,7 @@
       </div>
       <div>
         <label class="block text-sm font-medium text-text-main mb-1">Password</label>
-        <input id="login-password" type="password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+        <input id="login-password" type="password" placeholder="••••••••"
           class="w-full border border-border-col rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
       </div>
       <p id="login-error" class="text-red-500 text-sm hidden"></p>
@@ -96,7 +105,7 @@
       </div>
       <div class="flex items-center gap-3">
         <span id="user-email" class="text-sm text-text-muted hidden md:block"></span>
-        <a href="./" target="_blank" class="text-sm text-primary hover:underline">View Blog â†—</a>
+        <a href="./" target="_blank" class="text-sm text-primary hover:underline">View Blog ?</a>
         <button onclick="signOut()" class="text-sm text-red-500 hover:text-red-700 font-medium">Sign Out</button>
       </div>
     </div>
@@ -169,7 +178,7 @@
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div>
           <label class="block text-sm font-medium text-text-main mb-1">Emoji</label>
-          <input id="f-emoji" type="text" placeholder="ðŸ“„" maxlength="4"
+          <input id="f-emoji" type="text" placeholder="??" maxlength="4"
             class="w-full border border-border-col rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
         </div>
         <div>
@@ -224,7 +233,7 @@
 
 <script>
 // =============================================
-// SUPABASE CONFIG â€” blog/index.html wala hi key use karo
+// SUPABASE CONFIG — blog/index.html wala hi key use karo
 // =============================================
 const SUPABASE_URL = 'YOUR_SUPABASE_URL';
 const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
@@ -294,14 +303,14 @@ async function loadPosts() {
     <tr class="hover:bg-gray-50 transition">
       <td class="px-5 py-4">
         <div class="flex items-center gap-3">
-          <span class="text-xl">${p.emoji || 'ðŸ“„'}</span>
+          <span class="text-xl">${p.emoji || '??'}</span>
           <div>
             <p class="text-sm font-semibold text-text-main leading-snug">${p.title}</p>
             <p class="text-xs text-text-muted mt-0.5">/blog/${p.slug}</p>
           </div>
         </div>
       </td>
-      <td class="px-5 py-4 text-sm text-text-muted hidden md:table-cell">${p.category || 'â€”'}</td>
+      <td class="px-5 py-4 text-sm text-text-muted hidden md:table-cell">${p.category || '—'}</td>
       <td class="px-5 py-4 text-sm text-text-muted hidden md:table-cell">${new Date(p.published_at).toLocaleDateString('en-IN')}</td>
       <td class="px-5 py-4">
         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${p.is_published ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}">
@@ -326,7 +335,7 @@ function openModal(post = null) {
   document.getElementById('f-title').value = '';
   document.getElementById('f-slug').value = '';
   document.getElementById('f-description').value = '';
-  document.getElementById('f-emoji').value = 'ðŸ“„';
+  document.getElementById('f-emoji').value = '??';
   document.getElementById('f-category').value = 'Blog';
   document.getElementById('f-readtime').value = '5 min read';
   document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
@@ -342,7 +351,7 @@ function editPost(post) {
   document.getElementById('f-title').value = post.title;
   document.getElementById('f-slug').value = post.slug;
   document.getElementById('f-description').value = post.description || '';
-  document.getElementById('f-emoji').value = post.emoji || 'ðŸ“„';
+  document.getElementById('f-emoji').value = post.emoji || '??';
   document.getElementById('f-category').value = post.category || 'Blog';
   document.getElementById('f-readtime').value = post.read_time || '5 min read';
   document.getElementById('f-date').value = post.published_at?.split('T')[0] || new Date().toISOString().split('T')[0];
@@ -376,7 +385,7 @@ async function savePost() {
   const title       = document.getElementById('f-title').value.trim();
   const slug        = document.getElementById('f-slug').value.trim().toLowerCase().replace(/[^a-z0-9-]/g, '-');
   const description = document.getElementById('f-description').value.trim();
-  const emoji       = document.getElementById('f-emoji').value.trim() || 'ðŸ“„';
+  const emoji       = document.getElementById('f-emoji').value.trim() || '??';
   const category    = document.getElementById('f-category').value.trim() || 'Blog';
   const read_time   = document.getElementById('f-readtime').value.trim() || '5 min read';
   const published_at = document.getElementById('f-date').value;
@@ -404,7 +413,7 @@ async function savePost() {
   if (error) { errEl.textContent = error.message; errEl.classList.remove('hidden'); return; }
 
   closeModal();
-  showToast(id ? 'Post update ho gaya âœ“' : 'Post add ho gaya âœ“');
+  showToast(id ? 'Post update ho gaya ?' : 'Post add ho gaya ?');
   loadPosts();
 }
 
@@ -419,7 +428,7 @@ async function confirmDelete() {
   const { error } = await supabase.from('blog_posts').delete().eq('id', deleteTargetId);
   closeDeleteModal();
   if (error) { showToast('Error: ' + error.message, true); return; }
-  showToast('Post delete ho gaya âœ“');
+  showToast('Post delete ho gaya ?');
   loadPosts();
 }
 

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -46,6 +46,15 @@
   <script>tailwind.config={theme:{extend:{colors:{primary:'#0066cc','text-main':'#0f172a','text-muted':'#64748b','border-col':'#e2e8f0'},fontFamily:{sans:['Inter','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
 <!-- Google AdSense -->`n<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1094606266002530"
      crossorigin="anonymous"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T80N8X570N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T80N8X570N');
+</script>
 </head>
             <input type="text" id="slug" class="flex-1 h-12 px-4 bg-transparent focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/30" placeholder="my-blog-post">
             <span class="px-4 text-text-muted text-sm border-l border-border-col">.html</span>
@@ -68,7 +77,7 @@
         </div>
 
         <button onclick="publishBlog()" id="publish-btn" class="w-full h-14 bg-primary text-white font-bold rounded-xl hover:bg-blue-700 transition mt-4">
-          🚀 Publish Blog to Live Site
+          ?? Publish Blog to Live Site
         </button>
 
         <div id="status" class="mt-4 text-sm font-medium hidden p-4 rounded-xl"></div>
@@ -92,7 +101,7 @@
       }
 
       btn.disabled = true;
-      btn.innerHTML = "⏳ Publishing... (This takes 10-15 seconds)";
+      btn.innerHTML = "? Publishing... (This takes 10-15 seconds)";
       statusDiv.className = "mt-4 text-sm font-medium p-4 rounded-xl bg-blue-50 text-blue-700 block";
       statusDiv.innerHTML = "Creating file and updating index on GitHub...";
 
@@ -107,16 +116,16 @@
 
         if(res.ok) {
           statusDiv.className = "mt-4 text-sm font-medium p-4 rounded-xl bg-green-50 text-green-700 block";
-          statusDiv.innerHTML = `✅ Successfully Published! Vercel is deploying it right now. <a href="${data.url}" class="underline font-bold" target="_blank">View Live Blog in 1 min</a>`;
+          statusDiv.innerHTML = `? Successfully Published! Vercel is deploying it right now. <a href="${data.url}" class="underline font-bold" target="_blank">View Live Blog in 1 min</a>`;
         } else {
           throw new Error(data.error || "Failed to publish");
         }
       } catch(e) {
         statusDiv.className = "mt-4 text-sm font-medium p-4 rounded-xl bg-red-50 text-red-700 block";
-        statusDiv.innerHTML = `❌ Error: ${e.message}`;
+        statusDiv.innerHTML = `? Error: ${e.message}`;
       } finally {
         btn.disabled = false;
-        btn.innerHTML = "🚀 Publish Blog to Live Site";
+        btn.innerHTML = "?? Publish Blog to Live Site";
       }
     }
   </script>
