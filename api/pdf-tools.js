@@ -1161,8 +1161,11 @@ async function handleAction(action, files, options) {
 
     case 'ocr-pdf': {
       const text = await extractText(files[0], options);
-      const buffer = await createTextPdf(text || 'No selectable text found for OCR export.', `${files[0].base} - OCR Text Export`);
-      return { kind: 'one', fileName: `${files[0].base}-ocr-text.pdf`, mimeType: 'application/pdf', buffer, warnings: ['Serverless OCR mode exports extracted text into a readable PDF. Scanned-image OCR accuracy depends on source text layer availability.'] };
+      if (!text || text.trim().length < 5) {
+        throw new Error('No selectable text found in this PDF. Scanned (image-only) PDFs require a native OCR engine which is not available in this lite serverless mode.');
+      }
+      const buffer = await createTextPdf(text, `${files[0].base} - OCR Text Export`);
+      return { kind: 'one', fileName: `${files[0].base}-ocr-text.pdf`, mimeType: 'application/pdf', buffer, warnings: ['Serverless OCR mode exports extracted text into a readable PDF.'] };
     }
 
     case 'compare-pdf': {
@@ -1226,6 +1229,7 @@ async function handler(req, res) {
     }
     return sendOne(res, result.fileName, result.mimeType, result.buffer, result.warnings);
   } catch (error) {
+    console.error('[PDF-TOOLS-ERROR]', error);
     const message = error.message || 'PDF tool failed';
     const status = /too large|required|invalid|outside|unknown|needs at least|supports up to|No .*found|requires qpdf/i.test(message) ? 400 : 500;
     return apiError(res, status, message);

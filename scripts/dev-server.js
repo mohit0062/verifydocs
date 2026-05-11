@@ -57,6 +57,10 @@ function apiResponseAdapter(res) {
       });
       return this;
     },
+    send(body) {
+      send(res, this.statusCode, body, this.headers);
+      return this;
+    },
     end(body = '') {
       send(res, this.statusCode, body, this.headers);
       return this;
