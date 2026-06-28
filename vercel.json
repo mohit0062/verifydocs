@@ -6,8 +6,17 @@
     },
     "api/creative-convert.js": {
       "maxDuration": 60
+    },
+    "api/cron-generator.js": {
+      "maxDuration": 60
     }
   },
+  "crons": [
+    {
+      "path": "/api/cron-generator",
+      "schedule": "0 0 */3 * *"
+    }
+  ],
   "rewrites": [
     {
       "source": "/contact",
