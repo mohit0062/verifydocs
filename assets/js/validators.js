@@ -279,3 +279,13 @@ function getUsageCount(toolName) {
   const seed = (dayOfYear * 31 + toolName.charCodeAt(0) * 7) % 200;
   return (base[toolName] || 500) + seed;
 }
+
+// ===== DYNAMIC PRIVACY COOKIE BANNER LOADER =====
+(function() {
+  const script = document.createElement('script');
+  const prefix = window.location.pathname.includes('/tools/') ? '../' : './';
+  script.src = prefix + 'assets/js/cookie-banner.js';
+  script.async = true;
+  document.body.appendChild(script);
+})();
+
