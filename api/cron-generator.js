@@ -34,7 +34,7 @@ module.exports = async function handler(req, res) {
   const AWS_ACCESS_KEY_ID = (process.env.AWS_ACCESS_KEY_ID || '').trim();
   const AWS_SECRET_ACCESS_KEY = (process.env.AWS_SECRET_ACCESS_KEY || '').trim();
   const AWS_REGION = (process.env.AWS_REGION || 'us-east-1').trim();
-  const AWS_CLAUDE_MODEL_ID = (process.env.AWS_CLAUDE_MODEL_ID || 'anthropic.claude-3-haiku-20240307-v1:0').trim();
+  const AWS_CLAUDE_MODEL_ID = (process.env.AWS_CLAUDE_MODEL_ID || process.env.AWS_BEDROCK_MODEL_ID || 'anthropic.claude-3-haiku-20240307-v1:0').trim();
 
   if (!GITHUB_TOKEN || !SUPABASE_URL || !SUPABASE_KEY) {
     return res.status(500).json({ error: 'Server missing GitHub or Supabase configuration variables' });
