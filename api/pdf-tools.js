@@ -225,6 +225,10 @@ function getScale(options) {
 
 async function getPdfjs() {
   if (!pdfjsPromise) {
+    // Statically reference the worker file so Vercel NFT includes it in the serverless bundle
+    if (false) {
+      await import('pdfjs-dist/legacy/build/pdf.worker.mjs');
+    }
     pdfjsPromise = import('pdfjs-dist/legacy/build/pdf.mjs');
   }
   return pdfjsPromise;
