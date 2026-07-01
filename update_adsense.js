@@ -11,20 +11,20 @@ function updateAdsense(dir) {
             if (!fullPath.includes('.git') && !fullPath.includes('node_modules')) {
                 updateAdsense(fullPath);
             }
-        } else if (fullPath.endsWith('.html')) {
+        } else if (fullPath.endsWith('.html') || fullPath.endsWith('.js')) {
+            // Skip updating update_adsense.js itself
+            if (file === 'update_adsense.js') {
+                continue;
+            }
             let content = fs.readFileSync(fullPath, 'utf8');
-            const oldScript1 = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1094606266002530" crossorigin="anonymous"></script>';
-            const oldScript2 = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1094606266002530" crossorigin="anonymous"></script>';
+            const regex = /<script\s+async\s+src="https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=ca-pub-1094606266002530"\s+crossorigin="anonymous"\s*>\s*<\/script>/g;
             const newScript = `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1094606266002530"
      crossorigin="anonymous"></script>`;
-     
-            // Also handle any other variations like the ones in the previous search
-            const regex1 = /<script async src="https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=ca-pub-1094606266002530" crossorigin="anonymous"><\/script>/g;
-            const regex2 = /<script async src="https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=ca-pub-1094606266002530"\s+crossorigin="anonymous"><\/script>/g;
 
-            if (regex1.test(content) || regex2.test(content)) {
-                content = content.replace(regex1, newScript);
-                content = content.replace(regex2, newScript);
+            const originalContent = content;
+            content = content.replace(regex, newScript);
+
+            if (content !== originalContent) {
                 fs.writeFileSync(fullPath, content, 'utf8');
                 console.log(`Updated: ${fullPath}`);
             }
